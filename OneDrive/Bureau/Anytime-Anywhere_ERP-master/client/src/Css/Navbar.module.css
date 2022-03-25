@@ -1,0 +1,179 @@
+.container {
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  /* box-shadow: 0px 5px  12px #888888; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(
+    90deg,
+    var(--main-color) 0%,
+    var(--secondary-color) 49%
+  );
+  transition: all 0.6s;
+}
+
+.logo {
+  margin: 10px;
+  min-width: 45px;
+  height: 45px;
+}
+.logo:hover {
+  cursor: pointer;
+}
+
+.profile {
+  cursor: pointer;
+  padding: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: black;
+  margin: 5px;
+  transition: all 0.3s;
+}
+
+.profile:hover {
+  transform: scale(1.1);
+}
+
+.navItems {
+  margin: 20px;
+}
+
+.navItems li {
+  margin: 5px;
+  color: white;
+  list-style: none;
+  text-decoration: none;
+  display: inline-flex;
+  padding: 5px;
+  font-size: 17px;
+  transition: 0.6s;
+}
+.navItems li:hover {
+  background-color: rgb(187, 75, 142);
+  padding: 10px;
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.navItemsLeft {
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+.mobileInvisible {
+  justify-content: flex-end;
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+.mobileVisible {
+  color: white;
+  display: none;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.navItemsLeft li {
+  color: white;
+  list-style: none;
+  text-decoration: none;
+  display: inline-flex;
+  padding: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+.mobileLink {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+.mobileLink:hover {
+  text-decoration: underline;
+}
+
+.childrenContainer {
+  margin-top: 90px;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0px;
+  transition: all 0.6s;
+  box-shadow: 0 0 2px #000;
+  display: none;
+  z-index: 1;
+  background-color: rgb(255, 255, 255);
+}
+
+.openMobileMenu {
+  width: 220px;
+}
+
+.mobileMenu li {
+  margin: 5px;
+  list-style: none;
+  text-decoration: none;
+  display: inline-flex;
+  width: 100%;
+  padding: 5px;
+  font-size: 17px;
+  transition: 0.6s;
+}
+
+.mobileMenu li:hover {
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 10px;
+  text-decoration: underline;
+}
+
+.mobileNavItem {
+  padding-top: 60px;
+  color: #000;
+}
+
+@media (max-width: 850px) {
+  .navItems {
+    display: none;
+  }
+  .navItemsLeft {
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 60px;
+  }
+  .mobileInvisible {
+    display: none;
+  }
+  .mobileVisible {
+    position: fixed;
+    display: inline-flex;
+    right: 0;
+  }
+  .mobileMenu {
+    display: flex;
+  }
+}

@@ -1,0 +1,273 @@
+:root {
+  --main-color: rgba(171, 74, 230, 1);
+  --secondary-color: rgba(160, 20, 103, 1);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 20, 103, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(105, 9, 67);
+}
+
+/* Default Table Style */
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+table thead th,
+table tfoot th {
+  background: rgba(0, 0, 0, 0.1);
+}
+table th,
+table td {
+  border: 1px solid lightgrey;
+  text-align: center;
+}
+/* Zebra Table Style */
+[data-table-theme*="zebra"] tbody tr:nth-of-type(odd) {
+  background: rgba(0, 0, 0, 0.05);
+}
+[data-table-theme*="zebra"][data-table-theme*="dark"]
+  tbody
+  tr:nth-of-type(odd) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px;
+}
+
+.addBtn {
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+.addBtn:hover {
+  color: rgb(190, 6, 117);
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.formContainer {
+  padding-top: 10vh;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+
+}
+
+.row {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.col2 {
+  margin: 5px;
+  width: 50%;
+  transition: all 0.6s;
+}
+
+.col3 {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px;
+  justify-content: center;
+  align-content: center;
+  margin: 5px;
+  width: calc(100% / 3);
+  transition: all 0.6s;
+}
+
+.defaultBtn {
+  border-width: 0px;
+  padding: 10px;
+  color: white;
+  background-color: rgb(187, 75, 142);
+  transition: all 0.6s;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.defaultBtn:hover {
+  background-color: rgb(126, 17, 82);
+}
+
+.transparentBtn {
+  border-width: 1px;
+  padding: 12px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0);
+  transition: all 0.6s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.transparentBtn:hover {
+  background-color: rgb(221, 221, 221);
+}
+
+.primaryBtn {
+  border-width: 0px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(73, 191, 238);
+  transition: all 0.6s;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 15px;
+  height: 4px
+}
+.primaryBtn:hover {
+  background-color: rgb(48, 156, 199);
+}
+
+.dangerBtn {
+  border-width: 0px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(250, 39, 39);
+  transition: all 0.6s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.dangerBtn:hover {
+  background-color: rgb(172, 18, 18);
+}
+
+.actionBtn {
+  border-width: 0px;
+  padding: 10px;
+  color: white;
+  background-color: rgb(179, 179, 179);
+  transition: all 0.6s;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.actionBtn:hover {
+  background-color: rgb(112, 112, 112);
+}
+
+.navIcon {
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 0 2px;
+  padding: 10px;
+}
+
+.blur {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  z-index: 1111;
+  background-color: rgba(0, 0, 0, 0.527);
+  top: 0;
+  left: 0;
+}
+
+.blurContent {
+  z-index: 9999;
+  position: fixed;
+}
+
+.alertBox {
+  top: 200px;
+  left: 25%;
+  width: 50%;
+  height: 25vh;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+}
+
+.alertBox .buttonContainer {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.alertBox h4 {
+  padding-left: 20px;
+}
+
+.select {
+  width: 80%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.paginationContainer {
+  align-items: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.pagination {
+  padding: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  transition: all 0.6s;
+}
+
+.pagination:hover {
+  transform: scale(1.2);
+  text-decoration: underline;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.activePagination {
+  transform: scale(1.2);
+  cursor: pointer;
+  display: inline-flex;
+  padding: 5px;
+  text-decoration: underline;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+@media (max-width: 800px) {
+  .formContainer {
+    padding-top: 10vh;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .row {
+    display: block;
+  }
+  .col2 {
+    padding-left: 10%;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  .col3 {
+    padding-left: 10%;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}

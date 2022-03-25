@@ -1,0 +1,85 @@
+.container {
+  z-index: 999;
+  position: fixed;
+  overflow-x: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 60px;
+  left: -205px;
+  width: 220px;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 1px rgb(0, 0, 0);
+  transition: all 0.6s;
+  text-align: center;
+}
+
+.container .list {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container li {
+  margin: 10px;
+  border-radius: 5px;
+  padding: 15px;
+  list-style: none;
+  overflow-x: hidden;
+  transition: all 0.6s;
+  cursor: pointer;
+  text-align: left;
+}
+
+.container li:hover {
+  padding: 20px;
+  background-color: rgba(236, 236, 236, 0.774);
+}
+
+.icon {
+  padding-top: 5px;
+  font-size: 17px;
+  text-align: right;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown {
+  overflow: hidden;
+  height: 20px;
+}
+.dropdown:hover {
+  height: 160px;
+}
+
+.dropdown2 {
+  overflow: hidden;
+  height: 20px;
+}
+.dropdown2:hover {
+  height: 110px;
+}
+
+.dropdown3 {
+  overflow: hidden;
+  height: 20px;
+}
+.dropdown3:hover {
+  height: 110px;
+}
+
+.submenu {
+  padding-left: 10px;
+  padding-top: 25px;
+  transition: all 0.3s;
+}
+.submenu:hover {
+  text-decoration: underline;
+  transform: scale(1.1);
+  padding-left: 15px;
+}

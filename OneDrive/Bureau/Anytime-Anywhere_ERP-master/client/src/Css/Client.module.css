@@ -1,0 +1,152 @@
+/* .form_section {
+   margin-left: 25%;
+   border: 1px solid grey;
+   width: 45%;
+   border-radius: 5px;
+} */
+h1{
+  text-align: center;
+}
+.info_section{
+  margin-left: 7%;
+  padding: 5px;
+  margin-top: 3%;
+}
+.Input_Section{
+  padding: 11px;
+  width: 40%;
+  border: 0.5px solid rgb(172, 168, 168);
+}
+.Select_Section{
+  padding: 11px;
+  width: 42%;
+  background-color: #fff;
+  border: 0.5px solid rgb(172, 168, 168);
+}
+.btn_section{
+  margin-top: 5%;
+  margin-left: 38%;
+  margin-bottom: 5%;
+}
+.PhoneSection{
+  padding: 10px;
+  width: 75%;
+  margin-top: 2%;
+  border: 0.5px solid rgb(172, 168, 168);
+}
+.addRemovePhoneBtn{
+  width: 7%;
+  height: 37px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.EmailSection{
+  padding: 10px;
+  width: 84%;
+  margin-top: 2%;
+  border: 0.5px solid rgb(172, 168, 168);
+}
+/*******Clients *****/
+.add_Btn{
+  margin-left: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border : 1px solid #f4bbff;
+  background-color: #f4bbff;
+  cursor: pointer;
+}
+.add_Btn:hover{
+  background-color: white;
+}
+.link{
+  text-decoration: none;
+  color :rgb(126, 17, 82);
+}
+table>tbody>tr {
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  height: 35px;
+}
+table>tbody>tr:hover {
+  background-color: #fff;
+  box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
+}
+
+span{
+  font-weight: normal;
+}
+
+/**** Search *****/
+.prompt{
+  padding: 10px;
+  width: 20%;
+  border-radius: 5px;
+  border : 1px solid grey;
+}
+.ui_search{
+  margin-top: -4%;
+  margin-left: 35%;
+  width: 90%;
+}
+.search_icon{
+  margin-left: -2.5%;
+}
+/***ClientsPosts****/
+.ul_section{
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+  margin-left: 45%;
+  margin-top: 5%;
+}
+.li_section {
+  list-style-type: none;
+
+}
+.a_section{
+  display:block;
+ float:left;   
+ text-decoration:none;
+ cursor: pointer;
+ border-radius: 3px;
+ width: 3%;
+ text-align: center;
+ padding:5px;
+ border : 1px solid grey;
+}
+.page_section{
+  margin-top: -4%;
+}
+@media (max-width: 850px) {
+
+  .form_section  {
+    margin-left: -0.3%;
+    width: 100%;
+    
+  }
+  .btn_section{
+    margin-top: 10%;
+    margin-left: 33%;
+    margin-bottom: 5%;
+  }
+  .Input_Section{
+    padding: 10px;
+    width: 34%;
+    margin-top: 5%;
+    border: 0.5px solid rgb(172, 168, 168);
+  }
+  .Select_Section{
+    padding: 10px;
+    margin-top : 5%;
+    width: 42%;
+    border: 0.5px solid rgb(172, 168, 168);
+  }
+  .EmailSection{
+    padding: 10px;
+    width: 82%;
+    margin-top: 5%;
+    border: 0.5px solid rgb(172, 168, 168);
+  }
+} ;
+

@@ -1,0 +1,61 @@
+.container {
+  width: 100%;
+}
+.container h2 {
+  padding-left: 10px;
+}
+.searchField {
+  display: flex;
+  justify-content: right;
+}
+
+.formInput {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.profileContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.profileCard {
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 2px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.profileCard img {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.profileCard .imageBox {
+  padding-right: 10px;
+  padding-bottom: 0px;
+  width: calc(100% / 3);
+  display: inline-block;
+  align-items: center;
+}
+
+.profileCard .details {
+  width: calc(100% - (100% / 3));
+  display: inline-block;
+  align-items: center;
+}
+
+.spinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}

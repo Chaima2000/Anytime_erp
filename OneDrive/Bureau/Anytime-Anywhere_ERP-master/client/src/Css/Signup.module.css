@@ -1,0 +1,13 @@
+.container {
+  padding-top: 5vh;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+@media (max-width: 850px) {
+  .container {
+    padding-top: 5vh;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+} ;

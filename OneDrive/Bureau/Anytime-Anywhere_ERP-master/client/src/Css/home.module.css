@@ -1,0 +1,14 @@
+.sectionOne{
+    margin-top: -2.5%;
+    margin-left: -2%;
+    /* width: 102.5%;
+    height: 30%; */
+}
+@media (max-width: 850px) {
+    .sectionOne{
+        margin-top: -8%;
+        margin-left: -5.5%;
+        width: 108.3%;
+        height: 100%;
+    }
+}

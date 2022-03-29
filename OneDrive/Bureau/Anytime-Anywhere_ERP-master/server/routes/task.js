@@ -1,15 +1,16 @@
 const { task  } = require("../database/models/task.model");
 exports.addTask =  (req , res) => {
-    const taskName = req.body.taskName;
+    const nameTask = req.body.nameTask;
     const descriptionTask = req.body.descriptionTask;
+    const priority = req.body.priority;
     const newTask = new task ( {
-      taskName: taskName,
+      nameTask: nameTask,
       descriptionTask: descriptionTask,
+      priority:priority
     });
     try {
         newTask.save();
       res.send("SUCCESS");
-      console.log(taskName);
     } catch (e) {
       res.send("ERROR");
       console.log(e);

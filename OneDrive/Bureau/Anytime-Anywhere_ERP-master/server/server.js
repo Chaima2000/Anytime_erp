@@ -43,16 +43,17 @@ app.use(
   })
 );
 /**Upload files **/
-const fileStorage = multer.diskStorage({
-  destination: (req,file,cb) => {
-  cb(null , '../server/images' )
- },
-filename: (req, file,cb) => {
-   cb(null , Date.now() + '--' + file.originalname);
 
-},
-})
-const upload = multer({storage : fileStorage});
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, '../client/src/files');
+  },
+  filename: (req, file, cb) => {
+      const fileName = file.originalname.toLowerCase().split(' ').join('-');
+      cb(null, uuidv4() + '-' + fileName)
+  }
+});
+const upload = multer({storage : storage});
 
 
 
@@ -64,6 +65,7 @@ const banks = require("./routes/banks");
 const clients = require("./routes/clients");
 const projects = require("./routes/project");
 const tasks = require("./routes/task");
+// const { pipeline } = require("nodemailer/lib/xoauth2");
 // server API'S
 
 // Auth
@@ -108,9 +110,13 @@ app.delete("/deleteclient/:id", clients.deleteClient);
 app.get("/editclient", clients.getClient);
 
 //Projects
-app.post("/addproject", upload.array('file') , projects.addProject);
+app.post("/addproject", upload.array('file'), projects.addProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.get("/getprojects", projects.getProjects);
-app.post("/addtask", tasks.addTask);
-
 app.get("/getmembers", projects.getMembers);
+
+//Tasks
+app.post("/addTask" , tasks.addTask);
+
+
+

@@ -1,79 +1,70 @@
-import React, { useState ,  useEffect } from 'react';
+import React, { useState ,  useEffect , useContext } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useParams } from "react-router-dom";
 import styles from "../../../Css/Project.module.css";
-import Styles from "../../../Css/popup.module.css";
+import { AppContext } from "../../../Context/AppContext";
+import Modal from 'react-modal';
 import Pagination from './../../../components/Pagination';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';    
+toast.configure();
 
-function Projects(props) {
+function Projects() {
   const [projectList , setprojectList] = useState([]);
+  const [popProject , setPopProject] = useState({});
+  const [disabled , setDisabled] = useState(false);
+  const [modalIsOpen , setModalIsOpen] = useState(false);
+  const [enable , setEnable] = useState(false);
+  const [deleteItem,setDeleteItem] = useState(false);
   const [currentPage , setCurrentPage] = useState(1);
   const [searchItem , setSearchItem]= useState("");
   const [postsPerPage] = useState(6);
-  const [name , setName] = useState("");
-  const [state , setState] = useState("");
-  const [client , setClient] = useState("");
-  const [description , setDescription] = useState("");
-  const [start , setStart] = useState("");
-  const [end , setEnd] = useState("");
-  const [member , setMember] = useState("");
-  const [user, setUser] = useState("");
-  const [file , setFile] = useState([ { file : ""}]);
   const [nameTask , setTaskName] = useState("");
+  const [end , setEnd] = useState("");
   const [descriptionTask , setTaskDescription] = useState("");
-  const [Taskstate , setTaskstate] = useState([ { state : ""}]);
-  const [AssignedTo , setAssignedTo] = useState("");
-  const [AssignedBy , setAssignedBy] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [isClose,  setIsClose] = useState(false);
-  const [isSubmit, setSubmit] = useState(false);
+  const [priority , setPriority] = useState([ { state : ""}]);
+  const { user } = useContext(AppContext);
+  const [show , setShow] = useState(true); 
+  Modal.setAppElement('#root')
  /****************************************************************************** */
   let { id } = useParams();
   useEffect(() => {
-      axios.get("getprojects",{ id: id }).then((res) => {
+      axios.get("getprojects").then((res) => {
         if (res.data) {
           setprojectList(res.data);
         }})
   },[]);
+/***************************************************************** */
+const addTask =(e) => {
+  e.preventDefault();
+  axios.post("/addTask" , {
+    nameTask : nameTask,
+    descriptionTask: descriptionTask,
+    priority:priority,
+  }).then ( (res) => {
+     if(res.data === "ERROR") {
+      toast.error("There's an error" ,{position: toast.POSITION.TOP_CENTER , autoClose : false  });
+     }else { 
+      toast.success('Added Successfully !' , {position:toast.POSITION.TOP_CENTER , autoClose:false });
+      success();
+     }
+  })
+  }
  /****************************************************************************** */
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  }
-  const toggleSubmit = () => {
-    setSubmit(!isSubmit);
-  }
-  const Task = props => {
-    return ( 
-      <div className={Styles.taskbox}>
-        {props.taskContent}
-      </div>
-    )
-  }
-  const Popup = (props) => {
-    return (
-      <div className={Styles.popup_box}>
-        <div className={Styles.box} >
-        <span className={Styles.close_icon} onClick={props.handleClose}><FontAwesomeIcon icon={solid("xmark")} color = "black"/></span>
-          {props.content}
-        </div>
-      </div>
-    );
-  }
-  /****************************************************************************** */
-    const addtask = (e) => {
-    e.preventDefault();
-    axios.post('/addtask' , {
-      nameTask : nameTask,
-      descriptionTask:descriptionTask,
-    }).then ( (res) => {
-      if(res.data === "ERROR"){
-        console.log("ERROR");
-      }else {
-        console.log("success");
-      }
-    })  }
+ const Pop = () => {
+  setModalIsOpen(true);
+ }
+const Delete = () => {
+  setDeleteItem(true);
+}
+ const PopUp = () => {
+  setEnable(true);
+ }
+ const close = () => {
+   setDisabled(true);
+ }
  /****************************************************************************** */
   function deleteProject(id) {
     axios.delete(`/deleteproject/${id}`).then((res) => {
@@ -86,17 +77,11 @@ function Projects(props) {
           }
         })
       }
-  /****************************************************************************** */
-  const closeProject = (id) => {
-    document.getElementById("description").value= description ;
-    document.getElementById("start").value= start;
-    document.getElementById("end").value= end;
-    document.getElementById("client").value= client;
-    document.getElementById("state").value= state;
-    document.getElementById("file").value= file;
-    document.getElementById("nameTask").value= nameTask;
-    document.getElementById("descriptionTask").value= descriptionTask;
-  }
+      const success = () => {
+        document.getElementById("nameTask").value="";
+        document.getElementById("descriptionTask").value="";
+        document.getElementById("priority").value="";
+      }
  /****************************************************************************** */
     const ProjectsPosts = ({projectList}) => { 
       return (
@@ -110,45 +95,106 @@ function Projects(props) {
                 }
               }).map( (project) => {
              return (
+               <>
               <div className={styles.Bloc} key={project._id}>
                  <br/><br/>
                 <div className={styles.info_section}>
                   <h5>Name of project : {project.name}</h5>
                   <h5>State : {project.state}</h5>
                   <h5>Client : {project.client}</h5>
-                  
-                  <input type="button" value="close" className={styles.input} onClick={() => {closeProject(project._id)}}/>
-                  <input type="button" value="Delete" onClick={()=> {deleteProject(project._id)}} className={styles.input}/>
-                  <input type="button" value="Show" onClick={()=>togglePopup(project._id)} className={styles.input}/>
-                       {isOpen && <Popup content={            
-                       <>
-                       <div key={project._id}> 
-                      <h4 className={styles.projectName}>project name : {project.name}</h4><br/><br/>
-                      <span>Assigned By :</span> &nbsp;&nbsp;
-                      <select>
-                        <option></option>
-                      </select><br/><br/>
-                      <span id="description" onChange={ (e) => setDescription(e.target.value)} >Description : {project.description}</span><br/><br/>
-                      <span id="start">Start at : {project.start}</span><br/><br/>
-                      <span id="end">End at  : <input type="date" value={project.end}/></span><br/><br/>
-                      <span id="client"> Did for  : {project.client}</span><br/><br/>
-                      <span id="state">State : {project.state}</span><br/><br/>
-                      <span id="file">Files : </span><br/><br/>
-                      <h4>List of Task :</h4><br/><br/>
-                      <button onClick={toggleSubmit} className={styles.addtask_btn}>Add Task</button><br/><br/>
-                      {isSubmit && <Task taskContent={<>
-                        <form onSubmit={addtask}>
-                      <input type="text" placeholder='Name' name="nameTask"  id="nameTask" onChange={ (e) => nameTask(e.target.value)} className={styles.input} required/><br/><br/>
-                      <input type="text" placeholder='Description' className={styles.input} name="descriptionTask" id="descriptionTask" onChange={ (e) => setTaskDescription(e.target.value)} required /><br/><br/>
-                      <input type="button" value="Save" className={styles.savetask_btn} />
-                      </form>
-                      </>} />}
-                      </div>      
-                      </>}
-                      handleClose={togglePopup}
-                      />}
-                      </div>
+                  <h5>Description : {project.description}</h5>
+                </div>
+                <div className={styles.buttonSection}>
+                  <input type="button" value="close" className={styles.input} onClick= {()=>{PopUp() ; close()}}/>
+                  <input type="button" value="Delete" onClick = {() => {Delete()}} className={styles.input}/>
+                  <input type="button" value="Show" onClick={() => {setPopProject(project) ;  Pop()}} className={styles.input} /><br/><br/>  
+                </div>
               </div> 
+              {/*** Show modal ***/}
+              <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} 
+                                              shouldCloseOnOverlayClick={true} className={styles.Modal}
+                                              style = {
+                                                {  
+                                                  overlay : {
+                                                    backgroundColor : '#00000050'
+                                                  },
+                                                  content : {
+                                                      color : 'black' , 
+                                                      backgroundColor : 'white', 
+                                                      },
+                                               }
+                                               }  
+                                              >
+                    <h4 className={styles.projectName}><span className={styles.spans}>Project Name :</span>{popProject.name}</h4><br/>
+                    <h5><span className={styles.spans}>Assigned by :</span>{user.firstName}</h5>
+                    <h5><span className={styles.spans}>Assigned to :</span>{project.members}</h5>
+                   
+                      <h5><span  className={styles.spans}>State :</span> {popProject.state}</h5>
+                      <h5><span  className={styles.spans}>Start at :</span>  {popProject.start}</h5>
+                      <span  className={styles.spans}>End at :</span><input  type="date" value = {project.end} onChange ={(e) => { setEnd(e.target.value)}}/>
+                        {project.file.map( (files) => {
+                          return ( 
+                            <>
+                              <h5><span className={styles.spans}>Files uploaded : </span>{files.file}</h5>
+                            </>
+                          )
+                        })}
+                      <input type="button" value="AddTask" id="addTask" className={styles.inputBtn} onClick={ () => {setShow(!show)}} /> <br/> <br/>
+                      { show? 
+                        <form onSubmit={addTask}>
+                         <input type="text" placeholder='Enter name' className={styles.inputTasks} id="nameTask" name= "nameTask"  onChange={(e) => {setTaskName(e.target.value)}} disabled={disabled} /> <br/><br/>
+                         <textarea type="text" placeholder='Enter description' className={styles.inputTasks} id="descriptionTask" name= "descriptionTask" onChange={(e) => {setTaskDescription(e.target.value)}} disabled={disabled} /> <br/><br/>
+                         <h5><span className={styles.spans}>State :</span></h5>
+                         <select className={styles.inputTasks} name="priority" id="priority"  onChange={(e) => setPriority(e.target.value)} disabled={disabled} >
+                           <option>In progress</option>
+                           <option>Planning</option>
+                           <option>Closed</option>
+                         </select>
+                         <h5><span className={styles.spans}>Priority :</span></h5><input type="number" className={styles.inputTasks} onChange = { (e) => {setPriority(e.target.value)}} disabled={disabled}  /><br/><br/>
+                         <button value="Save" className={styles.inputBtn}>Save</button><br/><br/>
+                         </form> : null 
+                      }
+                      <input type="button" value="Close" className={styles.inputBtn} onClick={() => setModalIsOpen(false)}/><br/><br/> 
+              </Modal>
+               {/*** Close Modal ***/}
+              <Modal isOpen={enable} onRequestClose = {() => setEnable(false)} 
+                                              shouldCloseOnOverlayClick={true} style = {
+                                                {  
+                                                  overlay : {
+                                                    backgroundColor : '#00000020'
+                                                  },
+                                                  content : {
+                                                      color : 'black' , 
+                                                      backgroundColor : 'white', 
+                                                      },
+                                               }
+                                               } className={styles.ModalClose}   >
+                    <p className={styles.closeParagraph}>Do you want to close this project ? <br/></p>
+                    <div className={styles.btn_section}>
+                     <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={() => setEnable(false)} />
+                     <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setEnable(false)} />
+                    </div>
+              </Modal>
+               {/*** Delete Modal ***/}
+              <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
+                                              shouldCloseOnOverlayClick={true} style = {
+                                                {  
+                                                  overlay : {
+                                                    backgroundColor : '#00000020'
+                                                  },
+                                                  content : {
+                                                      color : 'black' , 
+                                                      backgroundColor : 'white', 
+                                                      },
+                                               }
+                                               } className={styles.ModalClose}   >
+                    <p className={styles.closeParagraph}>Do you want to close this project ? <br/></p>
+                    <div className={styles.btn_section}>
+                     <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(project._id)}}/>
+                     <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setDeleteItem(false)} />
+                    </div>
+              </Modal>
+                  </>
               )})
               }
           </div>

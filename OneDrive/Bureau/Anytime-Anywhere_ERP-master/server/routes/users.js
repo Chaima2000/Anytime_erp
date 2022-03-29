@@ -102,7 +102,6 @@ exports.changeRole = (req, res) => {
 
 exports.deleteUser = (req, res) => {
   const id = req.params.userId;
-
   user.findByIdAndRemove(id, (err) => {
     if (err) {
       res.send("ERROR");

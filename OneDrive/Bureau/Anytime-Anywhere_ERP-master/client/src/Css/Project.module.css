@@ -2,8 +2,6 @@
   margin-top: 5%;}
 .h1{
     margin-left: -5%;}
-
-
 /* *form* */
 body , .btn , .btn_file , .left_input , .right_input  {
   border : 0;
@@ -22,12 +20,26 @@ body , .btn , .btn_file , .left_input , .right_input  {
   width: 540px;
   float : right;
 }
+.left_inputs Select {
+  border: hidden
+}
  .left_input , .right_input {
   margin-right: 8px;
   box-shadow : inset 2px 2px 5px #b8b3ba,
    inset -5px -5px 10px #fff ;
   width : 90%;
   box-sizing : border-box;
+  height: 65px;
+  margin-top: -3%;
+ }
+ .Select_input{
+  margin-right: 8px;
+  box-shadow : inset 2px 2px 5px #b8b3ba,
+   inset -5px -5px 10px #fff ;
+  width : 90%;
+  box-sizing : border-box;
+  height: 65;
+  margin-top: -3%;
  }
  .left_input:focus , .right_input:focus{
   box-shadow: inset 1px 1px 2px #babecc,
@@ -156,11 +168,91 @@ display: none;
 }
 .input {
 padding : 5px;
+cursor: pointer;
+margin: 5px;
+width: 18%;
  }
-
+ .inputBtn {
+  padding : 5px;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 12%;
+  width: 70%;
+   }
  .projectName{
    text-align: center;
  }
+.checkBox{
+  width: 15px;
+  height: 25px;
+}
+.dropdown {
+  position: relative;
+  width: 300px;
+  height: 100px;
+  background: #f0f1f6;
+  border-radius: 30px;
+  box-shadow : 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
+  transition: all 500ms ease-in-out;
+  cursor: pointer; 
+}
+.dropdown:active {
+  background: #f0f1f6;
+  box-shadow: inset 7px 7px 14px #cccdd1 , 
+  inset -7px -7px 14px #ffffff;
+}
+.Modal {
+  margin-top: 10%;
+  width: 60%;
+  height: 425px;
+  overflow: scroll;
+  margin-left: 20%;
+ padding: 22px;
+ border-radius:  12px;
+ font-size: 15px;
+}
+.projectName{
+  margin-left: -5%;
+}
+.spans{
+  font-size: 13px;
+  font-weight: 200;
+}
+.buttonSection{
+  margin-left: 22%;
+}
+.inputTasks {
+  padding: 10px;
+  width: 90%;
+  border : 1px solid grey;
+  border-radius: 9px;
+}
+.ModalClose{
+  width: 30%;
+  height: 20%;
+  margin-top: 15%;
+  margin-left: 35%;
+  border-radius: 15px;
+}
+.close_Btn {
+  background: red;
+  border : 1px solid red;
+  color :white;
+  padding : 10px;
+  height: 43px;
+  border-radius: 9px;
+  margin: 35px;
+  cursor: pointer;
+}
+.btn_section{
+  margin-left: 21%;
+  margin-top: -5%;
+}
+.closeParagraph{
+  font-weight: 200;
+  text-align: center;
+  padding-top: 5%;
+}
  @media (max-width: 1050px) {
 
   .left_input{

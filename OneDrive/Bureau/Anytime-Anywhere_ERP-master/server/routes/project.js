@@ -1,5 +1,6 @@
 const { project  } = require("../database/models/project.model");
 const { user  } = require("../database/models/user.model");
+const multer  = require('multer');
 exports.getProjects = (req, res) => {
   project.find({}).then((projects) => {
     res.send(projects)
@@ -22,7 +23,7 @@ exports.addProject =  (req , res) => {
     start: start,
     end: end,
     members:members,
-    file:file
+    file:file,
   });
   try {
     newProject.save();
@@ -52,25 +53,6 @@ exports.deleteProject =(req,res) => {
     }
   });
 }
-// exports.uploadFile = (req,res) => {
-//   var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, '../server/Images')
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-//     }
-//   })
-   
-//   var upload = multer({ storage: storage });
-//   var multipleUpload = upload.fields([{ file: 'file'}]);
-  
-//   if(req.files){
-//     console.log(req.files)
-
-//     console.log("files uploaded")
-// }
-// }
 exports.getMembers = async (req, res)=>{
   const membersList = await user.find({$or: [
     { role: "DEVELOPER" },
@@ -79,3 +61,16 @@ exports.getMembers = async (req, res)=>{
   ],}).exec()
   res.send(membersList);
 }
+exports.getADMIN = async (req, res)=>{
+  const admin = await user.find({$or: [
+    { role: "ADMIN" },
+  ],}).exec()
+  res.send(admin);
+  console.log(admin)
+}
+exports.getUsers = (req, res) => {
+  user.find({}).then((users) => {
+    res.send(users)
+  });
+};
+

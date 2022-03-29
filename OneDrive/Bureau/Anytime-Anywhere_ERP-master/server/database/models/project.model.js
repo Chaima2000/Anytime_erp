@@ -38,9 +38,32 @@ const projectSchema = new mongoose.Schema(
     }
 ,
     file : {
-        type: Array,
-        required: false,
-    }
+       type: Array,
+    required: false,
+}
+// nameTask: {
+//     type:String,
+//     required : false,
+// }
+// ,
+// assignedBy : {
+//     type:String,
+// }
+// ,
+// state : {
+//     type:String,
+//     required:true,
+// }
+// ,
+// assignedTo : {
+//     type:Array,
+//     required:true,
+// }
+// ,
+// descriptionTask : {
+//     type:String,
+//     required:false,
+// }
 },
 
 )

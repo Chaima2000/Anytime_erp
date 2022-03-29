@@ -1,14 +1,5 @@
-.sectionOne{
-    margin-top: -2.5%;
-    margin-left: -2%;
-    /* width: 102.5%;
-    height: 30%; */
-}
-@media (max-width: 850px) {
-    .sectionOne{
-        margin-top: -8%;
-        margin-left: -5.5%;
-        width: 108.3%;
-        height: 100%;
-    }
+.slider {
+ width: 800px;
+ height: 400px;
+ background: url(../Images//272827987_493754445459105_7264808731561913493_n.jpg);   
 }

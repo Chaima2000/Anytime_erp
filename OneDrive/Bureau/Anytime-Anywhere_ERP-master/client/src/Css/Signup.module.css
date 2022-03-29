@@ -3,7 +3,14 @@
   padding-left: 200px;
   padding-right: 200px;
 }
-
+.password_view_icon{
+  position: absolute;
+  top:8px;
+  right : 10px;
+  z-index : 1000;
+  cursor: pointer;
+  color : black;
+}
 @media (max-width: 850px) {
   .container {
     padding-top: 5vh;

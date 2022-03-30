@@ -1,10 +1,7 @@
-import React, { useState , useEffect , Component } from 'react';
-import Select, { NonceProvider } from 'react-select';
+import React, { useState , useEffect } from 'react';
+import Select  from 'react-select';
 import styles from '../../../Css/Project.module.css';
 import axios from 'axios';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link , withRouter } from "react-router-dom";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';    
 toast.configure()
@@ -32,11 +29,6 @@ function AddProject(props) {
       }
     });
   }, []);
- 
-const getFile = (e) => {
-  console.log(e.target.files)
-  setFile({file : e.target.files});
-}
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("state").value="";
@@ -47,6 +39,18 @@ const getFile = (e) => {
     setMembersList([{members : ""}]);
     setFile([{ file : ""}]);
   }
+  function convertBase64(file) {
+    return new Promise((resolve, reject) => {
+     const fileReader = new FileReader();
+     fileReader.readAsDataURL(file);
+     fileReader.onload = () => {
+       resolve(fileReader.result);
+     };
+     fileReader.onerror = (error) => {
+       reject(error);
+     };
+   });
+ }
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
@@ -77,7 +81,7 @@ const getFile = (e) => {
     data.append("start",start);
     data.append("end",end);
     data.append("members",members);
-      data.append('file', file);
+    data.append('file', file);
     const datax = {
       name:name,
       state:state,
@@ -94,12 +98,13 @@ const getFile = (e) => {
       }else if(res.data === "SUCCESS"){
         toast.success('Added Successfully !' , {position:toast.POSITION.TOP_CENTER , autoClose:false });
         success();
+        console.log(res.data);
       }
     }
     )}
 
   return (
-   <form  onSubmit={addproject}>
+   <form  onSubmit={addproject} encType = "multiple/form-data">
    <h1 className={styles.h1}>ADD PROJECT</h1>
 
    <div className={styles.left_inputs}>
@@ -118,8 +123,8 @@ const getFile = (e) => {
               options={membersList} 
               styles={customStyles}
               className={styles.left_input}
-                    // classNamePrefix="select"
-                    /><br/><br/>
+              required
+              /><br/><br/>
                  
                 
        <textarea className={styles.left_input} placeholder="Description" onChange={(e)=>{setDescription(e.target.value)}} id="description" name="description" required/><br/><br/>
@@ -136,7 +141,19 @@ const getFile = (e) => {
       </select>
       <br/><br/>
       <label className={styles.btn_file} >Upload files
-      <input type="file" className={styles.file_input} onChange={getFile} id="file" name="file" enctype="multipart/form-data"  multiple /></label>  <br/><br/>      <label>End Date : </label><br/><br/>
+      <input type="file" className={styles.file_input} onChange={async (e) => {
+                    var array = [];
+                    const files = e.target.files;
+                    for (let i = 0; i < files.length; i++) {
+                     let file = files.item(i);
+                     const base64 = await convertBase64(file);
+                     array.push(base64);
+                   }
+                   setFile(array);
+                 }}
+
+ id="file" multiple/></label>  <br/><br/>      
+      <label>End Date : </label><br/><br/>
       <input type="date" className={styles.right_input}  onChange={(e)=>{setEnd(e.target.value)}} id="end" name="end" required /><br/><br/>
    </div><br/>
 

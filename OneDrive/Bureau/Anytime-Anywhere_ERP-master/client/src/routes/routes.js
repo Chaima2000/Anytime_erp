@@ -21,7 +21,7 @@ import ViewClient from "../Pages/admin/clients/clientProfile";
 import EditClient from "../Pages/admin/clients/EditProfile";
 import AddProject from "../Pages/admin/projets/AddProject";
 import Projects from "../Pages/admin/projets/Projects";
-import ProjectList from "../Pages/admin/projets/ProjectList";
+import ProjectProfile from "../Pages/admin/projets/ProjectProfile";
 import { Switch, Route } from "react-router-dom";
 
 export const userRoutes = (
@@ -129,8 +129,8 @@ export const superAdminRoutes = (
       <Route path="/projects" exact>
         <Projects />
       </Route>
-      <Route path="/projectList" exact>
-        <ProjectList />
+      <Route path="/project/addTask/:id" exact>
+        <ProjectProfile />
       </Route>
       <Route>
         <Notfound />

@@ -1,9 +1,5 @@
-.left_inputs , .right_inputs{
-  margin-top: 5%;}
-.h1{
-    margin-left: -5%;}
 /* *form* */
-body , .btn , .btn_file , .left_input , .right_input  {
+body , .btn , .btn_file , .input_item  {
   border : 0;
   outline : 0;
   font-size : 16px;
@@ -12,36 +8,29 @@ body , .btn , .btn_file , .left_input , .right_input  {
   background-color: #f7f7f7;
   letter-spacing : -0.2px;
  }
- .left_inputs{
-  width: 540px;
-  float: left;
-}
-.right_inputs{
-  width: 540px;
-  float : right;
-}
-.left_inputs Select {
-  border: hidden
-}
- .left_input , .right_input {
-  margin-right: 8px;
-  box-shadow : inset 2px 2px 5px #b8b3ba,
-   inset -5px -5px 10px #fff ;
-  width : 90%;
+ .h1{
+  margin-left: -5%;}
+ .div_section{
+   display: inline-block;
+   width: 90%;
+ }
+ .div_right{
+   float: right;
+   width: 45%;
+ }
+ .div_left{
+   float: left;
+   width: 45%;
+ }
+
+ .input_item{
+  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  #fff;
+  width : 100%;
   box-sizing : border-box;
   height: 65px;
-  margin-top: -3%;
+  margin : 15px;
  }
- .Select_input{
-  margin-right: 8px;
-  box-shadow : inset 2px 2px 5px #b8b3ba,
-   inset -5px -5px 10px #fff ;
-  width : 90%;
-  box-sizing : border-box;
-  height: 65;
-  margin-top: -3%;
- }
- .left_input:focus , .right_input:focus{
+ .input_item:focus{
   box-shadow: inset 1px 1px 2px #babecc,
   inset  -1px -1px 2px #fff;
  }
@@ -51,9 +40,10 @@ body , .btn , .btn_file , .left_input , .right_input  {
   box-shadow : -5px -5px 20px #fff , 5px 5px 20px rgb(187, 75, 142);
   cursor : pointer;
   font-weight: 600;
-  width: 25%;
-  margin-top: 2%;
-  margin-left: 38%;
+  width : 40%;
+  right: 20%;
+  left : 28%;
+  position: relative;
  }
  .btn:hover {
  box-shadow : -2px -2px 5px #fff, 2px 2px 5px #babecc;
@@ -68,9 +58,12 @@ display: none;
 .btn_file{
   display : block;
   background-color :#f7f7f7;
+  margin-top: 2%;
+  margin-left: 3%;
   color: #6a6a6a;
-  box-shadow : -5px -5px 20px #fff , 5px 5px 20px #babecc;
-  width: 85%;
+  box-shadow : -5px -5px 15px #fff , 5px 5px 5px #babecc;
+  height: 35px;
+  width: 93%;
   cursor : pointer;
 }
 .btn_file:hover{
@@ -89,6 +82,38 @@ display: none;
   margin: 7px;
   margin-left: 2%;
   cursor: pointer;
+}
+.addProject_Btn{
+  /* float: right; */
+  position: absolute;
+  right : 12%;
+  padding : 12px;
+  cursor: pointer;
+  margin-top: -6%;
+  width: 8%;  
+  border-radius: 12px;
+  border : 1px solid grey;
+}
+/*project*/
+.input_projectProfile {
+  padding: 15px;
+  width: 60%;
+  border : 1px solid grey;
+  border-radius: 12px;
+  height: 15px;
+}
+.input_projectProfile_priority{
+  padding: 15px;
+  width:5%;
+  border : 1px solid grey;
+  border-radius: 12px;
+  height: 5px;
+}
+.input_SaveBtn{
+margin-left: 45%;
+padding: 12px;
+border : 1px solid grey;
+border-radius: 12px;
 }
 
 .Bloc:hover{
@@ -254,27 +279,29 @@ width: 18%;
   padding-top: 5%;
 }
  @media (max-width: 1050px) {
-
-  .left_input{
-    width:100%;
+  .input_item{
+    width: 100%;
   }
-  .right_input{
-    width:100%;
+  .div_section {
+   width: 100%;
+   margin-left: -3%;
   }
-  .btn_file{
-    width:90%;
-    margin-top: -6%;
-  }
-  .left_inputs{
-    width: 310px;
+  .div_right{
     float: left;
+    width: 90%;
   }
-  .right_inputs{
-    width: 310px;
+  .div_left{
     float: left;
+    width: 90%;
   }
   .btn{
-    margin-left: 35%;
+    position: relative;
+    right: 20%;
+    left : 30%;
+    top:100%
+  }
+  .btn_file{
+    width: 90%;
   }
   .savetask_btn{
     width: 40%;

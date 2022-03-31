@@ -13,7 +13,7 @@ import { Link , withRouter } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';    
 toast.configure();
 
-function Projects() {
+function Projects(props) {
   const [name , setName] = useState("");
   const [state , setState] = useState("");
   const [client , setClient] = useState("");
@@ -171,6 +171,7 @@ const Delete = () => {
       return (
           <>
        <div className={styles.bloc_section}>
+       <Link to={`/projects/add`}><input type="button" value="Add" className={styles.addProject_Btn} /> </Link><br/><br/>  
               {projectList.filter((val) => {
                 if(searchItem === "") {
                   return val ;
@@ -191,82 +192,10 @@ const Delete = () => {
                 <div className={styles.buttonSection}>
                   <input type="button" value="close" className={styles.input} onClick= {()=>{PopUp() ; close()}}/>
                   <input type="button" value="Delete" onClick = {() => {Delete()}} className={styles.input}/>
-                  <input type="button" value="Show" onClick={() => {setPopProject(project) ;  Pop()}} className={styles.input} />
-                  <Link to={`/projectList`} ><input type="button" value="Add" className={styles.input} /> </Link><br/><br/>  
+                 <Link to={`/project/addTask/${project._id}`}><input type="button" value="Show" className={styles.input} /></Link>
+                 {/* onClick={() => {setPopProject(project) ;  Pop()}} */}
                 </div>
               </div> 
-              {/*** Show modal ***/}
-              <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} 
-                                              shouldCloseOnOverlayClick={true} className={styles.Modal}
-                                              style = {
-                                                {  
-                                                  overlay : {
-                                                    backgroundColor : '#00000050'
-                                                  },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      backgroundColor : 'white', 
-                                                      },
-                                               }
-                                               }  
-                                              >
-                    <form  onSubmit={addproject} encType = "multiple/form-data">
-   <h1 className={styles.h1}>ADD PROJECT</h1>
-
-   <div className={styles.left_inputs}>
-      <input className={styles.left_input} placeholder="Name" type="text" onChange={(e)=>{setName(e.target.value)}} id="name" name="name" required /><br/><br/><br/>
-                <Select 
-                    isMulti
-                    name="members"
-                    id="members"
-                    onChange={(e) => {
-                      let values =[]
-                      e.forEach(element=>{
-                        values.push(element.value)
-                      })
-                    setMembers(values)
-              }}
-              options={membersList} 
-              styles={customStyles}
-              className={styles.left_input}
-              required
-              /><br/><br/>
-                 
-                
-       <textarea className={styles.left_input} placeholder="Description" onChange={(e)=>{setDescription(e.target.value)}} id="description" name="description" required/><br/><br/>
-      <label>Start Date : </label><br/><br/>
-      <input type="date" className={styles.left_input} onChange={(e)=>{setStart(e.target.value)}} id="start" name="start" required /><br/><br/>
-   </div>
-
-   <div className={styles.right_inputs}>
-      <input className={styles.right_input} placeholder="Client"  onChange={(e)=>{setClient(e.target.value)}} id="client" name="client" required /><br/><br/><br/>
-      <select className = {styles.right_input} id="state" name="state" onChange={(e)=>{setState(e.target.value)}} required>
-          <option value="in_progress">In progress</option>
-          <option value="planning">Planning</option>
-          <option value="closed">Closed</option>
-      </select>
-      <br/><br/>
-      <label className={styles.btn_file} >Upload files
-      <input type="file" className={styles.file_input} onChange={async (e) => {
-                    var array = [];
-                    const files = e.target.files;
-                    for (let i = 0; i < files.length; i++) {
-                     let file = files.item(i);
-                     const base64 = await convertBase64(file);
-                     array.push(base64);
-                   }
-                   setFile(array);
-                 }}
-
- id="file" multiple/></label>  <br/><br/>      
-      <label>End Date : </label><br/><br/>
-      <input type="date" className={styles.right_input}  onChange={(e)=>{setEnd(e.target.value)}} id="end" name="end" required /><br/><br/>
-   </div><br/>
-
-  
-   <button className={styles.btn}>SAVE</button> 
-   </form>
-              </Modal>
                {/*** Close Modal ***/}
               <Modal isOpen={enable} onRequestClose = {() => setEnable(false)} 
                                               shouldCloseOnOverlayClick={true} style = {

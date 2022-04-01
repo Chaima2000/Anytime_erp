@@ -14,29 +14,14 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 function Projects(props) {
-  const [name , setName] = useState("");
-  const [state , setState] = useState("");
-  const [client , setClient] = useState("");
-  const [description , setDescription] = useState("");
-  const [start , setStart] = useState("");
-  const [end , setEnd] = useState("");
   const [membersList , setMembersList] = useState([]);
-  const [members , setMembers] = useState([]);
-  const [file , setFile] = useState([]);
   const [projectList , setprojectList] = useState([]);
-  const [popProject , setPopProject] = useState({});
   const [disabled , setDisabled] = useState(false);
-  const [modalIsOpen , setModalIsOpen] = useState(false);
   const [enable , setEnable] = useState(false);
   const [deleteItem,setDeleteItem] = useState(false);
   const [currentPage , setCurrentPage] = useState(1);
   const [searchItem , setSearchItem]= useState("");
   const [postsPerPage] = useState(6);
-  const [nameTask , setTaskName] = useState("");
-  const [descriptionTask , setTaskDescription] = useState("");
-  const [priority , setPriority] = useState([ { state : ""}]);
-  const { user } = useContext(AppContext);
-  const [show , setShow] = useState(true); 
   Modal.setAppElement('#root')
  /****************************************************************************** */
   let { id } = useParams();
@@ -57,89 +42,8 @@ function Projects(props) {
       }
     });
   }, []);
-  const customStyles = {
-    menu: (provided, state) => ({
-      ...provided,
-      width: state.selectProps.width,
-      borderBottom: '1px dotted pink',
-      color: state.selectProps.menuColor,
-      padding: 10,
-    }),
-  
-    control: (_, { selectProps: { width }}) => ({
-      width:width
-    }),
-  
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 0ms';
-  
-      return { ...provided, opacity, transition };
-    }
-  }
-  function convertBase64(file) {
-    return new Promise((resolve, reject) => {
-     const fileReader = new FileReader();
-     fileReader.readAsDataURL(file);
-     fileReader.onload = () => {
-       resolve(fileReader.result);
-     };
-     fileReader.onerror = (error) => {
-       reject(error);
-     };
-   });
- }
-  const addproject =(e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("name",name);
-    data.append("state",state);
-    data.append("client",client);
-    data.append("description",description);
-    data.append("start",start);
-    data.append("end",end);
-    data.append("members",members);
-    data.append('file', file);
-    const datax = {
-      name:name,
-      state:state,
-      client:client,
-      description:description,
-      start:start,
-      end:end,
-      members:members,
-      file:file
-    }
-    axios.post("/addproject", datax).then((res)=>{
-      if(res.data === "ERROR"){
-        toast.error("There's an error" ,{position: toast.POSITION.TOP_CENTER , autoClose : false  });
-      }else if(res.data === "SUCCESS"){
-        toast.success('Added Successfully !' , {position:toast.POSITION.TOP_CENTER , autoClose:false });
-        success();
-        console.log(res.data);
-      }
-    }
-    )}
-/***************************************************************** */
-const addTask =(e) => {
-  e.preventDefault();
-  axios.post("/addTask" , {
-    nameTask : nameTask,
-    descriptionTask: descriptionTask,
-    priority:priority,
-  }).then ( (res) => {
-     if(res.data === "ERROR") {
-      toast.error("There's an error" ,{position: toast.POSITION.TOP_CENTER , autoClose : false  });
-     }else { 
-      toast.success('Added Successfully !' , {position:toast.POSITION.TOP_CENTER , autoClose:false });
-      success();
-     }
-  })
-  }
+
  /****************************************************************************** */
- const Pop = () => {
-  setModalIsOpen(true);
- }
 const Delete = () => {
   setDeleteItem(true);
 }
@@ -161,11 +65,6 @@ const Delete = () => {
           }
         })
       }
-      const success = () => {
-        document.getElementById("nameTask").value="";
-        document.getElementById("descriptionTask").value="";
-        document.getElementById("priority").value="";
-      }
  /****************************************************************************** */
     const ProjectsPosts = ({projectList}) => { 
       return (
@@ -175,7 +74,7 @@ const Delete = () => {
               {projectList.filter((val) => {
                 if(searchItem === "") {
                   return val ;
-                }else if ( val.name.toLowerCase().includes(searchItem.toLowerCase()) || val.state.toLowerCase().includes(searchItem.toLowerCase()) || val.client.toLowerCase().includes(searchItem.toLowerCase())  ){
+                }else if ( val.name.toLowerCase().includes(searchItem.toLowerCase())){
                   return val;
                 }
               }).map( (project) => {
@@ -184,7 +83,7 @@ const Delete = () => {
               <div className={styles.Bloc} key={project._id}>
                  <br/><br/>
                 <div className={styles.info_section}>
-                  <h5>Name of project : {project.name}</h5>
+                  <h5>Name of project : {project.name}</h5> 
                   <h5>State : {project.state}</h5>
                   <h5>Client : {project.client}</h5>
                   <h5>Description : {project.description}</h5>
@@ -193,7 +92,6 @@ const Delete = () => {
                   <input type="button" value="close" className={styles.input} onClick= {()=>{PopUp() ; close()}}/>
                   <input type="button" value="Delete" onClick = {() => {Delete()}} className={styles.input}/>
                  <Link to={`/project/addTask/${project._id}`}><input type="button" value="Show" className={styles.input} /></Link>
-                 {/* onClick={() => {setPopProject(project) ;  Pop()}} */}
                 </div>
               </div> 
                {/*** Close Modal ***/}
@@ -254,7 +152,7 @@ const Delete = () => {
   <div className={styles.overlay}>
     <h1>Project's List</h1>
     <div className={styles.search_box}>
-     <input className={styles.search_text}  type="text" onChange={ (e) => { setSearchItem(e.target.value)}} placeholder="Type to search" />
+     <input className={styles.search_text}  type="text" onChange={ (e) => { setSearchItem(e.target.value)}} placeholder="Project's name" />
      <a className={styles.search_btn} href="#"> 
        <FontAwesomeIcon icon= {solid("search")} color = "black" className={styles.search_icon} />
      </a>

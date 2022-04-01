@@ -1,6 +1,8 @@
 /* *form* */
-body , .btn , .btn_file , .input_item  {
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Nanum+Myeongjo&family=Nunito:wght@200&display=swap');
+body , .btn , .btn_file , .input_item , .input_item_Date  {
   border : 0;
+  font-family: 'Nunito', sans-serif;
   outline : 0;
   font-size : 16px;
   border-radius : 320px;
@@ -13,6 +15,7 @@ body , .btn , .btn_file , .input_item  {
  .div_section{
    display: inline-block;
    width: 90%;
+   margin-left: 5%;
  }
  .div_right{
    float: right;
@@ -25,12 +28,19 @@ body , .btn , .btn_file , .input_item  {
 
  .input_item{
   box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  #fff;
-  width : 100%;
+  width : 90%;
   box-sizing : border-box;
   height: 65px;
   margin : 15px;
  }
- .input_item:focus{
+ .input_item_Date {
+  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  #fff;
+  width : 15%;
+  box-sizing : border-box;
+  height: 65px;
+  margin : 15px;
+ }
+ .input_item:focus , .input_item_Date:focus {
   box-shadow: inset 1px 1px 2px #babecc,
   inset  -1px -1px 2px #fff;
  }
@@ -42,7 +52,8 @@ body , .btn , .btn_file , .input_item  {
   font-weight: 600;
   width : 40%;
   right: 20%;
-  left : 28%;
+  left : 29%;
+  margin-top: 5%;
   position: relative;
  }
  .btn:hover {
@@ -63,7 +74,7 @@ display: none;
   color: #6a6a6a;
   box-shadow : -5px -5px 15px #fff , 5px 5px 5px #babecc;
   height: 35px;
-  width: 93%;
+  width: 85%;
   cursor : pointer;
 }
 .btn_file:hover{
@@ -181,16 +192,6 @@ border-radius: 12px;
   line-height : 40px;
   width : 0px;
 }
-.addtask_btn{
-  padding: 10px;
-  margin-left: 1%;
-  width: 30%;
-}
-.savetask_btn{
-  padding: 10px;
-  margin-left: 15%;
-  width: 15%;
-}
 .input {
 padding : 5px;
 cursor: pointer;
@@ -226,16 +227,19 @@ width: 18%;
   box-shadow: inset 7px 7px 14px #cccdd1 , 
   inset -7px -7px 14px #ffffff;
 }
+/**Project List**/
 .Modal {
   margin-top: 10%;
-  width: 60%;
-  height: 425px;
+  background-color: #f7f7f7;
+  width: 45%;
+  height: 435px;
   overflow: scroll;
-  margin-left: 20%;
+  margin-left: 30%;
  padding: 22px;
  border-radius:  12px;
  font-size: 15px;
 }
+
 .projectName{
   margin-left: -5%;
 }
@@ -254,14 +258,14 @@ width: 18%;
 }
 .ModalClose{
   width: 30%;
-  height: 20%;
+  height: 39%;
   margin-top: 15%;
   margin-left: 35%;
   border-radius: 15px;
 }
 .close_Btn {
-  background: red;
-  border : 1px solid red;
+  background: rgb(187, 75, 142);
+  border : 1px solid rgb(187, 75, 142);
   color :white;
   padding : 10px;
   height: 43px;
@@ -270,14 +274,58 @@ width: 18%;
   cursor: pointer;
 }
 .btn_section{
-  margin-left: 21%;
-  margin-top: -5%;
+margin-left: 22%;
+}
+.btn_cancel{
+  margin-left: 43.5%;
+  margin-top: 12%;
 }
 .closeParagraph{
   font-weight: 200;
-  text-align: center;
-  padding-top: 5%;
+  padding-top: 22%;
+  padding-left: 14%;
+  font-size: 23px;
 }
+.h4{
+text-align: center;
+  font-size: 19px;
+}
+.TaskModal{
+  width: 30%;
+  height: 50%;
+  background: white;
+  margin-left: 35%;
+  margin-top: 12%;
+  border-radius: 12px;
+  padding: 12px;
+}
+.bloc_info{
+  text-align: center;
+}
+.addBtn_input{
+  padding : 15px;
+  border : 1px solid grey;
+  border-radius : 9px;
+cursor: pointer;
+margin: 5px;
+width: 23%;
+position: relative;
+/* margin-top: 5% ; */
+left: 39%;
+}
+/**Tasks**/
+.DeleteTask{
+  padding: 12px;
+  border: 1px solid grey;
+  border-radius: 7px;
+  position: relative;
+  float: right;
+  right: 12%;
+  margin-bottom: 5%;
+  margin: 4px;
+  cursor: pointer;
+}
+
  @media (max-width: 1050px) {
   .input_item{
     width: 100%;

@@ -10,7 +10,46 @@
   box-shadow: 0 0 4px;
   background-color: white;
 }
-
+.input {
+  width: 70%;
+  display: block;
+  height: 35px;
+  border-radius:5px;
+  border: 1px solid rgb(207, 203, 203);
+  margin: 10px;
+}
+.link{
+  text-decoration: none;
+}
+.hr {
+  border: 0.5px solid rgb(212,212,212);
+  width: 90%;
+}
+.Userpicture{
+  float: right;
+  width: 20%;
+}
+.informations{
+float: left;
+position: relative;
+top: 5%;
+width: 80%;
+}
+.updateBtn{
+  padding: 15px;
+  width: 15%;
+  position: relative;
+  left: 1%;
+  border:none;
+  border-radius : 5px;
+  background: linear-gradient(
+    90deg,
+    var(--main-color) 0%,
+    var(--secondary-color) 49%
+  );
+  cursor: pointer;
+  color : white
+}
 .content {
   background-color: black;
 }

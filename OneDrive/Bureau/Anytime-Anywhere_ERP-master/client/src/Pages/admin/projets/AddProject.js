@@ -37,7 +37,7 @@ function AddProject(props) {
     document.getElementById("description").value="";
     document.getElementById("start").value="";
     document.getElementById("end").value= "";
-    setMembersList([{members : ""}]);
+    setMembers([{members : ""}]);
     setFile([{ file : ""}]);
   }
   //select options //
@@ -60,15 +60,7 @@ function AddProject(props) {
    });
  }
 
-  const customStyles = {
-    menu: (provided, state) => ({
-      ...provided,
-      width: state.selectProps.width,
-      borderBottom: '1px dotted pink',
-      color: state.selectProps.menuColor,
-      padding: 10,
-    }),
-  
+  const customStyles = {  
     control: (_, { selectProps: { width }}) => ({
       width:width
     }),
@@ -104,7 +96,10 @@ function AddProject(props) {
     }
     axios.post("/addproject", datax).then((res)=>{
       if(res.data === "ERROR"){
-        // toast.error("There's an error" ,{position: toast.POSITION.TOP_CENTER , autoClose : false  });
+        swal({
+          title: "ERROR",
+          button: "OK!",
+        });
         console.log(e);
       }else if(res.data === "SUCCESS"){
         swal({
@@ -131,6 +126,7 @@ function AddProject(props) {
                required />
         <Select 
             isMulti
+            placeholder="Select Members"
             name="members"
             id="members"
             onChange={(e) => {
@@ -164,10 +160,11 @@ function AddProject(props) {
       <input className={styles.input_item} placeholder="Client"  onChange={(e)=>{setClient(e.target.value)}} id="client" name="client" required />
       <Select 
                     name="state"
+                    placeholder="Select States"
                     id="state"
                     onChange={(e) => {
                     setState(e)
-              }}
+                    }}
               options={options} 
               styles={customStyles}
               className={styles.input_item}

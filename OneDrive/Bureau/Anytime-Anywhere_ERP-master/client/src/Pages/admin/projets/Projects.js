@@ -1,59 +1,38 @@
-import React, { useState ,  useEffect , useContext } from 'react';
 import axios from 'axios';
-import Select  from 'react-select';
+import React, { useState , useEffect } from 'react';
+import styles from '../../../Css/Project.module.css';
+import Modal from 'react-modal';
+import { Link , withRouter } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { useParams } from "react-router-dom";
-import styles from "../../../Css/Project.module.css";
-import { AppContext } from "../../../Context/AppContext";
-import Modal from 'react-modal';
-import Pagination from './../../../components/Pagination';
-import {toast} from 'react-toastify';
-import { Link , withRouter } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';    
-toast.configure();
-
+import ReactPaginate from  "react-paginate";
 function Projects(props) {
-  const [membersList , setMembersList] = useState([]);
-  const [projectList , setprojectList] = useState([]);
-  const [disabled , setDisabled] = useState(false);
-  const [enable , setEnable] = useState(false);
+  const [projectList , setprojectList] = useState([]); 
+  const [currentPage , setcurrentPage] = useState(1);
+  const [itemsPerPage , setitemsPerPage] = useState(3);
+  const [pageNumberLimit, setpageNumberLimit] = useState(5);
+  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
+  const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
+  //
+  const [disable , setDisable] = useState (false);
+  const [popProject  , setPopProject] = useState({});
   const [deleteItem,setDeleteItem] = useState(false);
-  const [currentPage , setCurrentPage] = useState(1);
   const [searchItem , setSearchItem]= useState("");
-  const [postsPerPage] = useState(6);
-  Modal.setAppElement('#root')
- /****************************************************************************** */
+  
+
+  
   let { id } = useParams();
-  useEffect(() => {
-      axios.get("getprojects").then((res) => {
-        if (res.data) {
-          setprojectList(res.data);
-        }})
-  },[]);
-  useEffect(() => {
-    axios.get("/getmembers").then((res) => {
-      if (res.data){
-        var options = []
-        res.data.map((element) => {
-            options.push({value: element.firstName, label: element.firstName} );
-        })
-        setMembersList(options);
-      }
-    });
+  Modal.setAppElement('#root')
+
+  useEffect( () => {
+         axios.get("getprojects").then ( (res) => {
+          if(res.data) {
+            setprojectList(res.data);
+          }
+       })
   }, []);
 
- /****************************************************************************** */
-const Delete = () => {
-  setDeleteItem(true);
-}
- const PopUp = () => {
-  setEnable(true);
- }
- const close = () => {
-   setDisabled(true);
- }
- /****************************************************************************** */
   function deleteProject(id) {
     axios.delete(`/deleteproject/${id}`).then((res) => {
       if (res.data === "ERROR") {
@@ -65,91 +44,123 @@ const Delete = () => {
           }
         })
       }
- /****************************************************************************** */
-    const ProjectsPosts = ({projectList}) => { 
-      return (
-          <>
-       <div className={styles.bloc_section}>
-       <Link to={`/projects/add`}><input type="button" value="Add" className={styles.addProject_Btn} /> </Link><br/><br/>  
-              {projectList.filter((val) => {
-                if(searchItem === "") {
-                  return val ;
-                }else if ( val.name.toLowerCase().includes(searchItem.toLowerCase())){
-                  return val;
-                }
-              }).map( (project) => {
-             return (
-               <>
-              <div className={styles.Bloc} key={project._id}>
-                 <br/><br/>
-                <div className={styles.info_section}>
-                  <h5>Name of project : {project.name}</h5> 
-                  <h5>State : {project.state}</h5>
-                  <h5>Client : {project.client}</h5>
-                  <h5>Description : {project.description}</h5>
-                </div>
-                <div className={styles.buttonSection}>
-                  <input type="button" value="close" className={styles.input} onClick= {()=>{PopUp() ; close()}}/>
-                  <input type="button" value="Delete" onClick = {() => {Delete()}} className={styles.input}/>
-                 <Link to={`/project/addTask/${project._id}`}><input type="button" value="Show" className={styles.input} /></Link>
-                </div>
-              </div> 
-               {/*** Close Modal ***/}
-              <Modal isOpen={enable} onRequestClose = {() => setEnable(false)} 
-                                              shouldCloseOnOverlayClick={true} style = {
-                                                {  
-                                                  overlay : {
-                                                    backgroundColor : '#00000020'
-                                                  },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      backgroundColor : 'white', 
-                                                      },
-                                               }
-                                               } className={styles.ModalClose}   >
-                    <p className={styles.closeParagraph}>Do you want to close this project ? <br/></p>
-                    <div className={styles.btn_section}>
-                     <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={() => setEnable(false)} />
-                     <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setEnable(false)} />
-                    </div>
-              </Modal>
-               {/*** Delete Modal ***/}
-              <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
-                                              shouldCloseOnOverlayClick={true} style = {
-                                                {  
-                                                  overlay : {
-                                                    backgroundColor : '#00000020'
-                                                  },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      backgroundColor : 'white', 
-                                                      },
-                                               }
-                                               } className={styles.ModalClose}   >
-                    <p className={styles.closeParagraph}>Do you want to close this project ? <br/></p>
-                    <div className={styles.btn_section}>
-                     <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(project._id)}}/>
-                     <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setDeleteItem(false)} />
-                    </div>
-              </Modal>
-                  </>
-              )})
-              }
-          </div>
-        </>)}
-      
+  const Disable = () => {
+    setDisable(true);
+  }
+  const Delete = () => {
+      setDeleteItem(true);
+  }
+
+/*pagination*/
+const handleClick = (event) => {
+  setcurrentPage(Number(event.target.id));
+}
+const pages = [];
+for( let i=1 ; i<= Math.ceil(projectList.length / itemsPerPage); i++) {
+  pages.push(i);
+}
+const indexOfLastItems = currentPage*itemsPerPage;
+const indexOfFirstItem = indexOfLastItems - itemsPerPage;
+const currentItems = projectList.slice(indexOfFirstItem , indexOfLastItems);
+const renderPagesNumbers = pages.map( (number) => {
+  if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
+  return (
+    <li key= {number} id={number} onClick={handleClick} className={currentPage == number ? "active" : null}>
+      {number}
+    </li>
+  );
+}else {
+return null;
+}}
+)
+const handleNextbtn = () => {
+  setcurrentPage(currentPage + 1);
+
+  if (currentPage + 1 > maxPageNumberLimit) {
+    setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+    setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+  }
+};
+const handlePrevbtn = () => {
+  setcurrentPage(currentPage - 1);
+
+  if ((currentPage - 1) % pageNumberLimit == 0) {
+    setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
+    setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
+  }
+};
+
+let pageIncrementBtn = null;
+if (pages.length > maxPageNumberLimit) {
+  pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
+}
+
+let pageDecrementBtn = null;
+if (minPageNumberLimit >= 1) {
+  pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
+}
 
 
-// Get Current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = projectList.slice(indexOfFirstPost , indexOfLastPost);
- 
-  //Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+const renderData = (projectList) => {
   return (
     <>
-  <div className={styles.overlay}>
+    <div className={styles.bloc_Section}>
+        {projectList.filter((val) => {
+          if(searchItem === "") {
+            return val ;
+          }else if ( val.name.toLowerCase().includes(searchItem.toLowerCase())){
+            return val;
+          }
+        }).map ( (project)  => {
+          return(
+          <>
+          <div className={styles.Bloc}>
+            <h4>Project name : {project.name} </h4>
+            <h4>Project state : </h4>
+          {/*  {project.state.map( (states)=> {
+              return (
+                <>
+                  <h4>{states.state}</h4>
+                </>
+              )
+            })} </h4> */}
+            <h4>Project client : {project.client}</h4>
+            <Link to={`/project/addTask/${project._id}`}><input type="button" value="View" className={styles.input} /></Link>
+            <input type="button" value="Delete" onClick = {() => {setPopProject(project) ; Delete()}} className={styles.input}/>
+            <input type="button" value="Close" className={styles.input} onClick={() => {Disable()}} />
+            {/*** Delete Modal ***/}
+            <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
+                                              shouldCloseOnOverlayClick={true} style = {
+                                                {  
+                                                  overlay : {
+                                                    backgroundColor : '#00000020'
+                                                  },
+                                                  content : {
+                                                      color : 'black' , 
+                                                      backgroundColor : 'white', 
+                                                      },
+                                              }
+                                              } className={styles.ModalClose}   >
+                    <p className={styles.closeParagraph}>Do you want to delete {popProject.name} ? <br/></p>
+                    <div className={styles.btn_section}>
+                    <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(popProject._id)}}/>
+                    <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setDeleteItem(false)} />
+                    </div>
+              </Modal>
+          </div>
+          </>
+          );
+          })}
+          </div>
+          </>
+  )
+}
+
+
+
+  return (
+    <>
+    <div className={styles.overlay}>
     <h1>Project's List</h1>
     <div className={styles.search_box}>
      <input className={styles.search_text}  type="text" onChange={ (e) => { setSearchItem(e.target.value)}} placeholder="Project's name" />
@@ -157,12 +168,32 @@ const Delete = () => {
        <FontAwesomeIcon icon= {solid("search")} color = "black" className={styles.search_icon} />
      </a>
     </div>
-    <ProjectsPosts projectList={currentPosts} />
-    <Pagination postsPerPage={postsPerPage} totalPosts= {projectList.length} paginate = {paginate} />    
   </div>
-  </>
+  
+  {renderData(currentItems)}
+  <ul className={styles.pageNumbers}><li>
+          <button
+            onClick={handlePrevbtn}
+            disabled={currentPage == pages[0] ? true : false}
+          >
+            Prev
+          </button>
+        </li>
+        {pageDecrementBtn}
+        {renderPagesNumbers}
+        {pageIncrementBtn}
+
+        <li>
+          <button
+            onClick={handleNextbtn}
+            disabled={currentPage == pages[pages.length - 1] ? true : false}
+          >
+            Next
+          </button>
+        </li>
+      </ul>
+    </>
   )
 }
-
 
 export default Projects

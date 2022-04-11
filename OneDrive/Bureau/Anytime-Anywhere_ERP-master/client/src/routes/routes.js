@@ -22,6 +22,8 @@ import EditClient from "../Pages/admin/clients/EditProfile";
 import AddProject from "../Pages/admin/projets/AddProject";
 import Projects from "../Pages/admin/projets/Projects";
 import ProjectProfile from "../Pages/admin/projets/ProjectProfile";
+import Messenger from "../Pages/Messenger/Messenger";
+import UpdateUserProfile from "../components/UpdateUserProfile";
 import { Switch, Route } from "react-router-dom";
 
 export const userRoutes = (
@@ -111,6 +113,12 @@ export const superAdminRoutes = (
       <Route path="/users/profile/:id">
         <UserProfile />
       </Route>
+      {/* <Route path="/user/profile">
+        <UserProfile />
+      </Route> */}
+      <Route path="/updateProfile" exact>
+        <UpdateUserProfile />
+      </Route>
       <Route path="/clients/add" exact>
         <AddClients />
       </Route>
@@ -126,11 +134,14 @@ export const superAdminRoutes = (
       <Route path="/projects/add" exact>
         <AddProject />
       </Route>
-      <Route path="/projects" exact>
+      <Route path="/projectList" exact>
         <Projects />
       </Route>
       <Route path="/project/addTask/:id" exact>
         <ProjectProfile />
+      </Route>
+      <Route path="/discussion" exact>
+        <Messenger />
       </Route>
       <Route>
         <Notfound />

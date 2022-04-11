@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { btn_file , file_input} from "../../Css/Project.module.css";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -91,6 +92,12 @@ function Signup() {
               pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
               title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
             />
+            <label className="btn_file"> Upload image 
+            <input type="file" className="file_input"
+            />
+            </label>
+            <br />
+            <br />
             <button className="defaultBtn">Sign Up</button>
             <br />
             <br />

@@ -33,6 +33,7 @@ function ProjectProfile(props) {
   const Pop = () => {
     setModalIsOpen(true);
    }
+
    const success =() => {
      document.getElementById("nameTask").value = "";
      document.getElementById("descriptionTask").value = "";
@@ -97,7 +98,14 @@ function ProjectProfile(props) {
       <h4 className={styles.h4}>Description : {projectProfile.description}</h4>
       <h4 className={styles.h4}>State : {projectProfile.state}</h4>   
       <h4 className={styles.h4}>Start at : {projectProfile.start}</h4>
-      <h4 className={styles.h4}>End at : <input type="date" value={projectProfile.end} onChange={(e) => {setEnd(e.target.value)}} className={styles.input_item_Date}/></h4>
+      <h4 className={styles.h4}>End at :
+
+
+       <input type="date" defaultValue={projectProfile.end} onChange = { (e) => { setEnd(e.target.value)}} className={styles.input_item_cd } /></h4>
+
+
+
+
       <input type="button" value="Add task" className={styles.addBtn_input}  onClick={() => {setPopProject(projectProfile) ;  Pop()}} />
       <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} 
                                               shouldCloseOnOverlayClick={true} className={styles.Modal}
@@ -155,7 +163,7 @@ function ProjectProfile(props) {
                                                       },
                                                }
                                                } className={styles.ModalClose}   >
-                    <p className={styles.closeParagraph}>Do you want to close this project ? <br/></p>
+                    <p className={styles.closeParagraph}>Do you want to delete ? <br/></p>
                     <div className={styles.btn_section}>
                      <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={()=> {setDeleteTask(false) ; deletetask(task._id)}}/>
                      <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setDeleteTask(false)} />

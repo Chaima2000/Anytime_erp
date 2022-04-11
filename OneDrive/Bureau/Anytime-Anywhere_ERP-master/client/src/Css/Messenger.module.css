@@ -1,0 +1,118 @@
+.chat_list{
+    float: left;
+    height: 97%;
+    border-right : 2px solid grey;
+    line-height : 5px;
+    width: 20%;
+    padding: 7px;
+}
+.user_profile{
+    float: left;
+    line-height : 5px;
+    padding: 7px;
+    height: 97%;
+    width: 18%; 
+}
+.messenger_content{
+    background: white;
+    border-radius: 12px;
+    height: 550px;
+    margin-top: -2%;
+    padding: 7px;
+
+}
+.chat_content{
+    float: left;
+    border-right : 2px solid grey;
+    padding: 7px;
+    height: 97%;
+    width: 57.5%;
+}
+.plus_icon{
+    position: relative;
+    padding: 6px;
+    top:18%;
+    border-right: 1px solid grey;
+    cursor: pointer;
+}
+.input{
+    position: relative;
+    left: 2%;
+    padding: 5px;
+    height: 20px;
+    border : none;
+    outline : none ;
+}
+.new_conversation{
+    border: 1px solid grey;
+    border-radius: 7px;
+    position: relative;
+    top:2%;
+    padding: 5px;
+}
+.search_section{
+    border: 1px solid grey;
+    display: inline-block;
+    border-radius: 7px;
+    position: relative;
+    top:6%;
+    padding: 5px;
+}
+.search_icon{
+    padding: 5px;
+    border-right : 1px solid grey;
+    cursor: pointer;
+}
+.h3{
+    position: relative;
+    float: left;
+    top:3%
+}
+.users_list{
+    border : 1px solid grey;
+    position: relative;
+    top:10%;
+    height: 345px;
+    overflow-y: scroll;
+    border-radius: 5px;
+}
+.user{
+    padding: 5px;
+    text-align: center;
+    height: 35px;
+    border-bottom: 1px solid grey;
+}
+.content_header{
+    border-bottom:1px solid grey;
+    height: 50px;
+    position: relative;
+    top: -2%;
+    left: -1%;
+    width: 719px;
+    text-align: center;
+}
+.content_bottom{
+    position: relative;
+    border : 1px solid grey;
+    border-radius: 10px;
+    top:82%;
+    padding: 5px;
+}
+.input_msg{
+    padding: 9px;
+    width: 85%;
+    position: relative;
+    left: 2%;
+    border-radius: 5px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.send_icon{
+    position: relative;
+    right: -4%;
+    cursor: pointer;
+}
+.user_picture{
+
+}

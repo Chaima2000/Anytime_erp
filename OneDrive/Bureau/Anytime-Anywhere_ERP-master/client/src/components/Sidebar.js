@@ -148,7 +148,7 @@ function Sidebar() {
               toggleSidebar();
             }}
             className={styles.link}
-            to="/projects"
+            to="/projectList"
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("list")} size="lg" />
@@ -168,6 +168,20 @@ function Sidebar() {
             </div>
           </Link>
         </li>
+        <li >
+        <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/discussion"
+          >
+          <FontAwesomeIcon icon={solid("comment")} size="lg" />
+          &nbsp; Discussion
+         
+          </Link>
+        </li>
+       
       </div>
     </>
   );

@@ -1,52 +1,54 @@
-/* .form_section {
-   margin-left: 25%;
-   border: 1px solid grey;
-   width: 45%;
-   border-radius: 5px;
-} */
 h1{
   text-align: center;
 }
-.info_section{
-  margin-left: 7%;
-  padding: 5px;
-  margin-top: 3%;
-}
-.Input_Section{
-  padding: 11px;
-  width: 40%;
-  border: 0.5px solid rgb(172, 168, 168);
-}
-.Select_Section{
-  padding: 11px;
-  width: 42%;
-  background-color: #fff;
-  border: 0.5px solid rgb(172, 168, 168);
-}
-.btn_section{
-  margin-top: 5%;
-  margin-left: 38%;
-  margin-bottom: 5%;
-}
-.PhoneSection{
-  padding: 10px;
-  width: 75%;
-  margin-top: 2%;
-  border: 0.5px solid rgb(172, 168, 168);
-}
 .addRemovePhoneBtn{
-  width: 7%;
-  height: 37px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  position: relative;
+  left: -2%;
+  top:-52%;
+  border: none;
+  background: none;
 }
-.EmailSection{
-  padding: 10px;
-  width: 84%;
+.phone_item{
+  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  #fff;
+  width : 80%;
+  box-sizing : border-box;
+  height: 65px;
+  margin : 15px;
+  border : 0;
+  font-family: 'Nunito', sans-serif;
+  outline : 0;
+  font-size : 16px;
+  border-radius : 320px;
+  padding : 16px;
+  background-color: #f7f7f7;
+  letter-spacing : -0.2px;
+}
+.btn{
+  background-color :rgb(187, 75, 142);
+  color: #fff;
+  box-shadow : -5px -5px 20px #fff , 5px 5px 20px rgb(187, 75, 142);
+  cursor : pointer;
+  font-weight: 600;
+  width : 40%;
+  right: 20%;
+  left : 15%;
   margin-top: 2%;
-  border: 0.5px solid rgb(172, 168, 168);
+  position: relative;
+  border : 0;
+  font-family: 'Nunito', sans-serif;
+  outline : 0;
+  font-size : 16px;
+  border-radius : 320px;
+  padding : 16px;
+  letter-spacing : -0.2px;
 }
+.btn:hover {
+  box-shadow : -2px -2px 5px #fff, 2px 2px 5px #babecc;
+  }
+  .btn:active {
+   box-shadow : inset 1px 1px 2px #babecc, 
+   inset -1px -1px 2px #fff;
+  } 
 /*******Clients *****/
 .add_Btn{
   margin-left: 90%;
@@ -75,6 +77,46 @@ table>tbody>tr:hover {
 
 span{
   font-weight: normal;
+}
+.search_box{
+  position : absolute;
+  top: 20%;
+  left : 50%;
+  transform : translate(-50%,-50%);
+  background: white;
+  height : 40px;
+  border-radius : 40px;
+  padding : 10px;
+} 
+.search_box:hover > .search_text {
+  width : 240px;
+  padding : 0 6px;
+}
+.search_box:hover > .search_btn {
+  background : white;
+} 
+.search_btn {
+  float : right ;
+  width : 40px;
+  height: 40px;
+  border-radius: 50%;
+  background : rgb(187, 75, 142);
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  transition : 0.4s;
+} 
+.search_text {
+  border : none;
+  background : none ;
+  outline : none ;
+  float :left ;
+  padding : 0;
+  color : #babecc;
+  font-size : 16px;
+  transition : 0.4s;
+  line-height : 40px;
+  width : 0px;
 }
 
 /**** Search *****/

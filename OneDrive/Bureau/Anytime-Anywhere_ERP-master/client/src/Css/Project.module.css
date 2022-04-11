@@ -1,4 +1,4 @@
-/* *form* */
+/* *form addProject* */
 @import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Nanum+Myeongjo&family=Nunito:wght@200&display=swap');
 body , .btn , .btn_file , .input_item , .input_item_Date  {
   border : 0;
@@ -7,7 +7,7 @@ body , .btn , .btn_file , .input_item , .input_item_Date  {
   font-size : 16px;
   border-radius : 320px;
   padding : 16px;
-  background-color: #f7f7f7;
+  /* background-color: #e3e2e2; */
   letter-spacing : -0.2px;
  }
  .h1{
@@ -25,9 +25,8 @@ body , .btn , .btn_file , .input_item , .input_item_Date  {
    float: left;
    width: 45%;
  }
-
  .input_item{
-  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  #fff;
+  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  rgb(247, 245, 245);
   width : 90%;
   box-sizing : border-box;
   height: 65px;
@@ -53,7 +52,7 @@ body , .btn , .btn_file , .input_item , .input_item_Date  {
   width : 40%;
   right: 20%;
   left : 29%;
-  margin-top: 5%;
+  margin-top: 2%;
   position: relative;
  }
  .btn:hover {
@@ -89,13 +88,16 @@ display: none;
   display: inline-block;
   box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
   border-radius: 15px;
-  width: 30%;
+  width: 29%;
   margin: 7px;
   margin-left: 2%;
+  padding: 5px;
   cursor: pointer;
 }
+.bloc_Section{
+  margin-top:150px;
+}
 .addProject_Btn{
-  /* float: right; */
   position: absolute;
   right : 12%;
   padding : 12px;
@@ -105,34 +107,8 @@ display: none;
   border-radius: 12px;
   border : 1px solid grey;
 }
-/*project*/
-.input_projectProfile {
-  padding: 15px;
-  width: 60%;
-  border : 1px solid grey;
-  border-radius: 12px;
-  height: 15px;
-}
-.input_projectProfile_priority{
-  padding: 15px;
-  width:5%;
-  border : 1px solid grey;
-  border-radius: 12px;
-  height: 5px;
-}
-.input_SaveBtn{
-margin-left: 45%;
-padding: 12px;
-border : 1px solid grey;
-border-radius: 12px;
-}
-
 .Bloc:hover{
   box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
-}
-.bloc_section{
-  margin-top: 10%;
-  padding: 7px;
 }
 .info_section{
   margin-top: -13%;
@@ -197,37 +173,10 @@ padding : 5px;
 cursor: pointer;
 margin: 5px;
 width: 18%;
+position: relative;
+left : 15%;
  }
- .inputBtn {
-  padding : 5px;
-  cursor: pointer;
-  margin: 5px;
-  margin-left: 12%;
-  width: 70%;
-   }
- .projectName{
-   text-align: center;
- }
-.checkBox{
-  width: 15px;
-  height: 25px;
-}
-.dropdown {
-  position: relative;
-  width: 300px;
-  height: 100px;
-  background: #f0f1f6;
-  border-radius: 30px;
-  box-shadow : 20px 20px 60px #d0d0d0, -20px -20px 60px #ffffff;
-  transition: all 500ms ease-in-out;
-  cursor: pointer; 
-}
-.dropdown:active {
-  background: #f0f1f6;
-  box-shadow: inset 7px 7px 14px #cccdd1 , 
-  inset -7px -7px 14px #ffffff;
-}
-/**Project List**/
+/*projectProfile*/
 .Modal {
   margin-top: 10%;
   background-color: #f7f7f7;
@@ -239,7 +188,33 @@ width: 18%;
  border-radius:  12px;
  font-size: 15px;
 }
-
+.XMARK{
+  float: right;
+  position: relative;
+  top:2%;
+  left: -2.8%;
+  cursor: pointer;
+}
+.input_projectProfile {
+  padding: 15px;
+  width: 60%;
+  border : 1px solid grey;
+  border-radius: 12px;
+  height: 15px;
+}
+.input_projectProfile_priority{
+  padding: 15px;
+  width:5%;
+  border : 1px solid grey;
+  border-radius: 12px;
+  height: 5px;
+}
+.input_SaveBtn{
+margin-left: 45%;
+padding: 12px;
+border : 1px solid grey;
+border-radius: 12px;
+}
 .projectName{
   margin-left: -5%;
 }
@@ -263,7 +238,7 @@ width: 18%;
   margin-left: 35%;
   border-radius: 15px;
 }
-.close_Btn {
+.confirm_Btn {
   background: rgb(187, 75, 142);
   border : 1px solid rgb(187, 75, 142);
   color :white;
@@ -274,7 +249,9 @@ width: 18%;
   cursor: pointer;
 }
 .btn_section{
-margin-left: 22%;
+position: relative;
+top:20%;
+left: 32%;
 }
 .btn_cancel{
   margin-left: 43.5%;
@@ -282,12 +259,13 @@ margin-left: 22%;
 }
 .closeParagraph{
   font-weight: 200;
-  padding-top: 22%;
-  padding-left: 14%;
+  position: relative;
+  left: 22%;
+  top: 30%;
+  width: 60%;
   font-size: 23px;
 }
 .h4{
-text-align: center;
   font-size: 19px;
 }
 .TaskModal{
@@ -306,12 +284,25 @@ text-align: center;
   padding : 15px;
   border : 1px solid grey;
   border-radius : 9px;
-cursor: pointer;
-margin: 5px;
-width: 23%;
-position: relative;
-/* margin-top: 5% ; */
-left: 39%;
+  cursor: pointer;
+  margin: 5px;
+  width: 29%;
+  position: relative;
+}
+.viewAllList_Btn {
+  padding : 15px;
+  border : 1px solid grey;
+  border-radius : 9px;
+  cursor: pointer;
+  margin: 5px;
+  width: 23%;
+  position: relative;
+  left : 38%;
+}
+.addBtns_Section{
+  position: relative;
+  width: 49%;
+  left : 34%;
 }
 /**Tasks**/
 .DeleteTask{
@@ -325,8 +316,29 @@ left: 39%;
   margin: 4px;
   cursor: pointer;
 }
-
- @media (max-width: 1050px) {
+/*pagination*/
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  position: relative;
+  left: 35%;
+  margin-top: 65px;
+  width: 30%;
+}
+.pageNumbers li {
+  padding: 10px;
+  border: 1px solid rgb(200, 196, 196);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pageNumbers li button {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  font-size: 15px;
+  cursor: pointer;
+}
+ @media (max-width: 480px) {
   .input_item{
     width: 100%;
   }
@@ -357,28 +369,43 @@ left: 39%;
   .addtask_btn{
     margin-left: 10%;
   }
-  .bloc_section{
+  .bloc_Section{
     width: 100%;
+   margin-top: 100px;
+   margin-left: -13px;
+
   }
   .Bloc{
-    margin-top: 18%;
-    margin-left: -5%;
     font-size: 19px;
-    width: 100%;
+    display: block;
+    padding: 15px;
+    width: 90%;
+    margin: 15px;
   }
   .search_box{
-    margin-top: -15%;
-    width: 30%;
+    top:22%;
+    width: 70%;
     margin-left: 1%;
-    background: #b8b3ba;
-    width: 50%;
+    background: #ffffff;
   }
   .search_text{
     color : white;
-    width: 90%;
+    width: 100%;
     font-size: 18px;
   }
   .search_btn{
-    margin-top: -21%;
+  position: relative;
+  top:-95%;
+  }
+  .pageNumbers{
+    position: relative;
+    left: -3%;
+  }
+  .input{
+    font-size: 16px;
+    position: relative;
+    left: 8%;
+    padding: 10px;
+    width: 25%;
   }
 }

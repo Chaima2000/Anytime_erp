@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from '../../../Css/Client.module.css';
+import styles from '../../../Css/Project.module.css';
+import Styles from '../../../Css/Client.module.css';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -73,36 +74,39 @@ function AddClients(props) {
     )}
 
   return (
-    <form className={styles.form_section} onSubmit={addclient}>
-      <h1>ADD CLIENT</h1>
-      <div className={styles.info_section}>
-        <select className={styles.Select_Section} name="type" id="type" onChange={(e)=>{setType(e.target.value)}}>
-          <option value=""> ------------------------------------   Select your type    ------------------------------------</option>
-          <option value="particulier"> Particulier</option>
-          <option value="professionnel">Professionnel</option>
-        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input className={styles.Input_Section} type="text" onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" placeholder='Enter your Society' required/>
-        <br/><br/>
-        <input className={styles.Input_Section} type="text" name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}} placeholder='Enter your activity' required/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input className={styles.Input_Section} type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} placeholder='Enter your CEO ' required /><br/>
-        <br/>
-        <input className={styles.Input_Section} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter your email' required/>
-        {phone.map((phoneNumber, index) => {
-                return(
-                <div key={index}>
-                     <input className={styles.Input_Section} type="number" name="phone" id="phone" placeholder= "Enter your phone number" value={phoneNumber.phone} onChange={e => handlePhoneChange(e, index)} required/>
-                     {phone.length !== 1 && <button className={styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("remove")} color = "black"/></button>}
-                     {phone.length -1 === index && <button className={styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("add")} color = "black"/></button>}
-                  </div>
-              );})}
-        <input className={styles.Input_Section} type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} placeholder='Enter your Country' required />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input className={styles.Input_Section} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} placeholder='Enter your City' required/>
-        <br/><br/>
-        <input className={styles.Input_Section} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} placeholder='Enter your Zip Code' required />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input className={styles.Input_Section} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} placeholder='Enter your address' required />
+    <form  onSubmit={addclient}>
+     <h1 className={styles.h1}>ADD CLIENT</h1>
+     <div className={styles.div_section}>
+       <div className={styles.div_left}>
+            <select className={styles.input_item} name="type" id="type" onChange={(e)=>{setType(e.target.value)}}>
+              <option value="">  Select your type </option>
+              <option value="particulier"> Particulier</option>
+              <option value="professionnel">Professionnel</option>
+            </select>
+            <input className={styles.input_item} type="text" onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" placeholder='Enter your Society' required/>
+            <input className={styles.input_item} type="text" name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}} placeholder='Enter your activity' required/>
+            <input className={styles.input_item} type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} placeholder='Enter your CEO ' required />
+            <input className={styles.input_item} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter your email' required/>
+        </div>
+        <div className={styles.div_right}>
+            {phone.map((phoneNumber, index) => {
+                    return(
+                    <div key={index}>
+                        <input className={Styles.phone_item} type="number" name="phone" id="phone" placeholder= "Enter your phone number" value={phoneNumber.phone} onChange={e => handlePhoneChange(e, index)} required/>
+                        {phone.length !== 1 && <button className={Styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("remove")} color = "black"/></button>}
+                        {phone.length -1 === index && <button className={Styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("add")} color = "black"/></button>}
+                      </div>
+                  );})}
+            <input className={styles.input_item} type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} placeholder='Enter your Country' required />
+            <input className={styles.input_item} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} placeholder='Enter your City' required/>
+            <input className={styles.input_item} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} placeholder='Enter your Zip Code' required />
+            <input className={styles.input_item} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} placeholder='Enter your address' required />
+           
+        </div>
       </div>
+      
       <div className={styles.btn_section}>
-        <button className="defaultBtn">Save</button>&nbsp;&nbsp;
+        <button className={Styles.btn}>Save</button>
       </div>
     </form>
   )

@@ -4,7 +4,8 @@ import styles from '../../../Css/Project.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';    
+import 'react-toastify/dist/ReactToastify.css'; 
+import FileBase64 from 'react-file-base64';   
 toast.configure()
 
 

@@ -14,8 +14,7 @@ function ProfileDropdown() {
       <div className={styles.dropdown}>
         <h3 align="center">{user.firstName}</h3>
         <hr />
-        <h5> <Link to={`/user/profile`} className={styles.link} >View profile</Link></h5>
-        <h5><Link to={`/updateProfile`} className={styles.link} >Update profile</Link></h5>
+        <h5><Link to={`/settingProfile`} className={styles.link} >Profile settings</Link></h5>
         <hr />
         <h5>
           <form

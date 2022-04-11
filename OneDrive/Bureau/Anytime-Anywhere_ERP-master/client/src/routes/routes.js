@@ -116,7 +116,7 @@ export const superAdminRoutes = (
       {/* <Route path="/user/profile">
         <UserProfile />
       </Route> */}
-      <Route path="/updateProfile" exact>
+      <Route path="/settingProfile" exact>
         <UpdateUserProfile />
       </Route>
       <Route path="/clients/add" exact>

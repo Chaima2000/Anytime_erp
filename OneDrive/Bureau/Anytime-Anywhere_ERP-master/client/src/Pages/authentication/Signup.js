@@ -4,9 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { btn_file , file_input} from "../../Css/Project.module.css";
+import avatar from "../../files/avatar.png";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
+  const [image, setimage] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +24,7 @@ function Signup() {
         lastName: lastName,
         email: email,
         password: password,
+        image:image,
       })
       .then((res) => {
         if (res.data === "SUCCESS") {
@@ -37,11 +40,20 @@ function Signup() {
 
   return (
     <>
-      <section className={styles.container}>
+      <section className={styles.container_SignUp}>
         <div className="card">
           <h1>Sign Up</h1>
           <hr />
           <form onSubmit={createAccount}>
+          <div className={styles.picture}>
+            <img className={styles.img_section} src= {avatar} />
+            <br />
+            <label className={styles.btn_file}> Upload image 
+              <input type="file" className={styles.file_input}
+              />
+            </label>
+          </div>
+            <div className={styles.details_section}>
             <input
               onChange={(e) => {
                 setFirstName(e.target.value);
@@ -92,10 +104,6 @@ function Signup() {
               pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
               title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
             />
-            <label className="btn_file"> Upload image 
-            <input type="file" className="file_input"
-            />
-            </label>
             <br />
             <br />
             <button className="defaultBtn">Sign Up</button>
@@ -107,6 +115,8 @@ function Signup() {
                 Passwords doesn't match !
               </span>
             </div>
+            </div>
+            
           </form>
         </div>
       </section>

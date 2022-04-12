@@ -61,6 +61,12 @@ h1{
 .add_Btn:hover{
   background-color: white;
 }
+.search_form{
+  position : relative;
+  width: 24%;
+  margin-top:-5%;
+  left:35%;
+}
 .link{
   text-decoration: none;
   color :rgb(126, 17, 82);

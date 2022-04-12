@@ -65,6 +65,21 @@ body , .btn , .btn_file , .input_item , .input_item_Date  {
 .file_input{
 display: none;
 }
+.task_section{
+  border-top : 1px solid grey;
+}
+.search_form{
+  position: relative;
+  left:40%;
+  width: 40%
+}
+.add_icon{
+  float: right;
+  border : 1px solid grey;
+  padding: 7px;
+  border-radius : 5px;
+  cursor:pointer;
+}
 .btn_file{
   display : block;
   background-color :#f7f7f7;
@@ -95,7 +110,7 @@ display: none;
   cursor: pointer;
 }
 .bloc_Section{
-  margin-top:150px;
+  margin-top:5%;
 }
 .addProject_Btn{
   position: absolute;

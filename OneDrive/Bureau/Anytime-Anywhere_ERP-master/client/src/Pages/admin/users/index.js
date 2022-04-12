@@ -298,7 +298,7 @@ function Users() {
                       }}
                       className="pagination"
                     >
-                      {page}
+                     {page}
                     </div>
                   );
                 }

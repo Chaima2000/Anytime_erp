@@ -1,36 +1,38 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import styles from '../../../Css/Project.module.css';
+import Styles from "../../../Css/Users.module.css";
 import Modal from 'react-modal';
-import { Link , withRouter } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import ReactPaginate from  "react-paginate";
-function Projects(props) {
+function Projects() {
   const [projectList , setprojectList] = useState([]); 
-  const [currentPage , setcurrentPage] = useState(1);
-  const [itemsPerPage , setitemsPerPage] = useState(3);
-  const [pageNumberLimit, setpageNumberLimit] = useState(5);
-  const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
-  const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-  //
   const [disable , setDisable] = useState (false);
   const [popProject  , setPopProject] = useState({});
   const [deleteItem,setDeleteItem] = useState(false);
-  const [searchItem , setSearchItem]= useState("");
-  
-
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [waiting, setWaiting] = useState(true);
+  const [searchTerm , setSearchTerm]= useState("");
+  const [allPages, setAllPages] = useState([]);
   let { id } = useParams();
   Modal.setAppElement('#root')
-
-  useEffect( () => {
-         axios.get("getprojects").then ( (res) => {
-          if(res.data) {
-            setprojectList(res.data);
-          }
-       })
+  function getProjects(page) {
+    axios
+      .post("/getprojects", { currentPage: page, searchTerm: searchTerm })
+      .then((res) => {
+        if (res.data === "ERROR") {
+          alert("error !");
+        } else {
+          setWaiting(false);
+          setprojectList(res.data.projects);
+          setAllPages(res.data.allPages);
+        }
+      });
+  }
+  useEffect(() => {
+    getProjects(currentPage);
   }, []);
 
   function deleteProject(id) {
@@ -44,74 +46,69 @@ function Projects(props) {
           }
         })
       }
+  function resetSearch() {
+        document.getElementById("searchField").value = "";
+        axios.post("/getprojects").then((res) => {
+          if (res.data === "ERROR") {
+            alert("error !");
+          } else {
+            setprojectList(res.data.projects);
+            setAllPages(res.data.allPages);
+          }
+        });
+  }
   const Disable = () => {
     setDisable(true);
   }
   const Delete = () => {
       setDeleteItem(true);
   }
-
-/*pagination*/
-const handleClick = (event) => {
-  setcurrentPage(Number(event.target.id));
-}
-const pages = [];
-for( let i=1 ; i<= Math.ceil(projectList.length / itemsPerPage); i++) {
-  pages.push(i);
-}
-const indexOfLastItems = currentPage*itemsPerPage;
-const indexOfFirstItem = indexOfLastItems - itemsPerPage;
-const currentItems = projectList.slice(indexOfFirstItem , indexOfLastItems);
-const renderPagesNumbers = pages.map( (number) => {
-  if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-  return (
-    <li key= {number} id={number} onClick={handleClick} className={currentPage == number ? "active" : null}>
-      {number}
-    </li>
-  );
-}else {
-return null;
-}}
-)
-const handleNextbtn = () => {
-  setcurrentPage(currentPage + 1);
-
-  if (currentPage + 1 > maxPageNumberLimit) {
-    setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-    setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-  }
-};
-const handlePrevbtn = () => {
-  setcurrentPage(currentPage - 1);
-
-  if ((currentPage - 1) % pageNumberLimit == 0) {
-    setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
-    setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
-  }
-};
-
-let pageIncrementBtn = null;
-if (pages.length > maxPageNumberLimit) {
-  pageIncrementBtn = <li onClick={handleNextbtn}> &hellip; </li>;
-}
-
-let pageDecrementBtn = null;
-if (minPageNumberLimit >= 1) {
-  pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
-}
-
-
-const renderData = (projectList) => {
-  return (
+return (
     <>
-    <div className={styles.bloc_Section}>
-        {projectList.filter((val) => {
-          if(searchItem === "") {
-            return val ;
-          }else if ( val.name.toLowerCase().includes(searchItem.toLowerCase())){
-            return val;
-          }
-        }).map ( (project)  => {
+    <div className={styles.overlay}>
+    <h1>Project's List</h1>
+    <form 
+        onSubmit={(e) => {
+              document.getElementById("searchField").disabled = true;
+              document.getElementById("resetBtn").hidden = false;
+              document.getElementById("searchBtn").hidden = true;
+              e.preventDefault();
+              getProjects();
+              setCurrentPage(1);
+            }}
+        className={styles.search_form}
+        >
+        <input
+                  id="searchField"
+                  required
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                  }}
+                  className={Styles.formInput}
+                  type="text"
+                  placeholder="Project Name ..."
+                />
+                <button id="searchBtn" className="transparentBtn">
+                          <FontAwesomeIcon icon={solid("search")} size="lg" />
+                </button>
+                <button
+                          type="button"
+                          onClick={() => {
+                            resetSearch();
+                            document.getElementById("searchField").disabled = false;
+                            document.getElementById("resetBtn").hidden = true;
+                            document.getElementById("searchBtn").hidden = false;
+                          }}
+                          hidden
+                          id="resetBtn"
+                          className="transparentBtn"
+                >
+                          <FontAwesomeIcon icon={solid("undo")} size="lg" />
+                </button>
+    </form>
+  </div>
+  <div className={styles.bloc_Section}>
+        {projectList.map ( (project)  => {
           return(
           <>
           <div className={styles.Bloc}>
@@ -152,46 +149,36 @@ const renderData = (projectList) => {
           );
           })}
           </div>
-          </>
-  )
-}
-
-
-
-  return (
-    <>
-    <div className={styles.overlay}>
-    <h1>Project's List</h1>
-    <div className={styles.search_box}>
-     <input className={styles.search_text}  type="text" onChange={ (e) => { setSearchItem(e.target.value)}} placeholder="Project's name" />
-     <a className={styles.search_btn} href="#"> 
-       <FontAwesomeIcon icon= {solid("search")} color = "black" className={styles.search_icon} />
-     </a>
+    <div className="paginationContainer">
+      {allPages.map((page) => {
+        if (page === currentPage) {
+          return (
+            <div
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        getProjects(page);
+                      }}
+                      className="activePagination"
+            >
+              {page}
+            </div>
+                  );
+        } else {
+                  return (
+                    <div
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        getProjects(page);
+                      }}
+                      className="pagination"
+                    >
+                      {page}
+                    </div>
+                  )}
+      })}
     </div>
-  </div>
-  
-  {renderData(currentItems)}
-  <ul className={styles.pageNumbers}><li>
-          <button
-            onClick={handlePrevbtn}
-            disabled={currentPage == pages[0] ? true : false}
-          >
-            Prev
-          </button>
-        </li>
-        {pageDecrementBtn}
-        {renderPagesNumbers}
-        {pageIncrementBtn}
-
-        <li>
-          <button
-            onClick={handleNextbtn}
-            disabled={currentPage == pages[pages.length - 1] ? true : false}
-          >
-            Next
-          </button>
-        </li>
-      </ul>
     </>
   )
 }

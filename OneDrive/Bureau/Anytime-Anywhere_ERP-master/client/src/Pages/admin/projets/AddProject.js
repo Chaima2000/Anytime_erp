@@ -5,7 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
-import FileBase64 from 'react-file-base64';   
+import TextField from '@material-ui/core/TextField'; 
 toast.configure()
 
 
@@ -61,18 +61,16 @@ function AddProject(props) {
    });
  }
 
-  const customStyles = {  
-    control: (_, { selectProps: { width }}) => ({
-      width:width
-    }),
-  
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 0ms';
-  
-      return { ...provided, opacity, transition };
-    }
-  }
+ const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    background: '#fff',
+    borderColor: '#9e9e9e',
+    minHeight: '30px',
+    height: '55px',
+    boxShadow: state.isFocused ? null : null,
+  })
+}
 
   const addproject =(e) => {
     e.preventDefault();
@@ -117,15 +115,18 @@ function AddProject(props) {
   return (
    <form  onSubmit={addproject} encType = "multiple/form-data">
    <h1 className={styles.h1}>ADD PROJECT</h1>
-   <div className={styles.div_section}>
-      <div className={styles.div_left}>
-        <input className={styles.input_item} 
-               placeholder="Name" type="text" 
-               onChange={(e)=>{setName(e.target.value)}} 
-               id="name" 
-               name="name" 
-               required />
-        <Select 
+   <TextField id="name" 
+              label="Enter name " 
+              className={styles.select}
+              
+              variant="outlined"
+              onChange={(e)=>{setName(e.target.value)}} 
+              required 
+     /> 
+     <br />
+     <br />
+  <div className={styles.select}>
+    <Select 
             isMulti
             placeholder="Select Members"
             name="members"
@@ -137,11 +138,15 @@ function AddProject(props) {
               })
               setMembers(values)
             }}
+            styles={customStyles}
               options={membersList} 
-              styles={customStyles}
-              className={styles.input_item}
               required
-              />
+    />
+    </div>
+   {/* <div className={styles.div_section}> */}
+      {/* <div className={styles.div_left}>
+        
+      
               <label>Start Date : </label>
               <input type="date" 
               className={styles.input_item} 
@@ -155,10 +160,10 @@ function AddProject(props) {
               id="description" 
               name="description" 
               required/>
-      </div>
+      </div> */}
 
-   <div className={styles.div_right}>
-      <input className={styles.input_item} placeholder="Client"  onChange={(e)=>{setClient(e.target.value)}} id="client" name="client" required />
+   {/* <div className={styles.div_right}> */}
+      {/* <input className={styles.input_item} placeholder="Client"  onChange={(e)=>{setClient(e.target.value)}} id="client" name="client" required />
       <Select 
                     name="state"
                     placeholder="Select States"
@@ -186,10 +191,10 @@ function AddProject(props) {
                  }}
 
                  id="file" multiple/></label>  
-   </div>
+   </div> */}
 
-   </div>
-   <button className={styles.btn}>SAVE</button> 
+   {/* </div> */}
+   {/* <button className={styles.btn}>SAVE</button>  */}
    </form>
   )
 }

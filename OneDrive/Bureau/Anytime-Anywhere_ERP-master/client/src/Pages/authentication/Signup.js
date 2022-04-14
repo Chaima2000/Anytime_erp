@@ -2,8 +2,7 @@ import styles from "../../Css/Signup.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { btn_file , file_input} from "../../Css/Project.module.css";
+import swal from 'sweetalert';
 import avatar from "../../files/avatar.png";
 
 function Signup() {
@@ -13,6 +12,27 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [file, setFile]= useState();
+  const success = () => {
+    document.getElementById("file").value="";
+    document.getElementById("firstName").value="";
+    document.getElementById("lastName").value="";
+    document.getElementById("email").value="";
+    document.getElementById("password").value="";
+    document.getElementById("Confirmpassword").value= "";
+  }
+  function convertBase64(file) {
+    return new Promise((resolve, reject) => {
+     const fileReader = new FileReader();
+     fileReader.readAsDataURL(file);
+     fileReader.onload = () => {
+       resolve(fileReader.result);
+     };
+     fileReader.onerror = (error) => {
+       reject(error);
+     };
+   });
+ }
 
   function createAccount(e) {
     if (password !== confirmPassword) {
@@ -24,15 +44,24 @@ function Signup() {
         lastName: lastName,
         email: email,
         password: password,
-        image:image,
+        file:file,
       })
       .then((res) => {
         if (res.data === "SUCCESS") {
-          alert("SUCCESS");
+          swal({
+            title: "SUCCESS",
+            text: "Added succesfully!",
+            icon: "success",
+            button: "OK!",
+          });
+          success();
         } else if (res.data === "USER EXISTS WITH EMAIL") {
           alert("USER EXISTS WITH EMAIL");
         } else {
-          alert("ERROR");
+          swal({
+            title: "ERROR",
+            button: "OK!",
+          });
         }
       });
     e.preventDefault();
@@ -46,10 +75,17 @@ function Signup() {
           <hr />
           <form onSubmit={createAccount}>
           <div className={styles.picture}>
-            <img className={styles.img_section} src= {avatar} />
+            <img className={styles.img_section} src= {file}  />
             <br />
             <label className={styles.btn_file}> Upload image 
-              <input type="file" className={styles.file_input}
+              <input type="file" className={styles.file_input} 
+                accept=".png, .jpg, .jpeg"
+                onChange={async (e) => {
+                      const file = e.target.files[0];
+                     const base64 = await convertBase64(file);
+                     setFile(base64);
+                   }}
+                id="file"
               />
             </label>
           </div>
@@ -62,6 +98,7 @@ function Signup() {
               className="formInput"
               placeholder="First Name"
               type="text"
+              id="firstName"
             />
             <input
               onChange={(e) => {
@@ -71,6 +108,7 @@ function Signup() {
               className="formInput"
               placeholder="Last Name"
               type="text"
+              id="lastName"
             />
             <input
               onChange={(e) => {
@@ -80,6 +118,7 @@ function Signup() {
               className="formInput"
               placeholder="Email"
               type="email"
+              id="email"
             />
            
             <input
@@ -92,6 +131,7 @@ function Signup() {
               type="password"
               pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
               title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
+              id="password"
             />
             <input
               onChange={(e) => {
@@ -103,6 +143,7 @@ function Signup() {
               type="password"
               pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
               title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
+              id="Confirmpassword"
             />
             <br />
             <br />

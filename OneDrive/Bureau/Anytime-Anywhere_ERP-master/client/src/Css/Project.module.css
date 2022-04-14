@@ -1,103 +1,19 @@
 /* *form addProject* */
 @import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Nanum+Myeongjo&family=Nunito:wght@200&display=swap');
-body , .btn , .btn_file , .input_item , .input_item_Date  {
-  border : 0;
+body {
   font-family: 'Nunito', sans-serif;
-  outline : 0;
-  font-size : 16px;
-  border-radius : 320px;
-  padding : 16px;
-  /* background-color: #e3e2e2; */
-  letter-spacing : -0.2px;
- }
- .h1{
-  margin-left: -5%;}
- .div_section{
-   display: inline-block;
-   width: 90%;
-   margin-left: 5%;
- }
- .div_right{
-   float: right;
-   width: 45%;
- }
- .div_left{
-   float: left;
-   width: 45%;
- }
- .input_item{
-  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  rgb(247, 245, 245);
-  width : 90%;
-  box-sizing : border-box;
-  height: 65px;
-  margin : 15px;
- }
- .input_item_Date {
-  box-shadow :   inset 2px 2px 5px #b8b3ba , inset -5px -5px 10px  #fff;
-  width : 15%;
-  box-sizing : border-box;
-  height: 65px;
-  margin : 15px;
- }
- .input_item:focus , .input_item_Date:focus {
-  box-shadow: inset 1px 1px 2px #babecc,
-  inset  -1px -1px 2px #fff;
- }
- .btn {
-  background-color :rgb(187, 75, 142);
-  color: #fff;
-  box-shadow : -5px -5px 20px #fff , 5px 5px 20px rgb(187, 75, 142);
-  cursor : pointer;
-  font-weight: 600;
-  width : 40%;
-  right: 20%;
-  left : 29%;
-  margin-top: 2%;
-  position: relative;
- }
- .btn:hover {
- box-shadow : -2px -2px 5px #fff, 2px 2px 5px #babecc;
- }
- .btn:active {
-  box-shadow : inset 1px 1px 2px #babecc, 
-  inset -1px -1px 2px #fff;
- } 
-.file_input{
-display: none;
 }
-.task_section{
-  border-top : 1px solid grey;
+/* .input{
+  width: 25%;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 7px;
+} */
+.select{
+   width: 350px;
+   height:45px;
 }
-.search_form{
-  position: relative;
-  left:40%;
-  width: 40%
-}
-.add_icon{
-  float: right;
-  border : 1px solid grey;
-  padding: 7px;
-  border-radius : 5px;
-  cursor:pointer;
-}
-.btn_file{
-  display : block;
-  background-color :#f7f7f7;
-  margin-top: 2%;
-  margin-left: 3%;
-  color: #6a6a6a;
-  box-shadow : -5px -5px 15px #fff , 5px 5px 5px #babecc;
-  height: 35px;
-  width: 85%;
-  cursor : pointer;
-}
-.btn_file:hover{
-  box-shadow : -2px -2px 5px #fff, 2px 2px 5px #babecc;
-}
-.btn_file:active{
-  box-shadow : inset 1px 1px 2px #babecc, 
-  inset -1px -1px 2px #fff;
-}
+
  /* ** Projects *** */
 .Bloc {
   display: inline-block;

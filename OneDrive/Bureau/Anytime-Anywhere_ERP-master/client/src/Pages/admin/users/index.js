@@ -214,6 +214,7 @@ function Users() {
                           }}
                         >
                           <option value="USER">USER</option>
+                          <option value="SUPER-ADMIN">SUPER-ADMIN</option>
                           <option value="ADMIN">ADMIN</option>
                           <option value="DEVELOPER">DEVELOPER</option>
                           <option value="DESIGNER">DESIGNER</option>

@@ -1,20 +1,78 @@
-/* *form addProject* */
+/* * Add Project* */
 @import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Nanum+Myeongjo&family=Nunito:wght@200&display=swap');
 body {
   font-family: 'Nunito', sans-serif;
 }
-/* .input{
-  width: 25%;
-  height: 30px;
-  border: 1px solid grey;
-  border-radius: 7px;
-} */
+.form_title{
+text-align: center;
+}
+.div_Sides{
+float: left;
+margin: 55px;
+}
+.form {
+  position:absolute;
+  left: 8%;
+  width:85%;
+  height: 455px;
+}
 .select{
-   width: 350px;
+   width: 440px;
    height:45px;
 }
-
+.upload_btn{
+ width: 440px;
+ height: 53px;
+}
+.btn{
+  width: 20%;
+  height: 40px;
+  position: relative;
+  left: 36%;
+  padding: 5px;
+  background: rgb(187, 75, 142);
+  color:white;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
+}
  /* ** Projects *** */
+ .search_form  {
+   position : relative;
+   left: 40%;
+   width: 40%
+ }
+ .ModalParagraph{
+  position: relative;
+  left: 15%;
+  top: 5%;
+  width: 70%;
+  font-size: 20px;
+}
+.btn_section{
+  position : relative;
+  left: 30%;
+  display: inline-block;
+  margin-top: 5%;
+  }
+.white_btn{
+  background: none;
+  border: none;
+  padding : 10px ;
+  text-align : center;
+  cursor:pointer;
+  color: rgb(18, 64, 203);
+  border-radius: 8px;
+}
+.confirm_btn{
+  background: rgb(76, 117, 240);
+  border: none;
+  padding : 10px ;
+  border-radius: 5px;
+  text-align : center;
+  cursor:pointer;
+  color: white;
+}
 .Bloc {
   display: inline-block;
   box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
@@ -28,7 +86,30 @@ body {
 .bloc_Section{
   margin-top:5%;
 }
-.addProject_Btn{
+.Bloc:hover{
+  box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
+}
+.icons {
+  padding : 5px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  width: 200px;
+  height: 10px;
+  position: relative;
+  left : 15%;
+  -moz-border-radius:50%;
+  -webkit-border-radius: 50%;
+}
+.icons:hover {
+  background: rgb(182, 179, 179);
+  
+}
+
+
+
+/* .addProject_Btn{
   position: absolute;
   right : 12%;
   padding : 12px;
@@ -37,29 +118,27 @@ body {
   width: 8%;  
   border-radius: 12px;
   border : 1px solid grey;
-}
-.Bloc:hover{
-  box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
-}
+} */
+/* 
 .info_section{
   margin-top: -13%;
   margin-left: 5%;
   width: 50%;
-}
-.plus{
+} */
+/* .plus{
   float: right;
   padding: 7px;
   font-size: 20px;
   cursor: pointer;
-}
-.icons_Section{
+} */
+/* .icons_Section{
   width: 40%;
   padding: 5px;
   margin-top: -3%;
   margin-left: 55%;
-}
+} */
 /* **search section ***** */
-.search_box{
+/* .search_box{
   position : absolute;
   top: 30%;
   left : 50%;
@@ -99,14 +178,8 @@ body {
   line-height : 40px;
   width : 0px;
 }
-.input {
-padding : 5px;
-cursor: pointer;
-margin: 5px;
-width: 18%;
-position: relative;
-left : 15%;
- }
+ */
+
 /*projectProfile*/
 .Modal {
   margin-top: 10%;
@@ -168,33 +241,6 @@ border-radius: 12px;
   margin-top: 15%;
   margin-left: 35%;
   border-radius: 15px;
-}
-.confirm_Btn {
-  background: rgb(187, 75, 142);
-  border : 1px solid rgb(187, 75, 142);
-  color :white;
-  padding : 10px;
-  height: 43px;
-  border-radius: 9px;
-  margin: 35px;
-  cursor: pointer;
-}
-.btn_section{
-position: relative;
-top:20%;
-left: 32%;
-}
-.btn_cancel{
-  margin-left: 43.5%;
-  margin-top: 12%;
-}
-.closeParagraph{
-  font-weight: 200;
-  position: relative;
-  left: 22%;
-  top: 30%;
-  width: 60%;
-  font-size: 23px;
 }
 .h4{
   font-size: 19px;
@@ -270,26 +316,29 @@ left: 32%;
   cursor: pointer;
 }
  @media (max-width: 480px) {
-  .input_item{
-    width: 100%;
-  }
-  .div_section {
-   width: 100%;
-   margin-left: -3%;
-  }
-  .div_right{
-    float: left;
-    width: 90%;
-  }
-  .div_left{
-    float: left;
-    width: 90%;
-  }
+  .form {
+     left:7%;
+     height: 650px;
+     width : 90%;
+   }
+  .select {
+     width: 330px;
+   }
+  .div_Sides{
+    position : relative;
+    left:2%;
+    width: 95%;
+    margin:10px;
+    }
+  .upload_btn{
+      width: 330px;
+      height: 53px;
+     }
   .btn{
-    position: relative;
-    right: 20%;
-    left : 30%;
-    top:100%
+    margin-top: 5%;
+    left:5%;
+    height: 55px;
+    width: 330px;
   }
   .btn_file{
     width: 90%;

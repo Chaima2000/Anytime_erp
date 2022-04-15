@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import TextField from '@material-ui/core/TextField'; 
+import Button from '@material-ui/core/Button';
 toast.configure()
 
 
@@ -13,6 +14,7 @@ function AddProject(props) {
   const [name , setName] = useState("");
   const [state , setState] = useState("");
   const [client , setClient] = useState("");
+  const [clientsList , setClientsList] = useState([]);
   const [description , setDescription] = useState("");
   const [start , setStart] = useState("");
   const [end , setEnd] = useState("");
@@ -20,6 +22,17 @@ function AddProject(props) {
   const [members , setMembers] = useState([]);
   const [file , setFile] = useState([]);
 
+  useEffect(() => {
+    axios.get("/getclients").then((res) => {
+      if (res.data){
+        var options = []
+        res.data.map((element) => {
+          options.push({value: element.society, label: element.society} );
+        })
+        setClientsList(options);
+      }
+    });
+  }, []);
   useEffect(() => {
     axios.get("/getmembers").then((res) => {
       if (res.data){
@@ -33,15 +46,12 @@ function AddProject(props) {
   }, []);
   const success = () => {
     document.getElementById("name").value="";
-    document.getElementById("state").value="";
-    document.getElementById("client").value="";
     document.getElementById("description").value="";
     document.getElementById("start").value="";
     document.getElementById("end").value= "";
-    setMembers([{members : ""}]);
-    setFile([{ file : ""}]);
+
   }
-  //select options //
+  //State options //
   const options = [
     { value: 'planning', label: 'planning' },
     { value: 'in_progress', label: 'in progress' },
@@ -62,9 +72,11 @@ function AddProject(props) {
  }
 
  const customStyles = {
-  control: (provided, state) => ({
+  control: (provided , state) => ({
     ...provided,
-    background: '#fff',
+    background: 'white',
+    opacity:1,
+    outline: 'none',
     borderColor: '#9e9e9e',
     minHeight: '30px',
     height: '55px',
@@ -113,89 +125,126 @@ function AddProject(props) {
     )}
 
   return (
-   <form  onSubmit={addproject} encType = "multiple/form-data">
-   <h1 className={styles.h1}>ADD PROJECT</h1>
-   <TextField id="name" 
-              label="Enter name " 
-              className={styles.select}
-              
-              variant="outlined"
-              onChange={(e)=>{setName(e.target.value)}} 
-              required 
-     /> 
-     <br />
-     <br />
-  <div className={styles.select}>
-    <Select 
-            isMulti
-            placeholder="Select Members"
-            name="members"
-            id="members"
-            onChange={(e) => {
-              let values =[]
-              e.forEach(element=>{
-              values.push(element.value)
-              })
-              setMembers(values)
-            }}
-            styles={customStyles}
-              options={membersList} 
-              required
-    />
-    </div>
-   {/* <div className={styles.div_section}> */}
-      {/* <div className={styles.div_left}>
-        
-      
-              <label>Start Date : </label>
-              <input type="date" 
-              className={styles.input_item} 
-              onChange={(e)=>{setStart(e.target.value)}} 
-              id="start" 
-              name="start" 
-              required />
-              <textarea className={styles.input_item} 
-              placeholder="Description" 
-              onChange={(e)=>{setDescription(e.target.value)}} 
-              id="description" 
-              name="description" 
-              required/>
-      </div> */}
-
-   {/* <div className={styles.div_right}> */}
-      {/* <input className={styles.input_item} placeholder="Client"  onChange={(e)=>{setClient(e.target.value)}} id="client" name="client" required />
-      <Select 
-                    name="state"
-                    placeholder="Select States"
-                    id="state"
-                    onChange={(e) => {
-                    setState(e)
-                    }}
-              options={options} 
-              styles={customStyles}
-              className={styles.input_item}
-              required
-              />
-                <label>End Date : </label><br/>
-                 <input type="date" className={styles.input_item}  onChange={(e)=>{setEnd(e.target.value)}} id="end" name="end" required />
-                 <label className={styles.btn_file} >Upload files
-                 <input type="file" className={styles.file_input} onChange={async (e) => {
-                    var array = [];
-                    const files = e.target.files;
-                    for (let i = 0; i < files.length; i++) {
-                     let file = files.item(i);
-                     const base64 = await convertBase64(file);
-                     array.push(base64);
-                   }
-                   setFile(array);
-                 }}
-
-                 id="file" multiple/></label>  
-   </div> */}
-
-   {/* </div> */}
-   {/* <button className={styles.btn}>SAVE</button>  */}
+    <>
+   <h1 className={styles.form_title}>ADD PROJECT</h1>
+   <form  onSubmit={addproject} encType = "multiple/form-data" className={styles.form}>
+      <div className={styles.div_Sides}>
+          <TextField id="name" 
+                      label="Project name " 
+                      className={styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setName(e.target.value)}} 
+                      required 
+            /> 
+            <br />
+            <br />
+              <TextField id="start" 
+                      label = " Start date "
+                      InputLabelProps={{ shrink: true, required: true }}
+                      type="date"
+                      className={styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setStart(e.target.value)}} 
+                      required 
+            /> 
+            <br />
+            <br />
+          <TextField id="end" 
+                      label = " End date "
+                      InputLabelProps={{ shrink: true }}
+                      type="date" 
+                      className={styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setEnd(e.target.value)}} 
+                      required 
+          /> 
+          <br />
+          <br />
+            <TextField id="description" 
+                      multiline
+                      label = " Description "
+                      className={styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setDescription(e.target.value)}} 
+                      required 
+            />
+      </div> 
+      <div className={styles.div_Sides}>
+        <div className={styles.select}>
+          <Select 
+                placeholder="Select Clients"
+                name="clients"
+                id="clients"
+                onChange={(e) => {
+                  setClient(e.label)
+                }}
+                styles={customStyles}
+                options={clientsList} 
+                required
+          />
+        </div>
+        <br />
+        <div className={styles.select}>
+          <Select 
+                isMulti
+                placeholder="Select Members"
+                name="members"
+                id="state"
+                onChange={(e) => {
+                  let values =[]
+                  e.forEach(element=>{
+                  values.push(element.value)
+                  })
+                  setMembers(values)
+                }}
+                styles={customStyles}
+                  options={membersList} 
+                  required
+          />
+        </div>
+        <br />
+        <div className={styles.select}>
+          <Select 
+                placeholder="Select State"
+                name="state"
+                id="state"
+                onChange={(e) => {
+                  setState(e.label)
+                }}
+                styles={customStyles}
+                options={options} 
+                required
+          />
+        </div>
+        <div>
+            <br />
+            <input
+              accept="image/*"
+              id="file"
+              multiple
+              type="file"
+              style={{display: 'none'}}
+              onChange={async (e) => {
+                          var array = [];
+                          const files = e.target.files;
+                          for (let i = 0; i < files.length; i++) {
+                          let file = files.item(i);
+                          const base64 = await convertBase64(file);
+                          array.push(base64);
+                        }
+                        setFile(array);
+                      }}
+            />
+            <label htmlFor="file">
+              <Button variant="contained" color="default" component="span" className={styles.upload_btn}>
+                Upload Files
+              </Button>
+            </label>
+        </div>
+      </div>
+          <button type="reset" className={styles.btn}> SAVE </button> 
    </form>
+   </>
   )
 }
 

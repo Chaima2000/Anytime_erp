@@ -8,9 +8,9 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 function Projects() {
-  const [projectList , setprojectList] = useState([]); 
+  const [projectList , setprojectList] = useState([]);  
   const [disable , setDisable] = useState (false);
-  const [popProject  , setPopProject] = useState({});
+  const [DeleteProject  , setDeleteProject] = useState({});
   const [deleteItem,setDeleteItem] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [waiting, setWaiting] = useState(true);
@@ -40,8 +40,8 @@ function Projects() {
       if (res.data === "ERROR") {
         alert("An error occured");
       } else {
-            axios.get("getprojects").then((res) => {
-              setprojectList(res.data);
+            axios.post("/getprojects").then((res) => {
+              setprojectList(res.data.projects);
             });  
           }
         })
@@ -106,25 +106,18 @@ return (
                           <FontAwesomeIcon icon={solid("undo")} size="lg" />
                 </button>
     </form>
-  </div>
+    <br />
   <div className={styles.bloc_Section}>
         {projectList.map ( (project)  => {
           return(
           <>
           <div className={styles.Bloc}>
             <h4>Project name : {project.name} </h4>
-            <h4>Project state : </h4>
-          {/*  {project.state.map( (states)=> {
-              return (
-                <>
-                  <h4>{states.state}</h4>
-                </>
-              )
-            })} </h4> */}
+            <h4>Project state : {project.state}</h4>
             <h4>Project client : {project.client}</h4>
-            <Link to={`/project/addTask/${project._id}`}><input type="button" value="View" className={styles.input} /></Link>
-            <input type="button" value="Delete" onClick = {() => {setPopProject(project) ; Delete()}} className={styles.input}/>
-            <input type="button" value="Close" className={styles.input} onClick={() => {Disable()}} />
+            <Link to={`/project/addTask/${project._id}`}><span className={styles.icons}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
+            <span onClick = {() => {setDeleteProject(project) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
+            <span className={styles.icons} onClick={() => {Disable()}}><FontAwesomeIcon icon={solid("lock")} color = "#808080" /></span>
             {/*** Delete Modal ***/}
             <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
@@ -134,14 +127,22 @@ return (
                                                   },
                                                   content : {
                                                       color : 'black' , 
-                                                      backgroundColor : 'white', 
+                                                      outline: 'none',
+                                                      backgroundColor : 'white',
+                                                      width: '400px',
+                                                      height: '195px',
+                                                      padding : '5px',
+                                                      position : 'relative',
+                                                      top:'25%',
+                                                      left: '35%',
+                                                      borderRadius: '15px'
                                                       },
                                               }
-                                              } className={styles.ModalClose}   >
-                    <p className={styles.closeParagraph}>Do you want to delete {popProject.name} ? <br/></p>
+                                              }>
+                    <h5  className={styles.ModalParagraph}>Do you want to delete {DeleteProject.name} ? <br/></h5>
                     <div className={styles.btn_section}>
-                    <input type="button"  value="Confirm" className={styles.close_Btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(popProject._id)}}/>
-                    <input type="button" value="Cancel" className= "transparentBtn" onClick={() => setDeleteItem(false)} />
+                      <input type="button"  value="CANCEL"  className= {styles.white_btn}   onClick= {() => setDeleteItem(false)} />
+                      <input type="button"  value="CONFIRM" className= {styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(DeleteProject._id)}}/>
                     </div>
               </Modal>
           </div>
@@ -179,6 +180,7 @@ return (
                   )}
       })}
     </div>
+  </div>
     </>
   )
 }

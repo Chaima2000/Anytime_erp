@@ -210,7 +210,7 @@ return (
       <h4 className={styles.h4}>Name : {projectProfile.name}</h4>
       <h4 className={styles.h4}>State : {projectProfile.state}</h4>   
       <h4 className={styles.h4}>Client : {projectProfile.client}</h4>   
-      <h4 className={styles.h4}>Description : {projectProfile.description}</h4>é
+      <h4 className={styles.h4}>Description : {projectProfile.description}</h4>
       <h4 className={styles.h4}>Start at : {projectProfile.start}</h4>
       <h4 className={styles.h4}>End at :
       <input type="date" defaultValue={projectProfile.end} onChange = { (e) => { setEnd(e.target.value)}} className={Styles.formInput} /></h4>

@@ -158,7 +158,7 @@ function Navbar(props) {
       >
         <ul>
           <li>
-            <img
+          <img
               onClick={() => {
                 toggleProfileMobileMenu();
               }}
@@ -224,7 +224,7 @@ function Navbar(props) {
                 toggleProfileMobileMenu();
               }}
               className={styles.profile}
-              src={process.env.PUBLIC_URL + "/logo.png"}
+              src={user.image}
               alt="logo"
             />
           </li>
@@ -473,7 +473,8 @@ function Navbar(props) {
             toggleProfileMenu();
           }}
           className={styles.profile}
-          src={process.env.PUBLIC_URL + "/logo.png"}
+          // src={process.env.PUBLIC_URL + "/logo.png"}
+          src={user.image}
           alt="logo"
         />
         {showProfileMenu ? <ProfileDropdown /> : ""}

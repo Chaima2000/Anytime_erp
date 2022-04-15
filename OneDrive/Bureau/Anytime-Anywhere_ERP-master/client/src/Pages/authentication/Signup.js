@@ -3,23 +3,24 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
-import avatar from "../../files/avatar.png";
+import avatar from "../../uploads/avatar.png";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
-  const [image, setimage] = useState("");
+  const [image, setimage] = useState(avatar);
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [file, setFile]= useState();
+  const [message , setMessage] = useState("");
+
   const success = () => {
-    document.getElementById("file").value="";
     document.getElementById("firstName").value="";
     document.getElementById("lastName").value="";
     document.getElementById("email").value="";
     document.getElementById("password").value="";
     document.getElementById("Confirmpassword").value= "";
+    setimage({image:avatar});
   }
   function convertBase64(file) {
     return new Promise((resolve, reject) => {
@@ -39,12 +40,13 @@ function Signup() {
       return (document.getElementById("formFeedback").hidden = false);
     }
     axios
-      .post("/createaccount", {
+      .post("/createaccount",
+      {
         firstName: firstName,
         lastName: lastName,
         email: email,
         password: password,
-        file:file,
+        image:image
       })
       .then((res) => {
         if (res.data === "SUCCESS") {
@@ -64,7 +66,7 @@ function Signup() {
           });
         }
       });
-    e.preventDefault();
+      e.preventDefault();
   }
 
   return (
@@ -75,16 +77,17 @@ function Signup() {
           <hr />
           <form onSubmit={createAccount}>
           <div className={styles.picture}>
-            <img className={styles.img_section} src= {file}  />
+            <img className={styles.img_section} src={image}/>
             <br />
             <label className={styles.btn_file}> Upload image 
               <input type="file" className={styles.file_input} 
                 accept=".png, .jpg, .jpeg"
                 onChange={async (e) => {
-                      const file = e.target.files[0];
-                     const base64 = await convertBase64(file);
-                     setFile(base64);
-                   }}
+                          const file = e.target.files[0];
+                          const base64 = await convertBase64(file);
+                          setimage(base64);
+                        }
+                      }
                 id="file"
               />
             </label>

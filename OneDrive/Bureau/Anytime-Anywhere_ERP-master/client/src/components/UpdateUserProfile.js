@@ -1,7 +1,7 @@
 import React , { useContext , useState  }  from 'react';
 import styles from "../Css/ProfileDropdown.module.css";
 import { AppContext } from "../Context/AppContext";
-import avatar from "../files/avatar.png";
+import avatar from "../uploads/avatar.png";
 
 function UpdateUserProfile() {
     const { user } = useContext(AppContext);

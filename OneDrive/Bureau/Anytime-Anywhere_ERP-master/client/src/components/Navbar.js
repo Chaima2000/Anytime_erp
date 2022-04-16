@@ -51,7 +51,7 @@ function Navbar(props) {
                 toggleProfileMobileMenu();
               }}
               className={styles.profile}
-              src={process.env.PUBLIC_URL + "/logo.png"}
+              src={user.image}
               alt="logo"
             />
           </li>
@@ -102,7 +102,7 @@ function Navbar(props) {
                 toggleProfileMobileMenu();
               }}
               className={styles.profile}
-              src={process.env.PUBLIC_URL + "/logo.png"}
+              src={user.image}
               alt="logo"
             />
           </li>
@@ -163,7 +163,7 @@ function Navbar(props) {
                 toggleProfileMobileMenu();
               }}
               className={styles.profile}
-              src={process.env.PUBLIC_URL + "/logo.png"}
+              src={user.image}
               alt="logo"
             />
           </li>
@@ -321,7 +321,7 @@ function Navbar(props) {
             toggleProfileMenu();
           }}
           className={styles.profile}
-          src={process.env.PUBLIC_URL + "/logo.png"}
+          src={user.image}
           alt="logo"
         />
         {showProfileMenu ? <ProfileDropdown /> : ""}
@@ -371,7 +371,7 @@ function Navbar(props) {
             toggleProfileMenu();
           }}
           className={styles.profile}
-          src={process.env.PUBLIC_URL + "/logo.png"}
+          src={user.image}
           alt="logo"
         />
         {showProfileMenu ? <ProfileDropdown /> : ""}
@@ -422,7 +422,7 @@ function Navbar(props) {
             toggleProfileMenu();
           }}
           className={styles.profile}
-          src={process.env.PUBLIC_URL + "/logo.png"}
+          src={user.image}
           alt="logo"
         />
         {showProfileMenu ? <ProfileDropdown /> : ""}
@@ -473,7 +473,6 @@ function Navbar(props) {
             toggleProfileMenu();
           }}
           className={styles.profile}
-          // src={process.env.PUBLIC_URL + "/logo.png"}
           src={user.image}
           alt="logo"
         />

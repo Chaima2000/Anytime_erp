@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../../../Css/Client.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-function ViewClient(props){
+function ViewClient(){
     const [client, setClient] = useState({phone:[{phone:""}]});
     let { id } = useParams();
     useEffect(() => {

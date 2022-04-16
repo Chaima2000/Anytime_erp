@@ -7,7 +7,7 @@ import { Link} from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-function Projects() {
+function Projects(props) {
   const [projectList , setprojectList] = useState([]);  
   const [disable , setDisable] = useState (false);
   const [DeleteProject  , setDeleteProject] = useState({});
@@ -115,7 +115,7 @@ return (
             <h4>Project name : {project.name} </h4>
             <h4>Project state : {project.state}</h4>
             <h4>Project client : {project.client}</h4>
-            <Link to={`/project/addTask/${project._id}`}><span className={styles.icons}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
+            <Link to={`/project/details/${project._id}`}><span className={styles.icons}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
             <span onClick = {() => {setDeleteProject(project) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
             <span className={styles.icons} onClick={() => {Disable()}}><FontAwesomeIcon icon={solid("lock")} color = "#808080" /></span>
             {/*** Delete Modal ***/}

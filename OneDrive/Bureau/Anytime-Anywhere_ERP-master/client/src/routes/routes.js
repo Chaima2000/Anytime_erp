@@ -113,9 +113,6 @@ export const superAdminRoutes = (
       <Route path="/users/profile/:id">
         <UserProfile />
       </Route>
-      {/* <Route path="/user/profile">
-        <UserProfile />
-      </Route> */}
       <Route path="/settingProfile" exact>
         <UpdateUserProfile />
       </Route>
@@ -137,7 +134,7 @@ export const superAdminRoutes = (
       <Route path="/projectList" exact>
         <Projects />
       </Route>
-      <Route path="/project/addTask/:id" exact>
+      <Route path="/project/details/:id" exact>
         <ProjectProfile />
       </Route>
       <Route path="/discussion" exact>

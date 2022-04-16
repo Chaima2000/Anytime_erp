@@ -38,7 +38,8 @@ function AddProject(props) {
       if (res.data){
         var options = []
         res.data.map((element) => {
-            options.push({value: element.firstName, label: element.firstName} );
+            var fullName = element.firstName + " " + element.lastName;
+            options.push({value: fullName, label: fullName} );
         })
         setMembersList(options);
       }
@@ -129,7 +130,7 @@ function AddProject(props) {
    <h1 className={styles.form_title}>ADD PROJECT</h1>
    <form  onSubmit={addproject} encType = "multiple/form-data" className={styles.form}>
       <div className={styles.div_Sides}>
-          <TextField id="name" 
+          <TextField  id="name" 
                       label="Project name " 
                       className={styles.select}
                       variant="outlined"
@@ -242,7 +243,7 @@ function AddProject(props) {
             </label>
         </div>
       </div>
-          <button type="reset" className={styles.btn}> SAVE </button> 
+          <button className={styles.btn}> SAVE </button> 
    </form>
    </>
   )

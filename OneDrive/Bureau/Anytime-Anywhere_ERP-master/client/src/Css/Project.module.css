@@ -25,10 +25,10 @@ margin: 55px;
  height: 53px;
 }
 .btn{
-  width: 20%;
+  width: 20%;s
   height: 40px;
   position: relative;
-  left: 36%;
+  left: 40%;
   padding: 5px;
   background: rgb(187, 75, 142);
   color:white;
@@ -104,83 +104,53 @@ margin: 55px;
 }
 .icons:hover {
   background: rgb(182, 179, 179);
-  
 }
-
-
-
-/* .addProject_Btn{
-  position: absolute;
-  right : 12%;
-  padding : 12px;
-  cursor: pointer;
-  margin-top: -6%;
-  width: 8%;  
-  border-radius: 12px;
-  border : 1px solid grey;
-} */
-/* 
-.info_section{
-  margin-top: -13%;
-  margin-left: 5%;
-  width: 50%;
-} */
-/* .plus{
-  float: right;
-  padding: 7px;
-  font-size: 20px;
-  cursor: pointer;
-} */
-/* .icons_Section{
-  width: 40%;
-  padding: 5px;
-  margin-top: -3%;
-  margin-left: 55%;
-} */
-/* **search section ***** */
-/* .search_box{
-  position : absolute;
-  top: 30%;
-  left : 50%;
-  transform : translate(-50%,-50%);
-  background: white;
-  height : 40px;
-  border-radius : 40px;
-  padding : 10px;
-} 
-.search_box:hover > .search_text {
-  width : 240px;
-  padding : 0 6px;
-}
-.search_box:hover > .search_btn {
-  background : white;
-} 
-.search_btn {
-  float : right ;
-  width : 40px;
-  height: 40px;
-  border-radius: 50%;
-  background : rgb(187, 75, 142);
-  display : flex;
-  justify-content : center;
-  align-items : center;
-  transition : 0.4s;
-} 
-.search_text {
-  border : none;
-  background : none ;
-  outline : none ;
-  float :left ;
-  padding : 0;
-  color : #babecc;
-  font-size : 16px;
-  transition : 0.4s;
-  line-height : 40px;
-  width : 0px;
-}
- */
 
 /*projectProfile*/
+.profile {
+  cursor: pointer;
+  border: 2px solid grey;
+  padding: 2px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: none;
+  margin: 5px;
+  transition: all 0.3s;
+}
+.profile:hover {
+  transform: scale(1.1);
+}
+.Details{
+  border-bottom: 1px solid rgb(199, 199, 199);
+  padding-left: 25px;
+  width: 98%;
+  height: 575px;
+}
+.h4{
+  font-size: 19px;
+  font-weight: bold;
+}
+.add_icon{
+  position: relative;
+  left: 88%;
+  cursor:pointer
+}
+.add_icon:hover{
+  color: rgb(187, 75, 142);
+  transform: scale(1.1);
+}
+.formInput{
+  width: 440px;
+  outline: none;
+  height:55px;
+  border-radius: 5px;
+  border: 1px solid rgb(163, 163, 163);
+}
+
+
+
+
 .Modal {
   margin-top: 10%;
   background-color: #f7f7f7;
@@ -192,6 +162,8 @@ margin: 55px;
  border-radius:  12px;
  font-size: 15px;
 }
+
+
 .XMARK{
   float: right;
   position: relative;
@@ -242,9 +214,7 @@ border-radius: 12px;
   margin-left: 35%;
   border-radius: 15px;
 }
-.h4{
-  font-size: 19px;
-}
+
 .TaskModal{
   width: 30%;
   height: 50%;

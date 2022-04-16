@@ -20,7 +20,7 @@ function Signup() {
     document.getElementById("email").value="";
     document.getElementById("password").value="";
     document.getElementById("Confirmpassword").value= "";
-    setimage({image:avatar});
+    setimage(avatar);
   }
   function convertBase64(file) {
     return new Promise((resolve, reject) => {

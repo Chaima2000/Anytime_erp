@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import styles from "../../../Css/Project.module.css";
-import Styles from "../../../Css/Users.module.css";
 import Modal from 'react-modal';
 import swal from 'sweetalert';
 import { AppContext } from "../../../Context/AppContext";
@@ -16,11 +15,12 @@ function ProjectProfile(props) {
   const [projectProfile, setProjectProfile] = useState([]);
   const[end , setEnd] = useState("");
   const [membersList , setMembersList] = useState([]);
-  const [member , setMember] = useState([]);
+  const [members , setMembers] = useState([]);
+  const [ checked , setChecked] = useState(false);
   /** Tasks states **/
   const [tasksList , setTasksList] = useState([]);
   const[nameTask , setNameTask] = useState("");
-  const [stateTask , setStateTask] = useState("");
+  const [stateTask , setStateTask] = useState(null);
   const[descriptionTask , setDescriptionTask] = useState("");
   const[priorityTask , setpriorityTask] = useState("");
   const [waiting, setWaiting] = useState(true);
@@ -46,6 +46,7 @@ function ProjectProfile(props) {
   const [editTask , setEditTasks] = useState({});
   const [visible , setVisible] = useState(3);
   const slice = tasksList.slice( 0 , visible);
+  const [ taskId , setTaskId] = useState("");
   const showMoreItems = () => {
     setVisible( visible + visible )
   };
@@ -145,6 +146,12 @@ function deleteExpense(id) {
         }
       })
 }
+
+const updateTask = (id) => {
+  axios.put("/updateTask" , { nameTask : nameTask , stateTask : stateTask , descriptionTask : descriptionTask , priorityTask : priorityTask , id:id}).then( (response)=> {
+    setTasksList(response.data);
+   })
+}
 const addtask =(e) => {
     e.preventDefault();
     const data = new FormData();
@@ -156,47 +163,28 @@ const addtask =(e) => {
       nameTask:nameTask,
       stateTask:stateTask,
       descriptionTask:descriptionTask,
-      member:member,
       priorityTask:priorityTask
     }
     axios.post("/addTask", dataT).then((res)=>{
-      if(res.data === "ERROR"){
-        console.log(e);
-      }else if(res.data === "SUCCESS"){
+      if(res.data === "SUCCESS "){
+       res.send("SUCCESS")
         swal({
           title: "SUCCESS",
           text: "Added succesfully!",
           icon: "success",
           button: "OK!",
+          
+        });
+      }else if(res.data === "ERROR"){
+        res.send("ERROR");
+        swal({
+          title: "ERROR",
+          icon: "error",
+          button: "OK!",
         });
         success();
 }})}
-const edittask =(e) => {
-  e.preventDefault();
-  const data = new FormData();
-  data.append("nameTask",nameTask);
-  data.append("stateTask",stateTask);
-  data.append("descriptionTask",descriptionTask);
-  data.append("priorityTask",priorityTask);
-  const dataT = {
-    nameTask:nameTask,
-    stateTask:stateTask,
-    descriptionTask:descriptionTask,
-    member:member,
-    priorityTask:priorityTask
-  }
-  axios.put("/editTask", dataT).then((res)=>{
-    if(res.data === "ERROR"){
-      console.log(e);
-    }else if(res.data === "SUCCESS"){
-      swal({
-        title: "SUCCESS",
-        text: "Added succesfully!",
-        icon: "success",
-        button: "OK!",
-      });
-      success();
-}})}
+
   //State options //
   const options = [
     { value: 'planning', label: 'planning' },
@@ -225,11 +213,6 @@ const addexpense =(e) => {
         button: "OK!",
       });
 }})}
-
-const editproject = (e) => {
-  e.preventDefault();
-  
-}
 const Pop = () => {
   setModalIsOpen(true)}
 
@@ -247,13 +230,12 @@ const editTasks = () =>{
 }
 const handleChange = (e) => {
   setpriorityTask(e.target.value);
-  console.log(e.target.value);
 }
 
 return (
     <>
     <div className={styles.Details}>
-      <form onSubmit={addtask}>
+      <form>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
       <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image} className={styles.profile} />{projectProfile.members}</span></p>
@@ -271,10 +253,11 @@ return (
                 isMulti
                 placeholder="Edit Members"
                 name="members"
-                defaultValue={projectProfile.members}
-                onChange={ (e) => {setMember(e.target.value)}}
+                defaultValue={membersList.filter(obj => projectProfile.members.includes(obj.label))}
+                onChange={ (e) => {setMembers(Array.isArray(e) ? e.map(x => x.label) : [])}}
                 styles={customStyles}
                 options={membersList} 
+                isClearable
       />
     </div>
     </form>
@@ -309,7 +292,7 @@ return (
                       className={styles.select}
                       variant="outlined"
                       onChange={ (e) => { setNameTask(e.target.value)}}
-                      required 
+                       
                     />
                 <br />
                 <br />
@@ -319,7 +302,7 @@ return (
                       className={styles.select}
                       variant="outlined"
                       onChange={ (e) => { setDescriptionTask(e.target.value)}}
-                      required 
+                       
                     />
                 <br />
                 <br />
@@ -330,15 +313,15 @@ return (
                           onChange={ (e) => { setStateTask(e.label)}}
                           styles={customStyles}
                           options={options} 
-                          required
+                          
                     />
                 </div>
                 <br />
                 <br />
                 
                   <h4><label>Task's priority</label> &nbsp;&nbsp;
-                  <input  type="checkbox" value="urgent" onChange= { (event) => { handleChange(event) }} /></h4>
-                <button className={styles.btn}>save</button>
+                  <input  type="checkbox" value="urgent" onChange= { (event) => {handleChange(event) }} /></h4>
+                <button className={styles.btn} >save</button>
             </form>
         </Modal>
         <br/>
@@ -404,7 +387,7 @@ return (
                                                }
                                                }  
                                                >
-            <form onSubmit={edittask}>
+            <form>
                 <h2 align="center">Edit task </h2>
                 <br />
                 <br />
@@ -415,7 +398,7 @@ return (
                       variant="outlined"
                       defaultValue={editTask.nameTask}
                       onChange={ (e) => { setNameTask(e.target.value)}}
-                      required 
+                       
                     />
                 <br />
                 <br />
@@ -426,27 +409,27 @@ return (
                       variant="outlined"
                       defaultValue={editTask.descriptionTask}
                       onChange={ (e) => { setDescriptionTask(e.target.value)}}
-                      required 
+                       
                     />
                 <br />
                 <br />
                 <div className={styles.select}>
                     <Select 
-                          placeholder="Select State"
+                         placeholder="Select State"
                           id="state"
-                          defaultValue={editTask.stateTask}
+                          defaultValue={options.find(obj => obj.label === editTask.stateTask)}
                           onChange={ (e) => { setStateTask(e.label)}}
                           styles={customStyles}
                           options={options} 
-                          required
+                          
                     />
                 </div>
                 <br />
                 <br />
                 
                   <h4><label>Task's priority</label> &nbsp;&nbsp;
-                  <input  type="checkbox" defaultValue="urgent"  onChange= { (event) => { handleChange(event) }} /></h4>
-                <button className={styles.btn}>save</button>
+                  <input  type="checkbox" defaultValue="urgent"   onChange= { (event) => { handleChange(event) }} /></h4>
+                <button className={styles.btn} onClick = { () => { updateTask(editTask._id)}}>save</button>
             </form>
             </Modal>
 

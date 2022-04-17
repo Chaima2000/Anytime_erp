@@ -25,7 +25,7 @@ margin: 55px;
  height: 53px;
 }
 .btn{
-  width: 20%;s
+  width: 20%;
   height: 40px;
   position: relative;
   left: 40%;
@@ -127,6 +127,9 @@ margin: 55px;
   width: 98%;
   height: 575px;
 }
+.details{
+  border-bottom: 1px solid rgb(199, 199, 199);
+}
 .h4{
   font-size: 19px;
   font-weight: bold;
@@ -146,6 +149,18 @@ margin: 55px;
   height:55px;
   border-radius: 5px;
   border: 1px solid rgb(163, 163, 163);
+}
+.readMore{
+  position : relative;
+  left: 2%;
+  padding: 10px;
+  width: 95%;
+  height : 42px;
+  background : grey;
+  color: white;
+  border: none;
+  border-radius : 5px;
+  cursor:pointer
 }
 
 

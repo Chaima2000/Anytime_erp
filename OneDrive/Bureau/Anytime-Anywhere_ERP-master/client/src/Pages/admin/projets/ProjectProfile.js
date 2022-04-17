@@ -11,8 +11,7 @@ import { AppContext } from "../../../Context/AppContext";
 import TextField from '@material-ui/core/TextField'; 
 import Select  from 'react-select';
 
-
-function ProjectProfile() {
+function ProjectProfile(props) {
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
   const[end , setEnd] = useState("");
@@ -24,13 +23,7 @@ function ProjectProfile() {
   const [stateTask , setStateTask] = useState("");
   const[descriptionTask , setDescriptionTask] = useState("");
   const[priorityTask , setpriorityTask] = useState("");
-
-/** Search + pagination' states **/
-  const [currentPage, setCurrentPage] = useState(1);
   const [waiting, setWaiting] = useState(true);
-  const [searchTerm , setSearchTerm]= useState("");
-  const [allPages, setAllPages] = useState([]);
- 
 /** Models's states **/
   const [view , setViewTask] = useState(false);
   const [deleteTask,setDeleteTask] = useState(false);
@@ -40,6 +33,7 @@ function ProjectProfile() {
   const [expenseIsOpen , setExpenseIsOpen] = useState(false);
   const [popProject , setPopProject] = useState({});
   const[ taskDelete , setDelete] = useState({});
+  const[ taskEdit , setEdit] = useState(false);
   const[ expenseDelete , setexpenseDelete] = useState({});
 
 /** Expenses's states **/
@@ -47,11 +41,20 @@ function ProjectProfile() {
   const [expenseName , setExpenseName] = useState("");
   const [expenseDescription , setExpenseDescription ] = useState("");
   const [expenseValue , setExpenseValue] = useState("");
-
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allPages, setAllPages] = useState([]);
+  const [editTask , setEditTasks] = useState({});
+  const [visible , setVisible] = useState(3);
+  const slice = tasksList.slice( 0 , visible);
+  const showMoreItems = () => {
+    setVisible( visible + visible )
+  };
   let { id } = useParams();
 
   Modal.setAppElement('#root');
+
+
+
 
   useEffect(() => {
     axios.post("/getproject",{ id: id }).then((res) => {
@@ -60,13 +63,16 @@ function ProjectProfile() {
       }
     });
   },[]);
-  useEffect(() => {
-    getExpenses(currentPage);
-  }, []);
 
-  useEffect(() => {
-    getTasks(currentPage);
-  }, []);
+   useEffect( () => {
+    axios.get("/getTasks").then((res) => {
+      if (res.data === "ERROR") {
+        alert("error !");
+      } else {
+        setTasksList(res.data);
+      }})
+   } , []);
+
   useEffect(() => {
     axios.get("/getmembers").then((res) => {
       if (res.data){
@@ -79,34 +85,24 @@ function ProjectProfile() {
       }
     });
   }, []);
-  function getTasks(page) {
-    axios
-      .post("/getTasks", { currentPage: page , searchTerm: searchTerm})
-      .then((res) => {
-        if (res.data === "ERROR") {
-          alert("error !");
-        } else {
-          setWaiting(false);
-          setTasksList(res.data.tasks);
-          setAllPages(res.data.allPages);
-        }
-      });
-  }
 
-  function getExpenses(page) {
-    axios
-      .post("/getexpenses", { currentPage: page , searchTerm: searchTerm})
-      .then((res) => {
-        if (res.data === "ERROR") {
-          alert("error !");
-        } else {
-          setWaiting(false);
-          setExpenses(res.data.expenses);
-          setAllPages(res.data.allPages);
-        }
-      });
-  }
 
+    function getExpenses(page) {
+      axios
+        .post("/getExpenses", { currentPage: page})
+        .then((res) => {
+          if (res.data === "ERROR") {
+            alert("error !");
+          } else {
+            setWaiting(false);
+            setExpenses(res.data.expenses);
+            setAllPages(res.data.allPages);
+          }
+        });
+    }
+    useEffect(() => {
+      getExpenses(currentPage);
+    }, []);
   const customStyles = {
     control: (provided , state) => ({
       ...provided,
@@ -120,30 +116,6 @@ function ProjectProfile() {
     })
   }
 
-  function resetSearch() {
-    document.getElementById("searchField").value = "";
-    axios.post("/getexpenses").then((res) => {
-      if (res.data === "ERROR") {
-        alert("error !");
-      } else {
-        setExpenses(res.data.expenses);
-        setAllPages(res.data.allPages);
-      }
-    });
-}
-
-
-  function resetSearch() {
-    document.getElementById("searchField").value = "";
-    axios.post("/getTasks").then((res) => {
-      if (res.data === "ERROR") {
-        alert("error !");
-      } else {
-        setTasksList(res.data.tasks);
-        setAllPages(res.data.allPages);
-      }
-    });
-}
 const success =() => {
      document.getElementById("name").value = "";
      document.getElementById("description").value = "";
@@ -156,8 +128,8 @@ function deletetask(id) {
       if (res.data === "ERROR") {
         alert("An error occured");
       } else {
-            axios.post("getTasks").then((res) => {
-              setTasksList(res.data.tasks);
+            axios.get("/getTasks").then((res) => {
+              setTasksList(res.data);
             });  
           }
         })
@@ -167,7 +139,7 @@ function deleteExpense(id) {
     if (res.data === "ERROR") {
       alert("An error occured");
     } else {
-          axios.post("getExpenses").then((res) => {
+          axios.post("/getExpenses").then((res) => {
             setExpenses(res.data.expenses);
           });  
         }
@@ -199,6 +171,32 @@ const addtask =(e) => {
         });
         success();
 }})}
+const edittask =(e) => {
+  e.preventDefault();
+  const data = new FormData();
+  data.append("nameTask",nameTask);
+  data.append("stateTask",stateTask);
+  data.append("descriptionTask",descriptionTask);
+  data.append("priorityTask",priorityTask);
+  const dataT = {
+    nameTask:nameTask,
+    stateTask:stateTask,
+    descriptionTask:descriptionTask,
+    member:member,
+    priorityTask:priorityTask
+  }
+  axios.put("/editTask", dataT).then((res)=>{
+    if(res.data === "ERROR"){
+      console.log(e);
+    }else if(res.data === "SUCCESS"){
+      swal({
+        title: "SUCCESS",
+        text: "Added succesfully!",
+        icon: "success",
+        button: "OK!",
+      });
+      success();
+}})}
   //State options //
   const options = [
     { value: 'planning', label: 'planning' },
@@ -227,6 +225,7 @@ const addexpense =(e) => {
         button: "OK!",
       });
 }})}
+
 const editproject = (e) => {
   e.preventDefault();
   
@@ -243,18 +242,18 @@ const deletePopExpense = () => {
 const deletePopUp = () => {
       setDeleteTask(true)}
 
-const viewPopUp = () => {
-      setViewTask(true)}
-const viewexpense = () => {
-      setViewExpense(true)}
+const editTasks = () =>{
+  setEdit(true) 
+}
 const handleChange = (e) => {
   setpriorityTask(e.target.value);
   console.log(e.target.value);
 }
+
 return (
     <>
     <div className={styles.Details}>
-      <form onSubmit={editproject}>
+      <form onSubmit={addtask}>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
       <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image} className={styles.profile} />{projectProfile.members}</span></p>
@@ -282,49 +281,8 @@ return (
     <br />
       <button className="defaultBtn">SAVE</button>
     </div>
-    <div className={styles.Details}>
+    <div className={styles.details}>
         <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
-        
-      
-        <form 
-            onSubmit={(e) => {
-                  document.getElementById("searchField").disabled = true;
-                  document.getElementById("resetBtn").hidden = false;
-                  document.getElementById("searchBtn").hidden = true;
-                  e.preventDefault();
-                  getTasks();
-                  setCurrentPage(1);
-            }}
-            className={styles.search_form}
-          >
-            <input
-                      id="searchField"
-                      required
-                      onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                      }}
-                      className={Styles.formInput}
-                      type="text"
-                      placeholder="Task Name ..."
-                    />
-                    <button id="searchBtn" className="transparentBtn">
-                      <FontAwesomeIcon icon={solid("search")} size="lg" />
-                    </button>
-                    <button
-                              type="button"
-                              onClick={() => {
-                                resetSearch();
-                                document.getElementById("searchField").disabled = false;
-                                document.getElementById("resetBtn").hidden = true;
-                                document.getElementById("searchBtn").hidden = false;
-                              }}
-                              hidden
-                              id="resetBtn"
-                              className="transparentBtn"
-                    >
-                              <FontAwesomeIcon icon={solid("undo")} size="lg" />
-                    </button>
-        </form>
         <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} 
                                               shouldCloseOnOverlayClick={true} className={styles.Modal}
                                               style = {
@@ -384,16 +342,25 @@ return (
             </form>
         </Modal>
         <br/>
-        {tasksList.map( (task) => {
+        {slice.map( (task , index) => {
           return (
            <>
-            <div className={styles.Bloc}>
+            <div className={styles.Bloc} key= {index}>
                <h4>Name : {task.nameTask} </h4>
                <h4>Description : {task.descriptionTask} </h4>
                <h4>State : {task.stateTask} </h4>
                <h4>Priority : {task.priorityTask} </h4>
                <input className={styles.DeleteTask} type="button" value="Delete" onClick={()=> { setDelete(task) ; deletePopUp() }} />
-               <input className={styles.DeleteTask} type="button" value="Edit"  />
+               <input className={styles.DeleteTask} type="button" value="Edit" onClick={()=> { setEditTasks(task) ; editTasks() }} />
+               </div>
+           </>
+          )
+        })}
+      <br />
+      <br />
+      <br />
+      <br />
+        <button onClick={showMoreItems} className={styles.readMore}> View All Tasks </button>
             <Modal isOpen={deleteTask} onRequestClose = {() => setDeleteTask(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
@@ -421,86 +388,76 @@ return (
                      <input type="button"  value="CONFIRM" onClick={()=> {setDeleteTask(false) ; deletetask(taskDelete._id)}} className= {styles.confirm_btn}/>
                     </div>
             </Modal>
-             </div>
-           </>
-          )
-        })}
+            <Modal isOpen={taskEdit} onRequestClose = {() => setEdit(false)} 
+                                              shouldCloseOnOverlayClick={true} className={styles.Modal}
+                                              style = {
+                                                {  
+                                                  overlay : {
+                                                  backgroundColor : '#00000020'
+                                                  },
+                                                  content : {
+                                                      color : 'black' , 
+                                                      width: '450px',
+                                                      outline: 'none',
+                                                      backgroundColor : '#f7f7f7', 
+                                                      },
+                                               }
+                                               }  
+                                               >
+            <form onSubmit={edittask}>
+                <h2 align="center">Edit task </h2>
+                <br />
+                <br />
+                <TextField id="name" 
+                      type="text"
+                      label = " Name "
+                      className={styles.select}
+                      variant="outlined"
+                      defaultValue={editTask.nameTask}
+                      onChange={ (e) => { setNameTask(e.target.value)}}
+                      required 
+                    />
+                <br />
+                <br />
+                <TextField id="description" 
+                      type="text"
+                      label = " Description "
+                      className={styles.select}
+                      variant="outlined"
+                      defaultValue={editTask.descriptionTask}
+                      onChange={ (e) => { setDescriptionTask(e.target.value)}}
+                      required 
+                    />
+                <br />
+                <br />
+                <div className={styles.select}>
+                    <Select 
+                          placeholder="Select State"
+                          id="state"
+                          defaultValue={editTask.stateTask}
+                          onChange={ (e) => { setStateTask(e.label)}}
+                          styles={customStyles}
+                          options={options} 
+                          required
+                    />
+                </div>
+                <br />
+                <br />
+                
+                  <h4><label>Task's priority</label> &nbsp;&nbsp;
+                  <input  type="checkbox" defaultValue="urgent"  onChange= { (event) => { handleChange(event) }} /></h4>
+                <button className={styles.btn}>save</button>
+            </form>
+            </Modal>
+
+      
   <br />
   <br />
   <br />
-  <div className="paginationContainer">
-      {allPages.map((page) => {
-        if (page === currentPage) {
-          return (
-            <div
-                      key={page}
-                      onClick={() => {
-                        setCurrentPage(page);
-                        getTasks(page);
-                      }}
-                      className="activePagination"
-            >
-              {page}
-            </div>
-                  );
-        } else {
-                  return (
-                    <div
-                      key={page}
-                      onClick={() => {
-                        setCurrentPage(page);
-                        getTasks(page);
-                      }}
-                      className="pagination"
-                    >
-                      {page}
-                    </div>
-                  )}
-      })}
-  </div>
   </div>
         <br/>
-        <div className={styles.Details}>
+        <div className={styles.details}>
         <h2>Expenses <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
-        <form 
-            onSubmit={(e) => {
-                  document.getElementById("searchField").disabled = true;
-                  document.getElementById("resetBtn").hidden = false;
-                  document.getElementById("searchBtn").hidden = true;
-                  e.preventDefault();
-                  getExpenses();
-                  setCurrentPage(1);
-            }}
-            className={styles.search_form}
-          >
-            <input
-                      id="searchField"
-                      required
-                      onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                      }}
-                      className={Styles.formInput}
-                      type="text"
-                      placeholder="Expense Name ..."
-                    />
-                    <button id="searchBtn" className="transparentBtn">
-                      <FontAwesomeIcon icon={solid("search")} size="lg" />
-                    </button>
-                    <button
-                              type="button"
-                              onClick={() => {
-                                resetSearch();
-                                document.getElementById("searchField").disabled = false;
-                                document.getElementById("resetBtn").hidden = true;
-                                document.getElementById("searchBtn").hidden = false;
-                              }}
-                              hidden
-                              id="resetBtn"
-                              className="transparentBtn"
-                    >
-                              <FontAwesomeIcon icon={solid("undo")} size="lg" />
-                    </button>
-        </form>
         <Modal isOpen={expenseIsOpen} onRequestClose = {() => setExpenseIsOpen(false)} 
                                               shouldCloseOnOverlayClick={true} className={styles.Modal}
                                               style = {
@@ -597,10 +554,10 @@ return (
            </>
           )
         })}
+        <br />
   <br />
   <br />
-  <br />
-  <div className="paginationContainer">
+        <div className="paginationContainer">
       {allPages.map((page) => {
         if (page === currentPage) {
           return (
@@ -629,8 +586,9 @@ return (
                     </div>
                   )}
       })}
-  </div>
     </div>
+
+  </div>
 
 </>
   )

@@ -14,6 +14,7 @@ function Projects(props) {
   const [deleteItem,setDeleteItem] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [waiting, setWaiting] = useState(true);
+ 
   const [searchTerm , setSearchTerm]= useState("");
   const [allPages, setAllPages] = useState([]);
   let { id } = useParams();

@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose')
+const mongoose = require ('mongoose');
 const projectSchema = new mongoose.Schema(
 {   
     name: {
@@ -36,34 +36,11 @@ const projectSchema = new mongoose.Schema(
         type: Array,
         required: true,
     }
-,
-    file : {
-       type: Array,
-    required: false,
-}
-// nameTask: {
-//     type:String,
-//     required : false,
-// }
-// ,
-// assignedBy : {
-//     type:String,
-// }
-// ,
-// state : {
-//     type:String,
-//     required:true,
-// }
-// ,
-// assignedTo : {
-//     type:Array,
-//     required:true,
-// }
-// ,
-// descriptionTask : {
-//     type:String,
-//     required:false,
-// }
+, 
+   file : {
+       type : Array , 
+       required : false,
+   }
 },
 
 )

@@ -35,12 +35,11 @@
   padding: 5px;
   outline:none;
   border: 1px solid rgb(207, 203, 203);
-  margin: 10px;
 }
 .form {
   position : relative;
   width : 65%;
-  height:500px;
+  height:550px;
   left: 18%;
   border:1px solid rgb(202, 196, 196);
   border-radius : 15px;
@@ -68,7 +67,7 @@
   padding: 5px;
   border-radius: 5px;
   position: relative;
-  left: 22%;
+  left: 30%;
   cursor :pointer;
 }
 .details_section{

@@ -1,10 +1,42 @@
 const { project  } = require("../database/models/project.model");
 const { user  } = require("../database/models/user.model");
-const multer  = require('multer');
-exports.getProjects = (req, res) => {
-  project.find({}).then((projects) => {
-    res.send(projects)
-  });
+const { client  } = require("../database/models/clients.model");
+exports.getprojects = async (req, res) => {
+  var currentPage;
+  var searchTerm;
+  var allPages = [];
+  if (req.body.currentPage) {
+    currentPage = req.body.currentPage;
+  } else {
+    currentPage = 1;
+  }
+  if (req.body.searchTerm) {
+    searchTerm = req.body.searchTerm;
+  } else {
+    searchTerm = "";
+  }
+  try {
+    const projects = await project
+      .find({name: { $regex: ".*" + searchTerm + ".*" }})
+      .limit(3)
+      .skip((currentPage - 1) * 3)
+      .sort({ date: -1 })
+      .exec();
+
+    const count = await project.countDocuments({
+      name: { $regex: ".*" + searchTerm + ".*" },
+    });
+    let totalPages = Math.ceil(count / 3);
+    for (let i = 1; i <= totalPages; i++) {
+      allPages.push(i);
+    }
+    res.send({
+      projects,
+      allPages,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 exports.addProject =  (req , res) => {
   const name = req.body.name;
@@ -33,16 +65,7 @@ exports.addProject =  (req , res) => {
     console.log(e);
   }
 }
-exports.getProject = (req, res) => {
-  const id = req.body.id;
-  project.findById(id, (err, row) => {
-    if (row) {
-      res.send(row);
-    } else {
-      res.send("ERROR");
-    }
-  });
-};
+
 exports.deleteProject =(req,res) => {
   const id = req.params.id;
   project.findByIdAndRemove(id, (err) => {
@@ -53,6 +76,9 @@ exports.deleteProject =(req,res) => {
     }
   });
 }
+
+
+
 exports.getMembers = async (req, res)=>{
   const membersList = await user.find({$or: [
     { role: "DEVELOPER" },
@@ -61,16 +87,18 @@ exports.getMembers = async (req, res)=>{
   ],}).exec()
   res.send(membersList);
 }
-exports.getADMIN = async (req, res)=>{
-  const admin = await user.find({$or: [
-    { role: "ADMIN" },
-  ],}).exec()
-  res.send(admin);
-  console.log(admin)
+exports.getClients = async (req, res)=>{
+  const clientsList = await client.find({}).exec()
+  res.send(clientsList);
 }
-exports.getUsers = (req, res) => {
-  user.find({}).then((users) => {
-    res.send(users)
+exports.getProject = (req, res) => {
+  const id = req.body.id;
+  project.findById(id, (err, row) => {
+    if (row) {
+      console.log(row);
+      res.send(row);
+    } else {
+      res.send("ERROR");
+    }
   });
 };
-

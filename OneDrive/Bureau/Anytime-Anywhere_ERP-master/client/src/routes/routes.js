@@ -17,7 +17,6 @@ import Bank from "../Pages/admin/finance/bank/Bank";
 import AddBank from "../Pages/admin/finance/bank/AddBank";
 import AddClients from "../Pages/admin/clients/AddClients";
 import Clients from "../Pages/admin/clients/Clients";
-import ViewClient from "../Pages/admin/clients/clientProfile";
 import EditClient from "../Pages/admin/clients/EditProfile";
 import AddProject from "../Pages/admin/projets/AddProject";
 import Projects from "../Pages/admin/projets/Projects";
@@ -121,9 +120,6 @@ export const superAdminRoutes = (
       </Route>
       <Route path="/clients" exact>
         <Clients />
-      </Route>
-      <Route path="/client/profile/:id" exact>
-        <ViewClient />
       </Route>
       <Route path="/client/edit/:id" exact>
         <EditClient />

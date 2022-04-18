@@ -1,5 +1,6 @@
 import styles from "../../Css/Login.module.css";
 import { Link, useHistory } from "react-router-dom";
+import Modal from 'react-modal';
 import { useState, useContext } from "react";
 import { AppContext } from "../../Context/AppContext";
 import axios from "axios";
@@ -13,6 +14,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [waiting, setWaiting] = useState(null);
+
 
 
 
@@ -39,7 +41,8 @@ function Login() {
 
   return (
     <>
-      <section className={styles.container}>
+                
+      {/* <section >
         <div className="card">
           <h1>Login</h1>
           <hr />
@@ -77,7 +80,11 @@ function Login() {
             </div>
           </form>
         </div>
-      </section>
+      </section> */}
+
+
+      
+
     </>
   );
 }

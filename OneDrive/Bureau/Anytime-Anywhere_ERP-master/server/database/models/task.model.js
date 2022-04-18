@@ -11,10 +11,15 @@ const TaskSchema = new mongoose.Schema(
             type: String,
             required : false,
         }
-    ,
-    priority : {
-            type:String,
-            required:false,
+        ,
+        priorityTask : {
+            type: String,
+            required: false
+        }
+        ,
+        stateTask: {
+            type: String,
+            required : false,
         }
     }
     )

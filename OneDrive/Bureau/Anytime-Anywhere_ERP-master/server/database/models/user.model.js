@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const userSchema = mongoose.Schema(
   {
     firstName: {
@@ -17,6 +16,11 @@ const userSchema = mongoose.Schema(
     password: {
       type: "string",
       required: true,
+    }
+    ,
+    image: {
+      type: "string",
+      required: false
     },
     token: {
       type: "string",
@@ -29,10 +33,7 @@ const userSchema = mongoose.Schema(
     active: {
       type: "boolean",
       default: false,
-    },
-    profilePicture: {
-      type: "string",
-    },
+    }
   },
   { timestamps: true }
 );

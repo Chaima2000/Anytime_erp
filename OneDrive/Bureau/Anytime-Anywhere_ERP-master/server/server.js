@@ -1,15 +1,10 @@
 const express = require("express");
-
-const multer  = require('multer');
-
 const cors = require("cors");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const { mongoose } = require("./database/mongoose");
-const user = require('../server/database/models/user.model');
-
 // server settings
 app = express();
 app.enable("trust proxy");
@@ -23,10 +18,13 @@ app.use(
     credentials: true,
   })
 );
+
 // production samesite = none // secure = true ..
 // development samesite = lax // secure = false ..
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+// app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({extended: true  , parameterLimit: 100000 , limit: "500mb" }));
+app.use(bodyParser.json({ limit: "500mb"}));
 app.use(cookieParser());
 app.use(
   session({
@@ -42,21 +40,6 @@ app.use(
     },
   })
 );
-/**Upload files **/
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, '../client/src/files');
-  },
-  filename: (req, file, cb) => {
-      const fileName = file.originalname.toLowerCase().split(' ').join('-');
-      cb(null, uuidv4() + '-' + fileName)
-  }
-});
-const upload = multer({storage : storage});
-
-
-
 
 // importing routes
 const authentication = require("./routes/authentication");
@@ -65,6 +48,8 @@ const banks = require("./routes/banks");
 const clients = require("./routes/clients");
 const projects = require("./routes/project");
 const tasks = require("./routes/task");
+const expenses = require("./routes/expense");
+const { path } = require("express/lib/application");
 // const { pipeline } = require("nodemailer/lib/xoauth2");
 // server API'S
 
@@ -74,6 +59,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/createaccount", authentication.createAccount);
+
 
 app.post("/login", authentication.login);
 
@@ -103,20 +89,33 @@ app.get("/getbanks", banks.getBanks);
 app.post("/addbank", banks.addBank);
 
 //Clients
-app.get("/getclients", clients.getClients);
+app.post("/getclients", clients.getClients);
 app.post("/getclient", clients.getClient);
+app.put("/updateClient", clients.editClient);
 app.post("/addclient", clients.AddClient);
 app.delete("/deleteclient/:id", clients.deleteClient);
 app.get("/editclient", clients.getClient);
 
 //Projects
-app.post("/addproject", upload.array('file'), projects.addProject);
+app.post("/addproject", projects.addProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
-app.get("/getprojects", projects.getProjects);
+app.post("/getprojects", projects.getprojects);
+app.post("/getproject", projects.getProject);
 app.get("/getmembers", projects.getMembers);
+app.get("/getclients", projects.getClients);
+
+
 
 //Tasks
 app.post("/addTask" , tasks.addTask);
+app.put("/updateTask", tasks.editTask);
+app.get("/getTasks", tasks.getTasks);
+app.delete("/deleteTask/:id", tasks.deleteTask);
+
+//Expenses
+app.post("/addExpense" , expenses.addExpense);
+app.post("/getExpenses", expenses.getexpenses);
+app.delete("/deleteExpense/:id", expenses.deleteExpense);
 
 
 

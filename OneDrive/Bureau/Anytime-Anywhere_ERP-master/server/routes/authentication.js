@@ -9,6 +9,7 @@ exports.createAccount = (req, res) => {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
+  const image = req.body.image;
 
   const token = crypto.randomBytes(10).toString("hex");
 
@@ -23,6 +24,7 @@ exports.createAccount = (req, res) => {
         lastName: lastName,
         email: email,
         password: hash,
+        image:image,
         token: token,
       });
       try {
@@ -76,7 +78,7 @@ exports.login = (req, res) => {
         } else {
           if (result) {
             req.session.user = {
-              profilePicture: user.profilePicture,
+              image: user.image,
               connected: true,
               id: user._id,
               firstName: user.firstName,

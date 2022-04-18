@@ -15,7 +15,6 @@ exports.getUsers = async (req, res) => {
   } else {
     searchTerm = "";
   }
-
   try {
     const users = await user
       .find({
@@ -23,6 +22,7 @@ exports.getUsers = async (req, res) => {
           {
             $or: [
               { role: "USER" },
+              { role: "SUPER-ADMIN" },
               { role: "ADMIN" },
               { role: "DEVELOPER" },
               { role: "DESIGNER" },
@@ -85,7 +85,7 @@ exports.toggleActivateUser = (req, res) => {
 exports.changeRole = (req, res) => {
   const id = req.body.id;
   const role = req.body.role;
-  user.findById(id, (err, row) => {
+  user.findById(id, (error, row) => {
     if (row) {
       row.role = role;
       try {

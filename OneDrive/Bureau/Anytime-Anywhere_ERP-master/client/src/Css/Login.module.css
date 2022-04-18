@@ -1,13 +1,207 @@
-.container {
-  padding-top: 10vh;
-  padding-left: 200px;
-  padding-right: 200px;
+.wrapper{
+  width: 98%;
+  height: 83vh;
+  display: flex;
 }
 
-.container code {
-  font-size: 24px;
-  margin-top: 10px;
+.separate{
+  width: 50%;
+  height: 480px;
+  padding: 10px;
+  position: relative;
 }
+
+.banner{
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -30%);
+  opacity: 0;
+  transition: 0.5s all;
+}
+
+.banner_img{
+  width: 90%;
+  height: 90%;
+}
+
+.copyright{
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+}
+
+.form_section{
+  width: 50%;
+  height: 480px;
+  padding: 10px;
+  position: relative;
+  background: rgb(233, 194, 255);
+}
+
+.form_style{
+  position: absolute;
+  width: 100%;
+  left: 40%;
+  top: 35%;
+  transform: translate(-40%, -35%);
+}
+
+.logo{
+  width: 70px;
+  height: 70px;
+  background: rgb(187, 75, 142);
+  margin: 10px auto 30px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s all;
+}
+
+.logo img{
+  margin-top : 19%;
+  margin-left:20%;
+  height: 45px;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+}
+
+.form_style h2{
+  text-align: center;
+  margin-bottom: 30px;
+  opacity: 0;
+  transition: 0.5s all;
+}
+
+.form{
+  opacity: 0;
+  transition: 0.5s all
+}
+
+.fields{
+  margin: 20px 0px;
+}
+
+.fields label{
+  font-size: 15px;
+  margin-left: 15.5%;
+}
+
+.fields input{
+  width: 65%;
+  left: 15.5%;
+  margin: 6px 0px 0px;
+  position :relative;
+  border: none;
+  background: none;
+  border-bottom: 1px solid #000;
+  padding: 10px 20px 10px 5px;
+  outline: none;
+}
+
+.p_right{
+  float: right;
+  margin-right: 20px;
+  text-decoration : none;
+  color : black
+}
+.p_left{
+  float: left;
+  margin-left: 20px;
+  text-decoration : none;
+  color : black
+}
+
+.submit_btn{
+  clear: both;
+  position: relative;
+  left: 16%;
+  padding: 10px 20px;
+  width: 70%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  background: #F3F0F7;
+  margin: 15px auto;
+  border: 1px solid #999;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.4s all;
+}
+
+.submit_btn:hover{
+  background: #cd94c6;
+  color: #fff;
+  border: 1px solid #DFD3EB;
+}
+
+.spinner{
+  position : relative;
+  left: 50%
+}
+@media(max-width: 700px){
+  .wrapper{
+    height: 100%;
+    display: grid;
+  }
+  .separate{
+    order: 2;
+    margin: 15px auto;
+    width: 100%;
+    height: 30vh;
+    padding: 0px;
+  }
+  .banner{
+    width: 100%;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -15%);
+  }
+  .banner_img{
+    width: 100%;
+    height: 100%;
+  }  
+  .copyright{bottom: 0;}
+  .form_section{
+    position :relative;
+    left:-5%;
+    margin-top: -8%;
+    width: 103%;
+    height: 90vh;
+    background: rgb(233, 194, 255);
+    order: 1;
+  }
+  .form_style{
+    width: 90%;
+    margin: 0px auto;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -35%);
+  }
+  .form_style .logo{
+    width: 100px;
+    height: 100px;
+  }
+  .fields input {
+    font-size: 20px
+  }
+  .p_right{
+    position : relative;
+    left: -44%;
+    font-size: 20px;
+  }
+  .p_left{
+    font-size: 20px;
+
+  }
+}
+
+/* 
+
+
+
 
 @media (max-width: 850px) {
   .container {
@@ -21,4 +215,4 @@
   input[type=radio]{
    padding-right: 0
   }
-} ;
+} ; */

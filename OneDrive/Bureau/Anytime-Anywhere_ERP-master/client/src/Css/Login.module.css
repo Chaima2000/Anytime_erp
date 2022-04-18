@@ -38,7 +38,7 @@
   height: 480px;
   padding: 10px;
   position: relative;
-  background: rgb(233, 194, 255);
+  background: rgb(246, 231, 252);
 }
 
 .form_style{
@@ -105,14 +105,24 @@
   float: right;
   margin-right: 20px;
   text-decoration : none;
-  color : black
+  color : black;
 }
+
+.p_right:hover {
+  transform: scale(1.1);
+}
+
 .p_left{
   float: left;
   margin-left: 20px;
   text-decoration : none;
-  color : black
+  color : black;
 }
+
+.p_left:hover {
+  transform: scale(1.1);
+}
+
 
 .submit_btn{
   clear: both;
@@ -197,22 +207,3 @@
 
   }
 }
-
-/* 
-
-
-
-
-@media (max-width: 850px) {
-  .container {
-    padding-top: 20vh;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  .container code {
-    font-size: 18px;
-  }
-  input[type=radio]{
-   padding-right: 0
-  }
-} ; */

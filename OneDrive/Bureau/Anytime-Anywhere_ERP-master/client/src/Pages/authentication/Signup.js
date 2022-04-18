@@ -1,10 +1,13 @@
 import styles from "../../Css/Signup.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState , useRef , useEffect } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
+import {TweenMax} from "gsap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import avatar from "../../uploads/avatar.png";
-
+import img2 from "../../uploads/img2.png";
 function Signup() {
   const [firstName, setFirstName] = useState("");
   const [image, setimage] = useState(avatar);
@@ -12,7 +15,19 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [waiting, setWaiting] = useState(null);
   const [message , setMessage] = useState("");
+
+
+  let imgs = useRef(null);
+  let headers = useRef(null);
+  let form = useRef(null);
+
+  useEffect ( () => {
+    TweenMax.to(imgs,1,{delay:0.2 , opacity: 1 , ease : "easeOut"})
+    TweenMax.to(headers,2,{delay:0.3 , opacity: 1 , ease : "easeOut"})
+    TweenMax.to(form,2,{delay:0.3 , opacity: 1 , ease : "easeOut"})
+  })
 
   const success = () => {
     document.getElementById("firstName").value="";
@@ -71,7 +86,74 @@ function Signup() {
 
   return (
     <>
-      <section className={styles.container_SignUp}>
+     <div className={styles.wrapper}>
+          
+          <div className={styles.form_section}>
+             <div className={styles.form_style}>
+                <h2 ref={el => headers = el}>Sign up</h2>
+                <form ref={el => form = el} className={styles.form}>
+                    <div className={styles.fields}>
+                        <label>   
+                        <FontAwesomeIcon icon={solid("user")} size="lt"  className={styles.icons} />
+                        <input type="text" placeholder="Enter your first name" onChange={(e) => {setFirstName(e.target.value);}} required />
+                        </label>
+                    </div>
+                    <div className={styles.fields}>
+                        <label>   
+                        <FontAwesomeIcon icon={solid("user")} size="lt"  className={styles.icons} />
+                        <input type="text" placeholder="Enter your last name" onChange={(e) => {setlastName(e.target.value);}} required />
+                        </label>
+                    </div>
+                    <div className={styles.fields}>
+                        <label>   
+                        <FontAwesomeIcon icon={solid("envelope")}  size="lt"  className={styles.icons} />
+                        <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} required />
+                        </label>
+                    </div>
+                    <div className={styles.fields}>
+                        <label>   
+                          <FontAwesomeIcon icon={solid("lock")}  size="lt"  className={styles.icons} />
+                          <input type="password" placeholder="Enter your password" onChange={(e) => { setPassword(e.target.value)}} required />
+                        </label>
+                    </div>
+                    <div className={styles.fields}>
+                        <label>   
+                          <FontAwesomeIcon icon={solid("key")}  size="lt"  className={styles.icons} />
+                          <input type="password" placeholder="Confirm your password" onChange={(e) => { setPassword(e.target.value)}} required />
+                        </label>
+                    </div>
+                    <div className={styles.fields}>
+                        <label className={styles.btn_file}>  <FontAwesomeIcon icon={solid("image")}  size="lt"  className={styles.icons} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload image 
+                          <input type="file" className={styles.file_input} 
+                            accept=".png, .jpg, .jpeg"
+                            onChange={async (e) => {
+                                      const file = e.target.files[0];
+                                      const base64 = await convertBase64(file);
+                                      setimage(base64);
+                                    }
+                                  }
+                            id="file"
+                          />
+                        </label>
+                    </div>
+                    {waiting ? (
+                          <FontAwesomeIcon icon={solid("spinner")}  spin size="2x" className={styles.spinner} />
+                        ) : (
+                          <>
+                          <button type="submit" className={styles.submit_btn}> Login </button>
+                          </>
+                        )}
+                    <br />
+                </form>
+             </div>
+          </div>
+          <div className={styles.separate} id="start">
+             <div className={styles.banner} ref={el => imgs = el}>
+                <img  alt="main-img" className={styles.banner_img} src={img2} />
+             </div>
+          </div>
+      </div>
+      {/* <section className={styles.container_SignUp}>
         <div className="card">
           <h1>Sign Up</h1>
           <hr />
@@ -163,7 +245,7 @@ function Signup() {
             
           </form>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

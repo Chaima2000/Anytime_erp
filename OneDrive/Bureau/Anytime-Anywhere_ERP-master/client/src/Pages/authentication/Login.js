@@ -60,7 +60,7 @@ function Login() {
              <div className={styles.banner} ref={el => imgs = el}>
                 <img src={img1} alt="main-img" className={styles.banner_img} />
              </div>
-             <p className={styles.copyright}>© 2021 A&A.  All rights reserved</p>
+             <p className={styles.copyright}>© 2021 A&A  All rights reserved</p>
           </div>
           <div className={styles.form_section}>
              <div className={styles.form_style}>

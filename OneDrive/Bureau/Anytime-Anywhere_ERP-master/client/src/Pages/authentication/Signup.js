@@ -91,39 +91,53 @@ function Signup() {
           <div className={styles.form_section}>
              <div className={styles.form_style}>
                 <h2 ref={el => headers = el}>Sign up</h2>
-                <form ref={el => form = el} className={styles.form}>
+                <form ref={el => form = el} className={styles.form} onSubmit={createAccount}>
                     <div className={styles.fields}>
                         <label>   
-                        <FontAwesomeIcon icon={solid("user")} size="lt"  className={styles.icons} />
+                        <FontAwesomeIcon icon={solid("user")} size="lg"  className={styles.icons} />
                         <input type="text" placeholder="Enter your first name" onChange={(e) => {setFirstName(e.target.value);}} required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
-                        <FontAwesomeIcon icon={solid("user")} size="lt"  className={styles.icons} />
+                        <FontAwesomeIcon icon={solid("user")} size="lg"  className={styles.icons} />
                         <input type="text" placeholder="Enter your last name" onChange={(e) => {setlastName(e.target.value);}} required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
-                        <FontAwesomeIcon icon={solid("envelope")}  size="lt"  className={styles.icons} />
+                        <FontAwesomeIcon icon={solid("envelope")}  size="lg"  className={styles.icons} />
                         <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
-                          <FontAwesomeIcon icon={solid("lock")}  size="lt"  className={styles.icons} />
-                          <input type="password" placeholder="Enter your password" onChange={(e) => { setPassword(e.target.value)}} required />
+                          <FontAwesomeIcon icon={solid("lock")}  size="lg"  className={styles.icons} />
+                          <input type="password" placeholder="Enter your password" 
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
+                          required
+                          pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
+                          title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
+                          id="password" />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
-                          <FontAwesomeIcon icon={solid("key")}  size="lt"  className={styles.icons} />
-                          <input type="password" placeholder="Confirm your password" onChange={(e) => { setPassword(e.target.value)}} required />
+                          <FontAwesomeIcon icon={solid("key")}  size="lg"  className={styles.icons} />
+                          <input type="password" placeholder="Confirm your password" 
+                          onChange={(e) => {
+                                setConfirmPassword(e.target.value);
+                              }}
+                              required
+                              pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
+                              title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
+                              id="Confirmpassword" />
                         </label>
                     </div>
                     <div className={styles.fields}>
-                        <label className={styles.btn_file}>  <FontAwesomeIcon icon={solid("image")}  size="lt"  className={styles.icons} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload image 
+                        <label className={styles.btn_file}>  <FontAwesomeIcon icon={solid("image")}  size="lg"  className={styles.icons} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload image 
                           <input type="file" className={styles.file_input} 
                             accept=".png, .jpg, .jpeg"
                             onChange={async (e) => {
@@ -140,7 +154,7 @@ function Signup() {
                           <FontAwesomeIcon icon={solid("spinner")}  spin size="2x" className={styles.spinner} />
                         ) : (
                           <>
-                          <button type="submit" className={styles.submit_btn}> Login </button>
+                          <button type="submit" className={styles.submit_btn}> Sign up </button>
                           </>
                         )}
                     <br />
@@ -153,99 +167,7 @@ function Signup() {
              </div>
           </div>
       </div>
-      {/* <section className={styles.container_SignUp}>
-        <div className="card">
-          <h1>Sign Up</h1>
-          <hr />
-          <form onSubmit={createAccount}>
-          <div className={styles.picture}>
-            <img className={styles.img_section} src={image}/>
-            <br />
-            <label className={styles.btn_file}> Upload image 
-              <input type="file" className={styles.file_input} 
-                accept=".png, .jpg, .jpeg"
-                onChange={async (e) => {
-                          const file = e.target.files[0];
-                          const base64 = await convertBase64(file);
-                          setimage(base64);
-                        }
-                      }
-                id="file"
-              />
-            </label>
-          </div>
-            <div className={styles.details_section}>
-            <input
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-              required
-              className="formInput"
-              placeholder="First Name"
-              type="text"
-              id="firstName"
-            />
-            <input
-              onChange={(e) => {
-                setlastName(e.target.value);
-              }}
-              required
-              className="formInput"
-              placeholder="Last Name"
-              type="text"
-              id="lastName"
-            />
-            <input
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              required
-              className="formInput"
-              placeholder="Email"
-              type="email"
-              id="email"
-            />
-           
-            <input
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              required
-              className="formInput"
-              placeholder="Password"
-              type="password"
-              pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
-              title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
-              id="password"
-            />
-            <input
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
-              required
-              className="formInput"
-              placeholder="Confirm Password"
-              type="password"
-              pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
-              title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
-              id="Confirmpassword"
-            />
-            <br />
-            <br />
-            <button className="defaultBtn">Sign Up</button>
-            <br />
-            <br />
-            <Link to="/login">Already have an account ?</Link>
-            <div align="right">
-              <span id="formFeedback" style={{ color: "red" }} hidden={true}>
-                Passwords doesn't match !
-              </span>
-            </div>
-            </div>
-            
-          </form>
-        </div>
-      </section> */}
+      
     </>
   );
 }

@@ -147,9 +147,33 @@ function deleteExpense(id) {
       })
 }
 
+const updateProject = (id) => {
+  axios.put("/updateproject" , { end : end, id:id}).then( (response)=> {
+    if (response.data === "ERROR") {
+      alert("An error occured");
+    } else {
+          axios.post("/getproject",{ id: id }).then((response) => {
+            setProjectProfile(response.data);
+            swal({
+              title: "SUCCESS",
+              text: "updated succesfully!",
+              icon: "success",
+              button: "OK!",
+            });
+          });  
+        }
+   })
+}
+
 const updateTask = (id) => {
   axios.put("/updateTask" , { nameTask : nameTask , stateTask : stateTask , descriptionTask : descriptionTask , priorityTask : priorityTask , id:id}).then( (response)=> {
     setTasksList(response.data);
+    swal({
+      title: "SUCCESS",
+      text: "Added succesfully!",
+      icon: "success",
+      button: "OK!",
+    });
    })
 }
 const addtask =(e) => {
@@ -166,24 +190,18 @@ const addtask =(e) => {
       priorityTask:priorityTask
     }
     axios.post("/addTask", dataT).then((res)=>{
-      if(res.data === "SUCCESS "){
-       res.send("SUCCESS")
+      if(res.data === "ERROR"){
+        console.log(e);
+      }else if(res.data === "SUCCESS"){
         swal({
           title: "SUCCESS",
           text: "Added succesfully!",
           icon: "success",
           button: "OK!",
-          
         });
-      }else if(res.data === "ERROR"){
-        res.send("ERROR");
-        swal({
-          title: "ERROR",
-          icon: "error",
-          button: "OK!",
-        });
+  }
         success();
-}})}
+})}
 
   //State options //
   const options = [
@@ -213,6 +231,7 @@ const addexpense =(e) => {
         button: "OK!",
       });
 }})}
+
 const Pop = () => {
   setModalIsOpen(true)}
 
@@ -248,21 +267,20 @@ return (
      
       <br />
       <br />
-    <div className={styles.select}>
+    {/* <div className={styles.select}>
       <Select 
                 isMulti
                 placeholder="Edit Members"
                 name="members"
-                defaultValue={membersList.filter(obj => projectProfile.members.includes(obj.label))}
+                defaultValue={options.filter(obj => projectProfile.members.includes(obj.label))}
                 onChange={ (e) => {setMembers(Array.isArray(e) ? e.map(x => x.label) : [])}}
                 styles={customStyles}
                 options={membersList} 
-                isClearable
       />
-    </div>
+    </div> */}
     </form>
     <br />
-      <button className="defaultBtn">SAVE</button>
+      <button className="defaultBtn" onClick = { () => {updateProject(projectProfile._id)}}>SAVE</button>
     </div>
     <div className={styles.details}>
         <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>

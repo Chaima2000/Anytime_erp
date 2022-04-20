@@ -235,9 +235,11 @@ function AddClients() {
             <input className={styles.input_item} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} placeholder='Enter your City' required/>
             <input className={styles.input_item} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} placeholder='Enter your Zip Code' required />
             <input className={styles.input_item} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} placeholder='Enter your address' required /> */}
-           
+            <button className={Styles.btn}> SAVE </button> 
         </div>
-        <button className={Styles.btn}> SAVE </button> 
+        <br />
+        <br />
+        
       {/* <div className={styles.btn_section}>
         <button className={Styles.btn}>Save</button>
       </div> */}

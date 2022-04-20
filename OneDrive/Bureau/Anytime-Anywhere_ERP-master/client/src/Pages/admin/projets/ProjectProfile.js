@@ -148,7 +148,7 @@ function deleteExpense(id) {
 }
 
 const updateProject = (id) => {
-  axios.put("/updateproject" , { end : end, id:id}).then( (response)=> {
+  axios.put("/updateproject" , { end : end, members:members , id:id}).then( (response)=> {
     if (response.data === "ERROR") {
       alert("An error occured");
     } else {
@@ -166,7 +166,7 @@ const updateProject = (id) => {
 }
 
 const updateTask = (id) => {
-  axios.put("/updateTask" , { nameTask : nameTask , stateTask : stateTask , descriptionTask : descriptionTask , priorityTask : priorityTask , id:id}).then( (response)=> {
+  axios.put("/updateTask",{id:id}).then( (response)=> {
     setTasksList(response.data);
     swal({
       title: "SUCCESS",
@@ -257,7 +257,7 @@ return (
       <form>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
-      <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image} className={styles.profile} />{projectProfile.members}</span></p>
+      {/* <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image} className={styles.profile} />{projectProfile.members.map( (member) => { <> {member.members}</>})}</span></p> */}
       <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.state}</span></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {projectProfile.client}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
@@ -267,17 +267,16 @@ return (
      
       <br />
       <br />
-    {/* <div className={styles.select}>
+    <div className={styles.select}>
       <Select 
                 isMulti
                 placeholder="Edit Members"
                 name="members"
-                defaultValue={options.filter(obj => projectProfile.members.includes(obj.label))}
-                onChange={ (e) => {setMembers(Array.isArray(e) ? e.map(x => x.label) : [])}}
+                onChange={ (e) => {setMembers(e.label)}}
                 styles={customStyles}
                 options={membersList} 
       />
-    </div> */}
+    </div>
     </form>
     <br />
       <button className="defaultBtn" onClick = { () => {updateProject(projectProfile._id)}}>SAVE</button>

@@ -132,7 +132,7 @@ const Edit = () => {
               getClients();
               setCurrentPage(1);
             }}
-        className={styles.search_form}
+        className={Styles.search_form}
         >
 
         <input

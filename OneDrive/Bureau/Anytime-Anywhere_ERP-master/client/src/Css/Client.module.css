@@ -62,6 +62,7 @@ table>tbody>tr:hover {
 .viewClientDetails{
   position:relative;
   left: 30%;
+  font-size: 14px;
   width : 60%;
   top:2%;
 }
@@ -75,6 +76,18 @@ table>tbody>tr:hover {
   position : relative;
   left: 40%;
   width: 40%
+}
+.Btn{
+  width: 20%;
+  height: 40px;
+  position: relative;
+  left: 35%;
+  padding: 5px;
+  background: rgb(187, 75, 142);
+  color:white;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
 }
 @media (max-width: 850px) {
 

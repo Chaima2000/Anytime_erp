@@ -120,9 +120,10 @@ const Edit = () => {
   }
   return (
     <>
-     <h1 className={styles.form_title}>Clients </h1>
-     <Link to={`/clients/add`}><button className={Styles.add_Btn}> <FontAwesomeIcon icon={solid("plus")} color = "#fff"/> Add client </button></Link>
-
+     <h2 align="center">Clients </h2>
+     <Link to="/clients/add">
+          <FontAwesomeIcon className="navIcon" icon={solid("plus")} />
+        </Link>
     <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
@@ -225,15 +226,15 @@ const Edit = () => {
                                                               outline: 'none',
                                                               backgroundColor : 'white',
                                                               width: '500px',
-                                                              height: '485px',
+                                                              height: '465px',
                                                               padding : '5px',
                                                               position : 'relative',
-                                                              top:'18%',
-                                                              left: '32%',
+                                                              top:'15%',
+                                                              left: '29%',
                                                               borderRadius: '15px'
                                                               }}
                     }>
-                    <h1 className={styles.form_title}>Client informations</h1>
+                    <h2 align="center">Client informations</h2>
                       <div className={Styles.viewClientDetails}>
                           <p>Nom de la société : <span className={styles.h4}>{ViewClient.society}</span></p>
                           <p>Activité: <span className={styles.h4}>{ViewClient.activity}</span></p>
@@ -391,7 +392,7 @@ const Edit = () => {
             </div>
             <br />
             <br />
-            <button className={Styles.btn} onClick = { () => { updateClient(EditClient._id)}}> SAVE </button> 
+            <button className={Styles.Btn} onClick = { () => { updateClient(EditClient._id)}}> SAVE </button> 
            </Modal>
                   </tr>
                   )})

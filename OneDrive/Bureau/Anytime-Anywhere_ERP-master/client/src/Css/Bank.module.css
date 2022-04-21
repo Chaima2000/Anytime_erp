@@ -22,3 +22,52 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
+  .span{
+    font-weight: bold;
+  }
+  .btn_section{
+    position : relative;
+    left: 30%;
+    display: inline-block;
+    margin-top: 5%;
+    }
+    .white_btn{
+      background: none;
+      border: none;
+      padding : 10px ;
+      text-align : center;
+      cursor:pointer;
+      color: rgb(18, 64, 203);
+      border-radius: 8px;
+    }
+    .confirm_btn{
+      background: rgb(76, 117, 240);
+      border: none;
+      padding : 10px ;
+      border-radius: 5px;
+      text-align : center;
+      cursor:pointer;
+      color: white;
+    }
+    .ModalParagraph{
+      position: relative;
+      left: 15%;
+      top: 5%;
+      width: 70%;
+      font-size: 20px;
+    }
+    .search_form  {
+      position:relative;
+      left:39%;
+      width: 25%;
+    }
+    @media (max-width: 480px) {
+      .search_form{
+        position: relative;
+        left:20%;
+        width:65%;
+      }
+      .formInput{
+        width:70%
+      }
+    }

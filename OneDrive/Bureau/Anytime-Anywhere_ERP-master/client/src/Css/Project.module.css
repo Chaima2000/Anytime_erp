@@ -105,7 +105,6 @@ margin: 25px;
 .icons:hover {
   background: rgb(182, 179, 179);
 }
-
 /*projectProfile*/
 .profile {
   cursor: pointer;
@@ -170,10 +169,6 @@ margin: 25px;
   border-radius : 5px;
   cursor:pointer
 }
-
-
-
-
 .Modal {
   margin-top: 10%;
   background-color: #f7f7f7;
@@ -185,8 +180,6 @@ margin: 25px;
  border-radius:  12px;
  font-size: 15px;
 }
-
-
 .XMARK{
   float: right;
   position: relative;
@@ -237,7 +230,6 @@ border-radius: 12px;
   margin-left: 35%;
   border-radius: 15px;
 }
-
 .TaskModal{
   width: 30%;
   height: 50%;

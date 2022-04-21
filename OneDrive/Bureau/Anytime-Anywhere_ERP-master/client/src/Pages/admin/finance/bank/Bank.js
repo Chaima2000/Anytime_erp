@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../../../Css/Bank.module.css";
 import Modal from 'react-modal';
-
-
 import axios from "axios";
 
-function Bank(props) {
+function Bank() {
   const [banksList, setBanksList] = useState([]);
   const [waiting, setWaiting] = useState(true);
   const [DeleteBank  , setDeleteBank] = useState({});
@@ -16,10 +14,7 @@ function Bank(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm , setSearchTerm]= useState("");
   const [allPages, setAllPages] = useState([]);
-  const [disable , setDisable] = useState (false);
-  const Disable = () => {
-    setDisable(true);
-  }
+
   const Delete = () => {
     setDeleteItem(true);
 }
@@ -29,7 +24,7 @@ function Bank(props) {
         alert("An error occured");
       } else {
             axios.post("/getbanks").then((res) => {
-              setBanksList(res.data);
+              setBanksList(res.data.banks);
             });  
           }
         })
@@ -61,31 +56,18 @@ function Bank(props) {
       useEffect(() => {
         getBanks(currentPage);
       }, []);
-  function commafy(num) {
-    var str = num.toString().split(".");
-    if (str[0].length >= 5) {
-      str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
-    }
-    if (str[1] && str[1].length >= 5) {
-      str[1] = str[1].replace(/(\d{3})/g, "$1 ");
-    }
-    return str.join(".");
-  }
-
-  useEffect(() => {
-    axios.get("getbanks").then((res) => {
-      if (res.data) {
-        setBanksList(res.data);
-        setWaiting(false);
-      }
-    });
-  });
+  // function commafy(num) {
+  //   var str = num.toString().split(".");
+  //   if (str[0].length >= 5) {
+  //     str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+  //   }
+  //   if (str[1] && str[1].length >= 5) {
+  //     str[1] = str[1].replace(/(\d{3})/g, "$1 ");
+  //   }
+  //   return str.join(".");
+  // }
   return (
     <>
-    <section>
-        <Link to="/banks">
-          <FontAwesomeIcon className="navIcon" icon={solid("plus")} />
-        </Link>
         <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
@@ -125,8 +107,8 @@ function Bank(props) {
                           <FontAwesomeIcon icon={solid("undo")} size="lg" />
                 </button>
     </form>
-      </section>
-    
+    <br />
+    <br />
       <section className="container">
         {waiting ? (
           <div className="row">
@@ -134,16 +116,24 @@ function Bank(props) {
           </div>
         ) : (
           <div className="row">
+          <div align="center" className="col3">
+              <Link to="/banks/add">
+                <FontAwesomeIcon
+                  className="addBtn"
+                  icon={solid("plus-circle")}
+                  size={"2x"}
+                />
+              </Link>
+            </div>
             {banksList.map((bank) => {
               return (
                 <>
                 <div key={bank._id} className="col3">
-                  <p>Name: <h5>{bank.name}</h5></p>
-                  Balance: <h5>{bank.balance}</h5>
-                  Description: <p>{bank.description}</p>
+                  <p>Name: <span className={styles.span}>{bank.name}</span></p>
+                  <p>Balance: <span className={styles.span}>{bank.balance}</span></p>
+                  <p>Description: <span className={styles.span}>{bank.description}</span></p>
                   <Link to={`/bank/details/${bank._id}`}><span className={styles.icons}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
-            <span onClick = {() => {setDeleteBank(bank) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
-            <span className={styles.icons} onClick={() => {Disable()}}><FontAwesomeIcon icon={solid("lock")} color = "#808080" /></span>
+                  <span onClick = {() => {setDeleteBank(bank) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
                 </div>
                 <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
@@ -174,18 +164,41 @@ function Bank(props) {
                 </>
               );
             })}
-            <div align="center" className="col3">
-              <Link to="/banks/add">
-                <FontAwesomeIcon
-                  className="addBtn"
-                  icon={solid("plus-circle")}
-                  size={"2x"}
-                />
-              </Link>
-            </div>
+            
           </div>
         )}
+        <br/>
       </section>
+      <div className="paginationContainer">
+      {allPages.map((page) => {
+        if (page === currentPage) {
+          return (
+            <div
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        getBanks(page);
+                      }}
+                      className="activePagination"
+            >
+              {page}
+            </div>
+                  );
+        } else {
+                  return (
+                    <div
+                      key={page}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        getBanks(page);
+                      }}
+                      className="pagination"
+                    >
+                      {page}
+                    </div>
+                  )}
+      })}
+    </div>
     </>
   );
 }

@@ -14,6 +14,7 @@ function ProjectProfile(props) {
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
   const[end , setEnd] = useState("");
+  const[stateProject , setStateProject]= useState("");
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState([]);
   const [ checked , setChecked] = useState(false);
@@ -147,25 +148,25 @@ function deleteExpense(id) {
       })
 }
 
-const updateProject = (id) => {
-  axios.put("/updateproject" , { end : end, members:members , id:id}).then( (response)=> {
-    if (response.data === "ERROR") {
+const updateProject = () => {
+  axios.post("/updateproject", { id: id, end: end, stateProject:stateProject }).then((res) => {
+    if (res.data === "ERROR") {
       alert("An error occured");
     } else {
-          axios.post("/getproject",{ id: id }).then((response) => {
-            setProjectProfile(response.data);
-            swal({
-              title: "SUCCESS",
-              text: "updated succesfully!",
-              icon: "success",
-              button: "OK!",
-            });
-          });  
+      axios
+      .post("/getproject")
+      .then((res) => {
+        if (res.data === "ERROR") {
+          alert("error !");
+        } else {
+          setProjectProfile(res.data);
         }
-   })
+      });
+    }
+  });
 }
 
-const updateTask = (id) => {
+const updateTask = () => {
   axios.put("/updateTask",{id:id}).then( (response)=> {
     setTasksList(response.data);
     swal({
@@ -262,24 +263,27 @@ return (
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {projectProfile.client}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
       <p> Start at : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
-      <p>End at :</p>
-      <input type="date" defaultValue={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}} className={styles.formInput}/> 
-     
+      <p>End at : </p>
+      <input type="date" value={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}}  className={styles.formInput}/> 
       <br />
       <br />
-    <div className={styles.select}>
-      <Select 
-                isMulti
-                placeholder="Edit Members"
-                name="members"
-                onChange={ (e) => {setMembers(e.label)}}
+      <div className={styles.select}>
+          <Select 
+                placeholder="Select State"
+                name="state"
+                id="state"
+                defaultValue={options.find(obj => obj.label === projectProfile.state)}
+                onChange={(e) => {
+                  setStateProject(e.label)
+                }}
                 styles={customStyles}
-                options={membersList} 
-      />
-    </div>
+                options={options} 
+          />
+        </div>
+      <br />
+      <br />
+      <button className="defaultBtn" onClick={() => {updateProject()}}>SAVE</button>
     </form>
-    <br />
-      <button className="defaultBtn" onClick = { () => {updateProject(projectProfile._id)}}>SAVE</button>
     </div>
     <div className={styles.details}>
         <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>

@@ -40,7 +40,7 @@ function Bank(props) {
               return (
                 <div key={bank._id} className="col3">
                   <h5>{bank.name}</h5>
-                  <h5>{commafy(bank.balance)}</h5>
+                  {/* <h5>{commafy(bank.balance)}</h5> */}
                   <p>{bank.description}</p>
                 </div>
               );

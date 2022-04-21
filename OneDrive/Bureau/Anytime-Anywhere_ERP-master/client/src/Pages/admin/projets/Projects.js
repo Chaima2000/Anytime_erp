@@ -67,8 +67,12 @@ function Projects(props) {
 return (
     <>
     <div className={styles.overlay}>
-    <h1>Project's List</h1>
-    <form 
+    <h1 align="center">Project's List</h1>
+    <section>
+        <Link to="/projects/add">
+          <FontAwesomeIcon className="navIcon" icon={solid("plus")} />
+        </Link>
+        <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
               document.getElementById("resetBtn").hidden = false;
@@ -107,6 +111,8 @@ return (
                           <FontAwesomeIcon icon={solid("undo")} size="lg" />
                 </button>
     </form>
+      </section>
+    
     <br />
   <div className={styles.bloc_Section}>
         {projectList.map ( (project)  => {

@@ -7,16 +7,25 @@ body {
 text-align: center;
 }
 .div_Sides{
-float: left;
-margin: 25px;
+  float: left;
+  margin: 15px;
 }
 .form {
   position:absolute;
-  left: 8%;
+  left: 10%;
   width:85%;
   height: 455px;
 }
+.formInput{
+  width: 280px;
+  font-size: 15px;
+  outline: none;
+  height:50px;
+  border-radius: 5px;
+  border: 1px solid rgb(163, 163, 163);
+}
 .select{
+   margin-top: 1.2%;
    width: 440px;
    height:45px;
 }
@@ -28,7 +37,8 @@ margin: 25px;
   width: 20%;
   height: 40px;
   position: relative;
-  left: 40%;
+  margin-top: 5%;
+  left: -10%;
   padding: 5px;
   background: rgb(187, 75, 142);
   color:white;

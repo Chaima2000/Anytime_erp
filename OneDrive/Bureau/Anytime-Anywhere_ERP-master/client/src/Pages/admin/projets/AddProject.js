@@ -5,12 +5,11 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
-import TextField from '@material-ui/core/TextField'; 
 import Button from '@material-ui/core/Button';
 toast.configure()
 
 
-function AddProject(props) {
+function AddProject() {
   const [name , setName] = useState("");
   const [state , setState] = useState("");
   const [client , setClient] = useState("");
@@ -33,13 +32,13 @@ function AddProject(props) {
       }
     });
   }, []);
-  useEffect(() => {
-    axios.get("/getmembers").then((res) => {
+  useEffect((id) => {
+    axios.get(`/getmembers`).then((res) => {
       if (res.data){
         var options = []
         res.data.map((element) => {
             var fullName = element.firstName + " " + element.lastName;
-            options.push({value: fullName, label: fullName} );
+            options.push({value: element._id, label: fullName} );
         })
         setMembersList(options);
       }
@@ -130,46 +129,15 @@ function AddProject(props) {
    <h1 className={styles.form_title}>ADD PROJECT</h1>
    <form  onSubmit={addproject} encType = "multiple/form-data" className={styles.form}>
       <div className={styles.div_Sides}>
-          <TextField  id="name" 
-                      label="Project name " 
-                      className={styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setName(e.target.value)}} 
-                      required 
-            /> 
-            <br />
-            <br />
-              <TextField id="start" 
-                      label = " Start date "
-                      InputLabelProps={{ shrink: true, required: true }}
-                      type="date"
-                      className={styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setStart(e.target.value)}} 
-                      required 
-            /> 
-            <br />
-            <br />
-          <TextField id="end" 
-                      label = " End date "
-                      InputLabelProps={{ shrink: true }}
-                      type="date" 
-                      className={styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setEnd(e.target.value)}} 
-                      required 
-          /> 
+          <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  />
           <br />
+          <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} required  />
           <br />
-            <TextField id="description" 
-                      multiline
-                      label = " Description "
-                      className={styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setDescription(e.target.value)}} 
-                      required 
-            />
-      </div> 
+          <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  required  />
+          <br />
+          <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  />
+          <br />
+      </div>
       <div className={styles.div_Sides}>
         <div className={styles.select}>
           <Select 
@@ -190,7 +158,7 @@ function AddProject(props) {
                 isMulti
                 placeholder="Select Members"
                 name="members"
-                id="state"
+                id="members"
                 onChange={(e) => {
                   let values =[]
                   e.forEach(element=>{
@@ -243,8 +211,8 @@ function AddProject(props) {
             </label>
         </div>
       </div>
-          <button className={styles.btn}> SAVE </button> 
-   </form>
+      <button className={styles.btn}> SAVE </button>
+    </form>
    </>
   )
 }

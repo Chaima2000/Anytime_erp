@@ -1,16 +1,16 @@
 /***** Add Client *****/
 .form{
   position: relative;
-  left: 22%;
+
   height: 400px;
-  width : 60%;
+  width : 70%;
 }
 .btn{
-  width: 80%;
+  width: 77.9%;
   height: 40px;
   position: relative;
-  left: -45%;
-  margin-top: 12%;
+  left: 2%;
+  top: 5%;
   padding: 5px;
   background: rgb(187, 75, 142);
   color:white;
@@ -45,7 +45,11 @@
   outline: none;
   height:40px;
   border-radius: 5px;
-  border: 1px solid rgb(163, 163, 163);
+  /* border: 1px solid rgb(163, 163, 163); */
+}
+.select{
+  width: 300px;
+  height:45px;
 }
 .phoneInput{
   width: 280px;
@@ -53,13 +57,6 @@
   height:40px;
   border-radius: 5px;
   border: 1px solid rgb(163, 163, 163);
-}
-.selectInput{
-  width: 280px;
-  outline: none;
-  height:45px;
-  border-radius: 5px;
-  border: 1px solid rgb(163, 163, 163); 
 }
 .link{
   text-decoration: none;
@@ -109,7 +106,7 @@ table>tbody>tr:hover {
 .span{
   font-weight: bold;
 }
-@media (max-width: 850px) {
+@media (max-width: 450px) {
 
   .form{
     position : relative;
@@ -120,7 +117,7 @@ table>tbody>tr:hover {
     width: 100%
   }
   .formInput{
-    width: 90%;
+    width: 100%;
   }
   .selectInput{
     width: 92%;
@@ -129,17 +126,15 @@ table>tbody>tr:hover {
     width: 80%;
   }
   .btn{
-    position : relative;
+    position: relative;
     left: 5%;
-    margin-top: 5%;
+    width:80%
   }
  .table{
     width:100%;
   }
   .search-form {
-    position : relative;
-    left: -5%;
-    background: black
+    float: left
   }
 } ;
 

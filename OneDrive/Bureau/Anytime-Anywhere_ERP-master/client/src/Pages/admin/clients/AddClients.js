@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from '../../../Css/Client.module.css';
+// import styles from '../../../Css/Project.module.css';
+import Styles from '../../../Css/Client.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
@@ -45,14 +46,31 @@ function AddClients() {
     document.getElementById("activity").value="";
     document.getElementById("ceo").value="";
     document.getElementById("email").value="";
-    document.getElementById("type").value="";
     setPhoneNumber([ { phone : ""}]);
     document.getElementById("city").value="";
     document.getElementById("country").value="";
     document.getElementById("zipCode").value="";
     document.getElementById("address").value="";
   }
- 
+  const options = [ 
+    { value : 'particulier' , label : 'particulier'},
+    { value : 'professionnel' , label : 'professionnel'}
+  ]
+  const customStyles = {
+    control: (provided , state) => ({
+      ...provided,
+      background: 'white',
+      outline: 'none',
+      borderColor: '#9e9e9e',
+      minHeight: '30px',
+      height: '55px',
+      boxShadow: state.isFocused ? null : null,
+    }),
+    menu: base => ({
+      ...base,
+      zIndex: 100
+    })
+  }
   const addclient =(e) => {
     e.preventDefault();
     axios.post("/addclient", {
@@ -86,53 +104,119 @@ function AddClients() {
 
   return (
     <>
-    <h1 align="center">ADD CLIENT</h1>
-    <form  onSubmit={addclient} className={styles.form}>
-     
-    <div className={styles.div_Sides}>
-            <select className={styles.selectInput} id="type" onChange={(e)=>{setType(e.target.value)}} >
-              <option value="">  Select your type </option>
-              <option value="particulier"> Particulier</option>
-              <option value="professionnel">Professionnel</option>
-            </select>
+    <h1>ADD CLIENT</h1>
+    <form  onSubmit={addclient} className={Styles.form}>
+    <div className={Styles.div_Sides}>
+            <div className={Styles.select}>
+                  <Select 
+                        placeholder="Select  type"
+                        id="type"
+                        onChange={(e)=>{setType(e.label)}}
+                        styles={customStyles}
+                        options={options}
+                        required
+                  />
+            </div>
+            <br />
+            <TextField  id="society" 
+                      type="text"
+                      label="Enter Society's name " 
+                      className={Styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setSociety(e.target.value)}} 
+                      required 
+            /> 
             <br />
             <br />
-            <input className={styles.formInput} type="text" onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" placeholder='Enter your Society' required/>
+            <TextField  id="activity"
+                      type="text" 
+                      label="Enter activity " 
+                      className={Styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setActivity(e.target.value)}} 
+                      required 
+            /> 
             <br />
             <br />
-            <input className={styles.formInput} type="text" name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}} placeholder='Enter your activity' required/>
+            <TextField  id="ceo" 
+                      type="text"
+                      label="Enter ceo " 
+                      className={Styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setCeo(e.target.value)}} 
+                      required 
+            /> 
             <br />
             <br />
-            <input className={styles.formInput} type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} placeholder='Enter your CEO ' required />
-            <br />
-            <br />
-            <input className={styles.formInput} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter your email' required/>
+            <TextField  id="email" 
+                      type="email"
+                      label="Enter email " 
+                      className={Styles.select}
+                      variant="outlined"
+                      onChange={(e)=>{setEmail(e.target.value)}} 
+                      required 
+            /> 
     </div>  
-    <div className={styles.div_Sides}>
-            <input className={styles.formInput} type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} placeholder='Enter your Country' required />
-            <br />
-            <br />
-            <input className={styles.formInput} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} placeholder='Enter your City' required/>
-            <br />
-            <br />
-            <input className={styles.formInput} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} placeholder='Enter your Zip Code' required />
-            <br />
-            <br/>
-            <input className={styles.formInput} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} placeholder='Enter your address' required />
-            <br/>
-            <br />
+    <div className={Styles.div_Sides}>
             {phone.map((phoneNumber, index) => {
                     return(
                     <div key={index}>
-                        <input className={styles.phoneInput} type="number" name="phone" id="phone" placeholder= "Enter your phone number" value={phoneNumber.phone} onChange={e => handlePhoneChange(e, index)} required/>
-                            {phone.length !== 1 && <button className={styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("xmark")} color = "black" className={styles.add_icon}/></button>}
-                            {phone.length -1 === index && <button className={styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("plus")} color = "black" className={styles.add_icon}/></button>}
+                        <TextField  id="phone" 
+                                  type="number"
+                                  label="Enter phone number " 
+                                  className={Styles.phoneInput}
+                                  variant="outlined"
+                                  value={phoneNumber.phone}
+                                  onChange={e => handlePhoneChange(e, index)}
+                                  required 
+                        /> 
+                        
+                            {phone.length !== 1 && <button className={Styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("xmark")} color = "black" className={Styles.add_icon}/></button>}
+                            {phone.length -1 === index && <button className={Styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("plus")} color = "black" className={Styles.add_icon}/></button>}
                         <br />
                         <br />
                     </div>
             );})}
-            <button className={styles.btn}> SAVE </button> 
+            <TextField  id="country" 
+                                  type="text"
+                                  label="Enter country " 
+                                  className={Styles.select}
+                                  variant="outlined"
+                                  onChange={(e)=>{setCountry(e.target.value)}}
+                                  required 
+            /> 
+            <br />
+            <br />
+            <TextField  id="city" 
+                                  type="text"
+                                  label="Enter city " 
+                                  className={Styles.select}
+                                  variant="outlined"
+                                  onChange={(e)=>{setCity(e.target.value)}}
+                                  required 
+            />
+            <br />
+            <br />
+            <TextField  id="address" 
+                                  type="text"
+                                  label="Enter address " 
+                                  className={Styles.select}
+                                  variant="outlined"
+                                  onChange={(e)=>{setAddress(e.target.value)}}
+                                  required 
+            />
+            <br />
+            <br />  
+            <TextField  id="zipCode" 
+                                  type="number"
+                                  label="Enter zip Code " 
+                                  className={Styles.select}
+                                  variant="outlined"
+                                  onChange={(e)=>{setZipCode(e.target.value)}}
+                                  required 
+            />  
         </div>
+        <button className={Styles.btn}> SAVE </button> 
     </form>
     </>
   )

@@ -22,10 +22,10 @@ function Login() {
   let form = useRef(null);
 
   useEffect ( () => {
-    TweenMax.to(imgs,1,{delay:0.2 , opacity: 1 , ease : "easeOut"})
-    TweenMax.to(logos,2,{delay:0.2 , opacity: 1 , ease : "easeOut"})
-    TweenMax.to(headers,2,{delay:0.3 , opacity: 1 , ease : "easeOut"})
-    TweenMax.to(form,2,{delay:0.3 , opacity: 1 , ease : "easeOut"})
+    TweenMax.to(imgs,1,{delay:-0.6 , opacity: 1 , ease : "easeOut"})
+    TweenMax.to(logos,2,{delay:-0.7 , opacity: 1 , ease : "easeOut"})
+    TweenMax.to(headers,2,{delay:-0.8 , opacity: 1 , ease : "easeOut"})
+    TweenMax.to(form,2,{delay:-0.9 , opacity: 1 , ease : "easeOut"})
   })
 
 

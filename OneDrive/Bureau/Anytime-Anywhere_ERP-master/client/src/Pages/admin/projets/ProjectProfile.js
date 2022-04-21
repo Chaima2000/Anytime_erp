@@ -149,7 +149,8 @@ function deleteExpense(id) {
 }
 
 const updateProject = () => {
-  axios.post("/updateproject", { id: id, end: end, stateProject:stateProject }).then((res) => {
+  axios.post("/updateproject", { id: id, end: end, stateProject:stateProject })
+  .then((res) => {
     if (res.data === "ERROR") {
       alert("An error occured");
     } else {

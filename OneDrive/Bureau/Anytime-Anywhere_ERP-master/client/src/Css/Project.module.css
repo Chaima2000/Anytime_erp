@@ -17,21 +17,11 @@ text-align: center;
   height: 455px;
 }
 .formInput{
-  width: 280px;
-  font-size: 15px;
-  outline: none;
-  height:50px;
-  border-radius: 5px;
-  border: 1px solid rgb(163, 163, 163);
-}
-.select{
-   margin-top: 1.2%;
-   width: 440px;
-   height:45px;
-}
-.upload_btn{
- width: 440px;
- height: 53px;
+    width: 10%;
+    height: 35px;
+    background: rgba(224, 222, 222, 0.2);
+    outline:none;
+    border: none;
 }
 .btn{
   width: 20%;
@@ -325,10 +315,6 @@ border-radius: 12px;
     width: 95%;
     margin:10px;
     }
-  .upload_btn{
-      width: 330px;
-      height: 53px;
-     }
   .btn{
     margin-top: 5%;
     left:5%;

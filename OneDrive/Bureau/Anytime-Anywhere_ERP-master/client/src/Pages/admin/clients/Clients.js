@@ -105,7 +105,6 @@ const Edit = () => {
   return (
     <>
      <h2>Clients</h2>
-     
     <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
@@ -124,7 +123,7 @@ const Edit = () => {
                   onChange={(e) => {
                     setSearchTerm(e.target.value);
                   }}
-                  className={styles.formInput}
+                  className={styles.searchInput}
                   type="text"
                   placeholder="Client's name ..."
         />
@@ -333,6 +332,7 @@ const Edit = () => {
                   )}
             })}
           </div>
+         
     </>
     )}
     </>

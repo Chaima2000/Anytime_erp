@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import Select  from 'react-select';
-import styles from '../../../Css/Project.module.css';
+import Styles from '../../../Css/Project.module.css';
+import styles from '../../../Css/Client.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
@@ -20,7 +21,10 @@ function AddProject() {
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState([]);
   const [file , setFile] = useState([]);
-
+  const buttonStyles = {
+    width: "100%",
+    height: "80px"
+  }
   useEffect(() => {
     axios.get("/getclients").then((res) => {
       if (res.data){
@@ -74,12 +78,15 @@ function AddProject() {
  const customStyles = {
   control: (provided , state) => ({
     ...provided,
-    background: 'white',
+    border: state.isFocused ? 0 : 0,
+    paddingLeft:'4px',
+    fontSize: '10',
+    background: 'rgba(224, 222, 222, 0.2)',
     opacity:1,
     outline: 'none',
-    borderColor: '#9e9e9e',
-    minHeight: '30px',
-    height: '55px',
+    width: '1300',
+    borderRadius: '35px',
+    height: '19px',
     boxShadow: state.isFocused ? null : null,
   })
 }
@@ -126,34 +133,31 @@ function AddProject() {
 
   return (
     <>
-   <h1 className={styles.form_title}>ADD PROJECT</h1>
-   <form  onSubmit={addproject} encType = "multiple/form-data" className={styles.form}>
-      <div className={styles.div_Sides}>
-          <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  />
-          <br />
-          <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} required  />
-          <br />
-          <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  required  />
-          <br />
-          <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  />
-          <br />
-      </div>
-      <div className={styles.div_Sides}>
-        <div className={styles.select}>
-          <Select 
-                placeholder="Select Clients"
-                name="clients"
-                id="clients"
-                onChange={(e) => {
-                  setClient(e.label)
-                }}
-                styles={customStyles}
-                options={clientsList} 
-                required
-          />
-        </div>
-        <br />
-        <div className={styles.select}>
+      <section className={styles.section}>        
+        <div className={styles.container}>
+          <div className={styles.form }>
+            <form onSubmit={addproject}>
+              <h2 className={styles.h2}>Add project: </h2>
+              <div className={styles.div1}>
+              <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br />
+              <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} required  /> <br />
+              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  required  /> <br />
+              <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  /> <br />
+              </div>
+              <div className={styles.div2}>
+              <br />
+                <Select 
+                      placeholder="Select Clients"
+                      name="clients"
+                      id="clients"
+                      onChange={(e) => {
+                        setClient(e.label)
+                      }}
+                      styles={customStyles}
+                      options={clientsList} 
+                      required
+                />
+              <br />
           <Select 
                 isMulti
                 placeholder="Select Members"
@@ -170,9 +174,7 @@ function AddProject() {
                   options={membersList} 
                   required
           />
-        </div>
         <br />
-        <div className={styles.select}>
           <Select 
                 placeholder="Select State"
                 name="state"
@@ -184,9 +186,7 @@ function AddProject() {
                 options={options} 
                 required
           />
-        </div>
         <div>
-            <br />
             <input
               accept="image/*"
               id="file"
@@ -205,14 +205,19 @@ function AddProject() {
                       }}
             />
             <label htmlFor="file">
-              <Button variant="contained" color="default" component="span" className={styles.upload_btn}>
+              <button className={styles.formInput}>
                 Upload Files
-              </Button>
-            </label>
+              </button>
+              </label>
         </div>
-      </div>
-      <button className={styles.btn}> SAVE </button>
-    </form>
+        </div>
+        <button className={styles.btn}>SAVE</button>
+            
+
+        </form> 
+  </div>
+  </div>
+  </section>
    </>
   )
 }

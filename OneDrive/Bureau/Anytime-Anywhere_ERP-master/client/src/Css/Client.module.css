@@ -1,66 +1,119 @@
 /***** Add Client *****/
 .form{
   position: relative;
+  width: 100%;
+  height: auto;
+  padding: 40px;
+}
+.section{
+  display: flex;
+  margin-top: -2.5%;
+  justify-content: center;
+  align-items: center;
+}
+ .h2 {
+   position: relative;
+   color: rgb(88, 87, 87);
+   font-size: 24px;
+   font-weight: bold;
+   letter-spacing: 1px;
+   margin-bottom: 40px;
+ }
+ .h2:before {
+   content: '';
+   position: absolute;
+   left:0 ;
+   bottom: -10px;
+   width: 80px;
+   height: 4px;
+   background: rgb(88, 87, 87);
+ }
 
-  height: 400px;
-  width : 70%;
-}
-.btn{
-  width: 77.9%;
-  height: 40px;
-  position: relative;
-  left: 2%;
-  top: 5%;
-  padding: 5px;
-  background: rgb(187, 75, 142);
-  color:white;
-  cursor: pointer;
-  border-radius: 5px;
-  border:none;
-}
-.div_Sides{
+ .container {
+   position: relative;
+   margin-top:1%;
+   width: 800px;
+   min-height: 380px;
+   background: rgba(255,255,255,0.1);
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+   border: 1px solid rgba(255,255,255,0.5);
+   border-right: 1px solid rgba(255,255,255,0.2);
+   border-bottom: 1px solid rgba(255,255,255,0.2);
+ }
+ .div1{
   float: left;
-  margin: 15px;
+  width: 44%;
+ }
+ .div2{
+   width: 44%;
+  float: right;
+   }
+   .formInput{
+    width: 80%;
+    margin-top: 20px;
+    background: rgba(224, 222, 222, 0.2);
+    outline:none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+  }
+  .selectInput{
+    width: 92%;
+    margin-top: 20px;
+    background: rgba(224, 222, 222, 0.2);
+    border: none;
+    outline:none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .formInput::placeholder{
+  color:  rgb(139, 139, 139);
+  }
+  .phoneInput{
+    width: 60%;
+    margin-top: 20px;
+    background: rgba(224, 222, 222, 0.2);
+    border: none;
+    outline:none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+.btn{
+  background: rgb(187, 75, 142);
+  padding: 15px;
+  margin-top: 4%;
+  width: 40%;
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+  color : #fff;
+  max-width: 100px;
+  cursor: pointer;
+  border-radius: 18px;
+  font-weight: 600;
 }
 .addRemovePhoneBtn{
-  background : none;
   border:none;
   cursor:pointer
 }
 
 /*******Clients *****/
-.add_Btn{
-  float : right;
-  height: 43px;
-  width : 10%;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  border : none;
-  background-color: rgb(126, 17, 82);
-  cursor: pointer;
-}
-.formInput{
-  width: 280px;
-  outline: none;
-  height:40px;
-  border-radius: 5px;
-  /* border: 1px solid rgb(163, 163, 163); */
-}
-.select{
-  width: 300px;
-  height:45px;
-}
-.phoneInput{
-  width: 280px;
+.searchInput{
+  width: 240px;
+  font-size: 15px;
   outline: none;
   height:40px;
   border-radius: 5px;
   border: 1px solid rgb(163, 163, 163);
-}
-.link{
-  text-decoration: none;
-  color : white;
 }
 table>tbody>tr {
   transition: 0.1s ease-in-out;
@@ -78,7 +131,6 @@ table>tbody>tr:hover {
   width : 80%;
   top:2%;
 }
-
 .editClientDetails{
   position:relative;
   left: 20%;
@@ -86,55 +138,63 @@ table>tbody>tr:hover {
   top:2%;
 }
 .search_form  {
-  position : relative;
-  left: 40%;
+ float: right;
   width: 35%;
   margin-top:-2%
-}
-.Btn{
-  width: 40%;
-  height: 40px;
-  position: relative;
-  left: 30%;
-  padding: 5px;
-  background: rgb(187, 75, 142);
-  color:white;
-  cursor: pointer;
-  border-radius: 5px;
-  border:none;
 }
 .span{
   font-weight: bold;
 }
 @media (max-width: 450px) {
+  .form {
+        display: block;
+        width: 100%; 
+  }
 
-  .form{
-    position : relative;
-    width: 100%;
-    left:-4%;
-  }
-  .div_Sides{
-    width: 100%
-  }
   .formInput{
-    width: 100%;
-  }
-  .selectInput{
-    width: 92%;
+    border: none;
+    font-size: 19px;
+    width: 90%;
   }
   .phoneInput{
-    width: 80%;
+    border: none;
+    font-size: 19px;
+    width: 60%;
+  }
+  .selectInput{
+    border: none;
+    font-size: 19px;
+    width: 100%;
+  }
+  .div1{
+    display: block;
+    width: 100%;
+  }
+  .div2{
+    width: 100%;
+    float: left;
   }
   .btn{
     position: relative;
-    left: 5%;
-    width:80%
+    left: 30%;
+    margin-top: 15%;
   }
- .table{
-    width:100%;
+  .section{
+    position: relative;
+    width: 100%;
+    margin-top:-9%;
+    flex-direction: column;
+    align-items: center;
   }
-  .search-form {
-    float: left
+  .container{
+    width: 100%;
   }
-} ;
-
+  .search_form{
+    position: relative;
+    left: -2%;
+    width: 80%;
+  }
+  .searchInput{
+    width: 70%;
+  }
+}

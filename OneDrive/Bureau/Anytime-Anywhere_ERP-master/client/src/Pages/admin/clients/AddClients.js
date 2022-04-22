@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
-// import styles from '../../../Css/Project.module.css';
-import Styles from '../../../Css/Client.module.css';
+import styles from '../../../Css/Client.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
-import {toast} from 'react-toastify';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import Select  from 'react-select';
-import TextField from '@material-ui/core/TextField';
-import 'react-toastify/dist/ReactToastify.css';    
-toast.configure()
 
 
-function AddClients() {
+function AddClients(props) {
   const [type , setType] = useState("");
   const [society , setSociety] = useState("");
   const [activity , setActivity] = useState("");
@@ -41,7 +35,7 @@ function AddClients() {
   };
 
   const success = () => {
-    setType([ { type : ""}]);
+    document.getElementById("type").value="";
     document.getElementById("society").value="";
     document.getElementById("activity").value="";
     document.getElementById("ceo").value="";
@@ -52,25 +46,7 @@ function AddClients() {
     document.getElementById("zipCode").value="";
     document.getElementById("address").value="";
   }
-  const options = [ 
-    { value : 'particulier' , label : 'particulier'},
-    { value : 'professionnel' , label : 'professionnel'}
-  ]
-  const customStyles = {
-    control: (provided , state) => ({
-      ...provided,
-      background: 'white',
-      outline: 'none',
-      borderColor: '#9e9e9e',
-      minHeight: '30px',
-      height: '55px',
-      boxShadow: state.isFocused ? null : null,
-    }),
-    menu: base => ({
-      ...base,
-      zIndex: 100
-    })
-  }
+
   const addclient =(e) => {
     e.preventDefault();
     axios.post("/addclient", {
@@ -88,6 +64,7 @@ function AddClients() {
       if(res.data === "ERROR"){
         swal({
           title: "ERROR",
+          icon: "error",
           button: "OK!",
         });
       }else{
@@ -101,125 +78,49 @@ function AddClients() {
       }
     }
     )}
-
-  return (
-    <>
-    <h1>ADD CLIENT</h1>
-    <form  onSubmit={addclient} className={Styles.form}>
-    <div className={Styles.div_Sides}>
-            <div className={Styles.select}>
-                  <Select 
-                        placeholder="Select  type"
-                        id="type"
-                        onChange={(e)=>{setType(e.label)}}
-                        styles={customStyles}
-                        options={options}
-                        required
-                  />
+ return ( 
+   <>
+    <section className={styles.section}>        
+      <div className={styles.container}>
+          <div className={styles.form }>
+          <form onSubmit={addclient}>
+            <h2 className={styles.h2}>Add client: </h2>
+            <div className={styles.div1}>
+              <input className={styles.formInput} type="text" placeholder='Enter name' onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" required /><br />
+              <select className={styles.selectInput} name="type" placeholder='Enter type' id="type" onChange={(e)=>{setType(e.target.value)}} required >
+                <option>Particulier</option>
+                <option>Professionnel </option>
+              </select><br />
+              <input type="text" placeholder='Enter activity' className={styles.formInput} name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}}   required/> <br /> 
+              <input type="email" id="email" placeholder='Enter email' name="email" className={styles.formInput} onChange={(e)=>{setEmail(e.target.value)}}  required /> <br />
+              <input className={styles.formInput} placeholder='Enter ceo' type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} required /><br />
+            </div>
+            <div className={styles.div2}>
+            <input className={styles.formInput} placeholder='Enter city' type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} required /><br />
+            <input className={styles.formInput} placeholder='Enter country' type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} required /><br />
+            <input className={styles.formInput} placeholder='Enter zip Code' type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} required /><br />
+            <input className= {styles.formInput} type="text" placeholder='Enter address' name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} required /> <br />
+            {phone.map((phoneNumber, index) => {
+                          return(
+                          <div key={index}>
+                              <input className={styles.phoneInput} type="number" placeholder='Enter phone number' name="phone" id="phone"  value={phoneNumber.phone} onChange={e => handlePhoneChange(e, index)} required/>
+                              {phone.length !== 1 && <button className={styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("remove")} color = "black"/></button>}
+                              {phone.length -1 === index && <button className={styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("add")} color = "black"/></button>}
+                              <br />
+                            </div>
+                        );})}
             </div>
             <br />
-            <TextField  id="society" 
-                      type="text"
-                      label="Enter Society's name " 
-                      className={Styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setSociety(e.target.value)}} 
-                      required 
-            /> 
             <br />
-            <br />
-            <TextField  id="activity"
-                      type="text" 
-                      label="Enter activity " 
-                      className={Styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setActivity(e.target.value)}} 
-                      required 
-            /> 
-            <br />
-            <br />
-            <TextField  id="ceo" 
-                      type="text"
-                      label="Enter ceo " 
-                      className={Styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setCeo(e.target.value)}} 
-                      required 
-            /> 
-            <br />
-            <br />
-            <TextField  id="email" 
-                      type="email"
-                      label="Enter email " 
-                      className={Styles.select}
-                      variant="outlined"
-                      onChange={(e)=>{setEmail(e.target.value)}} 
-                      required 
-            /> 
-    </div>  
-    <div className={Styles.div_Sides}>
-            {phone.map((phoneNumber, index) => {
-                    return(
-                    <div key={index}>
-                        <TextField  id="phone" 
-                                  type="number"
-                                  label="Enter phone number " 
-                                  className={Styles.phoneInput}
-                                  variant="outlined"
-                                  value={phoneNumber.phone}
-                                  onChange={e => handlePhoneChange(e, index)}
-                                  required 
-                        /> 
-                        
-                            {phone.length !== 1 && <button className={Styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("xmark")} color = "black" className={Styles.add_icon}/></button>}
-                            {phone.length -1 === index && <button className={Styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("plus")} color = "black" className={Styles.add_icon}/></button>}
-                        <br />
-                        <br />
-                    </div>
-            );})}
-            <TextField  id="country" 
-                                  type="text"
-                                  label="Enter country " 
-                                  className={Styles.select}
-                                  variant="outlined"
-                                  onChange={(e)=>{setCountry(e.target.value)}}
-                                  required 
-            /> 
-            <br />
-            <br />
-            <TextField  id="city" 
-                                  type="text"
-                                  label="Enter city " 
-                                  className={Styles.select}
-                                  variant="outlined"
-                                  onChange={(e)=>{setCity(e.target.value)}}
-                                  required 
-            />
-            <br />
-            <br />
-            <TextField  id="address" 
-                                  type="text"
-                                  label="Enter address " 
-                                  className={Styles.select}
-                                  variant="outlined"
-                                  onChange={(e)=>{setAddress(e.target.value)}}
-                                  required 
-            />
-            <br />
-            <br />  
-            <TextField  id="zipCode" 
-                                  type="number"
-                                  label="Enter zip Code " 
-                                  className={Styles.select}
-                                  variant="outlined"
-                                  onChange={(e)=>{setZipCode(e.target.value)}}
-                                  required 
-            />  
+              <button className={styles.btn}>SAVE</button>
+        </form> 
+          </div>
         </div>
-        <button className={Styles.btn}> SAVE </button> 
-    </form>
-    </>
-  )
+    </section>
+     {/* */}
+     
+   </>
+ )
 }
 
 export default AddClients;

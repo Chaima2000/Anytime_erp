@@ -108,12 +108,16 @@ function ProjectProfile(props) {
   const customStyles = {
     control: (provided , state) => ({
       ...provided,
-      background: 'white',
+      border: state.isFocused ? 0 : 0,
+      paddingLeft:'4px',
+      border: ' 1px solid rgb(212, 211, 211) ',
+      fontSize: '10',
+      background: 'rgba(224, 222, 222, 0.2)',
       opacity:1,
       outline: 'none',
-      borderColor: '#9e9e9e',
-      minHeight: '30px',
-      height: '55px',
+      width: '235px',
+      borderRadius: '35px',
+      height: '48px',
       boxShadow: state.isFocused ? null : null,
     })
   }
@@ -268,18 +272,14 @@ return (
       <input type="date" defaultValue={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}}  className={styles.formInput}/> 
       <br />
       <br />
-      <div className={styles.select}>
-                    <Select 
-                         placeholder="Select State"
-                          id="state"
-                          styles={customStyles}
-                          options={options} 
-                          value={projectProfile.state}
-                          onChange={ (e) => { setStateProject(e.label)}}
-                          
-                          
-                    />
-                </div>
+      <Select 
+          placeholder="Edit State"
+          id="state"
+          styles={customStyles}
+          options={options} 
+          value={projectProfile.state}
+          onChange={ (e) => { setStateProject(e.label)}}
+      />
       <br />
       <br />
       <button className="defaultBtn" onClick={() => {updateProject()}}>SAVE</button>
@@ -288,17 +288,23 @@ return (
     <div className={styles.details}>
         <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
         <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} 
-                                              shouldCloseOnOverlayClick={true} className={styles.Modal}
+                                              shouldCloseOnOverlayClick={true}
                                               style = {
                                                 {  
                                                   overlay : {
                                                   backgroundColor : '#00000020'
                                                   },
                                                   content : {
-                                                      color : 'black' , 
-                                                      width: '450px',
-                                                      outline: 'none',
-                                                      backgroundColor : '#f7f7f7', 
+                                                    marginTop: '4%',
+                                                    background: '#fff',
+                                                    padding:'25px',
+                                                    width: '30%',
+                                                    height: '415px',
+                                                    overflow: 'scroll',
+                                                    marginLeft: '28%',
+                                                    borderRadius:  '12px',
+                                                    fontSize: '15px',
+                                                      
                                                       },
                                                }
                                                }  
@@ -306,11 +312,10 @@ return (
             <form onSubmit={addtask}>
                 <h2 align="center">Add task </h2>
                 <br />
-                <br />
                 <TextField id="name" 
                       type="text"
                       label = " Name "
-                      className={styles.select}
+                      className={styles.FieldInput}
                       variant="outlined"
                       onChange={ (e) => { setNameTask(e.target.value)}}
                        
@@ -320,14 +325,14 @@ return (
                 <TextField id="description" 
                       type="text"
                       label = " Description "
-                      className={styles.select}
+                      className={styles.FieldInput}
                       variant="outlined"
                       onChange={ (e) => { setDescriptionTask(e.target.value)}}
                        
                     />
                 <br />
                 <br />
-                <div className={styles.select}>
+                <div className={styles.FieldInput}>
                     <Select 
                           placeholder="Select State"
                           id="state"
@@ -337,12 +342,9 @@ return (
                           
                     />
                 </div>
-                <br />
-                <br />
-                
                   <h4><label>Task's priority</label> &nbsp;&nbsp;
                   <input  type="checkbox" value="urgent" onChange= { (event) => {handleChange(event) }} /></h4>
-                <button className={styles.btn} >save</button>
+                <button className={styles.Btn} >save</button>
             </form>
         </Modal>
         <br/>
@@ -449,7 +451,7 @@ return (
                 <br />
                 
                   <h4><label>Task's priority</label> &nbsp;&nbsp;
-                  <input  type="checkbox" defaultValue="urgent"   onChange= { (event) => { handleChange(event) }} /></h4>
+                  <input  type="checkbox" defaultValue="urgent"   onChange= { (event) => { handleChange(event) }} /></h4> <br /> <br />
                 <button className={styles.btn} onClick = { () => { updateTask(editTask._id)}}>save</button>
             </form>
             </Modal>
@@ -486,7 +488,7 @@ return (
                 <TextField id="name" 
                       type="text"
                       label = " Name "
-                      className={styles.select}
+                      className={styles.FieldInput}
                       variant="outlined"
                       onChange={(e)=>{setExpenseName(e.target.value)}} 
                       required 
@@ -497,7 +499,7 @@ return (
                       multiline
                       type="text"
                       label = " Description "
-                      className={styles.select}
+                      className={styles.FieldInput}
                       variant="outlined"
                       onChange={(e)=>{setExpenseDescription(e.target.value)}} 
                       required 
@@ -507,7 +509,7 @@ return (
                 <TextField id="value"
                       type="number" 
                       label = " Value "
-                      className={styles.select}
+                      className={styles.FieldInput}
                       variant="outlined"
                       onChange={(e)=>{setExpenseValue(e.target.value)}} 
                       required 
@@ -515,7 +517,7 @@ return (
                 <br />
                 <br />
                 <br />
-                <button className={styles.btn}>save</button>
+                <button className={styles.Btn}>save</button>
             </form>
         </Modal>
         <br/>

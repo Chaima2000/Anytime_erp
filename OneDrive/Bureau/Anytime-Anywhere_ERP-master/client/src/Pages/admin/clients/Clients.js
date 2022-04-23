@@ -219,9 +219,8 @@ const Edit = () => {
                                                               borderRadius: '15px'
                                                               }}
                     }>
-                    <h2 align="center">Client informations</h2>
+                    <h2 align="center"> {ViewClient.society}'s informations</h2>
                       <div className={styles.viewClientDetails}>
-                          <p>Nom de la société : <span className={styles.span}>{ViewClient.society}</span></p>
                           <p>Activité: <span  className={styles.span}>{ViewClient.activity}</span></p>
                           <p>Type: <span  className={styles.span}>{ViewClient.type}</span></p>
                           <p>Email :<span  className={styles.span}> {ViewClient.email}</span> </p>
@@ -248,12 +247,12 @@ const Edit = () => {
                                                               height: '485px',
                                                               padding : '5px',
                                                               position : 'relative',
-                                                              top:'18%',
+                                                              top:'14%',
                                                               left: '32%',
                                                               borderRadius: '15px'
                                                               }}
                     }>
-                    <h2 align="center">Edit Client</h2>
+                    <h2 align="center"> {EditClient.society}'s informations</h2>
                     <div className={styles.editClientDetails}>
                         <select className={styles.selectInput} id="type" onChange={(e)=>{setType(e.target.value)}} >
                           <option value="">  Select your type </option>
@@ -297,7 +296,7 @@ const Edit = () => {
                                 </div>
                         );})}
                     </div>
-                  <button className={styles.btn} > SAVE </button> 
+                  <button className={styles.Btn} > SAVE </button> 
                 </Modal>
                 </tr>
                 )})}

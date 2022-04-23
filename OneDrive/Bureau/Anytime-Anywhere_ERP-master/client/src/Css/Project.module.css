@@ -3,25 +3,17 @@
 body {
   font-family: 'Nunito', sans-serif;
 }
-.form_title{
-text-align: center;
-}
-.div_Sides{
-  float: left;
-  margin: 15px;
-}
-.form {
-  position:absolute;
-  left: 10%;
-  width:85%;
-  height: 455px;
-}
 .formInput{
-    width: 10%;
+    width: 20%;
+    padding: 5px;
     height: 35px;
     background: rgba(224, 222, 222, 0.2);
     outline:none;
-    border: none;
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 30px;
+}
+.FieldInput{
+  width: 90%;
 }
 .btn{
   width: 20%;
@@ -29,6 +21,19 @@ text-align: center;
   position: relative;
   margin-top: 5%;
   left: -10%;
+  padding: 5px;
+  background: rgb(187, 75, 142);
+  color:white;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
+}
+.Btn{
+  width: 20%;
+  height: 40px;
+  position: relative;
+  margin-top: -2%;
+  left: 40%;
   padding: 5px;
   background: rgb(187, 75, 142);
   color:white;
@@ -117,14 +122,7 @@ text-align: center;
   margin: 5px;
   transition: all 0.3s;
 }
-.formInput {
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+
 .profile:hover {
   transform: scale(1.1);
 }
@@ -138,7 +136,7 @@ text-align: center;
   border-bottom: 1px solid rgb(199, 199, 199);
 }
 .h4{
-  font-size: 19px;
+  font-size: 15px;
   font-weight: bold;
 }
 .add_icon{
@@ -149,13 +147,6 @@ text-align: center;
 .add_icon:hover{
   color: rgb(187, 75, 142);
   transform: scale(1.1);
-}
-.formInput{
-  width: 440px;
-  outline: none;
-  height:55px;
-  border-radius: 5px;
-  border: 1px solid rgb(163, 163, 163);
 }
 .readMore{
   position : relative;
@@ -187,36 +178,6 @@ text-align: center;
   left: -2.8%;
   cursor: pointer;
 }
-.input_projectProfile {
-  padding: 15px;
-  width: 60%;
-  border : 1px solid grey;
-  border-radius: 12px;
-  height: 15px;
-}
-.input_projectProfile_priority{
-  padding: 15px;
-  width:5%;
-  border : 1px solid grey;
-  border-radius: 12px;
-  height: 5px;
-}
-.input_SaveBtn{
-margin-left: 45%;
-padding: 12px;
-border : 1px solid grey;
-border-radius: 12px;
-}
-.projectName{
-  margin-left: -5%;
-}
-.spans{
-  font-size: 13px;
-  font-weight: 200;
-}
-.buttonSection{
-  margin-left: 22%;
-}
 .inputTasks {
   padding: 10px;
   width: 90%;
@@ -239,33 +200,6 @@ border-radius: 12px;
   border-radius: 12px;
   padding: 12px;
 }
-.bloc_info{
-  text-align: center;
-}
-.addBtn_input{
-  padding : 15px;
-  border : 1px solid grey;
-  border-radius : 9px;
-  cursor: pointer;
-  margin: 5px;
-  width: 29%;
-  position: relative;
-}
-.viewAllList_Btn {
-  padding : 15px;
-  border : 1px solid grey;
-  border-radius : 9px;
-  cursor: pointer;
-  margin: 5px;
-  width: 23%;
-  position: relative;
-  left : 38%;
-}
-.addBtns_Section{
-  position: relative;
-  width: 49%;
-  left : 34%;
-}
 /**Tasks**/
 .DeleteTask{
   padding: 12px;
@@ -278,57 +212,13 @@ border-radius: 12px;
   margin: 4px;
   cursor: pointer;
 }
-/*pagination*/
-.pageNumbers {
-  list-style: none;
-  display: flex;
-  position: relative;
-  left: 35%;
-  margin-top: 65px;
-  width: 30%;
-}
-.pageNumbers li {
-  padding: 10px;
-  border: 1px solid rgb(200, 196, 196);
-  border-radius: 5px;
-  cursor: pointer;
-}
-.pageNumbers li button {
-  background-color: transparent;
-  border: none;
-  color: grey;
-  font-size: 15px;
-  cursor: pointer;
-}
+
  @media (max-width: 480px) {
-  .form {
-     left:7%;
-     height: 650px;
-     width : 90%;
-   }
-  .select {
-     width: 330px;
-   }
-  .div_Sides{
-    position : relative;
-    left:2%;
-    width: 95%;
-    margin:10px;
-    }
   .btn{
     margin-top: 5%;
     left:5%;
     height: 55px;
     width: 330px;
-  }
-  .btn_file{
-    width: 90%;
-  }
-  .savetask_btn{
-    width: 40%;
-  }
-  .addtask_btn{
-    margin-left: 10%;
   }
   .bloc_Section{
     width: 100%;
@@ -358,20 +248,4 @@ border-radius: 12px;
   position: relative;
   top:-95%;
   }
-  .pageNumbers{
-    position: relative;
-    left: -3%;
-  }
-  .input{
-    font-size: 16px;
-    position: relative;
-    left: 8%;
-    padding: 10px;
-    width: 25%;
-  }
-
-  /* .search-form{
-    position:relative;
-    left:-12%
-  } */
 }

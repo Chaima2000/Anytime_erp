@@ -1,12 +1,10 @@
 import React, { useState , useEffect } from 'react';
 import Select  from 'react-select';
-import Styles from '../../../Css/Project.module.css';
 import styles from '../../../Css/Client.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
-import Button from '@material-ui/core/Button';
 toast.configure()
 
 
@@ -36,7 +34,7 @@ function AddProject() {
       }
     });
   }, []);
-  useEffect((id) => {
+  useEffect(() => {
     axios.get(`/getmembers`).then((res) => {
       if (res.data){
         var options = []
@@ -53,7 +51,6 @@ function AddProject() {
     document.getElementById("description").value="";
     document.getElementById("start").value="";
     document.getElementById("end").value= "";
-
   }
   //State options //
   const options = [

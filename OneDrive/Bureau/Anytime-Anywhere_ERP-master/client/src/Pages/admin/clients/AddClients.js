@@ -88,8 +88,8 @@ function AddClients(props) {
             <div className={styles.div1}>
               <input className={styles.formInput} type="text" placeholder='Enter name' onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" required /><br />
               <select className={styles.selectInput} name="type" placeholder='Enter type' id="type" onChange={(e)=>{setType(e.target.value)}} required >
-                <option>Particulier</option>
-                <option>Professionnel </option>
+                <option value="particulier">Particulier</option>
+                <option value="professionnel">Professionnel </option>
               </select><br />
               <input type="text" placeholder='Enter activity' className={styles.formInput} name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}}   required/> <br /> 
               <input type="email" id="email" placeholder='Enter email' name="email" className={styles.formInput} onChange={(e)=>{setEmail(e.target.value)}}  required /> <br />
@@ -117,8 +117,6 @@ function AddClients(props) {
           </div>
         </div>
     </section>
-     {/* */}
-     
    </>
  )
 }

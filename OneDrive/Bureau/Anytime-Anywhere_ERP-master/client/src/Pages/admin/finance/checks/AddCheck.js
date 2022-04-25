@@ -14,7 +14,7 @@ function Checks() {
   const [clientsList , setClientsList] = useState([]);
   const [client , setClient] = useState("");
   const [projectsList, setprojectsList] = useState([]);
-  const [project, setProject] = useState("");
+  const [checkproject, setProject] = useState("");
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
@@ -22,9 +22,79 @@ function Checks() {
     document.getElementById("client").value= "";
     document.getElementById("type").value= "";
     document.getElementById("user").value= "";
-    document.getElementById("project").value= "";
+    document.getElementById("checkproject").value= "";
     document.getElementById("value").value= "";
   }
+  useEffect(() => {
+    axios.get(`/getmembers`).then((res) => {
+      if (res.data){
+        var options = []
+        res.data.map((element) => {
+            var fullName = element.firstName + " " + element.lastName;
+            options.push({value: element._id, label: fullName} );
+        })
+        setMembersList(options);
+      }
+    });
+  }, []);
+  useEffect(() => {
+    axios.get("/getclients").then((res) => {
+      if (res.data){
+        var options = []
+        res.data.map((element) => {
+          options.push({value: element._id, label: element.society} );
+        })
+        setClientsList(options);
+       
+      }
+    });
+  }, []);
+  const customStyles = {
+    control: (provided , state) => ({
+      ...provided,
+      border: state.isFocused ? 0 : 0,
+      paddingLeft:'4px',
+      fontSize: '10',
+      background: 'rgba(224, 222, 222, 0.2)',
+      opacity:1,
+      outline: 'none',
+      width: '300px',
+      borderRadius: '35px',
+      height: '19px',
+      boxShadow: state.isFocused ? null : null,
+    })
+  }
+  // projects 
+  const projectsClient= [
+    {}
+  ]
+    //State options //
+    const options = [
+      { value: 'paid', label: 'paid' },
+      { value: 'unpaid', label: 'unpaid' },
+      { value: 'partial payment', label: 'partial payment' }
+    ]
+    //Type options
+    const Type= [
+      {value: 'income' , label: 'income'},
+      { value: 'outcome' , label: 'outcome'}
+    ]
+    const handle = (event) => {
+      setProject(event.label);
+      console.log(event.label)
+  }
+
+useEffect(() => {
+  axios.get(`/getprojects`).then((res) => {
+    if (res.data){
+      var options = []
+      res.data.map((element) => {
+        options.push({value: element._id, label: element.name} );
+      })
+      setprojectsList(options);
+    }
+  });
+}, []);
   const addcheck =(e) => {
     e.preventDefault();
     const data = new FormData();
@@ -35,7 +105,7 @@ function Checks() {
     data.append("type",type);
     data.append("user",user);
     data.append("value",value);
-    data.append('project', project);
+    data.append('checkproject', checkproject);
     const datax = {
       name:name,
       state:state,
@@ -44,7 +114,7 @@ function Checks() {
       type:type,
       user:user,
       value:value,
-      project:project
+      checkproject:checkproject
     }
     axios.post("/addcheck", datax).then((res)=>{
       if(res.data === "ERROR"){
@@ -64,67 +134,8 @@ function Checks() {
       }
     }
     )}
+    
 
-  useEffect(() => {
-    axios.get(`/getprojects`).then((res) => {
-      if (res.data){
-        var options = []
-        res.data.map((element) => {
-          options.push({value: element.name, label: element.name} );
-        })
-        setprojectsList(options);
-      }
-    });
-  }, []);
-  useEffect(() => {
-    axios.get(`/getmembers`).then((res) => {
-      if (res.data){
-        var options = []
-        res.data.map((element) => {
-            var fullName = element.firstName + " " + element.lastName;
-            options.push({value: element._id, label: fullName} );
-        })
-        setMembersList(options);
-      }
-    });
-  }, []);
-  useEffect(() => {
-    axios.get("/getclients").then((res) => {
-      if (res.data){
-        var options = []
-        res.data.map((element) => {
-          options.push({value: element.society, label: element.society} );
-        })
-        setClientsList(options);
-      }
-    });
-  }, []);
-  const customStyles = {
-    control: (provided , state) => ({
-      ...provided,
-      border: state.isFocused ? 0 : 0,
-      paddingLeft:'4px',
-      fontSize: '10',
-      background: 'rgba(224, 222, 222, 0.2)',
-      opacity:1,
-      outline: 'none',
-      width: '300px',
-      borderRadius: '35px',
-      height: '19px',
-      boxShadow: state.isFocused ? null : null,
-    })
-  }
-    //State options //
-    const options = [
-      { value: 'paid', label: 'paid' },
-      { value: 'unpaid', label: 'unpaid' },
-      { value: 'partial payment', label: 'partial payment' }
-    ]
-    //Type options
-    const Type= [
-      {value: 'income' , label: 'income'},
-      { value: 'outcome' , label: 'outcome'}
-    ]
   return (
     <>
       <section className={styles.section}>        
@@ -164,7 +175,7 @@ function Checks() {
                       placeholder="Select Client"
                       name="client"
                       id="client"
-                      onChange= { (e) => { setClient(e.label)}}
+                      onChange= { (e) => { setClient(e.value)}}
                       styles={customStyles}
                       options={clientsList} 
                       required
@@ -182,12 +193,12 @@ function Checks() {
         <br />
               <Select 
                       placeholder="Select project"
-                      name="project"
-                      id="project"
-                      onchange={ (e) => {setProject(e.label)}}
+                      name="checkproject"
+                      id="checkproject"
                       styles={customStyles}
                       options={projectsList} 
-                      required
+                      onchange={ (e) => {handle(e)}}
+                      // required
                 />
             </div>
             <br />

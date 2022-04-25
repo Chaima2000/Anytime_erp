@@ -19,16 +19,12 @@ function AddProject() {
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState([]);
   const [file , setFile] = useState([]);
-  const buttonStyles = {
-    width: "100%",
-    height: "80px"
-  }
   useEffect(() => {
     axios.get("/getclients").then((res) => {
       if (res.data){
         var options = []
         res.data.map((element) => {
-          options.push({value: element.society, label: element.society} );
+          options.push({value: element._id, label: element.society} );
         })
         setClientsList(options);
       }
@@ -138,7 +134,7 @@ function AddProject() {
               <div className={styles.div1}>
               <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br />
               <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} required  /> <br />
-              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  required  /> <br />
+              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}   /> <br />
               <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  /> <br />
               </div>
               <div className={styles.div2}>
@@ -148,7 +144,7 @@ function AddProject() {
                       name="clients"
                       id="clients"
                       onChange={(e) => {
-                        setClient(e.label)
+                        setClient(e.value)
                       }}
                       styles={customStyles}
                       options={clientsList} 
@@ -181,7 +177,7 @@ function AddProject() {
                 }}
                 styles={customStyles}
                 options={options} 
-                required
+                
           />
         <div>
             <input

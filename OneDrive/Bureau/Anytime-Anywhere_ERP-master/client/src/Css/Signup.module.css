@@ -168,6 +168,8 @@
   }
   .banner_img{
     width: 100%;
+    position: relative;
+    left: -2%;
     height: 100%;
   }  
   .copyright{bottom: 0;}

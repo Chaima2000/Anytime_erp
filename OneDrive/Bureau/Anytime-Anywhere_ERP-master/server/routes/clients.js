@@ -17,15 +17,15 @@ const { client } = require("../database/models/clients.model");
     try {
       const clients = await client
         .find({society: { $regex: ".*" + searchTerm + ".*" }})
-        .limit(10)
-        .skip((currentPage - 1) * 10)
+        .limit(8)
+        .skip((currentPage - 1) * 8)
         .sort({ date: -1 })
         .exec();
   
       const count = await client.countDocuments({
         society: { $regex: ".*" + searchTerm + ".*" },
       });
-      let totalPages = Math.ceil(count / 10);
+      let totalPages = Math.ceil(count / 8);
       for (let i = 1; i <= totalPages; i++) {
         allPages.push(i);
       }
@@ -91,7 +91,7 @@ const { client } = require("../database/models/clients.model");
       const country = req.body.country;
       const zipCode = req.body.zipCode;
       const address = req.body.address;
-      task.findById( id, (error, row) => {
+      client.findById( id, (error, row) => {
         if( row) {
           row.type = type;
           row.society = society;

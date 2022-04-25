@@ -18,15 +18,15 @@ exports.getprojects = async (req, res) => {
   try {
     const projects = await project
       .find({name: { $regex: ".*" + searchTerm + ".*" }})
-      .limit(3)
-      .skip((currentPage - 1) * 3)
+      .limit(9)
+      .skip((currentPage - 1) * 9)
       .sort({ date: -1 })
       .exec();
 
     const count = await project.countDocuments({
       name: { $regex: ".*" + searchTerm + ".*" },
     });
-    let totalPages = Math.ceil(count / 3);
+    let totalPages = Math.ceil(count / 9);
     for (let i = 1; i <= totalPages; i++) {
       allPages.push(i);
     }
@@ -77,10 +77,29 @@ exports.deleteProject =(req,res) => {
   });
 }
 
+exports.editProject = (req,res) => {
+  const id = req.body.id;
+  const end = req.body.end;
+  const state = req.body.state;
+  project.findById(id, (error, row) => {
+    if (row) {
+      row.end = end;
+      row.state = state;
+      try {
+        row.save();
+        res.send("SUCCESS");
+      } catch (error) {
+        res.send("ERROR");
+      }
+    } else {
+      res.send("ERROR");
+    }
+  });
+};
 
 
 exports.getMembers = async (req, res)=>{
-  const membersList = await user.find({$or: [
+  const membersList = await user.find( {$or: [
     { role: "DEVELOPER" },
     { role: "DESIGNER" },
     { role: "MARKETING" },

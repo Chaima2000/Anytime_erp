@@ -45,6 +45,7 @@ app.use(
 const authentication = require("./routes/authentication");
 const users = require("./routes/users");
 const banks = require("./routes/banks");
+const checks = require("./routes/checks");
 const clients = require("./routes/clients");
 const projects = require("./routes/project");
 const tasks = require("./routes/task");
@@ -85,9 +86,13 @@ app.post("/changerole", users.changeRole);
 app.delete("/deleteuser/:userId", users.deleteUser);
 
 // Banks
-app.get("/getbanks", banks.getBanks);
+app.post("/getbanks", banks.getbanks);
+app.delete("/deletebank/:id", banks.deleteBank);
 app.post("/addbank", banks.addBank);
 
+// Checks 
+app.get("/getprojects", checks.getProjects);
+app.post("/addcheck", checks.addCheck);
 //Clients
 app.post("/getclients", clients.getClients);
 app.post("/getclient", clients.getClient);
@@ -98,6 +103,7 @@ app.get("/editclient", clients.getClient);
 
 //Projects
 app.post("/addproject", projects.addProject);
+app.post("/updateproject", projects.editProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);
 app.post("/getproject", projects.getProject);
@@ -108,7 +114,7 @@ app.get("/getclients", projects.getClients);
 
 //Tasks
 app.post("/addTask" , tasks.addTask);
-app.put("/updateTask", tasks.editTask);
+app.put("/updateTask/:id", tasks.editTask);
 app.get("/getTasks", tasks.getTasks);
 app.delete("/deleteTask/:id", tasks.deleteTask);
 

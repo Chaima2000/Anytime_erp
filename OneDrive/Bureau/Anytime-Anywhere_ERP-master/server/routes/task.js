@@ -14,28 +14,37 @@ exports.deleteTask =(req,res) => {
     }
   });
 }
-exports.editTask = (req,res) => {
+exports.editTask = async (req,res) => {
+  try{
     const id = req.body.id;
-    const nameTask = req.body.nameTask;
-    const stateTask = req.body.stateTask;
-    const descriptionTask = req.body.descriptionTask;
-    const priorityTask = req.body.priorityTask;
-    task.findById( id, (error, row) => {
-      if( row) {
-        row.nameTask = nameTask;
-        row.stateTask = stateTask;
-        row.descriptionTask = descriptionTask;
-        row.priorityTask = priorityTask;
-        try {
-          row.save();
-          res.send("SUCCESS");
-        } catch ( error)  {
-          res.send ( "ERROR");
-        }} else {
-          res.send ("ERROR");
-        }
-      })
-  };
+    const updates = req.body;
+    const options  = {new : true}
+    const result = await task.findByIdAndUpdate ( id, updates , options);
+    res.send(result);
+  }catch( error) {
+    console.log(error);
+  }
+};
+    
+    // const nameTask = req.body.nameTask;
+    // const stateTask = req.body.stateTask;
+    // const descriptionTask = req.body.descriptionTask;
+    // const priorityTask = req.body.priorityTask;
+    // task.findByIdAndUpdate( id, updates , new:true);
+      // if( row) {
+      //   row.nameTask = nameTask;
+      //   row.stateTask = stateTask;
+      //   row.descriptionTask = descriptionTask;
+      //   row.priorityTask = priorityTask;
+      //   try {
+      //     row.save();
+      //     res.send("SUCCESS");
+      //   } catch ( error)  {
+      //     res.send ( "ERROR");
+      //   }} else {
+      //     res.send ("ERROR");
+      //   }
+
 exports.addTask =  (req , res) => {
   const nameTask = req.body.nameTask;
   const stateTask = req.body.stateTask;

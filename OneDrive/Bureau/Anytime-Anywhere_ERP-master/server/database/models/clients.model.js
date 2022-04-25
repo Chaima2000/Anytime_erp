@@ -2,7 +2,7 @@ const mongoose = require ('mongoose')
 const clientSchema = new mongoose.Schema({
     type: {
         type:String,
-        required:false
+        required:true
     },
     society: {
         type:String,

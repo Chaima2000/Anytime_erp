@@ -19,8 +19,7 @@
 }
 .showMsg{
     font-weight: bold;
-    position :relative;
-    left: 21%;
+    font-size: 14px;
     color: grey;
 }
 .input_section{
@@ -33,11 +32,83 @@
     background: white;
     position: relative;
     box-shadow: 0 25px 45px rgba(0.2,0.2,0.2,0.2);
-    left: 27%;
+    left: 28%;
     border: none;
     width: 45%;
     border-radius: 15px;
     padding: 15px
+}
+.one{
+    content: '';
+    position: absolute;
+    right: 17%;
+    bottom:65%;
+    width: 200px;
+    height: 200px;
+    background: rgb(255, 226, 253);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: .8
+}
+.two{
+    content: '';
+    position: absolute;
+    left: 8%;
+    bottom:35%;
+    width: 210px;
+    height: 210px;
+    border: 15px solid rgb(227, 208, 248);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: .8
+}
+.three{
+    content: '';
+    position: absolute;
+    left: 21%;
+    bottom:30%;
+    width: 150px;
+    height: 150px;
+    background: rgba(239, 243, 252, 0.9);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: .8
+}
+.four{
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom:10%;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 249, 170, 0.9);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: .8
+}
+.five{
+    content: '';
+    position: absolute;
+    left: 69%;
+    bottom:4%;
+    width: 100px;
+    height: 100px;
+    border: 55px solid rgb(248, 240, 209);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: .8
+}
+.six{
+    content: '';
+    position: absolute;
+    left: 83%;
+    bottom: 40%;
+    width: 80px;
+    height: 80px;
+    border : 14px solid rgb(216, 170, 197);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: .8
 }
 .btn{
     cursor: pointer;
@@ -59,4 +130,58 @@
     box-shadow:  0 0 20px rgba(0, 0, 0, 0.5);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+}
+@media (max-width: 450px) {
+    .form {
+        position:relative;
+        left: 4.3%;
+        height: 550px;
+        margin-top:55%;
+        display: block;
+        width: 80%;
+    }
+    .input_section{
+      height: 400px;
+    }
+    .textarea{
+        font-size: 18px;
+    }
+    .input{
+        height: 35px;
+        font-size: 18px
+    }
+    .btn{
+        height: 45px;
+        font-size: 18px;
+    }
+    .one {
+        position: relative;
+        left: -15%;
+        margin-top: -35%;
+    }
+    .two{
+        position:relative;
+        margin-top: -225%;
+        left: -2%;
+    }
+    .three{
+        position:relative;
+        left:60%;
+        margin-top: 105%
+    }
+    .four{
+        position: relative;
+        margin-top: -25%;
+        left: 25%
+    }
+    .five{
+        position: relative;
+        margin-top: -110%;
+        left:26%
+    }
+    .six{
+        position: relative;
+        left: 60%;
+        margin-top: -140%;
+    }
 }

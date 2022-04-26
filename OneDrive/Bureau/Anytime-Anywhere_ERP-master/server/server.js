@@ -50,6 +50,7 @@ const clients = require("./routes/clients");
 const projects = require("./routes/project");
 const tasks = require("./routes/task");
 const expenses = require("./routes/expense");
+const contacts = require("./routes/contact");
 const { path } = require("express/lib/application");
 // const { pipeline } = require("nodemailer/lib/xoauth2");
 // server API'S
@@ -125,4 +126,5 @@ app.post("/getExpenses", expenses.getexpenses);
 app.delete("/deleteExpense/:id", expenses.deleteExpense);
 
 
-
+//contact
+app.post("/contact", contacts.AddContact);

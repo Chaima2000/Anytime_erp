@@ -81,7 +81,7 @@ function ProjectProfile(props) {
         var options = []
         res.data.map((element) => {
             var fullName = element.firstName + " " + element.lastName;
-            options.push({value: fullName, label: fullName} );
+            options.push({value: element._id, label: fullName} );
         })
         setMembersList(options);
       }

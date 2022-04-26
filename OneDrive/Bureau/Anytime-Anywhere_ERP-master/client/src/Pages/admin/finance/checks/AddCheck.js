@@ -10,16 +10,19 @@ function Checks() {
   const [type, setType] = useState("");
   const [state, setState] = useState("");
   const [membersList , setMembersList] = useState([]);
+  
+
   const [user , setUser] = useState("");
   const [clientsList , setClientsList] = useState([]);
-  const [client , setClient] = useState("");
+  const [ClientId , setClient] = useState("");
   const [projectsList, setprojectsList] = useState([]);
+  const [clientId, setClientId] = useState("");
   const [checkproject, setProject] = useState("");
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
     document.getElementById("state").value="";
-    document.getElementById("client").value= "";
+    document.getElementById("Client").value= "";
     document.getElementById("type").value= "";
     document.getElementById("user").value= "";
     document.getElementById("checkproject").value= "";
@@ -45,7 +48,7 @@ function Checks() {
           options.push({value: element._id, label: element.society} );
         })
         setClientsList(options);
-       
+        
       }
     });
   }, []);
@@ -80,27 +83,30 @@ function Checks() {
       { value: 'outcome' , label: 'outcome'}
     ]
     const handle = (event) => {
-      setProject(event.label);
-      console.log(event.label)
+      setProject(event.value);
+      console.log(event.value)
   }
+  useEffect(() => {
+    axios.get("/getproject",{ ClientId }).then((res) => {
+      if (res.data) {
+        var options = []
+        res.data.map((element) => {
+          options.push({value: element._id, label: element.name} );
+        })
+        setprojectsList(options);
+      }
+    });
+  },[]);
+  
+ 
+  
 
-useEffect(() => {
-  axios.get(`/getprojects`).then((res) => {
-    if (res.data){
-      var options = []
-      res.data.map((element) => {
-        options.push({value: element._id, label: element.name} );
-      })
-      setprojectsList(options);
-    }
-  });
-}, []);
   const addcheck =(e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("name",name);
     data.append("state",state);
-    data.append("client",client);
+    data.append("ClientId",ClientId);
     data.append("description",description);
     data.append("type",type);
     data.append("user",user);
@@ -109,7 +115,7 @@ useEffect(() => {
     const datax = {
       name:name,
       state:state,
-      client:client,
+      ClientId:ClientId,
       description:description,
       type:type,
       user:user,
@@ -173,24 +179,14 @@ useEffect(() => {
               <br />
               <Select 
                       placeholder="Select Client"
-                      name="client"
-                      id="client"
-                      onChange= { (e) => { setClient(e.value)}}
+                      name="ClientId"
+                      id="ClientId"
+                      onChange= { (e) => { setClient(e.value); console.log(e.value)}}
                       styles={customStyles}
                       options={clientsList} 
                       required
                 />
               <br />
-          <Select 
-                placeholder="Select user"
-                name="user"
-                id="user"
-                onChange={ (e) => {setUser(e.label)}}
-                styles={customStyles}
-                  options={membersList} 
-                  required
-          />
-        <br />
               <Select 
                       placeholder="Select project"
                       name="checkproject"
@@ -200,6 +196,17 @@ useEffect(() => {
                       onchange={ (e) => {handle(e)}}
                       // required
                 />
+          <br />
+          <Select 
+                placeholder="Select user"
+                name="user"
+                id="user"
+                onChange={ (e) => {setUser(e.label)}}
+                styles={customStyles}
+                  options={membersList} 
+                  required
+          />
+        
             </div>
             <br />
             <br />

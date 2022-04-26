@@ -114,7 +114,6 @@ exports.getProject = (req, res) => {
   const id = req.body.id;
   project.findById(id, (err, row) => {
     if (row) {
-      console.log(row);
       res.send(row);
     } else {
       res.send("ERROR");

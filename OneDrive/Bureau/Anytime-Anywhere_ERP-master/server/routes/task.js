@@ -25,25 +25,6 @@ exports.editTask = async (req,res) => {
     console.log(error);
   }
 };
-    
-    // const nameTask = req.body.nameTask;
-    // const stateTask = req.body.stateTask;
-    // const descriptionTask = req.body.descriptionTask;
-    // const priorityTask = req.body.priorityTask;
-    // task.findByIdAndUpdate( id, updates , new:true);
-      // if( row) {
-      //   row.nameTask = nameTask;
-      //   row.stateTask = stateTask;
-      //   row.descriptionTask = descriptionTask;
-      //   row.priorityTask = priorityTask;
-      //   try {
-      //     row.save();
-      //     res.send("SUCCESS");
-      //   } catch ( error)  {
-      //     res.send ( "ERROR");
-      //   }} else {
-      //     res.send ("ERROR");
-      //   }
 
 exports.addTask =  (req , res) => {
   const nameTask = req.body.nameTask;

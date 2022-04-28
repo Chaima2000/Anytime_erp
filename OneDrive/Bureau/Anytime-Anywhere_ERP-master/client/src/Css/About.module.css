@@ -1,0 +1,37 @@
+.about{
+    background-size: 55%;
+    background: #fdfdfd;
+    overflow: hidden;
+    padding: 100px 0;
+}
+.section {
+    width: 500%;
+    float: right;
+    background: #fdfdfd;
+    padding: 140px;
+    box-shadow: 10px 10px 8px rgba( 0,0,0,0.3);
+}
+.h1{
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900; 
+}
+.text{
+    font-size: 13px;
+    color: #545454;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+.skills {
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    width:200px;
+    background: #00999c;
+    color: white;
+    cursor: pointer;
+}

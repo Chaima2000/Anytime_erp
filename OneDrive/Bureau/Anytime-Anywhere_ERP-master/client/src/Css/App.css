@@ -1,6 +1,8 @@
 :root {
   --main-color: rgba(171, 74, 230, 1);
   --secondary-color: rgba(160, 20, 103, 1);
+  --black : #242D49;
+  --gray : #788097;
 }
 
 ::-webkit-scrollbar {

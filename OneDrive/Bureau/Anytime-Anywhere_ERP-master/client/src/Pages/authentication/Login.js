@@ -67,7 +67,7 @@ function Login() {
                 <div className={styles.logo} ref={el => logos = el}>
                 <img src={process.env.PUBLIC_URL + "/logo.png"} />
                 </div>
-                <h2 ref={el => headers = el}>Welcome to A&A</h2>
+                <h2 ref={el => headers = el}>Welcome !</h2>
                 <form ref={el => form = el} className={styles.form} onSubmit={login}>
                     <div className={styles.fields}>
                       <label> Email</label><br />

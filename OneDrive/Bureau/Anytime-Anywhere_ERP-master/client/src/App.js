@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "./Css/App.css";
@@ -14,7 +14,6 @@ function App() {
   const [user, setUser] = useState({});
   const [arrow, setArrow] = useState("right");
   const routes = require("./routes/routes");
-
   function closeSidebar() {
     document.getElementById("sidebar").style.left = "-205px";
     setArrow("right");

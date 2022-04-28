@@ -45,6 +45,12 @@ function Contact() {
   };
   return (
     <>
+    {/* <div className={Styles.one}></div>
+    <div className={Styles.two}></div>
+    <div className={Styles.three}></div>
+    <div className={Styles.four}></div>
+    <div className={Styles.five}></div>
+    <div className={Styles.six}></div> */}
     <form className={styles.form} onSubmit={contactForm}>
       <h2 align="center">Contact Us</h2>
       <div className={styles.input_section}>
@@ -58,12 +64,6 @@ function Contact() {
         {result ? <Result/> : null}
       </div>
     </form>
-    <div className={styles.one}></div>
-    <div className={styles.two}></div>
-    <div className={styles.three}></div>
-    <div className={styles.four}></div>
-    <div className={styles.five}></div>
-    <div className={styles.six}></div>
     </>
   )
 }

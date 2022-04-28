@@ -1,4 +1,4 @@
-// import Home from "../Pages/navigation/Home";
+import Home from "../Pages/navigation/Home";
 import About from "../Pages/navigation/About";
 import Services from "../Pages/navigation/Services";
 import Contact from "../Pages/navigation/Contact";
@@ -148,6 +148,9 @@ export const superAdminRoutes = (
 export const visitorRoutes = (
   <>
     <Switch>
+      <Route path="/" exact>
+        <Home />
+      </Route>
       <Route path="/services" exact>
         <Services />
       </Route>

@@ -79,40 +79,20 @@ const { client } = require("../database/models/clients.model");
         }
       });
     }
-    exports.editClient = (req,res) => {
-      const id = req.body.id;
-      const type = req.body.type;
-      const society = req.body.society;
-      const activity = req.body.activity;
+    exports.editClient = async (req,res) => {
       const email = req.body.email;
-      const ceo = req.body.ceo;
-      const phone = req.body.phone;
-      const city = req.body.city;
-      const country = req.body.country;
-      const zipCode = req.body.zipCode;
-      const address = req.body.address;
-      client.findById( id, (error, row) => {
-        if( row) {
-          row.type = type;
-          row.society = society;
-          row.activity = activity;
+      const id = req.body.id;
+      console.log(email,id);
+      try{
+        await client.findById(id, (error, row) => {
           row.email = email;
-          row.ceo = ceo;
-          row.phone = phone;
-          row.city = city;
-          row.country = country;
-          row.zipCode = zipCode;
-          row.address = address;
-          try {
-            row.save();
-            res.send("SUCCESS");
-          } catch ( error)  {
-            res.send ( "ERROR");
-          }} else {
-            res.send ("ERROR");
-          }
-        })
-    };
+          row.save();
+        });
+      } catch(err) {
+        console.log(err);
+      }
+      res.send('updated')
+    }
     exports.getClient = (req, res) => {
       const id = req.body.id;
       client.findById(id, (err, row) => {

@@ -6,7 +6,7 @@ import axios from "axios" ;
 import Modal from 'react-modal';
 import Styles from "../../../Css/Project.module.css";
 import styles from "../../../Css/Client.module.css";
-import table from "../../../Css/App.css";
+// import table from "../../../Css/App.css";
 
 Modal.setAppElement('#root')
 function Clients(){
@@ -37,21 +37,7 @@ function Clients(){
 
         
 
-/***Phone functions */
-const handlePhoneChange = (e, index) => {
-  const { name, value } = e.target;
-  const list = [...phone];
-  list[index][name] = value;
-  setPhoneNumber(list);
-};
-const handlePhoneRemove = index => {
-  const list = [...phone];
-  list.splice(index, 1);
-  setPhoneNumber(list);
-};
-const handlePhoneAdd = () => {
-  setPhoneNumber([...phone, { phone : "" }]);
-};
+
 
 
   function getClients(page) {
@@ -91,6 +77,18 @@ const Edit = () => {
           }
         })
       }
+      const updateClient = (id) => {
+        axios.put(`/updateclient/${id}`, {email:email, id:id })
+        .then((res) => {
+          if (res.data === "ERROR") {
+            alert("An error occured");
+          } else {
+            axios.post("/getclients").then((res) => {
+            setClientsList(res.data);
+          });
+        } 
+        })
+        }
   function resetSearch() {
         document.getElementById("searchField").value = "";
         axios.post("/getclients").then((res) => {
@@ -104,33 +102,17 @@ const Edit = () => {
   }
   return (
     <>
-     <h2>Clients</h2>
-    <form 
-        onSubmit={(e) => {
-              document.getElementById("searchField").disabled = true;
-              document.getElementById("resetBtn").hidden = false;
-              document.getElementById("searchBtn").hidden = true;
-              e.preventDefault();
-              getClients();
-              setCurrentPage(1);
-            }}
-        className={styles.search_form}
-        >
-
-        <input
-                  id="searchField"
-                  required
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                  }}
+     <h2>Clients </h2>
+     <form onSubmit={(e) => {document.getElementById("searchField").disabled = true;document.getElementById("resetBtn").hidden = false;document.getElementById("searchBtn").hidden = true;e.preventDefault();getClients();setCurrentPage(1);}}
+                  className={styles.search_form}>
+                  <input id="searchField" required onChange={(e) => {setSearchTerm(e.target.value)}} 
                   className={styles.searchInput}
                   type="text"
-                  placeholder="Client's name ..."
-        />
-        <button id="searchBtn" className="transparentBtn">
-          <FontAwesomeIcon icon={solid("search")} size="lg" />
-        </button>
-        <button
+                  placeholder="Client's name ..." />
+                  <button id="searchBtn" className="transparentBtn">
+                    <FontAwesomeIcon icon={solid("search")} size="lg" />
+                  </button>
+                  <button
                           type="button"
                           onClick={() => {
                             resetSearch();
@@ -141,13 +123,9 @@ const Edit = () => {
                           hidden
                           id="resetBtn"
                           className="transparentBtn">
-             <FontAwesomeIcon icon={solid("undo")} size="lg" />
-        </button>
-    </form>
-
-    <Link to="/clients/add">
-          <FontAwesomeIcon className="navIcon" icon={solid("plus")} />
-    </Link>
+                          <FontAwesomeIcon icon={solid("undo")} size="lg" />
+                  </button>
+                </form>
     {waiting ? (
           <div className={styles.spinner}>
             <FontAwesomeIcon icon={solid("spinner")} spin size="3x" />
@@ -155,24 +133,24 @@ const Edit = () => {
     <>
           <br />
           <br />
-          <table className={table}>
+          <table className={styles.table}>
               <thead>
                 <tr>
-                    <th>Name of society </th>
-                    <th>Activity </th>
-                    <th>Email </th>
-                    <th>Action </th>
+                    <th> <span className={styles.textThead} >Society </span> </th>
+                    <th><span className={styles.textThead}>Activity</span> </th>
+                    <th> <span className={styles.textThead} >Email </span> </th>
+                  <th> <span className={styles.textThead}> Action </span> </th>
                 </tr>
               </thead>
               <tbody>
                 {clientsList.map( (client) => {
                   return ( 
                   <tr key = {client._id}>
-                    <td>{client.society}</td>
-                    <td>{client.activity}</td>
-                    <td>{client.email}</td>
-                    <td><span onClick={()=> {setViewClient(client) ; View()}}><FontAwesomeIcon  icon={solid("file") }  color="#1a9cd4" /></span>&nbsp;&nbsp;
-                    <span onClick={()=> {setEditClient(client) ; Edit()}}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></span>&nbsp;&nbsp;
+                    <td data-label="Society">  {client.society} </td>
+                    <td data-label="Activity"> {client.activity}</td>
+                    <td data-label="Email">{client.email}</td>
+                    <td data-label="Action"><span onClick={()=> {setViewClient(client) ; View()}}><FontAwesomeIcon  icon={solid("file") }  color="#1a9cd4" /></span>&nbsp;&nbsp;
+                    <span onClick={()=> { setEditClient(client) ; Edit()}}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></span>&nbsp;&nbsp;
                     <span onClick={()=> {setDeleteClient(client) ; Delete()}}> <FontAwesomeIcon icon={solid("trash")} color = "#c71585"  /> </span></td> 
                     <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
@@ -245,66 +223,64 @@ const Edit = () => {
                                                               backgroundColor : 'white',
                                                               width: '500px',
                                                               height: '485px',
-                                                              padding : '5px',
+                                                              paddingLeft : '15px',
                                                               position : 'relative',
                                                               top:'14%',
-                                                              left: '32%',
+                                                              left: '30%',
                                                               borderRadius: '15px'
                                                               }}
                     }>
                     <h2 align="center"> {EditClient.society}'s informations</h2>
-                    <div className={styles.editClientDetails}>
-                        <select className={styles.selectInput} id="type" onChange={(e)=>{setType(e.target.value)}} >
+                    <div className={styles.Details}>
+                        <select className={styles.selectInput} id="type" value={EditClient.type} onChange={(e)=>{setType(e.target.value)}} disabled>
                           <option value="">  Select your type </option>
                           <option value="particulier"> Particulier</option>
                           <option value="professionnel">Professionnel</option>
                         </select>
                         <br />
                         <br />
-                        <input className={styles.formInput} type="text" onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" placeholder='Enter your Society' required/>
+                        <input className={styles.formInput} type="text" onChange={(e)=>{setSociety(e.target.value)}} value={EditClient.society} name="society" id="society" placeholder='Enter your Society' disabled/>
                         <br />
                         <br />
-                        <input className={styles.formInput} type="text" name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}} placeholder='Enter your activity' required/>
+                        <input className={styles.formInput} type="text" name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}} value={EditClient.activity} placeholder='Enter your activity' disabled />
                         <br />
                         <br />
-                        <input className={styles.formInput} type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} placeholder='Enter your CEO ' required />
+                        <input className={styles.formInput} type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} value={EditClient.ceo} placeholder='Enter your CEO ' disabled />
                         <br />
                         <br />
-                        <input className={styles.formInput} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder='Enter your email' required/>
+                        <input className={styles.formInput} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} defaultValue={EditClient.email} placeholder='Enter your email'  />
                         <br />
                         <br />
-                        <input className={styles.formInput} type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} placeholder='Enter your Country' required />
+                        <input className={styles.formInput} type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} value={EditClient.country} placeholder='Enter your Country' disabled  />
                         <br />
                         <br />
-                        <input className={styles.formInput} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} placeholder='Enter your City' required/>
+                        <input className={styles.formInput} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} value={EditClient.city} placeholder='Enter your City' disabled />
                         <br />
                         <br />
-                        <input className={styles.formInput} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} placeholder='Enter your Zip Code' required />
+                        <input className={styles.formInput} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} value={EditClient.zipCode} placeholder='Enter your Zip Code' disabled />
                         <br />
                         <br/>
-                        <input className={styles.formInput} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} placeholder='Enter your address' required />
+                        <input className={styles.formInput} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} value={EditClient.address} placeholder='Enter your address' disabled />
                         <br/>
                         <br />
-                        {phone.map((phoneNumber, index) => {
+                        Phone number:
+                        
+                        {client.phone.map((phoneNumber) => {
                                 return(
-                                <div key={index}>
-                                    <input className={styles.formInput} type="number" name="phone" id="phone" placeholder= "Enter your phone number" value={phoneNumber.phone} onChange={e => handlePhoneChange(e, index)} required/>
-                                        {phone.length !== 1 && <button className={styles.addRemovePhoneBtn} onClick={() => handlePhoneRemove(index)}><FontAwesomeIcon icon={solid("xmark")} color = "black" className={styles.add_icon}/></button>}
-                                        {phone.length -1 === index && <button className={styles.addRemovePhoneBtn} onClick={handlePhoneAdd}><FontAwesomeIcon icon={solid("plus")} color = "black" className={styles.add_icon}/></button>}
-                                    <br />
-                                    <br />
-                                </div>
+                                  <>
+                                    <input className={styles.formInput}
+                                    name="phone" id="phone"
+                                    value={phoneNumber.phone} disabled/>
+                                  </>
                         );})}
                     </div>
-                  <button className={styles.Btn} > SAVE </button> 
+                  <button className={styles.Btn} onClick={() => {updateClient(EditClient._id)}} > SAVE </button> 
                 </Modal>
                 </tr>
                 )})}
               </tbody>
-              
           </table>
-          
-          <div className="paginationContainer">
+          <div className={styles.paginationContainer}>
             {allPages.map((page) => {
               if (page === currentPage) {
                 return (
@@ -325,7 +301,7 @@ const Edit = () => {
                         setCurrentPage(page);
                         getClients(page);
                       }}
-                      className="pagination">
+                      className={styles.pagination}>
                         {page}
                     </div>
                   )}

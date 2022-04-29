@@ -98,7 +98,7 @@ app.get("/getclient", checks.getClient);
 //Clients
 app.post("/getclients", clients.getClients);
 app.post("/getclient", clients.getClient);
-app.put("/updateClient", clients.editClient);
+app.put("/updateclient/:id", clients.editClient);
 app.post("/addclient", clients.AddClient);
 app.delete("/deleteclient/:id", clients.deleteClient);
 app.get("/editclient", clients.getClient);

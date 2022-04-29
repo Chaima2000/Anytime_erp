@@ -4,43 +4,43 @@ const clientSchema = new mongoose.Schema({
 
     type: {
         type:String,
-        required:true
+        required:false
     },
     society: {
         type:String,
-        required:true
+        required:false
     },
     activity: {
         type:String,
-        required:true
+        required:false
     },
     email:{
         type:String,
-        required:true
+        required:false
     },
     ceo: {
         type:String,
-        required:true
+        required:false
     },
     phone: [{
         type: Object,
-        required:true
+        required:false
     }],
     city: {
         type:String,
-        required:true
+        required:false
     },
     country: {
         type:String,
-        required:true
+        required:false
     },
     zipCode: {
         type:String,
-        required:true
+        required:false
     },
     address: {
         type:String,
-        required:true
+        required:false
     }
 })
 const client = mongoose.model("client", clientSchema);

@@ -123,22 +123,69 @@
 
 /*******Clients *****/
 .searchInput{
-  width: 240px;
+  width: 38%;
   font-size: 15px;
   outline: none;
-  height:40px;
+  height:39px;
   border-radius: 5px;
   border: 1px solid rgb(163, 163, 163);
 }
-table>tbody>tr {
-  transition: 0.1s ease-in-out;
-  cursor: pointer;
-  height: 35px;
+.search_form  {
+ float:right;
+ width: 50%;
+ margin-top: -3%;
+ text-align: center;
+ justify-content: center;
+ align-items: center
+ }
+/**********Pagination ********/
+.pagination {
+  display: inline-block;
 }
-table>tbody>tr:hover {
-  background-color: #fff;
+.paginationContainer{
+  cursor:pointer;
+  width: 83%;
+  justify-content: center;
+  text-align : center;
+}
+/*********Table *************/
+.table thead{
+  background: #e8e8e8;
+}
+.textThead{
+  color: black;
+  font-weight: bold;
+}
+.table{
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(185, 185, 185, 0.938)
+  
+}
+.table thead tr th {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  color: #FFFFFF;
+  opacity: 1;
+  padding: 10px;
+  vertical-align: top;
+  border: 1px solid #dee2e685;
+}
+.table tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.35px;
+  font-weight: bold;
+  color: #242D49;
+  background: white;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #dee2e685;
+}
+.table tbody tr:hover{
+  cursor:pointer;
   box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
 }
+/************    ****************/
 .viewClientDetails{
   padding-left: 35px;
   float: left;
@@ -146,17 +193,13 @@ table>tbody>tr:hover {
   width : 80%;
   top:2%;
 }
-.editClientDetails{
+.Details{
   position:relative;
   left: 20%;
   width : 70%;
   top:2%;
 }
-.search_form  {
- float: right;
-  width: 35%;
-  margin-top:-2%
-}
+
 .span{
   font-weight: bold;
 }
@@ -203,13 +246,43 @@ table>tbody>tr:hover {
   }
   .container{
     width: 100%;
+    
   }
   .search_form{
     position: relative;
-    left: -2%;
-    width: 80%;
+    float:left;
+    width: 50%;
   }
   .searchInput{
     width: 70%;
+  }
+}
+@media(max-width: 480px){
+  .table thead {
+    display: none;    
+  }
+  .table tr {
+    margin-bottom: 15px;
+  }
+  .table , .table tbody,.table tr , .table td{
+    display: block;
+    width: 100%;
+  }
+  .table tbody tr td {
+    text-align: left;
+    width: 68%;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1); 
+    padding-left: 28%;
+    position : relative;
+  }
+  .table td::before{
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 15%;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align : left;
   }
 }

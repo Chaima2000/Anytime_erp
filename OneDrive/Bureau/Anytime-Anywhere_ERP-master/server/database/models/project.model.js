@@ -1,6 +1,7 @@
 const mongoose = require ('mongoose');
 const projectSchema = new mongoose.Schema(
-{   createWith: {type: mongoose.Schema.Types.ObjectId , ref: 'client' ,  required: true },
+{   
+    createBy: {type: mongoose.Schema.Types.ObjectId , ref: 'user' },
     name: {
         type:String,
         required : true,
@@ -14,7 +15,7 @@ const projectSchema = new mongoose.Schema(
 ,
     client : {
         type:String,
-        required:true,
+        required: true,
     }
 ,
     description : {

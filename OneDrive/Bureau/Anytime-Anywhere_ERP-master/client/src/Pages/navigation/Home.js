@@ -23,7 +23,7 @@ function Home() {
             </div>
          </div>
          <div className={styles.floatting_icon}>
-            <a href='#Services'>
+            <a href="#Services">
             <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
             </a>
       </div>

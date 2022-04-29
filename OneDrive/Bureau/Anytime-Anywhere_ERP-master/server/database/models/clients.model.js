@@ -1,5 +1,7 @@
-const mongoose = require ('mongoose')
+const mongoose = require ('mongoose');
 const clientSchema = new mongoose.Schema({
+    createWith: {type: mongoose.Schema.Types.ObjectId , ref: 'project' },
+
     type: {
         type:String,
         required:true

@@ -77,25 +77,44 @@ exports.deleteProject =(req,res) => {
   });
 }
 
-exports.editProject = (req,res) => {
-  const id = req.body.id;
+exports.updateProject = async (req,res) => {
   const end = req.body.end;
+  const id = req.body.id;
+
   const state = req.body.state;
-  project.findById(id, (error, row) => {
-    if (row) {
+  console.log(end, state, id);
+  try{
+    await project.findById(id, (error, row) => {
       row.end = end;
       row.state = state;
-      try {
-        row.save();
-        res.send("SUCCESS");
-      } catch (error) {
-        res.send("ERROR");
-      }
-    } else {
-      res.send("ERROR");
-    }
-  });
-};
+      row.save()
+    });
+  } catch(err) {
+    console.log(err)
+  }
+  res.send('updated')
+}
+
+
+// exports.editProject = (req,res) => {
+//   const id = req.body.id;
+//   const newEnd = req.body.newEnd;
+//   const newState = req.body.newState;
+//   project.findById(id, (error, row) => {
+//     if (row) {
+//       row.end = newEnd;
+//       row.state = newState;
+//       try {
+//         row.save();
+//         res.send("SUCCESS");
+//       } catch (error) {
+//         res.send("ERROR");
+//       }
+//     } else {
+//       res.send("ERROR");
+//     }
+//   });
+// };
 
 
 exports.getMembers = async (req, res)=>{
@@ -120,3 +139,4 @@ exports.getProject = (req, res) => {
     }
   });
 };
+

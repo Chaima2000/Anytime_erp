@@ -105,7 +105,7 @@ app.get("/editclient", clients.getClient);
 
 //Projects
 app.post("/addproject", projects.addProject);
-app.post("/updateproject", projects.editProject);
+app.put("/updateproject", projects.updateProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);
 app.post("/getproject", projects.getProject);

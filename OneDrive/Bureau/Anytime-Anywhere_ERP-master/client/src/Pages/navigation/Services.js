@@ -21,7 +21,10 @@ function Services() {
          <div className={styles.left}>
          </div>
          <div className={styles.right}>
-          <img  />
+         <div className={styles.floatting_icon}>
+            <a href="#Services">
+            </a>
+      </div>
          </div>
        </div>
       </div>

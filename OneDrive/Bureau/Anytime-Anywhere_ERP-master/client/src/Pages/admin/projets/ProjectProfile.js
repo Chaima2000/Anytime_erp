@@ -14,7 +14,7 @@ function ProjectProfile(props) {
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
   const[end , setEnd] = useState("");
-  const[stateProject , setStateProject]= useState("");
+  const[state , setStateProject]= useState("");
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState([]);
   const [ checked , setChecked] = useState(false);
@@ -152,24 +152,16 @@ function deleteExpense(id) {
       })
 }
 
-const updateProject = () => {
-  axios.post("/updateproject", { id: id, end: end, stateProject:stateProject })
+const updateProject = (id) => {
+  axios.put("/updateproject", { end: end , state:state, id:id })
   .then((res) => {
     if (res.data === "ERROR") {
       alert("An error occured");
     } else {
-      axios
-      .post("/getproject")
-      .then((res) => {
-        if (res.data === "ERROR") {
-          alert("error !");
-        } else {
           setProjectProfile(res.data);
         }
       });
-    }
-  });
-}
+  };
 
 const updateTask = () => {
   axios.put("/updateTask",{id:id}).then( (response)=> {
@@ -264,7 +256,7 @@ return (
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
       <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.members}</span></p>
-      <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.state}</span></p>  
+      <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {projectProfile.client}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
       <p> Start at : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
@@ -277,12 +269,12 @@ return (
           id="state"
           styles={customStyles}
           options={options} 
-          value={projectProfile.state}
+          defaultValue={projectProfile.state}
           onChange={ (e) => { setStateProject(e.label)}}
       />
       <br />
       <br />
-      <button className="defaultBtn" onClick={() => {updateProject()}}>SAVE</button>
+      <button className="defaultBtn" onClick={() => {updateProject(projectProfile._id)}}>SAVE</button>
     </form>
     </div>
     <div className={styles.details}>

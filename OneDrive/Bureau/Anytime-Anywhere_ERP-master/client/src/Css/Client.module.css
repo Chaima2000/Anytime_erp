@@ -150,10 +150,10 @@
 }
 /*********Table *************/
 .table thead{
-  background: #e8e8e8;
+  background: #b784a7;
 }
 .textThead{
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .table{

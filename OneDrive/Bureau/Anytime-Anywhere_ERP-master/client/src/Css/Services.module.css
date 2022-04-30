@@ -3,7 +3,7 @@
 }
 .container{
   position:relative;
-  margin-top: 25%
+  margin-top: 15%
 }
 .title{
   text-align: center;
@@ -21,4 +21,41 @@
   width: 50%;
   min-width: 40rem;
   margin: 0 auto;
+}
+.content{
+display: flex;
+justify-content: center;
+}
+.left{
+  flex: 1;
+  text-align: center;
+}
+.left img{
+  width:65%;
+}
+.right{
+  flex:1;
+}
+.service{
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.service_icon{
+  position:relative;
+  margin-right: 2rem;
+}
+.inner_icons{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50% , -50%);
+}
+.service_text h3{
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-top:0%;
+  text-transform: uppercase;
+  color: var(--secondary-color);
 }

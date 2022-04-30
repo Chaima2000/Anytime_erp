@@ -32,15 +32,15 @@ exports.getUsers = async (req, res) => {
           { firstName: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
         ],
       })
-      .limit(10)
-      .skip((currentPage - 1) * 10)
+      .limit(5)
+      .skip((currentPage - 1) * 5)
       .sort({ date: -1 })
       .exec();
 
     const count = await user.countDocuments({
       firstName: { $regex: ".*" + searchTerm + ".*" },
     });
-    let totalPages = Math.ceil(count / 10);
+    let totalPages = Math.ceil(count / 5);
 
     for (let i = 1; i <= totalPages; i++) {
       allPages.push(i);

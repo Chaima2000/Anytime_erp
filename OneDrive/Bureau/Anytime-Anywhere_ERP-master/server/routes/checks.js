@@ -1,25 +1,20 @@
 const { check } = require("../database/models/checks.model");
 const { project  } = require("../database/models/project.model");
-const { client  } = require("../database/models/clients.model");
-exports.getClient = (req, res) => {
-  const id = req.body.id;
-  client.findById(id, (err, row) => {
-    if (row) {
-      res.send(row);
-    } else {
-      res.send("ERROR");
-    }
-  });
-}
-exports.getProject = async (req, res) => {
-  try {
-    const projectsList = await project.findById({createWith: req.params.id})
-    res.json(projectsList)
-  } catch(err) {
-    res.status(500).json({err:"Error"})
-  }
-};
+const { client  } = require("../database/models/user.model");
+exports.getUser= async (req,res)=>{
+  const id=req.params.id;
+  console.log(id);
 
+  try{
+    const projects = await client.findById(id).populate('createWith', ["_id"]);
+    console.log(projects);
+    res.json(projects)
+    
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({err:"error"})
+  }
+}
 
   exports.addCheck =  (req , res) => {
     const name = req.body.name;

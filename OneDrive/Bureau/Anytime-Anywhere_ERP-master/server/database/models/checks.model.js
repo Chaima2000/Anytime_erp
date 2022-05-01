@@ -2,7 +2,7 @@ const mongoose = require ('mongoose');
 const checkSchema = new mongoose.Schema(
 {   
     checkproject: {
-        type:String,
+        type:Array,
         required : false,
     }
 ,
@@ -13,7 +13,7 @@ ClientId : {
     
 ,
     user : {
-        type:String,
+        type:Array,
         required:true,
     }
 ,

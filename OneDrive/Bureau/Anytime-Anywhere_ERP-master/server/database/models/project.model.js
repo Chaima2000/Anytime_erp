@@ -2,6 +2,7 @@ const mongoose = require ('mongoose');
 const projectSchema = new mongoose.Schema(
 {   
     createBy: {type: mongoose.Schema.Types.ObjectId , ref: 'user' },
+    // createFor: {type: mongoose.Schema.Types.ObjectId , ref: 'client' },
     name: {
         type:String,
         required : true,

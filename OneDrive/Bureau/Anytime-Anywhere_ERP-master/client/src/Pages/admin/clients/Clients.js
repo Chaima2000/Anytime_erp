@@ -6,7 +6,6 @@ import axios from "axios" ;
 import Modal from 'react-modal';
 import Styles from "../../../Css/Project.module.css";
 import styles from "../../../Css/Client.module.css";
-// import table from "../../../Css/App.css";
 
 Modal.setAppElement('#root')
 function Clients(){
@@ -152,24 +151,12 @@ const Edit = () => {
                     <td data-label="Action"><span onClick={()=> {setViewClient(client) ; View()}}><FontAwesomeIcon  icon={solid("file") }  color="#1a9cd4" /></span>&nbsp;&nbsp;
                     <span onClick={()=> { setEditClient(client) ; Edit()}}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></span>&nbsp;&nbsp;
                     <span onClick={()=> {setDeleteClient(client) ; Delete()}}> <FontAwesomeIcon icon={solid("trash")} color = "#c71585"  /> </span></td> 
-                    <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
+                    <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} className={styles.deleteItem} 
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000010'
-                                                  },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      outline: 'none',
-                                                      backgroundColor : 'white',
-                                                      width: '400px',
-                                                      height: '195px',
-                                                      padding : '5px',
-                                                      position : 'relative',
-                                                      top:'25%',
-                                                      left: '35%',
-                                                      borderRadius: '15px'
-                                                      },
+                                                  }
                                               }
                                               }>
                         <h5  className={Styles.ModalParagraph}>Do you want to delete {DeleteClient.society} ? <br/></h5>
@@ -178,26 +165,16 @@ const Edit = () => {
                           <input type="button"  value="CONFIRM" className= {Styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteClient(DeleteClient._id)}}/>
                         </div>
                     </Modal>
-                    <Modal isOpen={viewItem} onRequestClose = {() => setViewItem(false)} 
+                    <Modal isOpen={viewItem} onRequestClose = {() => setViewItem(false)} className={styles.modelView}
                                                       shouldCloseOnOverlayClick={true} style = {
                                                         {  
                                                           overlay : {
                                                             backgroundColor : '#00000010'
-                                                          },
-                                                          content : {
-                                                              color : 'black' , 
-                                                              outline: 'none',
-                                                              backgroundColor : 'white',
-                                                              width: '480px',
-                                                              height: '465px',
-                                                              padding : '5px',
-                                                              position : 'relative',
-                                                              top:'15%',
-                                                              left: '29%',
-                                                              borderRadius: '15px'
-                                                              }}
+                                                          }
+                                                      }
                     }>
                     <h2 align="center"> {ViewClient.society}'s informations</h2>
+                    <div className={styles.avatarCircle}></div>
                       <div className={styles.viewClientDetails}>
                           <p>Activité: <span  className={styles.span}>{ViewClient.activity}</span></p>
                           <p>Type: <span  className={styles.span}>{ViewClient.type}</span></p>
@@ -211,66 +188,31 @@ const Edit = () => {
                           <p>zipCode :<span  className={styles.span}> {ViewClient.zipCode}</span> </p>
                       </div>
                     </Modal>
-                    <Modal isOpen={editItem} onRequestClose = {() => setEditItem(false)} 
+                    <Modal isOpen={editItem} onRequestClose = {() => setEditItem(false)} className={styles.modelEdit}
                                                       shouldCloseOnOverlayClick={true} style = {
                                                         {  
                                                           overlay : {
                                                             backgroundColor : '#00000010'
-                                                          },
-                                                          content : {
-                                                              color : 'black' , 
-                                                              outline: 'none',
-                                                              backgroundColor : 'white',
-                                                              width: '500px',
-                                                              height: '485px',
-                                                              paddingLeft : '15px',
-                                                              position : 'relative',
-                                                              top:'14%',
-                                                              left: '30%',
-                                                              borderRadius: '15px'
-                                                              }}
+                                                          }}
                     }>
                     <h2 align="center"> {EditClient.society}'s informations</h2>
                     <div className={styles.Details}>
-                        <select className={styles.selectInput} id="type" value={EditClient.type} onChange={(e)=>{setType(e.target.value)}} disabled>
-                          <option value="">  Select your type </option>
-                          <option value="particulier"> Particulier</option>
-                          <option value="professionnel">Professionnel</option>
-                        </select>
-                        <br />
-                        <br />
-                        <input className={styles.formInput} type="text" onChange={(e)=>{setSociety(e.target.value)}} value={EditClient.society} name="society" id="society" placeholder='Enter your Society' disabled/>
-                        <br />
-                        <br />
-                        <input className={styles.formInput} type="text" name="activity" id="activity" onChange={(e)=>{setActivity(e.target.value)}} value={EditClient.activity} placeholder='Enter your activity' disabled />
-                        <br />
-                        <br />
-                        <input className={styles.formInput} type="text" name="ceo" id="ceo" onChange={(e)=>{setCeo(e.target.value)}} value={EditClient.ceo} placeholder='Enter your CEO ' disabled />
-                        <br />
-                        <br />
+                        <p>Type: <b>{EditClient.type}</b> </p>
+                        <p>Society: <b>{EditClient.society}</b></p>
+                        <p>Activity: <b>{EditClient.activity}</b></p>
+                        <p>CEO: <b>{EditClient.ceo}</b></p>
+                        <p>Email:</p> 
                         <input className={styles.formInput} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} defaultValue={EditClient.email} placeholder='Enter your email'  />
-                        <br />
-                        <br />
-                        <input className={styles.formInput} type="text" name="country" id="country" onChange={(e)=>{setCountry(e.target.value)}} value={EditClient.country} placeholder='Enter your Country' disabled  />
-                        <br />
-                        <br />
-                        <input className={styles.formInput} type="text" name="city" id="city" onChange={(e)=>{setCity(e.target.value)}} value={EditClient.city} placeholder='Enter your City' disabled />
-                        <br />
-                        <br />
-                        <input className={styles.formInput} type="number" name="zipCode" id="zipCode" onChange={(e)=>{setZipCode(e.target.value)}} value={EditClient.zipCode} placeholder='Enter your Zip Code' disabled />
-                        <br />
-                        <br/>
-                        <input className={styles.formInput} type="text"  name=" address" id="address" onChange={(e)=>{setAddress(e.target.value)}} value={EditClient.address} placeholder='Enter your address' disabled />
-                        <br/>
-                        <br />
+                        <p>Country: <b>{EditClient.country}</b></p>
+                        <p>City: <b>{EditClient.city}</b></p>
+                        <p>Zip code: <b>{EditClient.zipCode}</b></p>
+                        <p>Address: <b>{EditClient.address}</b></p>
                         Phone number:
                         
                         {client.phone.map((phoneNumber) => {
                                 return(
                                   <>
-                                    <input className={styles.formInput}
-                                    name="phone" id="phone"
-                                    value={phoneNumber.phone} disabled/>
+                                    <b name="phone" id="phone"> {phoneNumber.phone}</b>
                                   </>
                         );})}
                     </div>

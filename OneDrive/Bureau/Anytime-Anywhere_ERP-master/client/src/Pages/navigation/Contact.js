@@ -51,7 +51,7 @@ function Contact() {
     <div className={Styles.four}></div>
     <div className={Styles.five}></div>
     <div className={Styles.six}></div> */}
-    <form className={styles.form} onSubmit={contactForm}>
+    <form className={styles.form} onSubmit={contactForm} id="contact">
       <h2 align="center">Contact Us</h2>
       <div className={styles.input_section}>
         <input  type="text" id="fullName" placeholder='Enter your full name' name="fullName" onChange={(event) => {setfullName(event.target.value)}} className={styles.input} required /> <br /> <br />

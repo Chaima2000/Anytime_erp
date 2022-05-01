@@ -126,24 +126,12 @@ return (
             <span onClick = {() => {setDeleteProject(project) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
             <span className={styles.icons} onClick={() => {Disable()}}><FontAwesomeIcon icon={solid("lock")} color = "#808080" /></span>
 
-            <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
+            <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} className={styles.deleteItem}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000020'
                                                   },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      outline: 'none',
-                                                      backgroundColor : 'white',
-                                                      width: '400px',
-                                                      height: '195px',
-                                                      padding : '5px',
-                                                      position : 'relative',
-                                                      top:'25%',
-                                                      left: '35%',
-                                                      borderRadius: '15px'
-                                                      },
                                               }
                                               }>
                     <h5  className={styles.ModalParagraph}>Do you want to delete {DeleteProject.name} ? <br/></h5>

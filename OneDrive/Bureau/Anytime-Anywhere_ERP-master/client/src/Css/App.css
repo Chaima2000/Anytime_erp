@@ -48,7 +48,9 @@ table td {
   border-radius: 10px;
   box-shadow: 0 0 2px;
 }
-
+.body{
+  margin : 0;
+}
 .addBtn {
   cursor: pointer;
   color: var(--secondary-color);

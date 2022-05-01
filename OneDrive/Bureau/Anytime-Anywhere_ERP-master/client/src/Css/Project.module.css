@@ -15,6 +15,18 @@ body {
 .FieldInput{
   width: 90%;
 }
+.deleteItem{
+  color : black; 
+  outline: none;
+  background: white;
+  width: 400px;
+  height: 195px;
+  padding : 5px;
+  position : relative;
+  top:25%;
+  left: 35%;
+  border-radius: 15px;
+}
 .btn{
   width: 20%;
   height: 40px;
@@ -132,6 +144,13 @@ body {
   width: 98%;
   height: 575px;
 }
+.modelEdit{
+    color : black; 
+    width: 450px;
+    height: 395px;
+    outline: none;
+    background: #f7f7f7 
+}
 .details{
   border-bottom: 1px solid rgb(199, 199, 199);
 }
@@ -201,7 +220,7 @@ body {
   padding: 12px;
 }
 /**Tasks**/
-.DeleteTask{
+.BtnTask{
   padding: 12px;
   border: 1px solid grey;
   border-radius: 7px;
@@ -229,6 +248,7 @@ body {
   .Bloc{
     font-size: 19px;
     display: block;
+    height:280px;
     padding: 15px;
     width: 90%;
     margin: 15px;
@@ -248,4 +268,16 @@ body {
   position: relative;
   top:-95%;
   }
+  .deleteItem{
+    position:relative;
+    left: 7%;
+    width: 87%;
+  }
+  .modelEdit{
+    position:relative;
+    left: 7%;
+    width: 87%;
+    height: 635px;
+  }
+
 }

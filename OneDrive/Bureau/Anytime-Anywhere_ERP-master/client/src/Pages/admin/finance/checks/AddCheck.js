@@ -61,16 +61,11 @@ function Checks() {
       background: 'rgba(224, 222, 222, 0.2)',
       opacity:1,
       outline: 'none',
-      width: '300px',
       borderRadius: '35px',
       height: '19px',
       boxShadow: state.isFocused ? null : null,
     })
   }
-  // projects 
-  const projectsClient= [
-    {}
-  ]
     //State options //
     const options = [
       { value: 'paid', label: 'paid' },

@@ -279,7 +279,7 @@ return (
     </div>
     <div className={styles.details}>
         <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
-        <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} 
+        <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} className={styles.modelEdit}
                                               shouldCloseOnOverlayClick={true}
                                               style = {
                                                 {  
@@ -348,8 +348,8 @@ return (
                <h4>Description : {task.descriptionTask} </h4>
                <h4>State : {task.stateTask} </h4>
                <h4>Priority : {task.priorityTask} </h4>
-               <input className={styles.DeleteTask} type="button" value="Delete" onClick={()=> { setDelete(task) ; deletePopUp() }} />
-               <input className={styles.DeleteTask} type="button" value="Edit" onClick={()=> { setEditTasks(task) ; editTasks() }} />
+               <input className={styles.BtnTask} type="button" value="Delete" onClick={()=> { setDelete(task) ; deletePopUp() }} />
+               <input className={styles.BtnTask} type="button" value="Edit" onClick={()=> { setEditTasks(task) ; editTasks() }} />
                </div>
            </>
           )
@@ -457,19 +457,13 @@ return (
         <div className={styles.details}>
         <h2>Expenses <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
         <Modal isOpen={expenseIsOpen} onRequestClose = {() => setExpenseIsOpen(false)} 
-                                              shouldCloseOnOverlayClick={true} className={styles.Modal}
+                                              shouldCloseOnOverlayClick={true} className={styles.modelEdit}
                                               style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000020'
                                                   },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      width: '450px',
-                                                      height: '395px',
-                                                      outline: 'none',
-                                                      backgroundColor : '#f7f7f7', 
-                                                      },
+                                                  
                                                }
                                                }  
                                               >
@@ -520,8 +514,8 @@ return (
                <h4>Name : {expense.expenseName} </h4>
                <h4>Description : {expense.expenseDescription} </h4>
                <h4>Value : {expense.expenseValue} </h4>
-               <input className={styles.DeleteTask} type="button" value="Delete" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
-               <input className={styles.DeleteTask} type="button" value="Edit"  />
+               <input className={styles.BtnTask} type="button" value="Delete" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
+               <input className={styles.BtnTask} type="button" value="Edit"  />
             <Modal isOpen={deleteExpenses} onRequestClose = {() => setDeleteExpense(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  

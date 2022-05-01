@@ -14,17 +14,23 @@ exports.deleteTask =(req,res) => {
     }
   });
 }
+
 exports.editTask = async (req,res) => {
-  try{
+  const priorityTask = req.body.priorityTask;
+    const stateTask = req.body.stateTask;
     const id = req.body.id;
-    const updates = req.body;
-    const options  = {new : true}
-    const result = await task.findByIdAndUpdate ( id, updates , options);
-    res.send(result);
-  }catch( error) {
-    console.log(error);
+  try{
+    await task.findById(id, (error, row) => {
+      row.priorityTask = priorityTask;
+      row.stateTask= row.stateTask;
+      row.save();
+    });
+  } catch(err) {
+    console.log(err);
   }
-};
+  res.send('updated')
+}
+
 
 exports.addTask =  (req , res) => {
   const nameTask = req.body.nameTask;

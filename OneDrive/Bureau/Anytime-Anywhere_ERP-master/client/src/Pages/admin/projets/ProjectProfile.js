@@ -115,7 +115,7 @@ function ProjectProfile(props) {
       background: 'rgba(224, 222, 222, 0.2)',
       opacity:1,
       outline: 'none',
-      width: '235px',
+      width: '82%',
       borderRadius: '35px',
       height: '48px',
       boxShadow: state.isFocused ? null : null,
@@ -162,18 +162,16 @@ const updateProject = (id) => {
         }
       });
   };
-
-const updateTask = () => {
-  axios.put("/updateTask",{id:id}).then( (response)=> {
-    setTasksList(response.data);
-    swal({
-      title: "SUCCESS",
-      text: "Added succesfully!",
-      icon: "success",
-      button: "OK!",
-    });
-   })
-}
+  const updateTask = (id) => {
+    axios.put(`/updateTask/${id}`, {priorityTask:priorityTask,stateTask:stateTask, id:id })
+    .then((res) => {
+      if (res.data === "ERROR") {
+        alert("An error occured");
+      } else {
+        setTasksList(res.data);
+    } 
+    })
+    }
 const addtask =(e) => {
     e.preventDefault();
     const data = new FormData();
@@ -251,8 +249,7 @@ const handleChange = (e) => {
 
 return (
     <>
-    <div className={styles.Details}>
-      <form>
+      <form className={styles.Details}>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
       <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.members}</span></p>
@@ -261,10 +258,11 @@ return (
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
       <p> Start at : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
       <p>End at : </p>
-      <input type="date" defaultValue={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}}  className={styles.formInput}/> 
+      <input type="date" defaultValue={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}}  className={styles.endDate}/> 
       <br />
       <br />
       <Select 
+      className={styles.editState}
           placeholder="Edit State"
           id="state"
           styles={customStyles}
@@ -276,7 +274,6 @@ return (
       <br />
       <button className="defaultBtn" onClick={() => {updateProject(projectProfile._id)}}>SAVE</button>
     </form>
-    </div>
     <div className={styles.details}>
         <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
         <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} className={styles.modelEdit}
@@ -285,19 +282,7 @@ return (
                                                 {  
                                                   overlay : {
                                                   backgroundColor : '#00000020'
-                                                  },
-                                                  content : {
-                                                    marginTop: '4%',
-                                                    background: '#fff',
-                                                    padding:'25px',
-                                                    width: '30%',
-                                                    height: '415px',
-                                                    overflow: 'scroll',
-                                                    marginLeft: '28%',
-                                                    borderRadius:  '12px',
-                                                    fontSize: '15px',
-                                                      
-                                                      },
+                                                  }
                                                }
                                                }  
                                               >
@@ -359,24 +344,12 @@ return (
       <br />
       <br />
         <button onClick={showMoreItems} className={styles.readMore}> View All Tasks </button>
-            <Modal isOpen={deleteTask} onRequestClose = {() => setDeleteTask(false)} 
+            <Modal isOpen={deleteTask} onRequestClose = {() => setDeleteTask(false)} className={styles.deleteItem}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000020'
-                                                  },
-                                                  content : {
-                                                    color : 'black' , 
-                                                      outline: 'none',
-                                                      backgroundColor : 'white',
-                                                      width: '400px',
-                                                      height: '195px',
-                                                      padding : '5px',
-                                                      position : 'relative',
-                                                      top:'25%',
-                                                      left: '35%',
-                                                      borderRadius: '15px'
-                                                      },
+                                                  }
                                                }
                                                }>
                     <p className={styles.ModalParagraph}>Do you want to delete {taskDelete.nameTask} ?</p>
@@ -387,18 +360,13 @@ return (
                     </div>
             </Modal>
             <Modal isOpen={taskEdit} onRequestClose = {() => setEdit(false)} 
-                                              shouldCloseOnOverlayClick={true} className={styles.Modal}
+                                              shouldCloseOnOverlayClick={true} className={styles.modelEdit}
                                               style = {
                                                 {  
                                                   overlay : {
                                                   backgroundColor : '#00000020'
                                                   },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      width: '450px',
-                                                      outline: 'none',
-                                                      backgroundColor : '#f7f7f7', 
-                                                      },
+                                         
                                                }
                                                }  
                                                >
@@ -411,8 +379,7 @@ return (
                       label = " Name "
                       className={styles.select}
                       variant="outlined"
-                      defaultValue={editTask.nameTask}
-                      onChange={ (e) => { setNameTask(e.target.value)}}
+                      value={editTask.nameTask}
                        
                     />
                 <br />
@@ -422,9 +389,8 @@ return (
                       label = " Description "
                       className={styles.select}
                       variant="outlined"
-                      defaultValue={editTask.descriptionTask}
-                      onChange={ (e) => { setDescriptionTask(e.target.value)}}
-                       
+                      value={editTask.descriptionTask}
+                                            
                     />
                 <br />
                 <br />
@@ -436,15 +402,11 @@ return (
                           onChange={ (e) => { setStateTask(e.label)}}
                           styles={customStyles}
                           options={options} 
-                          
-                    />
+                          />
                 </div>
-                <br />
-                <br />
-                
                   <h4><label>Task's priority</label> &nbsp;&nbsp;
-                  <input  type="checkbox" defaultValue="urgent"   onChange= { (event) => { handleChange(event) }} /></h4> <br /> <br />
-                <button className={styles.btn} onClick = { () => { updateTask(editTask._id)}}>save</button>
+                  <input  type="checkbox" defaultValue="urgent"   onChange= { (event) => { handleChange(event) }} /></h4>
+                <button className={styles.btnT} onClick = { () => { updateTask(editTask._id)}}>save</button>
             </form>
             </Modal>
 
@@ -455,7 +417,7 @@ return (
   </div>
         <br/>
         <div className={styles.details}>
-        <h2>Expenses <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
+        <h2>Expenses <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_iconExp} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
         <Modal isOpen={expenseIsOpen} onRequestClose = {() => setExpenseIsOpen(false)} 
                                               shouldCloseOnOverlayClick={true} className={styles.modelEdit}
                                               style = {
@@ -516,24 +478,12 @@ return (
                <h4>Value : {expense.expenseValue} </h4>
                <input className={styles.BtnTask} type="button" value="Delete" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
                <input className={styles.BtnTask} type="button" value="Edit"  />
-            <Modal isOpen={deleteExpenses} onRequestClose = {() => setDeleteExpense(false)} 
+            <Modal isOpen={deleteExpenses} onRequestClose = {() => setDeleteExpense(false)} className={styles.deleteItem}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000020'
-                                                  },
-                                                  content : {
-                                                      color : 'black' , 
-                                                      outline: 'none',
-                                                      backgroundColor : 'white',
-                                                      width: '400px',
-                                                      height: '195px',
-                                                      padding : '5px',
-                                                      position : 'relative',
-                                                      top:'25%',
-                                                      left: '35%',
-                                                      borderRadius: '15px'
-                                                      },
+                                                  }
                                                }
                                                }>
                     <p className={styles.ModalParagraph}>Do you want to delete { expenseDelete.expenseName} ? <br/></p>
@@ -549,7 +499,7 @@ return (
         <br />
   <br />
   <br />
-        <div className="paginationContainer">
+        <div className={styles.paginationContainer}>
       {allPages.map((page) => {
         if (page === currentPage) {
           return (

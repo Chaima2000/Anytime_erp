@@ -12,6 +12,15 @@ body {
     border: 1px solid rgb(212, 211, 211);
     border-radius: 30px;
 }
+.endDate{
+  width: 81%;
+    padding: 5px;
+    height: 35px;
+    background: rgba(224, 222, 222, 0.2);
+    outline:none;
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 30px;
+}
 .FieldInput{
   width: 90%;
 }
@@ -33,6 +42,19 @@ body {
   position: relative;
   margin-top: 5%;
   left: -10%;
+  padding: 5px;
+  background: rgb(187, 75, 142);
+  color:white;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
+}
+.btnT{
+  width: 20%;
+  height: 40px;
+  position: relative;
+  margin-top: -7%;
+  left:40%;
   padding: 5px;
   background: rgb(187, 75, 142);
   color:white;
@@ -141,15 +163,21 @@ body {
 .Details{
   border-bottom: 1px solid rgb(199, 199, 199);
   padding-left: 25px;
-  width: 98%;
+  width: 90%;
   height: 575px;
 }
+
 .modelEdit{
-    color : black; 
-    width: 450px;
-    height: 395px;
-    outline: none;
-    background: #f7f7f7 
+  background: #fff;
+  padding:25px;
+  width: 30%;
+  height: 415px;
+  margin-left: 28%;
+  border-radius:  12px;
+  font-size: 15px;
+  position:relative;
+  top:15%;
+  left:7%;
 }
 .details{
   border-bottom: 1px solid rgb(199, 199, 199);
@@ -159,9 +187,16 @@ body {
   font-weight: bold;
 }
 .add_icon{
-  position: relative;
-  left: 88%;
+  float:right;
   cursor:pointer
+}
+.add_iconExp{
+  float:right;
+  cursor: pointer;
+}
+.add_iconExp:hover{
+  color: rgb(187, 75, 142);
+  transform: scale(1.1);
 }
 .add_icon:hover{
   color: rgb(187, 75, 142);
@@ -231,6 +266,9 @@ body {
   margin: 4px;
   cursor: pointer;
 }
+.paginationContainer{
+  text-align: center;
+}
 
  @media (max-width: 480px) {
   .btn{
@@ -240,17 +278,21 @@ body {
     width: 330px;
   }
   .bloc_Section{
-    width: 100%;
+    width: 95%;
+    
    margin-top: 100px;
    margin-left: -13px;
 
+  }
+  .paginationContainer{
+    text-align:center;
   }
   .Bloc{
     font-size: 19px;
     display: block;
     height:280px;
     padding: 15px;
-    width: 90%;
+    width: 80%;
     margin: 15px;
   }
   .search_box{
@@ -275,9 +317,25 @@ body {
   }
   .modelEdit{
     position:relative;
-    left: 7%;
-    width: 87%;
-    height: 635px;
+    outline:none;
+    left: -22%;
+    width: 77%;
+    height: 405px;
+  }
+  .Details{
+    width:95%;
+  }
+  .add_icon{
+    float:right
+  }
+  .add_iconExp{
+    float:right;
+  }
+  .formInput{
+    width:90%
+  }
+  .endDate{
+    width:78%;
   }
 
 }

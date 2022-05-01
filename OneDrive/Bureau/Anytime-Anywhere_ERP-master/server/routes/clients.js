@@ -82,7 +82,6 @@ const { client } = require("../database/models/clients.model");
     exports.editClient = async (req,res) => {
       const email = req.body.email;
       const id = req.body.id;
-      console.log(email,id);
       try{
         await client.findById(id, (error, row) => {
           row.email = email;
@@ -93,6 +92,7 @@ const { client } = require("../database/models/clients.model");
       }
       res.send('updated')
     }
+    
     exports.getClient = (req, res) => {
       const id = req.body.id;
       client.findById(id, (err, row) => {

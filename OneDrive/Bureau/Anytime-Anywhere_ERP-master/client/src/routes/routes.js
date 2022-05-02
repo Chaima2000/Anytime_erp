@@ -16,6 +16,8 @@ import TeamProjects from "../Pages/team/Projects";
 import Bank from "../Pages/admin/finance/bank/Bank";
 import AddBank from "../Pages/admin/finance/bank/AddBank";
 import Checks from "../Pages/admin/finance/checks/AddCheck";
+import Addreceipts from "../Pages/admin/finance/receipts/Addreceipts";
+import Receipts from "../Pages/admin/finance/receipts/Receipts";
 import AddClients from "../Pages/admin/clients/AddClients";
 import Clients from "../Pages/admin/clients/Clients";
 import AddProject from "../Pages/admin/projets/AddProject";
@@ -100,8 +102,11 @@ export const superAdminRoutes = (
       <Route path="/banks/add" exact>
         <AddBank />
       </Route>
-      <Route path="/receipts" exact>
-        <div align="center">Receipts</div>
+      <Route path="/receipts/add" exact>
+        <Addreceipts />
+      </Route>
+      <Route path="/receipts/list" exact>
+        <Receipts />
       </Route>
       <Route path="/checks" exact>
         <Checks />

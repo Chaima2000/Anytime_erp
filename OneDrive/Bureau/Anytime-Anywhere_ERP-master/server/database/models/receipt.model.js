@@ -1,23 +1,23 @@
 const mongoose = require ('mongoose');
-const checkSchema = new mongoose.Schema(
+const receiptSchema = new mongoose.Schema(
 {   
     project: {
         type:String,
         required : false,
     }
 ,
-    ClientId : {
+    client : {
         type:String,
         required:true, 
     }
     
 ,
-    user : {
-        type:Array,
+    bank : {
+        type:String,
         required:true,
     }
 ,
-    name : {
+    amount : {
         type:String,
         required:true,
     }
@@ -27,22 +27,12 @@ const checkSchema = new mongoose.Schema(
         required:true,
     }
 ,
-    value :{
-        type : String,
-        required:true,
-    }
-,
     state : {
         type: String,
         required: true,
     }
-, 
-   type : {
-       type : String , 
-       required : true,
-   }
 },
 
 )
-const check = mongoose.model("checks", checkSchema);
-module.exports = { check };
+const receipt = mongoose.model("receipts", receiptSchema);
+module.exports = { receipt };

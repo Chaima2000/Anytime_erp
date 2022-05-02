@@ -1,0 +1,9 @@
+.formInput{
+    width: 88%;
+    margin-top: 20px;
+    background: rgba(222, 220, 220, 0.2);
+    outline:none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+  }

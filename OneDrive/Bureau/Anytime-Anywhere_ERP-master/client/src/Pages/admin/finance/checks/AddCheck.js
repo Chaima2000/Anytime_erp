@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect , useRef } from 'react';
 import Select  from 'react-select';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -7,25 +7,24 @@ function Checks() {
   const [name, setName] = useState("");
   const [description , setDescription] = useState("");
   const [value, setValue] = useState("");
+  // const selectInputRef = useRef();
   const [type, setType] = useState("");
   const [state, setState] = useState("");
   const [membersList , setMembersList] = useState([]);
-  
 
   const [user , setUser] = useState("");
   const [clientsList , setClientsList] = useState([]);
   const [ClientId , setClient] = useState("");
   const [projectsList, setprojectsList] = useState([]);
-  const [clientId, setClientId] = useState("");
-  const [checkproject, setProject] = useState("");
+  const [project, setProject] = useState("");
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
     document.getElementById("state").value="";
-    document.getElementById("Client").value= "";
+    setClient([ { client : ""}]);
     document.getElementById("type").value= "";
-    document.getElementById("user").value= "";
-    document.getElementById("checkproject").value= "";
+    setUser([ { user : ""}]);
+    document.getElementById("project").options= [""];
     document.getElementById("value").value= "";
   }
   useEffect(() => {
@@ -40,6 +39,7 @@ function Checks() {
       }
     });
   }, []);
+
   useEffect(() => {
     axios.get("/getclients").then((res) => {
       if (res.data){
@@ -52,6 +52,17 @@ function Checks() {
       }
     });
   }, []);
+  useEffect( ()=> {
+    axios.get("/getprojects").then( (res)=>{
+      if(res.data){
+        var options=[]
+        res.data.map( (element) => {
+          options.push({value:element._id,label: element.name});
+        })
+        setprojectsList(options)
+      }
+    })
+  })
   const customStyles = {
     control: (provided , state) => ({
       ...provided,
@@ -77,23 +88,7 @@ function Checks() {
       {value: 'income' , label: 'income'},
       { value: 'outcome' , label: 'outcome'}
     ]
-    const handle = (event) => {
-      setProject(event.value);
-      console.log(event.value)
-  }
-  useEffect(() => {
-    axios.get("/getproject",{ ClientId }).then((res) => {
-      if (res.data) {
-        var options = []
-        res.data.map((element) => {
-          options.push({value: element._id, label: element.name} );
-        })
-        setprojectsList(options);
-      }
-    });
-  },[]);
-  
- 
+    
   
 
   const addcheck =(e) => {
@@ -101,12 +96,12 @@ function Checks() {
     const data = new FormData();
     data.append("name",name);
     data.append("state",state);
-    data.append("ClientId",ClientId);
+    data.append("client",ClientId);
     data.append("description",description);
     data.append("type",type);
     data.append("user",user);
     data.append("value",value);
-    data.append('checkproject', checkproject);
+    data.append('project', project);
     const datax = {
       name:name,
       state:state,
@@ -115,7 +110,7 @@ function Checks() {
       type:type,
       user:user,
       value:value,
-      checkproject:checkproject
+      project:project
     }
     axios.post("/addcheck", datax).then((res)=>{
       if(res.data === "ERROR"){
@@ -136,7 +131,6 @@ function Checks() {
     }
     )}
     
-
   return (
     <>
       <section className={styles.section}>        
@@ -146,17 +140,18 @@ function Checks() {
             <h2 className={styles.h2}>Add check: </h2>
             <div className={styles.div1}>
               <input type="text" id="name" className={styles.formInput} placeholder="Enter name" onChange= { (e) => { setName(e.target.value)}} required />
-              <textarea type="text" id="description" className={styles.formInput} placeholder="Enter description" onChange= { (e) => { setDescription(e.target.value)}} required />
+              <textarea id="description" className={styles.formInput} placeholder="Enter description" onChange= { (e) => { setDescription(e.target.value)}} required />
               <input type="number" id="value" className={styles.formInput} placeholder="Enter value" onChange= { (e) => { setValue(e.target.value)}} required />
               <br />
               <br />
             <Select 
+            
                 placeholder="Select Type"
                 name="type"
                 id="type"
-                onChange= { (e) => { setType(e.label)}}
                 styles={customStyles}
-                options={Type} 
+                onChange= {(e) => setType(e.value)}
+                options={Type}              
                 required
           />
             </div>
@@ -174,9 +169,9 @@ function Checks() {
               <br />
               <Select 
                       placeholder="Select Client"
-                      name="ClientId"
-                      id="ClientId"
-                      onChange= { (e) => { setClient(e.value); console.log(e.value)}}
+                      name="client"
+                      id="client"
+                      onChange= { (e) => { setClient(e.label)}}
                       styles={customStyles}
                       options={clientsList} 
                       required
@@ -184,12 +179,12 @@ function Checks() {
               <br />
               <Select 
                       placeholder="Select project"
-                      name="checkproject"
-                      id="checkproject"
+                      name="project"
+                      id="project"
                       styles={customStyles}
                       options={projectsList} 
-                      onchange={ (e) => {handle(e)}}
-                      // required
+                      onChange= { (e) => { setProject(e.label) ; console.log(e.label)}}
+                      required
                 />
           <br />
           <Select 

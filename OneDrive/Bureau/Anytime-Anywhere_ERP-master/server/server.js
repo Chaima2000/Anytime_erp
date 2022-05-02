@@ -45,6 +45,7 @@ app.use(
 const authentication = require("./routes/authentication");
 const users = require("./routes/users");
 const banks = require("./routes/banks");
+const receipts = require("./routes/receipts");
 const checks = require("./routes/checks");
 const clients = require("./routes/clients");
 const projects = require("./routes/project");
@@ -92,8 +93,15 @@ app.delete("/deletebank/:id", banks.deleteBank);
 app.post("/addbank", banks.addBank);
 
 // Checks 
-app.get("/check/getuser/:id", checks.getUser);
+// app.get("/check/getuser/:id", checks.getUser);
 app.post("/addcheck", checks.addCheck);
+app.get("/getprojects", checks.getProjects);
+
+//Receipts
+app.post("/addreceipt",receipts.addReceipt);
+app.get("/getbank",receipts.getBanks);
+app.get("/getprojects",checks.getProjects);
+
 //Clients
 app.post("/getclients", clients.getClients);
 app.post("/getclient", clients.getClient);
@@ -104,6 +112,7 @@ app.get("/editclient", clients.getClient);
 
 //Projects
 app.post("/addproject", projects.addProject);
+app.post("/getclient/:id", projects.getClient);
 app.put("/updateproject", projects.updateProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);

@@ -38,6 +38,11 @@ exports.getprojects = async (req, res) => {
     console.error(err.message);
   }
 };
+exports.getClient = async (req, res)=>{
+  const id=req.body.id;
+  const clientList = await client.findById(id).exec()
+  res.send(clientList);
+}
 exports.addProject =  (req , res) => {
   const name = req.body.name;
   const state = req.body.state;

@@ -1,19 +1,22 @@
+const { pipeline } = require("nodemailer/lib/xoauth2");
 const { check } = require("../database/models/checks.model");
 const { project  } = require("../database/models/project.model");
-const { client  } = require("../database/models/user.model");
-exports.getUser= async (req,res)=>{
-  const id=req.params.id;
-  console.log(id);
-
+const { client  } = require("../database/models/clients.model");
+exports.getProject= async  (req,res)=>{
+  const id=req.client._id;
+  console.log(id)
   try{
-    const projects = await client.findById(id).populate('createWith', ["_id"]);
-    console.log(projects);
-    res.json(projects)
-    
-  }catch(err){
-    console.log(err);
-    return res.status(500).json({err:"error"})
-  }
+       const liste = await project.findById(id).populate('createFor', "_id")
+      res.json(liste)}
+       catch(err){
+         return res.status(500).json({err: "error"});
+       }
+     
+  
+}
+exports.getProjects = async (req, res)=>{
+  const projectsList = await project.find({}).exec()
+  res.send(projectsList);
 }
 
   exports.addCheck =  (req , res) => {
@@ -24,7 +27,7 @@ exports.getUser= async (req,res)=>{
     const type = req.body.type;
     const value = req.body.value;
     const user = req.body.user ;
-    const checkproject = req.body.checkproject;
+    const project = req.body.project;
     const newCheck = new check ( {
       name: name,
       state: state,
@@ -33,7 +36,7 @@ exports.getUser= async (req,res)=>{
       type: type,
       value: value,
       user:user,
-      checkproject:checkproject,
+      project:project,
     });
     try {
         newCheck.save();

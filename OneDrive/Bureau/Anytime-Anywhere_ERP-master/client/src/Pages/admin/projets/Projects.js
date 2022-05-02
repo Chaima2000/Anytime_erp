@@ -19,6 +19,7 @@ function Projects(props) {
   const [allPages, setAllPages] = useState([]);
   let { id } = useParams();
   Modal.setAppElement('#root')
+  
   function getProjects(page) {
     axios
       .post("/getprojects", { currentPage: page, searchTerm: searchTerm })
@@ -32,6 +33,7 @@ function Projects(props) {
         }
       });
   }
+
   useEffect(() => {
     getProjects(currentPage);
   }, []);

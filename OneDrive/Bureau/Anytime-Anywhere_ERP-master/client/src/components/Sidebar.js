@@ -94,7 +94,7 @@ function Sidebar() {
               toggleSidebar();
             }}
             className={styles.link}
-            to="/receipts"
+            to="/receipts/add"
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("receipt")} /> &nbsp; Receipts

@@ -1,14 +1,38 @@
 .dropdown {
   position: absolute;
+  text-align: center;
   right: 10px;
   top: 70px;
   z-index: 999;
-  width: 20vw;
-  height: 40vh;
+  width: 22vw;
+  height: 50vh;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 4px;
-  background-color: white;
+  background-color:  #c1388a;
+}
+.container{
+  border-radius: 50%;
+  border: 10px solid white;
+  width:45%;
+  height:42%;
+  background: black;
+}
+.setting{
+  float:right
+}
+.dropdown_content{
+  background: white;
+  padding:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  position: absolute;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 19px;
+  border-top-right-radius: 19px;
+  height: 160px
 }
 .section{
   border : 1px solid rgb(196, 194, 194);

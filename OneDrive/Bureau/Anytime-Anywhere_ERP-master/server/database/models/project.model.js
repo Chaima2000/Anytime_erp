@@ -1,8 +1,11 @@
 const mongoose = require ('mongoose');
 const projectSchema = new mongoose.Schema(
 {   
-    createBy: {type: mongoose.Schema.Types.ObjectId , ref: 'user' },
-    createFor: {type: mongoose.Schema.Types.ObjectId , ref: 'client' , required:true },
+    user :[
+        
+            { type :mongoose.Schema.Types.ObjectId,ref :'user',required :true},
+    ],
+    client: {type: mongoose.Schema.Types.ObjectId , ref: 'client' , required: true},
     name: {
         type:String,
         required : true,
@@ -14,11 +17,11 @@ const projectSchema = new mongoose.Schema(
     }
     
 ,
-    client : {
-        type:String,
-        required: true,
-    }
-,
+//     client : {
+//         type:String,
+//         required: true,
+//     }
+// ,
     description : {
         type:String,
         required:true,
@@ -34,11 +37,11 @@ const projectSchema = new mongoose.Schema(
         required:false,
     }
 ,
-    members : {
-        type: Array,
-        required: true,
-    }
-, 
+//     members : [{
+//         type: Object,
+//         required: true,
+//     }]
+// , 
    file : {
        type : Array , 
        required : false,

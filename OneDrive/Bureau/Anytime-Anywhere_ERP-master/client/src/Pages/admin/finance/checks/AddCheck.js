@@ -1,4 +1,5 @@
-import React, { useState , useEffect , useRef } from 'react';
+import React, { useState , useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import Select  from 'react-select';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -10,13 +11,15 @@ function Checks() {
   // const selectInputRef = useRef();
   const [type, setType] = useState("");
   const [state, setState] = useState("");
-  const [membersList , setMembersList] = useState([]);
-
+  // const [membersList , setMembersList] = useState([]);
+// const [projectId] = useParams();
   const [user , setUser] = useState("");
   const [clientsList , setClientsList] = useState([]);
   const [ClientId , setClient] = useState("");
   const [projectsList, setprojectsList] = useState([]);
-  const [project, setProject] = useState("");
+  const [project, setProject] = useState({});
+  // console.log(projectsList);
+  console.log(project);
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
@@ -27,42 +30,40 @@ function Checks() {
     document.getElementById("project").options= [""];
     document.getElementById("value").value= "";
   }
-  useEffect(() => {
-    axios.get(`/getmembers`).then((res) => {
-      if (res.data){
-        var options = []
-        res.data.map((element) => {
-            var fullName = element.firstName + " " + element.lastName;
-            options.push({value: element._id, label: fullName} );
-        })
-        setMembersList(options);
-      }
-    });
-  }, []);
-
-  // useEffect((id) => {
-  //   axios.get(`/check/getclient/${id}`).then((res) => {
+  // useEffect(() => {
+  //   axios.get(`/getmembers`).then((res) => {
   //     if (res.data){
   //       var options = []
   //       res.data.map((element) => {
-  //         options.push({value: element._id, label: element.society} );
+  //           var fullName = element.firstName + " " + element.lastName;
+  //           options.push({value: element._id, label: fullName} );
   //       })
-  //       setClientsList(options);
-        
+  //       setMembersList(options);
   //     }
   //   });
   // }, []);
   useEffect( ()=> {
-    axios.get("/getprojects").then( (res)=>{
+    axios.get(`/getprojects`).then( (res)=>{
       if(res.data){
         var options=[]
         res.data.map( (element) => {
           options.push({value:element._id,label: element.name});
         })
         setprojectsList(options)
+        
       }
     })
-  })
+  }, [])
+  useEffect( ()=> {
+    axios.get(`/check/getclient/`,{project}).then( (res)=>{
+      if(res.data){
+        setProject(res.data)
+        
+      }
+    })
+  },[])
+  
+  
   const customStyles = {
     control: (provided , state) => ({
       ...provided,
@@ -177,14 +178,15 @@ function Checks() {
                       required
                 />
           <br />
-              <Select 
+          <p> </p>
+              {/* <Select 
                       placeholder="Select Client"
                       name="client"
                       id="client"
                       styles={customStyles}
                       options={clientsList} 
                       required
-                />
+                /> */}
               <br />
           <Select 
                 placeholder="Select user"
@@ -192,7 +194,7 @@ function Checks() {
                 id="user"
                 onChange={ (e) => {setUser(e.label)}}
                 styles={customStyles}
-                  options={membersList} 
+                  // options={membersList} 
                   required
           />
         

@@ -9,15 +9,15 @@ import swal from 'sweetalert';
 import { AppContext } from "../../../Context/AppContext";
 import TextField from '@material-ui/core/TextField'; 
 import Select  from 'react-select';
+import { useScrollTrigger } from '@material-ui/core';
 
 function ProjectProfile(props) {
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
+
   const[end , setEnd] = useState("");
   const[state , setStateProject]= useState("");
   const [membersList , setMembersList] = useState([]);
-  const [members , setMembers] = useState([]);
-  const [ checked , setChecked] = useState(false);
   /** Tasks states **/
   const [tasksList , setTasksList] = useState([]);
   const[nameTask , setNameTask] = useState("");
@@ -28,7 +28,6 @@ function ProjectProfile(props) {
 /** Models's states **/
   const [view , setViewTask] = useState(false);
   const [deleteTask,setDeleteTask] = useState(false);
-  const [viewExpense , setViewExpense] = useState(false);
   const [deleteExpenses,setDeleteExpense] = useState(false);
   const [modalIsOpen , setModalIsOpen] = useState(false);
   const [expenseIsOpen , setExpenseIsOpen] = useState(false);
@@ -47,7 +46,6 @@ function ProjectProfile(props) {
   const [editTask , setEditTasks] = useState({});
   const [visible , setVisible] = useState(3);
   const slice = tasksList.slice( 0 , visible);
-  const [ taskId , setTaskId] = useState("");
   const showMoreItems = () => {
     setVisible( visible + visible )
   };
@@ -252,7 +250,8 @@ return (
       <form className={styles.Details}>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
-      <p>Assigned to: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.members}</span></p>
+      {/* <p>Assigned to: <span className={styles.h4}>{projectProfile.members.map((number)=>{
+                              return( <>{number.members} ,  </>)})}</span></p> */}
       <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {projectProfile.client}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>

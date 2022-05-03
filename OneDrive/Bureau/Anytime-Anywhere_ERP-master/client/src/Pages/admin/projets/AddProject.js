@@ -16,8 +16,9 @@ function AddProject() {
   const [description , setDescription] = useState("");
   const [start , setStart] = useState("");
   const [end , setEnd] = useState("");
-  const [membersList , setMembersList] = useState([]);
-  const [members , setMembers] = useState([]);
+  const [members , setMembersList] = useState([]);
+  const [member , setMembers] = useState([{ member : ""}]);
+
   const [file , setFile] = useState([]);
   useEffect(() => {
     axios.get("/getclients").then((res) => {

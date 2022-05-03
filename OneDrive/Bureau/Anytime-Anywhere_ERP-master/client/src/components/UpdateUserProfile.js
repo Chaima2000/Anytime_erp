@@ -14,7 +14,10 @@ function UpdateUserProfile() {
   <>
    <h1 align="center">EDIT PROFILE</h1>
    <form className={styles.form}>
-      <div className= {styles.details_section}>
+      <div>
+        
+      </div>
+      {/* <div className= {styles.details_section}>
       <label>First Name: </label>
       <input type="text" className={styles.disabled_input} defaultValue={user.firstName} disabled={true} />
       <label>Last Name:</label> 
@@ -59,7 +62,7 @@ function UpdateUserProfile() {
         <br /> <br />
         <input type="file" id="input" className={styles.input_img} accept = "image/*" />
         <label htmlFor="input" className={styles.upload_btn}>Choose photo</label>
-      </div>
+      </div> */}
    </form>
   </>
   )

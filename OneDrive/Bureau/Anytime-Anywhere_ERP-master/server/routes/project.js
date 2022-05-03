@@ -1,6 +1,6 @@
 const { project  } = require("../database/models/project.model");
 const { user  } = require("../database/models/user.model");
-const { client  } = require("../database/models/clients.model");
+// const { client  } = require("../database/models/clients.model");
 exports.getprojects = async (req, res) => {
   var currentPage;
   var searchTerm;
@@ -46,20 +46,22 @@ exports.getClient = async (req, res)=>{
 exports.addProject =  (req , res) => {
   const name = req.body.name;
   const state = req.body.state;
-  const client = req.body.client;
+  const projectClient = req.body.client;
   const description = req.body.description;
   const start = req.body.start;
   const end = req.body.end;
-  const members = req.body.members ;
+  const members = req.body.user;
   const file = req.body.file;
+  console.log(req.body.user)
+
   const newProject = new project ( {
     name: name,
     state: state,
-    client: client,
+    client: projectClient,
     description: description,
     start: start,
     end: end,
-    members:members,
+    user: members,
     file:file,
   });
   try {

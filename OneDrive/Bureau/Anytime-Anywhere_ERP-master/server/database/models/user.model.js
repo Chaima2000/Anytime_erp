@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const userSchema = mongoose.Schema(
   {
-    created: {type: mongoose.Schema.Types.ObjectId , ref: 'project' },
     firstName: {
       type: "string",
       required: true,

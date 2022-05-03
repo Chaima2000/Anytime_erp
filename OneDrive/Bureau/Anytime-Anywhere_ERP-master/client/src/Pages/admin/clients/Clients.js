@@ -28,7 +28,7 @@ function Clients(){
   const [activity , setActivity] = useState("");
   const [ceo , setCeo] = useState("");
   const [email , setEmail] = useState("");
-  const [phone , setPhoneNumber] = useState([ { phone : ""}]);
+  // const [phone , setPhoneNumber] = useState([ { phone : ""}]);
   const [country , setCountry] = useState("");
   const [city , setCity] = useState("");
   const [zipCode , setZipCode] = useState("");

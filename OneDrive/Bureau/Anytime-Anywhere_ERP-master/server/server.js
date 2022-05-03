@@ -93,10 +93,9 @@ app.delete("/deletebank/:id", banks.deleteBank);
 app.post("/addbank", banks.addBank);
 
 // Checks 
-app.get("/check/getclient/:id", checks.getClient);
+app.get("/check/getclient", checks.getClient);
 app.post("/addcheck", checks.addCheck);
 app.get("/getprojects", checks.getProjects);
-app.get("/getproject", checks.getProject);
 
 //Receipts
 app.post("/addreceipt",receipts.addReceipt);

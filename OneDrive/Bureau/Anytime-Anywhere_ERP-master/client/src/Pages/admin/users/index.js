@@ -194,7 +194,7 @@ function Users() {
                 {usersList.map((user) => {
                   return (
                     <tr key={user._id}>
-                      <td>{user.firstName}</td>
+                      <td>{user.firstName} {user.lastName}</td>
                       <td>
                         <select
                           className="select"

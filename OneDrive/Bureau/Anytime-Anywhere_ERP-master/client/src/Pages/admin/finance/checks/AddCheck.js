@@ -40,18 +40,18 @@ function Checks() {
     });
   }, []);
 
-  useEffect(() => {
-    axios.get("/getclients").then((res) => {
-      if (res.data){
-        var options = []
-        res.data.map((element) => {
-          options.push({value: element._id, label: element.society} );
-        })
-        setClientsList(options);
+  // useEffect((id) => {
+  //   axios.get(`/check/getclient/${id}`).then((res) => {
+  //     if (res.data){
+  //       var options = []
+  //       res.data.map((element) => {
+  //         options.push({value: element._id, label: element.society} );
+  //       })
+  //       setClientsList(options);
         
-      }
-    });
-  }, []);
+  //     }
+  //   });
+  // }, []);
   useEffect( ()=> {
     axios.get("/getprojects").then( (res)=>{
       if(res.data){
@@ -168,25 +168,24 @@ function Checks() {
           />
               <br />
               <Select 
-                      placeholder="Select Client"
-                      name="client"
-                      id="client"
-                      onChange= { (e) => { setClient(e.label)}}
-                      styles={customStyles}
-                      options={clientsList} 
-                      required
-                />
-              <br />
-              <Select 
                       placeholder="Select project"
                       name="project"
                       id="project"
                       styles={customStyles}
                       options={projectsList} 
-                      onChange= { (e) => { setProject(e.label) ; console.log(e.label)}}
+                      onChange= { (e) => { setProject(e.label) ; console.log(e.value)}}
                       required
                 />
           <br />
+              <Select 
+                      placeholder="Select Client"
+                      name="client"
+                      id="client"
+                      styles={customStyles}
+                      options={clientsList} 
+                      required
+                />
+              <br />
           <Select 
                 placeholder="Select user"
                 name="user"

@@ -6,7 +6,43 @@ exports.getBanks = async (req, res)=>{
     const banksList = await bank.find({}).exec()
     res.send(banksList);
   }
+  exports.getreceipts = async (req, res) => {
+    var currentPage;
+    var searchTerm;
+    var allPages = [];
+    if (req.body.currentPage) {
+      currentPage = req.body.currentPage;
+    } else {
+      currentPage = 1;
+    }
+    if (req.body.searchTerm) {
+      searchTerm = req.body.searchTerm;
+    } else {
+      searchTerm = "";
+    }
+    try {
+      const receipts = await receipt
+        .find({project: { $regex: ".*" + searchTerm + ".*" }})
+        .limit(9)
+        .skip((currentPage - 1) * 9)
+        .sort({ date: -1 })
+        .exec();
   
+      const count = await receipt.countDocuments({
+        project: { $regex: ".*" + searchTerm + ".*" },
+      });
+      let totalPages = Math.ceil(count / 9);
+      for (let i = 1; i <= totalPages; i++) {
+        allPages.push(i);
+      }
+      res.send({
+        receipts,
+        allPages,
+      });
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   exports.addReceipt =  (req , res) => {
     const project = req.body.project;

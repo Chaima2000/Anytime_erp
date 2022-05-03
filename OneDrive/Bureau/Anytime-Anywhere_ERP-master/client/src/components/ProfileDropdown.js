@@ -12,7 +12,7 @@ function ProfileDropdown() {
   return (
     <>
       <div className={styles.dropdown}>
-        <h3 align="center">{user.firstName}</h3>
+        <h3 align="center">{user.firstName} {user.lastName}</h3>
         <hr />
         <h5><Link to={`/settingProfile`} className={styles.link} >Profile settings</Link></h5>
         <hr />

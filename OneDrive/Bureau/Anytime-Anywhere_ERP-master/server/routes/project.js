@@ -116,9 +116,10 @@ exports.getClients = async (req, res)=>{
 }
 exports.getProject = (req, res) => {
   const id = req.body.id;
+  const client = req.body.client;
   project.findById(id, (err, row) => {
     if (row) {
-      res.send(row);
+      res.send(row.client);
     } else {
       res.send("ERROR");
     }

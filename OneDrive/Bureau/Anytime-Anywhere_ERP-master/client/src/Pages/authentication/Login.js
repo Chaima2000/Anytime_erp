@@ -43,10 +43,11 @@ function Login() {
         if (res.data.connected) {
           setUser(res.data);
           history.push("/");
-        } else if (res.data === "ACCOUNT NOT FOUND") {
+        } else if (res.data === "ERROR") {
           setWaiting(false);
-          alert(res.data);
+          alert("ACCOUNT NOT FOUND");
         } else if (res.data === "WRONG PASSWORD") {
+          setWaiting(false);
           alert(res.data);
         }
       });

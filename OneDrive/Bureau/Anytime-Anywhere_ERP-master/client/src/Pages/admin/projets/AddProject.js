@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import Select  from 'react-select';
 import styles from '../../../Css/Client.module.css';
+import Styles from '../../../Css/Project.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {toast} from 'react-toastify';
@@ -16,8 +17,8 @@ function AddProject() {
   const [description , setDescription] = useState("");
   const [start , setStart] = useState("");
   const [end , setEnd] = useState("");
-  const [members , setMembersList] = useState([]);
-  const [member , setMembers] = useState([{ member : ""}]);
+  const [membersList , setMembersList] = useState([]);
+  const [members , setMembers] = useState([]);
 
   const [file , setFile] = useState([]);
   useEffect(() => {
@@ -133,17 +134,19 @@ function AddProject() {
             <form onSubmit={addproject}>
               <h2 className={styles.h2}>Add project: </h2>
               <div className={styles.div1}>
-              <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br />
-              <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} required  /> <br />
-              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}   /> <br />
+              <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br /><br />
+              Start date:
+              <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} placeholder="Start date" required /> <br /> <br />
+              End date:
+              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  placeholder="End date"  /> <br />
               <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  /> <br />
               </div>
               <div className={styles.div2}>
               <br />
                 <Select 
-                      placeholder="Select Clients"
-                      name="clients"
-                      id="clients"
+                      placeholder="Select Client"
+                      name="client"
+                      id="client"
                       onChange={(e) => {
                         setClient(e.value)
                       }}
@@ -151,10 +154,10 @@ function AddProject() {
                       options={clientsList} 
                       required
                 />
-              <br />
+              <br /> <br /><br />
           <Select 
                 isMulti
-                placeholder="Select Members"
+                placeholder="Select Member"
                 name="members"
                 id="members"
                 onChange={(e) => {
@@ -168,7 +171,7 @@ function AddProject() {
                   options={membersList} 
                   required
           />
-        <br />
+        <br /> <br />
           <Select 
                 placeholder="Select State"
                 name="state"
@@ -181,6 +184,7 @@ function AddProject() {
                 
           />
         <div>
+        <br />
             <input
               accept="image/*"
               id="file"
@@ -198,10 +202,8 @@ function AddProject() {
                         setFile(array);
                       }}
             />
-            <label htmlFor="file">
-              <button className={styles.formInput}>
+            <label htmlFor="file" className={Styles.btnUpload}>
                 Upload Files
-              </button>
               </label>
         </div>
         </div>

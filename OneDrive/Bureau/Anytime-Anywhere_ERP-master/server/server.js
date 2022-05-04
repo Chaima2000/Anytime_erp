@@ -93,7 +93,7 @@ app.delete("/deletebank/:id", banks.deleteBank);
 app.post("/addbank", banks.addBank);
 
 // Checks 
-app.get("/check/getclient", checks.getClient);
+app.get("/check/getclient/:id", checks.getClient);
 app.post("/addcheck", checks.addCheck);
 app.get("/getprojects", checks.getProjects);
 
@@ -112,7 +112,7 @@ app.get("/editclient", clients.getClient);
 
 //Projects
 app.post("/addproject", projects.addProject);
-app.post("/getclient/:id", projects.getClient);
+// app.post("/getclient/:id", projects.getClient);
 app.put("/updateproject", projects.updateProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);

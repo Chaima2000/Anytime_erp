@@ -6,7 +6,7 @@ const checkSchema = new mongoose.Schema(
         required : false,
     }
 ,
-    ClientId : {
+    clientsList : {
         type:String,
         required:true, 
     }

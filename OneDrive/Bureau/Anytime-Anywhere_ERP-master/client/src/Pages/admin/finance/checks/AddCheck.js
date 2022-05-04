@@ -1,47 +1,28 @@
 import React, { useState , useEffect} from 'react';
-import { useParams } from 'react-router-dom';
 import Select  from 'react-select';
 import axios from 'axios';
 import swal from 'sweetalert';
 import styles from '../../../../Css/Client.module.css'
+import { useParams } from 'react-router-dom';
 function Checks() {
   const [name, setName] = useState("");
   const [description , setDescription] = useState("");
   const [value, setValue] = useState("");
-  // const selectInputRef = useRef();
   const [type, setType] = useState("");
   const [state, setState] = useState("");
-  // const [membersList , setMembersList] = useState([]);
-// const [projectId] = useParams();
   const [user , setUser] = useState("");
-  const [clientsList , setClientsList] = useState([]);
-  const [ClientId , setClient] = useState("");
+  const [ClientSociety , setClientList] = useState("");
   const [projectsList, setprojectsList] = useState([]);
-  const [project, setProject] = useState({});
-  // console.log(projectsList);
-  console.log(project);
+  const [project, setProject] = useState("");
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
     document.getElementById("state").value="";
-    setClient([ { client : ""}]);
     document.getElementById("type").value= "";
-    setUser([ { user : ""}]);
     document.getElementById("project").options= [""];
     document.getElementById("value").value= "";
   }
-  // useEffect(() => {
-  //   axios.get(`/getmembers`).then((res) => {
-  //     if (res.data){
-  //       var options = []
-  //       res.data.map((element) => {
-  //           var fullName = element.firstName + " " + element.lastName;
-  //           options.push({value: element._id, label: fullName} );
-  //       })
-  //       setMembersList(options);
-  //     }
-  //   });
-  // }, []);
+
   useEffect( ()=> {
     axios.get(`/getprojects`).then( (res)=>{
       if(res.data){
@@ -50,16 +31,16 @@ function Checks() {
           options.push({value:element._id,label: element.name});
         })
         setprojectsList(options)
-        
       }
+     
     })
   }, [])
   useEffect( ()=> {
-    axios.get(`/check/getclient/`,{project}).then( (res)=>{
+    axios.get(`/check/getclient/${project}`).then( (res)=>{
       if(res.data){
-        setProject(res.data)
+        setClientList(res.data);
         
-      }
+      } 
     })
   },[])
   
@@ -97,7 +78,7 @@ function Checks() {
     const data = new FormData();
     data.append("name",name);
     data.append("state",state);
-    data.append("client",ClientId);
+    data.append("client",ClientSociety);
     data.append("description",description);
     data.append("type",type);
     data.append("user",user);
@@ -106,7 +87,7 @@ function Checks() {
     const datax = {
       name:name,
       state:state,
-      ClientId:ClientId,
+      ClientSociety:ClientSociety,
       description:description,
       type:type,
       user:user,
@@ -174,30 +155,12 @@ function Checks() {
                       id="project"
                       styles={customStyles}
                       options={projectsList} 
-                      onChange= { (e) => { setProject(e.label) ; console.log(e.value)}}
+                      onChange= { (e) =>setProject(e.value)}
                       required
                 />
           <br />
-          <p> </p>
-              {/* <Select 
-                      placeholder="Select Client"
-                      name="client"
-                      id="client"
-                      styles={customStyles}
-                      options={clientsList} 
-                      required
-                /> */}
+          <p>{ClientSociety}</p>
               <br />
-          <Select 
-                placeholder="Select user"
-                name="user"
-                id="user"
-                onChange={ (e) => {setUser(e.label)}}
-                styles={customStyles}
-                  // options={membersList} 
-                  required
-          />
-        
             </div>
             <br />
             <br />

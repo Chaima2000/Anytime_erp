@@ -1,29 +1,36 @@
 const { pipeline } = require("nodemailer/lib/xoauth2");
 const { check } = require("../database/models/checks.model");
 const { project  } = require("../database/models/project.model");
-// const { client  } = require("../database/models/clients.model");
+
 exports.getClient= async  (req,res)=>{
-  const id=req.body.project;
-  console.log(id)
   try{
-       const liste = await project.findById(id).populate('client', ["society"]);
-      res.status(200).json(liste)}
-       catch(err){
-         return res.status(500).json({err: "error"});
+      const clientList = await project.findById(req.params.id).populate('client', ["society"]);
+      const ClientSociety= clientList.client.society;
+      res.send(ClientSociety)
+      console.log(ClientSociety)
+      
+    }catch(err){
+      // res.status(500).json({err:"error"});
+        res.send(err)
        }
      
   
 }
 exports.getProjects = async (req, res)=>{
-  const projectsList = await project.find({}).exec()
-  res.send(projectsList);
+  try{
+    const projectsList = await project.find({}).exec()
+    res.send(projectsList);
+  } catch(err){
+    res.send(err)
+  }
+  
 }
 
 
   exports.addCheck =  (req , res) => {
     const name = req.body.name;
     const state = req.body.state;
-    const ClientId = req.body.ClientId;
+    const clientsList = req.body.clientsList;
     const description = req.body.description;
     const type = req.body.type;
     const value = req.body.value;
@@ -32,7 +39,7 @@ exports.getProjects = async (req, res)=>{
     const newCheck = new check ( {
       name: name,
       state: state,
-      ClientId: ClientId,
+      clientsList: clientsList,
       description: description,
       type: type,
       value: value,

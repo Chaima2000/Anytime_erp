@@ -1,10 +1,7 @@
 const mongoose = require ('mongoose');
 const projectSchema = new mongoose.Schema(
 {   
-    user :[
-        
-            { type :mongoose.Schema.Types.ObjectId,ref :'user',required :true},
-    ],
+    members :[{type :mongoose.Schema.Types.ObjectId,ref :'user',required :true}],
     client: {type: mongoose.Schema.Types.ObjectId , ref: 'client' , required: true},
     name: {
         type:String,

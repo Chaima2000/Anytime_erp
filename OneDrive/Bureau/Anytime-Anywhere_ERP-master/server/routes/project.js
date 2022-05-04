@@ -1,6 +1,6 @@
 const { project  } = require("../database/models/project.model");
 const { user  } = require("../database/models/user.model");
-// const { client  } = require("../database/models/clients.model");
+const { client  } = require("../database/models/clients.model");
 exports.getprojects = async (req, res) => {
   var currentPage;
   var searchTerm;
@@ -39,10 +39,10 @@ exports.getprojects = async (req, res) => {
   }
 };
 exports.getClient = async (req, res)=>{
-  const id=req.body.id;
-  const clientList = await client.findById(id).exec()
+  const clientList = await client.find({}).exec()
   res.send(clientList);
 }
+
 exports.addProject =  (req , res) => {
   const name = req.body.name;
   const state = req.body.state;
@@ -50,9 +50,9 @@ exports.addProject =  (req , res) => {
   const description = req.body.description;
   const start = req.body.start;
   const end = req.body.end;
-  const members = req.body.user;
+  const user = req.body.members;
   const file = req.body.file;
-  console.log(req.body.user)
+  console.log(req.body.members)
 
   const newProject = new project ( {
     name: name,
@@ -61,7 +61,7 @@ exports.addProject =  (req , res) => {
     description: description,
     start: start,
     end: end,
-    user: members,
+    members: user,
     file:file,
   });
   try {
@@ -99,18 +99,13 @@ exports.updateProject = async (req,res) => {
   }
   res.send('updated')
 }
-
-
-
-
-
 exports.getMembers = async (req, res)=>{
-  const membersList = await user.find( {$or: [
+  const members = await user.find( {$or: [
     { role: "DEVELOPER" },
     { role: "DESIGNER" },
     { role: "MARKETING" },
   ],}).exec()
-  res.send(membersList);
+  res.send(members);
 }
 exports.getClients = async (req, res)=>{
   const clientsList = await client.find({}).exec()
@@ -118,10 +113,9 @@ exports.getClients = async (req, res)=>{
 }
 exports.getProject = (req, res) => {
   const id = req.body.id;
-  const client = req.body.client;
   project.findById(id, (err, row) => {
     if (row) {
-      res.send(row.client);
+      res.send(row);
     } else {
       res.send("ERROR");
     }

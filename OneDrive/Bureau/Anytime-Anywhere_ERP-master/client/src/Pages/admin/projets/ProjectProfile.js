@@ -250,8 +250,7 @@ return (
       <form className={styles.Details}>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
-      {/* <p>Assigned to: <span className={styles.h4}>{projectProfile.members.map((number)=>{
-                              return( <>{number.members} ,  </>)})}</span></p> */}
+      <p>Assigned to: <span className={styles.h4}>{projectProfile.members}</span></p>
       <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {projectProfile.client}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>

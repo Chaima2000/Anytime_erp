@@ -18,7 +18,6 @@ function AddProject() {
   const [start , setStart] = useState("");
   const [end , setEnd] = useState("");
   const [membersList , setMembersList] = useState([]);
-  const [users ,setUsers] = useState([]);
   const [members , setMembers] = useState({});
 
   const [file , setFile] = useState([]);
@@ -105,7 +104,7 @@ function AddProject() {
       description:description,
       start:start,
       end:end,
-      users:members,
+      user:members,
       file:file
     }
     axios.post("/addproject", datax).then((res)=>{

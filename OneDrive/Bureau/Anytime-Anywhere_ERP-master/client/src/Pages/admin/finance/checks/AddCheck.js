@@ -13,8 +13,7 @@ function Checks() {
   const [ClientSociety , setClientList] = useState("");
   const [projectsList, setprojectsList] = useState([]);
   const [project, setProject] = useState("");
-  const [user, setUser] = useState([]);
-  const [userFullName , setUserFirstName] = useState([]);
+  const [userList , setUserList] = useState([]);
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
@@ -41,6 +40,16 @@ function Checks() {
     axios.get(`/check/getclient/${project}`).then( (res)=>{
       if(res.data){
         setClientList(res.data);
+      } 
+    })
+  }
+  useEffect( ()=> {
+    
+  },[])
+  function getUser(project){
+    axios.get(`/check/getUser/${project}`).then( (res)=>{
+      if(res.data){
+        setUserList(res.data);
       } 
     })
   }
@@ -85,7 +94,7 @@ function Checks() {
     data.append("client",ClientSociety);
     data.append("description",description);
     data.append("type",type);
-    data.append("user",user);
+    data.append("user",userList);
     data.append("value",value);
     data.append('project', project);
     const datax = {
@@ -94,7 +103,7 @@ function Checks() {
       ClientSociety:ClientSociety,
       description:description,
       type:type,
-      user:user,
+      user:userList,
       value:value,
       project:project
     }
@@ -158,12 +167,15 @@ function Checks() {
                       id="project"
                       styles={customStyles}
                       options={projectsList} 
-                      onChange= { (e) =>{setProject(e.value); getClient(e.value)}}
+                      onChange= { (e) =>{setProject(e.value); getClient(e.value) ; getUser(e.value)}}
                       required
                 />
           <br />
-          <p>Client: <span>{ClientSociety}</span></p>
-          <p>Assigned to: <span>{ClientSociety}</span></p>
+          <p>Client: <b>{ClientSociety}</b></p>
+          <p>Assigned to: <b>{userList.map( (users) => {
+            return (<> 
+            {users}, 
+          </>)})}</b></p>
             </div>
             <br />
             <br />

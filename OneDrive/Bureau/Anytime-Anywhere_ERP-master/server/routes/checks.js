@@ -7,21 +7,23 @@ exports.getClient= async  (req,res)=>{
       const clientList = await project.findById(req.params.id).populate('client', ["society"]);
       const ClientSociety= clientList.client.society;
       res.send(ClientSociety);
-      
     }catch(err){
-      // res.status(500).json({err:"error"});
         res.send(err)
        } 
 }
-// exports.getUser = async (req,res) => {
-//   try{
-//     const userList = await project.findById(req.params.id).populate('user', ["firstName"] );
-//     res.json(userList.firstName);
-//     console.log(req.params.id[0])
-//   }catch(err){
-//     res.status(500).json({err:"error"});
-//   }
-// }
+exports.getUser = async (req,res) => {
+  try{
+    const userList = await project.findById(req.params.id).populate('user', ["firstName" , "lastName"] );
+    const users=[];
+    for(let i=0;i<userList.user.length;i++){
+      const userFullName= userList.user[i].firstName + userList.user[i].lastName;
+      users[i]=userFullName;
+    }
+    res.json(users); 
+  }catch(err){
+    res.send(err);
+  }
+}
 exports.getProjects = async (req, res)=>{
   try{
     const projectsList = await project.find({}).exec()
@@ -36,7 +38,7 @@ exports.getProjects = async (req, res)=>{
   exports.addCheck =  (req , res) => {
     const name = req.body.name;
     const state = req.body.state;
-    const clientsList = req.body.clientsList;
+    const ClientSociety = req.body.ClientSociety;
     const description = req.body.description;
     const type = req.body.type;
     const value = req.body.value;
@@ -45,7 +47,7 @@ exports.getProjects = async (req, res)=>{
     const newCheck = new check ( {
       name: name,
       state: state,
-      clientsList: clientsList,
+      ClientSociety: ClientSociety,
       description: description,
       type: type,
       value: value,

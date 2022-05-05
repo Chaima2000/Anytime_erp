@@ -50,9 +50,9 @@ exports.addProject =  (req , res) => {
   const description = req.body.description;
   const start = req.body.start;
   const end = req.body.end;
-  const users = req.body.users.members;
+  const user= req.body.user;
   const file = req.body.file;
-  console.log(users);
+  console.log(user)
 
   const newProject = new project ( {
     name: name,
@@ -61,7 +61,7 @@ exports.addProject =  (req , res) => {
     description: description,
     start: start,
     end: end,
-    users: users,
+    user: user,
     file:file,
   });
   try {

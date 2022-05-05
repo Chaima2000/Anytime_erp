@@ -63,7 +63,7 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Profile settings</li>
+              <li>Gestion du profile</li>
               <li>
                 <form
                   onSubmit={() => {
@@ -80,7 +80,7 @@ function Navbar(props) {
           )}
           <li>
             <Link className={styles.mobileLink} to="/">
-              Welcome !
+              Bienvenue !
             </Link>
           </li>
         </ul>
@@ -114,7 +114,7 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Profile settings</li>
+              <li>Gestion du profile</li>
               <li>
                 <form
                   onSubmit={() => {
@@ -131,17 +131,12 @@ function Navbar(props) {
           )}
           <li>
             <Link className={styles.mobileLink} to="/">
-              Dashboard
+              Tableau du bord
             </Link>
           </li>
           <li>
             <Link className={styles.mobileLink} to="/quickaccess">
-              Quick access
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.mobileLink} to="/stats">
-              Stats
+              Accés rapide
             </Link>
           </li>
         </ul>
@@ -175,7 +170,7 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Profile settings</li>
+              <li>Gestion du profile</li>
               <li>
                 <form
                   onSubmit={() => {
@@ -192,17 +187,12 @@ function Navbar(props) {
           )}
           <li>
             <Link className={styles.mobileLink} to="/">
-              Dashboard
+              Tableau du bord
             </Link>
           </li>
           <li>
             <Link className={styles.mobileLink} to="/quickaccess">
-              Quick access
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.mobileLink} to="/stats">
-              Stats
+              Accés rapide
             </Link>
           </li>
         </ul>
@@ -236,7 +226,7 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Profile settings</li>
+              <li>Gestion du profile</li>
               <li>
                 <form
                   onSubmit={() => {
@@ -244,7 +234,7 @@ function Navbar(props) {
                     history.push("/");
                   }}
                 >
-                  <button className="actionBtn">Logout</button>
+                  <button className="actionBtn">Se déconnecter</button>
                 </form>
               </li>
             </>
@@ -253,17 +243,12 @@ function Navbar(props) {
           )}
           <li>
             <Link className={styles.mobileLink} to="/">
-              Dashboard
+              Tableau du bord
             </Link>
           </li>
           <li>
             <Link className={styles.mobileLink} to="/quickaccess">
-              Quick access
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.mobileLink} to="/stats">
-              Stats
+              Accés rapide
             </Link>
           </li>
         </ul>
@@ -276,7 +261,7 @@ function Navbar(props) {
         <ul>
           <li>
             <Link className={styles.mobileLink} to="/">
-              Home
+              Accueil
             </Link>
           </li>
           <li>
@@ -286,12 +271,12 @@ function Navbar(props) {
           </li>
           <li>
             <Link className={styles.mobileLink} to="/about">
-              About
+              À propos
             </Link>
           </li>
           <li>
             <Link className={styles.mobileLink} to="/contact">
-              Contact
+              Contactez-nous
             </Link>
           </li>
         </ul>
@@ -310,7 +295,7 @@ function Navbar(props) {
         >
           <li>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Welcome !
+              Bienvenue !
             </Link>
           </li>
         </ul>
@@ -344,7 +329,7 @@ function Navbar(props) {
         >
           <li>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Dashbord
+              Tableau du bord
             </Link>
           </li>
           <li>
@@ -352,15 +337,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
             >
-              Quick access
-            </Link>
-          </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/stats"
-            >
-              Stats
+              Accés rapide
             </Link>
           </li>
         </ul>
@@ -395,7 +372,7 @@ function Navbar(props) {
         >
           <li>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Dashbord
+              Tableau du bord
             </Link>
           </li>
           <li>
@@ -403,15 +380,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
             >
-              Quick access
-            </Link>
-          </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/stats"
-            >
-              Stats
+              Accés rapide
             </Link>
           </li>
         </ul>
@@ -446,7 +415,7 @@ function Navbar(props) {
         >
           <li>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Dashbord
+              Tableau du bord
             </Link>
           </li>
           <li>
@@ -454,15 +423,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
             >
-              Quick access
-            </Link>
-          </li>
-          <li>
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/stats"
-            >
-              Stats
+              Accés rapide
             </Link>
           </li>
         </ul>
@@ -487,7 +448,7 @@ function Navbar(props) {
         <ul>
           <li>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
-              Home
+              Accueil
             </Link>
           </li>
           <li>
@@ -503,7 +464,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "white" }}
               to="/about"
             >
-              About
+              À propos
             </Link>
           </li>
           <li>
@@ -511,7 +472,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "white" }}
               to="/contact"
             >
-              Contact
+              Contactez-nous
             </Link>
           </li>
         </ul>
@@ -520,12 +481,12 @@ function Navbar(props) {
         <ul>
           <li>
             <Link className={styles.link} to="/login">
-              Login
+              Connexion
             </Link>
           </li>
           <li>
             <Link className={styles.link} to="/signup">
-              <button className="defaultBtn">signUp</button>
+              <button className="defaultBtn">S'inscrire</button>
             </Link>
           </li>
         </ul>

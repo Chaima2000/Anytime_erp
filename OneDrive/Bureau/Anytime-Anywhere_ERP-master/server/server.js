@@ -94,6 +94,7 @@ app.post("/addbank", banks.addBank);
 
 // Checks 
 app.get("/check/getclient/:id", checks.getClient);
+// app.get("/check/getUser/:id", checks.getUser);
 app.post("/addcheck", checks.addCheck);
 app.get("/getprojects", checks.getProjects);
 

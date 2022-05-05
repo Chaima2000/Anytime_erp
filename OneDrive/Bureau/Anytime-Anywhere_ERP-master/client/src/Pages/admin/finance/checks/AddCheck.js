@@ -10,10 +10,11 @@ function Checks() {
   const [value, setValue] = useState("");
   const [type, setType] = useState("");
   const [state, setState] = useState("");
-  const [user , setUser] = useState("");
   const [ClientSociety , setClientList] = useState("");
   const [projectsList, setprojectsList] = useState([]);
   const [project, setProject] = useState("");
+  const [user, setUser] = useState([]);
+  const [userFullName , setUserFirstName] = useState([]);
   const success = () => {
     document.getElementById("name").value="";
     document.getElementById("description").value="";
@@ -35,13 +36,16 @@ function Checks() {
      
     })
   }, [])
-  useEffect( ()=> {
+
+  function getClient(project){
     axios.get(`/check/getclient/${project}`).then( (res)=>{
       if(res.data){
         setClientList(res.data);
-        
       } 
     })
+  }
+  useEffect( ()=> {
+    
   },[])
   
   
@@ -136,9 +140,8 @@ function Checks() {
                 options={Type}              
                 required
           />
-            </div>
+            </div><br />
             <div className={styles.div2}>
-            <br />
             <Select 
                 placeholder="Select State"
                 name="state"
@@ -155,12 +158,12 @@ function Checks() {
                       id="project"
                       styles={customStyles}
                       options={projectsList} 
-                      onChange= { (e) =>setProject(e.value)}
+                      onChange= { (e) =>{setProject(e.value); getClient(e.value)}}
                       required
                 />
           <br />
-          <p>{ClientSociety}</p>
-              <br />
+          <p>Client: <span>{ClientSociety}</span></p>
+          <p>Assigned to: <span>{ClientSociety}</span></p>
             </div>
             <br />
             <br />

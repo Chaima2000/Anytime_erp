@@ -6,16 +6,22 @@ exports.getClient= async  (req,res)=>{
   try{
       const clientList = await project.findById(req.params.id).populate('client', ["society"]);
       const ClientSociety= clientList.client.society;
-      res.send(ClientSociety)
-      console.log(ClientSociety)
+      res.send(ClientSociety);
       
     }catch(err){
       // res.status(500).json({err:"error"});
         res.send(err)
-       }
-     
-  
+       } 
 }
+// exports.getUser = async (req,res) => {
+//   try{
+//     const userList = await project.findById(req.params.id).populate('user', ["firstName"] );
+//     res.json(userList.firstName);
+//     console.log(req.params.id[0])
+//   }catch(err){
+//     res.status(500).json({err:"error"});
+//   }
+// }
 exports.getProjects = async (req, res)=>{
   try{
     const projectsList = await project.find({}).exec()
@@ -51,6 +57,5 @@ exports.getProjects = async (req, res)=>{
       res.send("SUCCESS");
     } catch (e) {
       res.send("ERROR");
-      console.log(e);
     }
   }

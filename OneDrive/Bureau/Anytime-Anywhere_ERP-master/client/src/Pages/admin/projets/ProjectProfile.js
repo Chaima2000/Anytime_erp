@@ -38,6 +38,8 @@ function ProjectProfile(props) {
 
 /** Expenses's states **/
   const [expenses , setExpenses] = useState([]);
+  const [clientList, setClientList] = useState("");  
+
   const [expenseName , setExpenseName] = useState("");
   const [expenseDescription , setExpenseDescription ] = useState("");
   const [expenseValue , setExpenseValue] = useState("");
@@ -60,10 +62,17 @@ function ProjectProfile(props) {
     axios.post("/getproject",{ id: id }).then((res) => {
       if (res.data) {
         setProjectProfile(res.data);
+        getClient(id);
       }
     });
   },[]);
-
+  function getClient(id){
+    axios.get(`/check/getclient/${id}`).then( (res)=>{
+      if(res.data){
+        setClientList(res.data);
+      } 
+    })
+  }
    useEffect( () => {
     axios.get("/getTasks").then((res) => {
       if (res.data === "ERROR") {
@@ -252,7 +261,7 @@ return (
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
       <p>Assigned to: <span className={styles.h4}>{projectProfile.members}</span></p>
       <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
-      <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {projectProfile.client}</span></p>   
+      <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {clientList}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
       <p> Start at : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
       <p>End at : </p>

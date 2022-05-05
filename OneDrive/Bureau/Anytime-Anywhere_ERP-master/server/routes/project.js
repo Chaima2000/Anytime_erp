@@ -35,7 +35,7 @@ exports.getprojects = async (req, res) => {
       allPages,
     });
   } catch (err) {
-    console.error(err.message);
+    res.send(err)
   }
 };
 exports.getClient = async (req, res)=>{
@@ -50,9 +50,9 @@ exports.addProject =  (req , res) => {
   const description = req.body.description;
   const start = req.body.start;
   const end = req.body.end;
-  const user = req.body.members;
+  const users = req.body.users.members;
   const file = req.body.file;
-  console.log(req.body.members)
+  console.log(users);
 
   const newProject = new project ( {
     name: name,
@@ -61,7 +61,7 @@ exports.addProject =  (req , res) => {
     description: description,
     start: start,
     end: end,
-    members: user,
+    users: users,
     file:file,
   });
   try {

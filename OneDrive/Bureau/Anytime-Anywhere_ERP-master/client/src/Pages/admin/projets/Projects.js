@@ -15,7 +15,7 @@ function Projects(props) {
   const [deleteItem,setDeleteItem] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [waiting, setWaiting] = useState(true);
- 
+  const [projectId, setProjectId] = useState("");
   const [searchTerm , setSearchTerm]= useState("");
   const [allPages, setAllPages] = useState([]);
   let { id } = useParams();
@@ -35,7 +35,7 @@ function Projects(props) {
         }
       });
   }
-
+  
   useEffect(() => {
     getProjects(currentPage);
   }, []);
@@ -127,7 +127,7 @@ return (
             <h4>Project state : {project.state}</h4>
             <h4>Project client : {clientList}</h4>
             
-            <Link to={`/project/details/${project._id}`}><span className={styles.icons}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
+            <Link to={`/project/details/${project._id}`}><span className={styles.icons} onChange={() => {setProjectId(project._id)}}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
             <span onClick = {() => {setDeleteProject(project) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
             <span className={styles.icons} onClick={() => {Disable()}}><FontAwesomeIcon icon={solid("lock")} color = "#808080" /></span>
 

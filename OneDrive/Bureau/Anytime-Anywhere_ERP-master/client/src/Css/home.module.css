@@ -6,8 +6,8 @@
     top:0;
     height:604px;
     background: url(image1.jpg),
-    linear-gradient(steelblue,firebrick);
-    background-color: pink;
+    linear-gradient(rgb(162, 205, 239),rgba(160, 20, 103, 1));
+
     background-blend-mode: multiply;
     clip-path: polygon(100% 0%, 100% 49%, 49% 99%, 0 99%, 0 0);
 }
@@ -18,6 +18,6 @@
     font-family: 'Fredericka the Great', 'cursive';
     width: 85%;
     left:3%;
-    color:rgb(216, 213, 213);
+    color:white;
     font-size: 65px;
 }

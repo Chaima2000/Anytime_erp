@@ -1,186 +1,38 @@
-.input {
- width: 95%;
- background: rgb(241, 241, 241);
- padding: 10px;
- border: none;
- border-radius: 17px;
- height: 20px;
- outline:none;
+.Container{
+    background: url(image2.jpg);
+    position: absolute;
+    top:9%;
+    left:0;
+    right:0;
+    width: 100%;
+    background-size: cover;
+    height: 548px;
+    background-blend-mode: multiply;
+    background-color: rgb(77, 59, 124);
 }
-.textarea{
-    width: 95%;
-    padding: 10px;
-    background: rgb(241, 241, 241);
-    border: none;
-    border-radius: 17px;
-    height: 130px;
-    outline:none;
-}
-.showMsg{
-    font-weight: bold;
-    font-size: 14px;
-    color: grey;
-}
-.input_section{
-    width: 79%;
+.contactForm{
     position: relative;
-    left: 10%;
-    margin-top: 5%;
-}
-.form {
-    background: white;
-    position: relative;
-    box-shadow: 0 25px 45px rgba(0.2,0.2,0.2,0.2);
-    left: 28%;
-    border: none;
-    width: 45%;
+    width: 65%;
+    left:18%;
+    top:5%;
+    height:500px;
+    background-color: rgba(203, 211, 215, 0.613);
     border-radius: 15px;
-    padding: 15px
 }
-.one{
-    content: '';
-    position: absolute;
-    right: 17%;
-    bottom:65%;
-    width: 200px;
-    height: 200px;
-    background: rgb(255, 226, 253);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: .8
-}
-.two{
-    content: '';
-    position: absolute;
-    left: 8%;
-    bottom:35%;
-    width: 210px;
-    height: 210px;
-    border: 15px solid rgb(227, 208, 248);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: .8
-}
-.three{
-    content: '';
-    position: absolute;
-    left: 21%;
-    bottom:30%;
-    width: 150px;
-    height: 150px;
-    background: rgba(216, 228, 253, 0.9);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: .8
-}
-.four{
-    content: '';
-    position: absolute;
-    left: 5%;
-    bottom:10%;
-    width: 120px;
-    height: 120px;
-    background: rgba(216, 211, 147, 0.9);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: .8
-}
-.five{
-    content: '';
-    position: absolute;
-    left: 69%;
-    bottom:4%;
-    width: 100px;
-    height: 100px;
-    border: 55px solid rgb(250, 233, 165);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: .8
-}
-.six{
-    content: '';
-    position: absolute;
-    left: 83%;
-    bottom: 40%;
-    width: 80px;
-    height: 80px;
-    border : 14px solid rgb(216, 170, 197);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: .8
-}
-.btn{
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    width: 40%;
+.imgSection{
+    background-color: white;
     position: relative;
-    left: 28%;
-    background: rgb(187, 75, 142);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: box-shadow, transform;
-    transition-property: box-shadow, transfrom;
+    top:5%;
+    left:3%;
+    border-radius: 10px;
+    float: left;
+    margin: 5px;
+    width: 43%;
+    height:400px
 }
-.btn:hover, .btn:focus, .btn:active {
-    box-shadow:  0 0 20px rgba(0, 0, 0, 0.5);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
-@media (max-width: 450px) {
-    .form {
-        position:relative;
-        left: 4.3%;
-        height: 550px;
-        margin-top:55%;
-        display: block;
-        width: 80%;
-    }
-    .input_section{
-      height: 400px;
-    }
-    .textarea{
-        font-size: 18px;
-    }
-    .input{
-        height: 35px;
-        font-size: 18px
-    }
-    .btn{
-        height: 45px;
-        font-size: 18px;
-    }
-    .one {
-        position: relative;
-        left: -15%;
-        margin-top: -35%;
-    }
-    .two{
-        position:relative;
-        margin-top: -225%;
-        left: -2%;
-    }
-    .three{
-        position:relative;
-        left:60%;
-        margin-top: 105%
-    }
-    .four{
-        position: relative;
-        margin-top: -25%;
-        left: 25%
-    }
-    .five{
-        position: relative;
-        margin-top: -110%;
-        left:26%
-    }
-    .six{
-        position: relative;
-        left: 60%;
-        margin-top: -140%;
-    }
+.imgSection img {
+    width: 100%;
+    position: relative;
+    top:15%;
+    height:300px
 }

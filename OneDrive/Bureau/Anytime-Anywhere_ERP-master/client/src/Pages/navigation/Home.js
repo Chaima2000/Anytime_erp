@@ -6,7 +6,7 @@ function Home() {
   return (
     <>
     <div className={styles.section1} >
-      <p><Typical steps={['', 900, "Bienvenue Dans Notre Planification Des Ressources D'entreprise",100]} loop={Infinity} wrapper="p" /></p>
+      <p><Typical steps={['', 900, "Bienvenue Dans Notre Planification Des Ressources D'entreprise",100]}  wrapper="p" /></p>
     </div>
     </>
   )

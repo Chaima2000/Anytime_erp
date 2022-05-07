@@ -9,12 +9,12 @@ import swal from 'sweetalert';
 import { AppContext } from "../../../Context/AppContext";
 import TextField from '@material-ui/core/TextField'; 
 import Select  from 'react-select';
-import { useScrollTrigger } from '@material-ui/core';
 
 function ProjectProfile(props) {
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
-
+  const [userList,setUserList]= useState([]);
+  const [userImage,setUserImage]= useState("");
   const[end , setEnd] = useState("");
   const[state , setStateProject]= useState("");
   const [membersList , setMembersList] = useState([]);
@@ -63,6 +63,8 @@ function ProjectProfile(props) {
       if (res.data) {
         setProjectProfile(res.data);
         getClient(id);
+        getUser(id);
+        getUserImage(id);
       }
     });
   },[]);
@@ -71,6 +73,22 @@ function ProjectProfile(props) {
       if(res.data){
         setClientList(res.data);
       } 
+    })
+  }
+  function getUser(id){
+    axios.get(`/check/getUser/${id}`).then( (res)=>{
+      if(res.data){
+        setUserList(res.data);
+      } 
+    })
+  }
+  function getUserImage(id){
+    axios.get(`/getUserImage/${id}`).then( (res)=>{
+      if(res.data){
+        setUserImage(res.data);
+      }else {
+        alert("error")
+      }
     })
   }
    useEffect( () => {
@@ -194,7 +212,7 @@ const addtask =(e) => {
     }
     axios.post("/addTask", dataT).then((res)=>{
       if(res.data === "ERROR"){
-        console.log(e);
+      alert("error")
       }else if(res.data === "SUCCESS"){
         swal({
           title: "SUCCESS",
@@ -225,7 +243,7 @@ const addexpense =(e) => {
   }
   axios.post("/addExpense", dataT).then((res)=>{
     if(res.data === "ERROR"){
-      console.log(e);
+      alert("error")
     }else if(res.data === "SUCCESS"){
       swal({
         title: "SUCCESS",
@@ -259,7 +277,7 @@ return (
       <form className={styles.Details}>
       <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
       <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
-      <p>Assigned to: <span className={styles.h4}>{projectProfile.members}</span></p>
+      <p>Assigned to:&nbsp; &nbsp; &nbsp; <span className={styles.h4}><img src={userImage} />  {userList.map( (element) =>{ return(<>{element},   </>)})}</span></p>
       <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {clientList}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>

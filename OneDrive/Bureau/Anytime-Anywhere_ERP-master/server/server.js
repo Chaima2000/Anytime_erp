@@ -61,7 +61,8 @@ app.get("/", (req, res) => {
   res.send("RUNNING SERVER ON PORT: " + process.env.PORT);
 });
 
-app.post("/createaccount", authentication.createAccount);
+app.post("/createaccount",authentication.upload.single("image"),
+authentication.createAccount);
 
 
 app.post("/login", authentication.login);
@@ -114,6 +115,7 @@ app.get("/editclient", clients.getClient);
 //Projects
 app.post("/addproject", projects.addProject);
 // app.post("/getclient/:id", projects.getClient);
+app.get("/getUserImage/:id", projects.getUserImage);
 app.put("/updateproject", projects.updateProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);

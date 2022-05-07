@@ -38,11 +38,19 @@ exports.getprojects = async (req, res) => {
     res.send(err)
   }
 };
-exports.getClient = async (req, res)=>{
+exports.getClients = async (req, res)=>{
   const clientList = await client.find({}).exec()
   res.send(clientList);
 }
-
+exports.getUserImage = async (req,res) => {
+  try{
+    const userList = await project.findById(req.params.id).populate('user', ["image"] );
+    res.send(base64ToString); 
+  }catch(err){
+    // res.status(500).json({err:"error"});
+    res.send("error")
+  }
+}
 exports.addProject =  (req , res) => {
   const name = req.body.name;
   const state = req.body.state;

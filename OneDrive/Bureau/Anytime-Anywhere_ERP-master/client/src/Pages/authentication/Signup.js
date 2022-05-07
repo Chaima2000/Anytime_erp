@@ -16,8 +16,9 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [waiting, setWaiting] = useState(null);
-  const [message , setMessage] = useState("");
-
+  const OnChangeImage= (e) => {
+    setimage(e.target.files[0]); 
+}
 
   let imgs = useRef(null);
   let headers = useRef(null);
@@ -37,32 +38,39 @@ function Signup() {
     document.getElementById("Confirmpassword").value= "";
     setimage(avatar);
   }
-  function convertBase64(file) {
-    return new Promise((resolve, reject) => {
-     const fileReader = new FileReader();
-     fileReader.readAsDataURL(file);
-     fileReader.onload = () => {
-       resolve(fileReader.result);
-     };
-     fileReader.onerror = (error) => {
-       reject(error);
-     };
-   });
- }
+//   function convertBase64(file) {
+//     return new Promise((resolve, reject) => {
+//      const fileReader = new FileReader();
+//      fileReader.readAsDataURL(file);
+//      fileReader.onload = () => {
+//        resolve(fileReader.result);
+//      };
+//      fileReader.onerror = (error) => {
+//        reject(error);
+//      };
+//    });
+//  }
 
   function createAccount(e) {
     if (password !== confirmPassword) {
       return (document.getElementById("formFeedback").hidden = false);
     }
+    const data = new FormData();
+    data.append("firstName",firstName);
+    data.append("lastName",lastName);
+    data.append("email",email);
+    data.append("password",password);
+    data.append("image",image);
+    const datax = {
+      firstName:firstName,
+      lastName:lastName,
+      email:email,
+      password:password,
+      image:image,
+    }
     axios
       .post("/createaccount",
-      {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        image:image
-      })
+      datax)
       .then((res) => {
         if (res.data === "SUCCESS") {
           swal({
@@ -91,23 +99,23 @@ function Signup() {
           <div className={styles.form_section}>
              <div className={styles.form_style}>
                 <h2 ref={el => headers = el}>Sign up</h2>
-                <form ref={el => form = el} className={styles.form} onSubmit={createAccount}>
+                <form ref={el => form = el} className={styles.form} onSubmit={createAccount} encType="multipart/form-data">
                     <div className={styles.fields}>
                         <label>   
                         <FontAwesomeIcon icon={solid("user")} size="lg"  className={styles.icons} />
-                        <input type="text" placeholder="Enter your first name" onChange={(e) => {setFirstName(e.target.value);}} required />
+                        <input type="text" placeholder="Enter your first name" onChange={(e) => {setFirstName(e.target.value);}} name="firstName" required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
                         <FontAwesomeIcon icon={solid("user")} size="lg"  className={styles.icons} />
-                        <input type="text" placeholder="Enter your last name" onChange={(e) => {setlastName(e.target.value);}} required />
+                        <input type="text" placeholder="Enter your last name" onChange={(e) => {setlastName(e.target.value);}} name="lastName" required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
                         <FontAwesomeIcon icon={solid("envelope")}  size="lg"  className={styles.icons} />
-                        <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} required />
+                        <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} name="email" required />
                         </label>
                     </div>
                     <div className={styles.fields}>
@@ -117,6 +125,7 @@ function Signup() {
                           onChange={(e) => {
                             setPassword(e.target.value);
                           }}
+                          name="password"
                           required
                           pattern="(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,}"
                           title="Password must contain minimum 8 characters including minimum 1 uppercase and 1 digit"
@@ -126,7 +135,7 @@ function Signup() {
                     <div className={styles.fields}>
                         <label>   
                           <FontAwesomeIcon icon={solid("key")}  size="lg"  className={styles.icons} />
-                          <input type="password" placeholder="Confirm your password" 
+                          <input type="password" placeholder="Confirm your password"  name="password"
                           onChange={(e) => {
                                 setConfirmPassword(e.target.value);
                               }}
@@ -140,14 +149,16 @@ function Signup() {
                         <label className={styles.btn_file}>  <FontAwesomeIcon icon={solid("image")}  size="lg"  className={styles.icons} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload image 
                           <input type="file" className={styles.file_input} 
                             accept=".png, .jpg, .jpeg"
-                            onChange={async (e) => {
-                                      const file = e.target.files[0];
-                                      const base64 = await convertBase64(file);
-                                      setimage(base64);
-                                    }
-                                  }
+                            onChange={OnChangeImage}
+                            filename="image"
                             id="file"
                           />
+                           {/* onChange={async (e) => {
+                                       const file = e.target.files[0];
+                                       const base64 = await convertBase64(file);
+                                       setimage(base64);
+                                    }
+                               } */}
                         </label>
                     </div>
                     {waiting ? (

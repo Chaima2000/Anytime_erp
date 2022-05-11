@@ -5,11 +5,10 @@ import 'aos/dist/aos.css';
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from './../../Css/home.module.css'; 
-import download from '../../uploads/Frame 19.png';
+import download from './../../Css/Frame 19.PNG';
 import Services from './Services';
 import About from './About';
-import Contact from './Contact';
-import anyany from '../../uploads/anyany.jfif';
+import wave from '../../Css/wave.png';
 import { FaMapMarkerAlt, FaPhoneAlt, FaFax, FaEnvelope, FaGlobe} from "react-icons/fa";
 function Home() {
   useEffect(() => {
@@ -20,8 +19,8 @@ function Home() {
 
   return (
     <>
-      <section id="home" className={styles.home}>
-         <div className={styles.container}>
+      <section id="home">
+        <div className={styles.container}>
             <div className={styles.left} data-aos="fade-right">
               <h1 className={styles.h1}>
                 <span>WELCOME TO OUR</span>
@@ -34,11 +33,14 @@ function Home() {
               <img src={download} alt="phone" />
             </div>
          </div>
+         <br />
          <div className={styles.floatting_icon}>
             <a href="#services">
             <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
             </a>
-      </div>
+        </div>
+        <br /><br /> <br />
+        
       </section>
       <Services />
       <About/>
@@ -77,6 +79,7 @@ function Home() {
           </p>
         </div>
       </footer>
+      <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a>
     </>
   )
 }

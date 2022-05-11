@@ -16,13 +16,11 @@ exports.deleteTask =(req,res) => {
 }
 
 exports.editTask = async (req,res) => {
-  const priorityTask = req.body.priorityTask;
-    const stateTask = req.body.stateTask;
     const id = req.body.id;
+    const stateTask = req.body.stateTask;
   try{
     await task.findById(id, (error, row) => {
-      row.priorityTask = priorityTask;
-      row.stateTask= row.stateTask;
+      row.stateTask= stateTask;
       row.save();
     });
   } catch(err) {
@@ -51,3 +49,13 @@ exports.addTask =  (req , res) => {
     console.log(e);
   }
 }
+exports.getTask = (req, res) => {
+  const id = req.body.id;
+  task.findById(id, (err, row) => {
+    if (row) {
+      res.send(row);
+    } else {
+      res.send("ERROR");
+    }
+  });
+};

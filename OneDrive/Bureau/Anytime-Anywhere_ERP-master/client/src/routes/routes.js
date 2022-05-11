@@ -20,9 +20,12 @@ import Addreceipts from "../Pages/admin/finance/receipts/Addreceipts";
 import Receipts from "../Pages/admin/finance/receipts/Receipts";
 import AddClients from "../Pages/admin/clients/AddClients";
 import Clients from "../Pages/admin/clients/Clients";
+import EditClient from '../Pages/admin/clients/EditClient';
 import AddProject from "../Pages/admin/projets/AddProject";
 import Projects from "../Pages/admin/projets/Projects";
 import ProjectProfile from "../Pages/admin/projets/ProjectProfile";
+import EditTask from '../Pages/admin/projets/EditTask';
+import  EditExpenses from '../Pages/admin/projets/EditExpenses';
 import Messenger from "../Pages/Messenger/Messenger";
 import UpdateUserProfile from "../components/UpdateUserProfile";
 import { Switch, Route } from "react-router-dom";
@@ -126,7 +129,10 @@ export const superAdminRoutes = (
       <Route path="/clients" exact>
         <Clients />
       </Route>
-      <Route path="/projects/add" exact>
+      <Route path="/EditClient/:id" exact>
+        <EditClient />
+      </Route>
+       <Route path="/projects/add" exact>
         <AddProject />
       </Route>
       <Route path="/projectList" exact>
@@ -134,6 +140,12 @@ export const superAdminRoutes = (
       </Route>
       <Route path="/project/details/:id" exact>
         <ProjectProfile />
+      </Route>
+      <Route path="/editTask/:id" exact>
+      <EditTask />
+      </Route>
+      <Route path="/editExpense/:id" exact>
+      <EditExpenses />
       </Route>
       <Route path="/discussion" exact>
         <Messenger />

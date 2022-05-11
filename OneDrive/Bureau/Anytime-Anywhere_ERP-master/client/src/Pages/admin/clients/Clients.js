@@ -16,29 +16,9 @@ function Clients(){
   const [allPages, setAllPages] = useState([]);
   const [DeleteClient , setDeleteClient] = useState({});
   const [ViewClient , setViewClient] = useState({});
-  const [EditClient , setEditClient] = useState({});
   const [viewItem , setViewItem] = useState(false);
   const [editItem , setEditItem] = useState(false);
   const [deleteItem,setDeleteItem] = useState(false);
-
-  /**edit functions **/
-
-  const [type , setType] = useState("");
-  const [society , setSociety] = useState("");
-  const [activity , setActivity] = useState("");
-  const [ceo , setCeo] = useState("");
-  const [email , setEmail] = useState("");
-  // const [phone , setPhoneNumber] = useState([ { phone : ""}]);
-  const [country , setCountry] = useState("");
-  const [city , setCity] = useState("");
-  const [zipCode , setZipCode] = useState("");
-  const [address , setAddress] = useState("");
-
-        
-
-
-
-
   function getClients(page) {
     axios
       .post("/getclients", { currentPage: page, searchTerm: searchTerm })
@@ -62,9 +42,6 @@ function Clients(){
  const View = () => {
   setViewItem(true)
 }
-const Edit = () => {
-  setEditItem(true)
-}
   function deleteClient(id) {
     axios.delete(`/deleteclient/${id}`).then((res) => {
       if (res.data === "ERROR") {
@@ -76,18 +53,6 @@ const Edit = () => {
           }
         })
       }
-      const updateClient = (id) => {
-        axios.put(`/updateclient/${id}`, {email:email, id:id })
-        .then((res) => {
-          if (res.data === "ERROR") {
-            alert("An error occured");
-          } else {
-            axios.post("/getclients").then((res) => {
-            setClientsList(res.data);
-          });
-        } 
-        })
-        }
   function resetSearch() {
         document.getElementById("searchField").value = "";
         axios.post("/getclients").then((res) => {
@@ -101,13 +66,13 @@ const Edit = () => {
   }
   return (
     <>
-     <h2>Clients </h2>
+     <h2>Liste des clients </h2>
      <form onSubmit={(e) => {document.getElementById("searchField").disabled = true;document.getElementById("resetBtn").hidden = false;document.getElementById("searchBtn").hidden = true;e.preventDefault();getClients();setCurrentPage(1);}}
                   className={styles.search_form}>
                   <input id="searchField" required onChange={(e) => {setSearchTerm(e.target.value)}} 
                   className={styles.searchInput}
                   type="text"
-                  placeholder="Client's name ..." />
+                  placeholder="Nom du client ..." />
                   <button id="searchBtn" className="transparentBtn">
                     <FontAwesomeIcon icon={solid("search")} size="lg" />
                   </button>
@@ -126,7 +91,7 @@ const Edit = () => {
                   </button>
                 </form>
     {waiting ? (
-          <div className={styles.spinner}>
+          <div className="row">
             <FontAwesomeIcon icon={solid("spinner")} spin size="3x" />
           </div>) : (
     <>
@@ -135,8 +100,8 @@ const Edit = () => {
           <table className={styles.table}>
               <thead>
                 <tr>
-                    <th> <span className={styles.textThead} >Society </span> </th>
-                    <th><span className={styles.textThead}>Activity</span> </th>
+                    <th> <span className={styles.textThead} >Société </span> </th>
+                    <th><span className={styles.textThead}>Activité</span> </th>
                     <th> <span className={styles.textThead} >Email </span> </th>
                   <th> <span className={styles.textThead}> Action </span> </th>
                 </tr>
@@ -145,11 +110,11 @@ const Edit = () => {
                 {clientsList.map( (client) => {
                   return ( 
                   <tr key = {client._id}>
-                    <td data-label="Society">  {client.society} </td>
-                    <td data-label="Activity"> {client.activity}</td>
+                    <td data-label="Societé">  {client.society} </td>
+                    <td data-label="Activité"> {client.activity}</td>
                     <td data-label="Email">{client.email}</td>
                     <td data-label="Action"><span onClick={()=> {setViewClient(client) ; View()}}><FontAwesomeIcon  icon={solid("file") }  color="#1a9cd4" /></span>&nbsp;&nbsp;
-                    <span onClick={()=> { setEditClient(client) ; Edit()}}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></span>&nbsp;&nbsp;
+                    <Link to={`/EditClient/${client._id}`}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></Link>&nbsp;&nbsp;
                     <span onClick={()=> {setDeleteClient(client) ; Delete()}}> <FontAwesomeIcon icon={solid("trash")} color = "#c71585"  /> </span></td> 
                     <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} className={styles.deleteItem} 
                                               shouldCloseOnOverlayClick={true} style = {
@@ -159,10 +124,10 @@ const Edit = () => {
                                                   }
                                               }
                                               }>
-                        <h5  className={Styles.ModalParagraph}>Do you want to delete {DeleteClient.society} ? <br/></h5>
+                        <h5  className={Styles.ModalParagraph}>Voulez-vous supprimer {DeleteClient.society} ? <br/></h5>
                         <div className={Styles.btn_section}>
-                          <input type="button"  value="CANCEL"  className= {Styles.white_btn}   onClick= {() => setDeleteItem(false)} />
-                          <input type="button"  value="CONFIRM" className= {Styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteClient(DeleteClient._id)}}/>
+                          <input type="button"  value="ANNULER"  className= {Styles.white_btn}   onClick= {() => setDeleteItem(false)} />
+                          <input type="button"  value="CONFIRMER" className= {Styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteClient(DeleteClient._id)}}/>
                         </div>
                     </Modal>
                     <Modal isOpen={viewItem} onRequestClose = {() => setViewItem(false)} className={styles.modelView}
@@ -173,7 +138,7 @@ const Edit = () => {
                                                           }
                                                       }
                     }>
-                    <h2 align="center"> {ViewClient.society}'s informations</h2>
+                    <h2 align="center"> Informations du {ViewClient.society}</h2>
                     <div className={styles.avatarCircle}></div>
                       <div className={styles.viewClientDetails}>
                           <p>Activité: <span  className={styles.span}>{ViewClient.activity}</span></p>
@@ -182,43 +147,13 @@ const Edit = () => {
                           <p>CEO : <span  className={styles.span}> {ViewClient.ceo}</span> </p>
                           <p>Telephone: <span className={styles.span}>{client.phone.map((number)=>{
                               return( <>{number.phone} ,  </>)})}</span></p>
-                          <p>City : <span  className={styles.span}>{ViewClient.city}</span> </p>
-                          <p>Country : <span  className={styles.span}>{ViewClient.country}</span> </p>
-                          <p>adresse : <span  className={styles.span}>{ViewClient.address}</span> </p>
-                          <p>zipCode :<span  className={styles.span}> {ViewClient.zipCode}</span> </p>
+                          <p>Ville : <span  className={styles.span}>{ViewClient.city}</span> </p>
+                          <p>Pays : <span  className={styles.span}>{ViewClient.country}</span> </p>
+                          <p>Adresse : <span  className={styles.span}>{ViewClient.address}</span> </p>
+                          <p>Code postal :<span  className={styles.span}> {ViewClient.zipCode}</span> </p>
                       </div>
                     </Modal>
-                    <Modal isOpen={editItem} onRequestClose = {() => setEditItem(false)} className={styles.modelEdit}
-                                                      shouldCloseOnOverlayClick={true} style = {
-                                                        {  
-                                                          overlay : {
-                                                            backgroundColor : '#00000010'
-                                                          }}
-                    }>
-                    <h2 align="center"> {EditClient.society}'s informations</h2>
-                    <div className={styles.Details}>
-                        <p>Type: <b>{EditClient.type}</b> </p>
-                        <p>Society: <b>{EditClient.society}</b></p>
-                        <p>Activity: <b>{EditClient.activity}</b></p>
-                        <p>CEO: <b>{EditClient.ceo}</b></p>
-                        <p>Email:</p> 
-                        <input className={styles.formInput} type="email" name="email" id="email" onChange={(e)=>{setEmail(e.target.value)}} defaultValue={EditClient.email} placeholder='Enter your email'  />
-                        <p>Country: <b>{EditClient.country}</b></p>
-                        <p>City: <b>{EditClient.city}</b></p>
-                        <p>Zip code: <b>{EditClient.zipCode}</b></p>
-                        <p>Address: <b>{EditClient.address}</b></p>
-                        Phone number:
-                        
-                        {client.phone.map((phoneNumber) => {
-                                return(
-                                  <>
-                                    <b name="phone" id="phone"> {phoneNumber.phone}</b>
-                                  </>
-                        );})}
-                    </div>
-                  <button className={styles.Btn} onClick={() => {updateClient(EditClient._id)}} > SAVE </button> 
-                </Modal>
-                </tr>
+                    </tr>
                 )})}
               </tbody>
           </table>

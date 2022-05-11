@@ -217,6 +217,7 @@ table td {
 
 .select {
   width: 80%;
+  outline:none;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;

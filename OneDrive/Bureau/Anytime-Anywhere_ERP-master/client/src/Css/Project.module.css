@@ -7,20 +7,21 @@ body {
     width: 20%;
     padding: 5px;
     height: 35px;
-    background: rgba(224, 222, 222, 0.2);
+    color: rgba(224, 222, 222, 0.2);
     outline:none;
     border: 1px solid rgb(212, 211, 211);
     border-radius: 30px;
 }
 .btnUpload{
     width: 100%;
-    padding: 5px;
+    padding: 15px;
+    cursor:pointer;
     color : grey;
-    height: 55px;
-    background: rgba(224, 222, 222, 0.2);
+    height: 50px;
+    background: none;
     outline:none;
-    border: 1px solid rgb(212, 211, 211);
-    border-radius: 30px;
+    border: none;
+
 }
 .endDate{
   width: 81%;
@@ -38,7 +39,7 @@ body {
   color : black; 
   outline: none;
   background: white;
-  width: 400px;
+  width: 480px;
   height: 195px;
   padding : 5px;
   position : relative;
@@ -95,7 +96,7 @@ body {
   position: relative;
   left: 15%;
   top: 5%;
-  width: 70%;
+  width: 90%;
   font-size: 20px;
 }
 .btn_section{
@@ -180,6 +181,7 @@ body {
 .modelEdit{
   background: #fff;
   padding:25px;
+  outline:none;
   width: 30%;
   height: 415px;
   margin-left: 28%;

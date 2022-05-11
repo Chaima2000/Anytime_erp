@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mui/lab": "^5.0.0-alpha.81",
     "body-parser": "^1.19.2",
     "emailjs": "^4.0.0",
     "express": "^4.17.3",
+    "framer-motion": "^6.3.3",
     "mongoose": "^6.2.3"
   }
 }

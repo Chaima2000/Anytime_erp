@@ -19,7 +19,16 @@ function UserProfile() {
       }
     });
   }, []);
-
+  function getProject(project){
+    axios.get(`/check/getUser/${project}`).then( (res)=>{
+      if(res.data){
+        setUserList(res.data);
+      } 
+    })
+  }
+  useEffect( ()=> {
+    
+  },[])
   return (
     <>
       {notfound ? (
@@ -42,7 +51,6 @@ function UserProfile() {
                 <h2>{user.firstName + " " + user.lastName}</h2>
                 <hr />
                 <h1>Role: {user.role}</h1>
-                <h1>Occupation: {user.occupation}</h1>
                 <h4>Current Projects: {user.projects}</h4>
               </div>
             </div>

@@ -150,8 +150,8 @@ function Signup() {
                           <input type="file" className={styles.file_input} 
                             accept=".png, .jpg, .jpeg"
                             onChange={OnChangeImage}
-                            filename="image"
                             id="file"
+                            name="image"
                           />
                            {/* onChange={async (e) => {
                                        const file = e.target.files[0];

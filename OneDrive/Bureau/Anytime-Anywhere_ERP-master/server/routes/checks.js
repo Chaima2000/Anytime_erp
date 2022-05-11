@@ -19,7 +19,7 @@ exports.getUser = async (req,res) => {
       const userFullName= userList.user[i].firstName + userList.user[i].lastName;
       users[i]=userFullName;
     }
-    res.send(users); 
+    res.json(users);
   }catch(err){
     res.send(err);
   }

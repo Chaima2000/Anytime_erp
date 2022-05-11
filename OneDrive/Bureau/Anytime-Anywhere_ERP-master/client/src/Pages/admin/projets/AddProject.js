@@ -4,6 +4,7 @@ import styles from '../../../Css/Client.module.css';
 import Styles from '../../../Css/Project.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { useHistory } from "react-router-dom";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 toast.configure()
@@ -19,7 +20,7 @@ function AddProject() {
   const [end , setEnd] = useState("");
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState({});
-
+  const history = useHistory();
   const [file , setFile] = useState([]);
   useEffect(() => {
     axios.get("/getclients").then((res) => {
@@ -44,12 +45,7 @@ function AddProject() {
       }
     });
   }, []);
-  const success = () => {
-    document.getElementById("name").value="";
-    document.getElementById("description").value="";
-    document.getElementById("start").value="";
-    document.getElementById("end").value= "";
-  }
+
   //State options //
   const options = [
     { value: 'planning', label: 'planning' },
@@ -115,13 +111,7 @@ function AddProject() {
         });
         console.log(e);
       }else if(res.data === "SUCCESS"){
-        swal({
-          title: "SUCCESS",
-          text: "Added succesfully!",
-          icon: "success",
-          button: "OK!",
-        });
-        success();
+        history.push("/projectList");
       }
     }
     )}
@@ -185,6 +175,7 @@ function AddProject() {
           />
         <div>
         <br />
+        <br />
             <input
               accept="image/*"
               id="file"
@@ -203,7 +194,7 @@ function AddProject() {
                       }}
             />
             <label htmlFor="file" className={Styles.btnUpload}>
-                Upload Files
+                <span>Upload Files</span>
               </label>
         </div>
         </div>

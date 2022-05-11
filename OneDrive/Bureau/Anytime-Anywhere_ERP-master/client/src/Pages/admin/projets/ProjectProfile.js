@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import styles from "../../../Css/Project.module.css";
 import Modal from 'react-modal';
+import { Link} from "react-router-dom";
 import swal from 'sweetalert';
 import { AppContext } from "../../../Context/AppContext";
 import TextField from '@material-ui/core/TextField'; 
@@ -18,6 +19,7 @@ function ProjectProfile(props) {
   const[end , setEnd] = useState("");
   const[state , setStateProject]= useState("");
   const [membersList , setMembersList] = useState([]);
+ 
   /** Tasks states **/
   const [tasksList , setTasksList] = useState([]);
   const[nameTask , setNameTask] = useState("");
@@ -275,20 +277,20 @@ const handleChange = (e) => {
 return (
     <>
       <form className={styles.Details}>
-      <p>Project name: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
-      <p>Assigned by: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
-      <p>Assigned to:&nbsp; &nbsp; &nbsp; <span className={styles.h4}><img src={userImage} />  {userList.map( (element) =>{ return(<>{element},   </>)})}</span></p>
-      <p>State: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
+      <p>Nom du projet: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
+      <p>Assigné par: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
+      <p>Assigné pour :&nbsp; &nbsp; &nbsp; <span className={styles.h4}><img src={userImage} />  {userList.map( (element) =>{ return(<>{element},   </>)})}</span></p>
+      <p>Etat: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {clientList}</span></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
-      <p> Start at : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
-      <p>End at : </p>
+      <p> Débute à : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
+      <p>Termine à : </p>
       <input type="date" defaultValue={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}}  className={styles.endDate}/> 
       <br />
       <br />
       <Select 
       className={styles.editState}
-          placeholder="Edit State"
+          placeholder="Modifier l'état"
           id="state"
           styles={customStyles}
           options={options} 
@@ -300,23 +302,23 @@ return (
       <button className="defaultBtn" onClick={() => {updateProject(projectProfile._id)}}>SAVE</button>
     </form>
     <div className={styles.details}>
-        <h2>Tasks <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
+        <h2>Tâches <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
         <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} className={styles.modelEdit}
                                               shouldCloseOnOverlayClick={true}
                                               style = {
                                                 {  
                                                   overlay : {
-                                                  backgroundColor : '#00000020'
+                                                  backgroundColor : '#00000030'
                                                   }
                                                }
                                                }  
                                               >
             <form onSubmit={addtask}>
-                <h2 align="center">Add task </h2>
+                <h2 align="center">Ajouter tâche</h2>
                 <br />
                 <TextField id="name" 
                       type="text"
-                      label = " Name "
+                      label = " Nom "
                       className={styles.FieldInput}
                       variant="outlined"
                       onChange={ (e) => { setNameTask(e.target.value)}}
@@ -336,7 +338,7 @@ return (
                 <br />
                 <div className={styles.FieldInput}>
                     <Select 
-                          placeholder="Select State"
+                          placeholder="Selectionner l'état"
                           id="state"
                           onChange={ (e) => { setStateTask(e.label)}}
                           styles={customStyles}
@@ -344,9 +346,9 @@ return (
                           
                     />
                 </div>
-                  <h4><label>Task's priority</label> &nbsp;&nbsp;
-                  <input  type="checkbox" value="urgent" onChange= { (event) => {handleChange(event) }} /></h4>
-                <button className={styles.Btn} >save</button>
+                  <h4><label>Priorité: </label><br /><br />
+                  <label>Urgent: </label><input  type="checkbox" value="urgent" onChange= { (event) => {handleChange(event) }} /></h4>
+                <button className={styles.Btn} >Enregistrer</button>
             </form>
         </Modal>
         <br/>
@@ -354,12 +356,12 @@ return (
           return (
            <>
             <div className={styles.Bloc} key= {index}>
-               <h4>Name : {task.nameTask} </h4>
+               <h4>Nom du tâche : {task.nameTask} </h4>
                <h4>Description : {task.descriptionTask} </h4>
-               <h4>State : {task.stateTask} </h4>
-               <h4>Priority : {task.priorityTask} </h4>
-               <input className={styles.BtnTask} type="button" value="Delete" onClick={()=> { setDelete(task) ; deletePopUp() }} />
-               <input className={styles.BtnTask} type="button" value="Edit" onClick={()=> { setEditTasks(task) ; editTasks() }} />
+               <h4>Etat : {task.stateTask} </h4>
+               <h4>Priorité : {task.priorityTask} </h4>
+               <input className={styles.BtnTask} type="button" value="Supprimer" onClick={()=> { setDelete(task) ; deletePopUp() }} />
+               <Link to={`/editTask/${task._id}`}><input className={styles.BtnTask} type="button" value="Modifier" /></Link>
                </div>
            </>
           )
@@ -368,7 +370,7 @@ return (
       <br />
       <br />
       <br />
-        <button onClick={showMoreItems} className={styles.readMore}> View All Tasks </button>
+        <button onClick={showMoreItems} className={styles.readMore}> Voir tous les tâches </button>
             <Modal isOpen={deleteTask} onRequestClose = {() => setDeleteTask(false)} className={styles.deleteItem}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
@@ -377,90 +379,38 @@ return (
                                                   }
                                                }
                                                }>
-                    <p className={styles.ModalParagraph}>Do you want to delete {taskDelete.nameTask} ?</p>
+                    <p className={styles.ModalParagraph}>Voulez-vous supprimer {taskDelete.nameTask} ?</p>
                     <br />
                     <div className={styles.btn_section}>
-                    <input type="button" value="CANCEL" onClick={() => setDeleteTask(false)} className= {styles.white_btn} />
-                     <input type="button"  value="CONFIRM" onClick={()=> {setDeleteTask(false) ; deletetask(taskDelete._id)}} className= {styles.confirm_btn}/>
+                    <input type="button" value="Annuler" onClick={() => setDeleteTask(false)} className= {styles.white_btn} />
+                     <input type="button"  value="Confirmer" onClick={()=> {setDeleteTask(false) ; deletetask(taskDelete._id)}} className= {styles.confirm_btn}/>
                     </div>
-            </Modal>
-            <Modal isOpen={taskEdit} onRequestClose = {() => setEdit(false)} 
-                                              shouldCloseOnOverlayClick={true} className={styles.modelEdit}
-                                              style = {
-                                                {  
-                                                  overlay : {
-                                                  backgroundColor : '#00000020'
-                                                  },
-                                         
-                                               }
-                                               }  
-                                               >
-            <form>
-                <h2 align="center">Edit task </h2>
-                <br />
-                <br />
-                <TextField id="name" 
-                      type="text"
-                      label = " Name "
-                      className={styles.select}
-                      variant="outlined"
-                      value={editTask.nameTask}
-                       
-                    />
-                <br />
-                <br />
-                <TextField id="description" 
-                      type="text"
-                      label = " Description "
-                      className={styles.select}
-                      variant="outlined"
-                      value={editTask.descriptionTask}
-                                            
-                    />
-                <br />
-                <br />
-                <div className={styles.select}>
-                    <Select 
-                         placeholder="Select State"
-                          id="state"
-                          defaultValue={options.find(obj => obj.label === editTask.stateTask)}
-                          onChange={ (e) => { setStateTask(e.label)}}
-                          styles={customStyles}
-                          options={options} 
-                          />
-                </div>
-                  <h4><label>Task's priority</label> &nbsp;&nbsp;
-                  <input  type="checkbox" defaultValue="urgent"   onChange= { (event) => { handleChange(event) }} /></h4>
-                <button className={styles.btnT} onClick = { () => { updateTask(editTask._id)}}>save</button>
-            </form>
-            </Modal>
-
-      
+            </Modal>   
   <br />
   <br />
   <br />
   </div>
         <br/>
         <div className={styles.details}>
-        <h2>Expenses <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_iconExp} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
+        <h2>Frais <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_iconExp} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
         <Modal isOpen={expenseIsOpen} onRequestClose = {() => setExpenseIsOpen(false)} 
                                               shouldCloseOnOverlayClick={true} className={styles.modelEdit}
                                               style = {
                                                 {  
                                                   overlay : {
-                                                    backgroundColor : '#00000020'
+                                                    backgroundColor : '#00000030'
                                                   },
                                                   
                                                }
                                                }  
                                               >
             <form onSubmit={addexpense}>
-                <h2 align="center">Add expense </h2>
+                <h2 align="center">Ajouter frais </h2>
                 <br />
                 <br />
                 <TextField id="name" 
                       type="text"
-                      label = " Name "
+                      label = " Nom "
                       className={styles.FieldInput}
                       variant="outlined"
                       onChange={(e)=>{setExpenseName(e.target.value)}} 
@@ -481,7 +431,7 @@ return (
                 <br />
                 <TextField id="value"
                       type="number" 
-                      label = " Value "
+                      label = " Valeur "
                       className={styles.FieldInput}
                       variant="outlined"
                       onChange={(e)=>{setExpenseValue(e.target.value)}} 
@@ -490,7 +440,7 @@ return (
                 <br />
                 <br />
                 <br />
-                <button className={styles.Btn}>save</button>
+                <button className={styles.Btn}>Enregistrer</button>
             </form>
         </Modal>
         <br/>
@@ -498,11 +448,11 @@ return (
           return (
            <>
             <div className={styles.Bloc}>
-               <h4>Name : {expense.expenseName} </h4>
+               <h4>Nom : {expense.expenseName} </h4>
                <h4>Description : {expense.expenseDescription} </h4>
-               <h4>Value : {expense.expenseValue} </h4>
-               <input className={styles.BtnTask} type="button" value="Delete" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
-               <input className={styles.BtnTask} type="button" value="Edit"  />
+               <h4>Valeur : {expense.expenseValue} </h4>
+               <input className={styles.BtnTask} type="button" value="Supprimer" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
+               <Link to={`/editExpense/${expense._id}`}><input className={styles.BtnTask} type="button" value="Modifier"  /></Link>
             <Modal isOpen={deleteExpenses} onRequestClose = {() => setDeleteExpense(false)} className={styles.deleteItem}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
@@ -511,10 +461,10 @@ return (
                                                   }
                                                }
                                                }>
-                    <p className={styles.ModalParagraph}>Do you want to delete { expenseDelete.expenseName} ? <br/></p>
+                    <p className={styles.ModalParagraph}>Voulez-vous supprimer { expenseDelete.expenseName} ? <br/></p>
                     <div className={styles.btn_section}>
-                    <input type="button" value="CANCEL" className= {styles.white_btn} onClick={() => setDeleteExpense(false)} />
-                    <input type="button"  value="CONFIRM" className= {styles.confirm_btn}  onClick={()=> {setDeleteExpense(false) ; deleteExpense(expenseDelete._id)}}/>
+                    <input type="button" value="ANNULER" className= {styles.white_btn} onClick={() => setDeleteExpense(false)} />
+                    <input type="button"  value="CONFIRMER" className= {styles.confirm_btn}  onClick={()=> {setDeleteExpense(false) ; deleteExpense(expenseDelete._id)}}/>
                     </div>
             </Modal>
              </div>

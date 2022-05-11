@@ -81,10 +81,12 @@ const { client } = require("../database/models/clients.model");
     }
     exports.editClient = async (req,res) => {
       const email = req.body.email;
+      const address = req.body.address;
       const id = req.body.id;
       try{
         await client.findById(id, (error, row) => {
           row.email = email;
+          row.address = address;
           row.save();
         });
       } catch(err) {

@@ -1,3 +1,4 @@
+const { project } = require("../database/models/project.model");
 const { user } = require("../database/models/user.model");
 
 exports.getUsers = async (req, res) => {
@@ -53,7 +54,19 @@ exports.getUsers = async (req, res) => {
     console.error(err.message);
   }
 };
-
+exports.getProject = async (req,res) => {
+  console.log(req.params.id);
+  project.findById(req.params.id).populate("user").then( result =>{
+    res.status(200).json({
+      project:result
+    })
+  }).catch(err=>{
+    console.log(err);
+    res.status(500).json({
+      error:err
+    })
+})
+}
 exports.getUser = (req, res) => {
   const id = req.body.id;
   user.findById(id, (err, row) => {

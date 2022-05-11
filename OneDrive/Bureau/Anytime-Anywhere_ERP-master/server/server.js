@@ -61,10 +61,9 @@ app.get("/", (req, res) => {
   res.send("RUNNING SERVER ON PORT: " + process.env.PORT);
 });
 
-app.post("/createaccount",authentication.upload.single("image"),
-authentication.createAccount);
+app.post("/createaccount" ,authentication.createAccount);
 
-
+app.get('/getProject/:id', users.getProject);
 app.post("/login", authentication.login);
 
 app.get("/getlogin", authentication.getlogin);
@@ -107,15 +106,16 @@ app.post("/getreceipts",receipts.getreceipts);
 //Clients
 app.post("/getclients", clients.getClients);
 app.post("/getclient", clients.getClient);
-app.put("/updateclient/:id", clients.editClient);
+app.put("/editClient/:id", clients.editClient);
 app.post("/addclient", clients.AddClient);
 app.delete("/deleteclient/:id", clients.deleteClient);
 app.get("/editclient", clients.getClient);
 
 //Projects
 app.post("/addproject", projects.addProject);
+
 // app.post("/getclient/:id", projects.getClient);
-app.get("/getUserImage/:id", projects.getUserImage);
+// app.get("/getUserImage/:id", projects.getUserImage);
 app.put("/updateproject", projects.updateProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);
@@ -130,10 +130,13 @@ app.post("/addTask" , tasks.addTask);
 app.put("/updateTask/:id", tasks.editTask);
 app.get("/getTasks", tasks.getTasks);
 app.delete("/deleteTask/:id", tasks.deleteTask);
+app.post("/getTask", tasks.getTask);
 
 //Expenses
 app.post("/addExpense" , expenses.addExpense);
+app.post("/getExpense", expenses.getExpense);
 app.post("/getExpenses", expenses.getexpenses);
+app.put("/editExpense/:id",expenses.editExpense);
 app.delete("/deleteExpense/:id", expenses.deleteExpense);
 
 

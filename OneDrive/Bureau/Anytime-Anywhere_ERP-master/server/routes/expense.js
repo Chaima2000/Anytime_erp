@@ -30,7 +30,19 @@ exports.getexpenses = async (req, res) => {
     console.error(err.message);
   }
 };
-
+exports.editExpense = async (req,res) => {
+  const id = req.body.id;
+  const expenseValue = req.body.expenseValue;
+try{
+  await expense.findById(id, (error, row) => {
+    row.expenseValue= expenseValue;
+    row.save();
+  });
+} catch(err) {
+  console.log(err);
+}
+res.send('updated')
+}
 exports.addExpense =  (req , res) => {
     const expenseName = req.body.expenseName;
     const expenseDescription = req.body.expenseDescription;

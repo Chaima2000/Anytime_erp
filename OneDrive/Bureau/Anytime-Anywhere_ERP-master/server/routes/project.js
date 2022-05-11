@@ -42,15 +42,7 @@ exports.getClients = async (req, res)=>{
   const clientList = await client.find({}).exec()
   res.send(clientList);
 }
-exports.getUserImage = async (req,res) => {
-  try{
-    const userList = await project.findById(req.params.id).populate('user', ["image"] );
-    res.send(base64ToString); 
-  }catch(err){
-    // res.status(500).json({err:"error"});
-    res.send("error")
-  }
-}
+
 exports.addProject =  (req , res) => {
   const name = req.body.name;
   const state = req.body.state;
@@ -60,7 +52,6 @@ exports.addProject =  (req , res) => {
   const end = req.body.end;
   const user= req.body.user;
   const file = req.body.file;
-  console.log(user)
 
   const newProject = new project ( {
     name: name,
@@ -77,7 +68,7 @@ exports.addProject =  (req , res) => {
     res.send("SUCCESS");
   } catch (e) {
     res.send("ERROR");
-    console.log(e);
+    alert("ERROR")
   }
 }
 
@@ -103,7 +94,7 @@ exports.updateProject = async (req,res) => {
       row.save()
     });
   } catch(err) {
-    console.log(err)
+    alert("Error")
   }
   res.send('updated')
 }

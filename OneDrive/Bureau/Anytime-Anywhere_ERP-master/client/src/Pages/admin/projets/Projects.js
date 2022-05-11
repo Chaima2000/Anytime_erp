@@ -68,7 +68,7 @@ function Projects(props) {
 return (
     <>
     <div className={styles.overlay}>
-    <h1 align="center">Project's List</h1>
+    <h1 align="center">Liste des projets</h1>
     <section>
         <Link to="/projects/add">
           <FontAwesomeIcon className="navIcon" icon={solid("plus")} />
@@ -92,7 +92,7 @@ return (
                   }}
                   className={Styles.formInput}
                   type="text"
-                  placeholder="Project Name ..."
+                  placeholder="Nom du projet ..."
                 />
                 <button id="searchBtn" className="transparentBtn">
                           <FontAwesomeIcon icon={solid("search")} size="lg" />
@@ -115,13 +115,18 @@ return (
       </section>
     
     <br />
+    {waiting ? (
+    <div className="row">
+            <FontAwesomeIcon icon={solid("spinner")} size={"3x"} spin />
+    </div>)
+          :(
   <div className={styles.bloc_Section}>
         {projectList.map ( (project)  => {
           return(
           <>
           <div className={styles.Bloc}>
-            <h4>Project name : {project.name} </h4>
-            <h4>Project state : {project.state}</h4>
+            <h4>Nom du projet : {project.name} </h4>
+            <h4>Etat du projet : {project.state}</h4>
             
             
             <Link to={`/project/details/${project._id}`}><span className={styles.icons} onChange={() => {setProjectId(project._id)}}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
@@ -136,20 +141,19 @@ return (
                                                   },
                                               }
                                               }>
-                    <h5  className={styles.ModalParagraph}>Do you want to delete {DeleteProject.name} ? <br/></h5>
+                    <h5  className={styles.ModalParagraph}>Voulez-vous supprimer {DeleteProject.name} ? <br/></h5>
                     <div className={styles.btn_section}>
-                      <input type="button"  value="CANCEL"  className= {styles.white_btn}   onClick= {() => setDeleteItem(false)} />
-                      <input type="button"  value="CONFIRM" className= {styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(DeleteProject._id)}}/>
+                      <input type="button"  value="ANNULER"  className= {styles.white_btn}   onClick= {() => setDeleteItem(false)} />
+                      <input type="button"  value="CONFIRMER" className= {styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(DeleteProject._id)}}/>
                     </div>
               </Modal>
           </div>
-          
           </>
-          );
-         
+          )
           })}
-   
           </div>
+          
+          )};
     <div className="paginationContainer">
       {allPages.map((page) => {
         if (page === currentPage) {
@@ -181,6 +185,7 @@ return (
       })}
     </div>
   </div>
+        
     </>
   )
 }

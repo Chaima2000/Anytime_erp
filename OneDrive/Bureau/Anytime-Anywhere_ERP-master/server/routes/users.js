@@ -55,14 +55,19 @@ exports.getUsers = async (req, res) => {
   }
 };
 exports.getProject = async (req,res) => {
-  let {id}=req.params.id;
+  const id=req.params.id;
   try {
-    const user = await project.find(id).populate("user");
-    res.send(user);
-    console.log(user)
+    const user = await project.find({'user':id});
+    const projects=[];
+    for(let i=0;i<user.length;i++){
+      const userFullproject= user[i].name;
+      projects[i]=userFullproject;
+    }
+    res.send(projects);
+    console.log(id)
     
   }catch(err){
-    res.status(500).json({err:"ERROR"});
+    res.send("error");
     console.log(err)
   }
   

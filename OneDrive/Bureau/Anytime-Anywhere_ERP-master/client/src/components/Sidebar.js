@@ -50,30 +50,6 @@ function Sidebar() {
               &nbsp; Users
             </div>
           </Link>
-          <Link
-            onClick={() => {
-              toggleSidebar();
-            }}
-            className={styles.link}
-            to="/users"
-          >
-            <div className={styles.submenu}>
-              <FontAwesomeIcon icon={solid("users")} size="lg" />
-              &nbsp; Users
-            </div>
-          </Link>
-          <Link
-            onClick={() => {
-              toggleSidebar();
-            }}
-            className={styles.link}
-            to="/users"
-          >
-            <div className={styles.submenu}>
-              <FontAwesomeIcon icon={solid("users")} size="lg" />
-              &nbsp; Users
-            </div>
-          </Link>
         </li>
         <li className={styles.dropdown}>
           <FontAwesomeIcon icon={solid("coins")} size="lg" />

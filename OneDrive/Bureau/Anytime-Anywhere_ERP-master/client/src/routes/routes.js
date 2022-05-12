@@ -12,7 +12,7 @@ import UserProfile from "../Pages/admin/users/UserProfile";
 import Notfound from "../Pages/404";
 import Welcome from "../Pages/freshuser/Welcome";
 import TeamDashboard from "../Pages/team/TeamDashboard";
-import TeamProjects from "../Pages/team/Projects";
+import TeamProjects from "../Pages/team/projects/Projects";
 import Bank from "../Pages/admin/finance/bank/Bank";
 import AddBank from "../Pages/admin/finance/bank/AddBank";
 import Checks from "../Pages/admin/finance/checks/AddCheck";
@@ -104,6 +104,9 @@ export const superAdminRoutes = (
       </Route>
       <Route path="/banks/add" exact>
         <AddBank />
+      </Route>
+      <Route path="/banks" exact>
+        <Bank />
       </Route>
       <Route path="/receipts/add" exact>
         <Addreceipts />

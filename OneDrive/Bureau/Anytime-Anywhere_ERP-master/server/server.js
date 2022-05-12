@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
 
 app.post("/createaccount" ,authentication.createAccount);
 
-app.get("/getProject/:id", users.getProject);
+
 app.post("/login", authentication.login);
 
 app.get("/getlogin", authentication.getlogin);
@@ -86,11 +86,13 @@ app.post("/getuser", users.getUser);
 app.post("/toggleactivateuser", users.toggleActivateUser);
 app.post("/changerole", users.changeRole);
 app.delete("/deleteuser/:userId", users.deleteUser);
+app.get("/getProject/:id", users.getProject);
 
 // Banks
 app.post("/getbanks", banks.getbanks);
 app.delete("/deletebank/:id", banks.deleteBank);
 app.post("/addbank", banks.addBank);
+app.post("/bank/details/:id",banks.getBank);
 
 // Checks 
 app.get("/check/getclient/:id", checks.getClient);
@@ -113,9 +115,6 @@ app.get("/editclient", clients.getClient);
 
 //Projects
 app.post("/addproject", projects.addProject);
-
-// app.post("/getclient/:id", projects.getClient);
-// app.get("/getUserImage/:id", projects.getUserImage);
 app.put("/updateproject", projects.updateProject);
 app.delete("/deleteproject/:id", projects.deleteProject);
 app.post("/getprojects", projects.getprojects);

@@ -7,6 +7,7 @@ import styles from "../../../Css/Users.module.css";
 function UserProfile() {
   const [user, setUser] = useState({});
   const [notfound, setNotfound] = useState(false);
+  const [projects, setProjects] = useState([]);
 
   let { id } = useParams();
 
@@ -16,12 +17,18 @@ function UserProfile() {
         setNotfound(true);
       } else {
         setUser(res.data);
+        getProject(id);
       }
     });
   }, []);
+  function getProject(id){
+    axios.get(`/getProject/${id}`).then( (res)=>{
+      if(res.data){
+        setProjects(res.data);
+      } 
+    })
+  }
 
-  useEffect( ()=> { 
-  },[])
   return (
     <>
       {notfound ? (
@@ -43,8 +50,16 @@ function UserProfile() {
               <div className={styles.details}>
                 <h2>{user.firstName + " " + user.lastName}</h2>
                 <hr />
-                <h1>Role: {user.role}</h1>
-                <h4>Current Projects: {user.projects}</h4>
+                <h1>Role:</h1>
+                {user.role}
+                <h1>Current Projects:</h1>
+                {projects.map( (project) => {
+                  return (
+                    <>
+                    <li className={styles.li}>{project}</li><br /> 
+                    </>
+                  )
+                })}
               </div>
             </div>
           </section>

@@ -68,3 +68,13 @@ exports.addBank = (req, res) => {
     console.log(e);
   }
 };
+exports.getBank = (req, res) => {
+  const id = req.body.id;
+  bank.findById(id, (err, row) => {
+    if (row) {
+      res.send(row);
+    } else {
+      res.send("ERROR");
+    }
+  });
+};

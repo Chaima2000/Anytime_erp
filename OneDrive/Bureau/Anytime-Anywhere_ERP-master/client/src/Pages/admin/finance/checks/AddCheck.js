@@ -43,9 +43,6 @@ function Checks() {
       } 
     })
   }
-  useEffect( ()=> {
-    
-  },[])
   function getUser(project){
     axios.get(`/check/getUser/${project}`).then( (res)=>{
       if(res.data){
@@ -53,9 +50,7 @@ function Checks() {
       } 
     })
   }
-  useEffect( ()=> {
-    
-  },[])
+
   
   
   const customStyles = {

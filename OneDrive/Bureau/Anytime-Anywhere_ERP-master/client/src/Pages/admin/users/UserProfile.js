@@ -19,15 +19,8 @@ function UserProfile() {
       }
     });
   }, []);
-  function getProject(project){
-    axios.get(`/check/getUser/${project}`).then( (res)=>{
-      if(res.data){
-        setUserList(res.data);
-      } 
-    })
-  }
-  useEffect( ()=> {
-    
+
+  useEffect( ()=> { 
   },[])
   return (
     <>

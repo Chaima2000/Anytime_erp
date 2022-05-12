@@ -63,7 +63,7 @@ app.get("/", (req, res) => {
 
 app.post("/createaccount" ,authentication.createAccount);
 
-app.get('/getProject/:id', users.getProject);
+app.get("/getProject/:id", users.getProject);
 app.post("/login", authentication.login);
 
 app.get("/getlogin", authentication.getlogin);

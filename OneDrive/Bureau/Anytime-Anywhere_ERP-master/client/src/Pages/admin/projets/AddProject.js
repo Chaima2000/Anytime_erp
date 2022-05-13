@@ -118,6 +118,7 @@ function AddProject() {
 
   return (
     <>
+    <div className={styles.overlay}>
       <section className={styles.section}>        
         <div className={styles.container}>
           <div className={styles.form }>
@@ -205,6 +206,7 @@ function AddProject() {
   </div>
   </div>
   </section>
+</div>
    </>
   )
 }

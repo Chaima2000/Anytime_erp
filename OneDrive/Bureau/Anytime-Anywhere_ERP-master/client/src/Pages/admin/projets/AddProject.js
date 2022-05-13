@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import Select  from 'react-select';
 import styles from '../../../Css/Client.module.css';
-import Styles from '../../../Css/Project.module.css';
+import Styles from '../../../Css/ProjectProfile.module.css';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";

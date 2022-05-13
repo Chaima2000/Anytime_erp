@@ -85,8 +85,8 @@ exports.deleteProject =(req,res) => {
 
 exports.updateProject = async (req,res) => {
   const end = req.body.end;
-  const id = req.body.id;
   const state = req.body.state;
+  const id = req.body.id;
   try{
     await project.findById(id, (error, row) => {
       row.end = end;
@@ -98,6 +98,7 @@ exports.updateProject = async (req,res) => {
   }
   res.send('updated')
 }
+
 exports.getMembers = async (req, res)=>{
   const members = await user.find( {$or: [
     { role: "DEVELOPER" },

@@ -3,15 +3,23 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import styles from "../../../Css/Project.module.css";
+import styles from "../../../Css/ProjectProfile.module.css";
 import Modal from 'react-modal';
 import { Link} from "react-router-dom";
 import swal from 'sweetalert';
 import { AppContext } from "../../../Context/AppContext";
 import TextField from '@material-ui/core/TextField'; 
-import Select  from 'react-select';
+import Tippy from '@tippy.js/react';
+import 'tippy.js/dist/tippy.css';
 
 function ProjectProfile(props) {
+
+
+
+
+
+
+
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
   const [userList,setUserList]= useState([]);
@@ -147,7 +155,12 @@ function ProjectProfile(props) {
       boxShadow: state.isFocused ? null : null,
     })
   }
-
+  //State options //
+  const options = [
+    { value: 'planning', label: 'planning' },
+    { value: 'in_progress', label: 'in progress' },
+    { value: 'closed', label: 'closed' }
+  ]
 const success =() => {
      document.getElementById("name").value = "";
      document.getElementById("description").value = "";
@@ -216,12 +229,7 @@ const addtask =(e) => {
         success();
 })}
 
-  //State options //
-  const options = [
-    { value: 'planning', label: 'planning' },
-    { value: 'in_progress', label: 'in progress' },
-    { value: 'closed', label: 'closed' }
-  ]
+
 const addexpense =(e) => {
   e.preventDefault();
   const data = new FormData();
@@ -264,55 +272,66 @@ const handleChange = (e) => {
   setpriorityTask(e.target.value);
 }
 
+
+
+
+
+
 return (
     <>
+    {waiting ? (
+    <div className="row">
+            <FontAwesomeIcon icon={solid("spinner")} size={"3x"} spin />
+    </div>)
+          :(
+            <>
       <form className={styles.Details}>
-      <p>Nom du projet: &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.name} </span></p>
-      <p>Assigné par: &nbsp; &nbsp; &nbsp;<span className={styles.h4}><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</span></p>
-      <p>Assigné pour :&nbsp; &nbsp; &nbsp; <span className={styles.h4}><img src={userImage} />  {userList.map( (element) =>{ return(<>{element},   </>)})}</span></p>
-      <p>Etat: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4} > {projectProfile.state}</span></p>  
-      <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span  className={styles.h4}> {clientList}</span></p>   
-      <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<span className={styles.h4}>{projectProfile.description}</span></p>
-      <p> Débute à : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<span className={styles.h4}> {projectProfile.start}</span></p>
-      <p>Termine à : </p>
-      <input type="date" defaultValue={projectProfile.end} onChange= { (e) => { setEnd(e.target.value)}}  className={styles.endDate}/> 
-      <br />
-      <br />
-      <Select 
-      className={styles.editState}
-          placeholder="Modifier l'état"
-          id="state"
-          styles={customStyles}
-          options={options} 
-          defaultValue={projectProfile.state}
-          onChange={ (e) => { setStateProject(e.label)}}
-      />
-      <br />
+      <p>Nom du projet: &nbsp; &nbsp; &nbsp;<b>{projectProfile.name} </b></p>
+      <p>Assigné par: &nbsp; &nbsp; &nbsp;<b><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</b></p>
+      <p>Assigné pour :&nbsp; &nbsp; &nbsp; <b><img src={userImage} />  {userList.map( (element) =>{ return(<>{element},   </>)})}</b></p>
+      <p>Etat: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<b> {projectProfile.state}</b></p>  
+      <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b b> {clientList}</b></p>   
+      <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<b>{projectProfile.description}</b></p>
+      <p> Débute à : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b> {projectProfile.start}</b></p>
+      <p>Termine à : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<b>{projectProfile.end}</b> </p>
       <br />
       <button className="defaultBtn" onClick={() => {updateProject(projectProfile._id)}}>SAVE</button>
     </form>
+
+
     <div className={styles.details}>
-        <h2>Tâches <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_icon} onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></h2>
-        <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)} className={styles.modelEdit}
-                                              shouldCloseOnOverlayClick={true}
-                                              style = {
-                                                {  
-                                                  overlay : {
-                                                  backgroundColor : '#00000030'
-                                                  }
-                                               }
-                                               }  
-                                              >
+        <h2>Tâches 
+        <Tippy content='Ajouter une tâche'>
+          <p className={styles.add_icon}><FontAwesomeIcon icon= {solid("plus")} color = "white"  onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></p>
+        </Tippy> 
+        </h2>
+        <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)}
+                shouldCloseOnOverlayClick={true}
+                style = {
+                          {  
+                            overlay : {
+                                        backgroundColor : '#00000030'
+                                      },
+                            content: {
+                                        position:'relative',
+                                        borderRadius:'30px',
+                                        outline:'none',
+                                        top:'13%',
+                                        left: '32%',
+                                        width: '37%',
+                                        height: '405px',
+                                      }
+                          }
+                        }>
             <form onSubmit={addtask}>
-                <h2 align="center">Ajouter tâche</h2>
+                <h2 align="center">Ajouter une tâche</h2>
                 <br />
                 <TextField id="name" 
                       type="text"
                       label = " Nom "
                       className={styles.FieldInput}
                       variant="outlined"
-                      onChange={ (e) => { setNameTask(e.target.value)}}
-                       
+                      onChange={ (e) => { setNameTask(e.target.value)}}   
                     />
                 <br />
                 <br />
@@ -321,23 +340,12 @@ return (
                       label = " Description "
                       className={styles.FieldInput}
                       variant="outlined"
-                      onChange={ (e) => { setDescriptionTask(e.target.value)}}
-                       
+                      onChange={ (e) => { setDescriptionTask(e.target.value)}}  
                     />
                 <br />
                 <br />
-                <div className={styles.FieldInput}>
-                    <Select 
-                          placeholder="Selectionner l'état"
-                          id="state"
-                          onChange={ (e) => { setStateTask(e.label)}}
-                          styles={customStyles}
-                          options={options} 
-                          
-                    />
-                </div>
-                  <h4><label>Priorité: </label><br /><br />
-                  <label>Urgent: </label><input  type="checkbox" value="urgent" onChange= { (event) => {handleChange(event) }} /></h4>
+                <h3><label>Priorité: </label></h3>
+                <h5>Urgent: <input  type="checkbox" value="urgent" onChange= { (event) => {handleChange(event) }} /></h5>
                 <button className={styles.Btn} >Enregistrer</button>
             </form>
         </Modal>
@@ -349,59 +357,84 @@ return (
                <h4>Nom du tâche : {task.nameTask} </h4>
                <h4>Description : {task.descriptionTask} </h4>
                <h4>Etat : {task.stateTask} </h4>
-               <h4>Priorité : {task.priorityTask} </h4>
-               <input className={styles.BtnTask} type="button" value="Supprimer" onClick={()=> { setDelete(task) ; deletePopUp() }} />
-               <Link to={`/editTask/${task._id}`}><input className={styles.BtnTask} type="button" value="Modifier" /></Link>
+               <h4>Priorité : {task.priorityTask} &nbsp; &nbsp; &nbsp;<FontAwesomeIcon icon= {solid("flag")} color="#a9a9a9" size="lg" />
+               </h4>
+               <Link to={`/editTask/${task._id}`}><input className={styles.Btndefault} type="button" value="Modifier" /></Link>
+               <input className={styles.BtnTransparent} type="button" value="Supprimer" onClick={()=> { setDelete(task) ; deletePopUp() }} />
                </div>
            </>
           )
         })}
-      <br />
-      <br />
-      <br />
-      <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <button onClick={showMoreItems} className={styles.readMore}> Voir tous les tâches </button>
-            <Modal isOpen={deleteTask} onRequestClose = {() => setDeleteTask(false)} className={styles.deleteItem}
+            <Modal isOpen={deleteTask} onRequestClose = {() => setDeleteTask(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000020'
+                                                  },
+                                                  content: {
+                                                    position:'relative',
+                                                    borderRadius:'30px',
+                                                    outline:'none',
+                                                    fontSize: '20px',
+                                                    top:'25%',
+                                                    left: '32%',
+                                                    width: '32%',
+                                                    height: '205px',
+                                                    textAlign: 'center'
                                                   }
                                                }
                                                }>
-                    <p className={styles.ModalParagraph}>Voulez-vous supprimer {taskDelete.nameTask} ?</p>
+                    <b className={styles.ModalParagraph}>Voulez-vous supprimer {taskDelete.nameTask} ?</b>
                     <br />
                     <div className={styles.btn_section}>
                     <input type="button" value="Annuler" onClick={() => setDeleteTask(false)} className= {styles.white_btn} />
                      <input type="button"  value="Confirmer" onClick={()=> {setDeleteTask(false) ; deletetask(taskDelete._id)}} className= {styles.confirm_btn}/>
                     </div>
             </Modal>   
-  <br />
-  <br />
-  <br />
+            <br />
+            <br />
+            <br />
   </div>
-        <br/>
-        <div className={styles.details}>
-        <h2>Frais <FontAwesomeIcon icon= {solid("plus")} color = "black" className={styles.add_iconExp} onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></h2>
+      <div className={styles.details}>
+        <h2>Frais 
+        <Tippy content='Ajouter un frais'>
+        <p className={styles.add_icon}><FontAwesomeIcon icon= {solid("plus")} color = "white" onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></p>
+        </Tippy></h2>
         <Modal isOpen={expenseIsOpen} onRequestClose = {() => setExpenseIsOpen(false)} 
-                                              shouldCloseOnOverlayClick={true} className={styles.modelEdit}
+                                              shouldCloseOnOverlayClick={true}
                                               style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000030'
                                                   },
-                                                  
+                                                  content : {
+                                                    background: '#fff',
+                                                    padding:'25px',
+                                                    outline:'none',
+                                                    width: '35%',
+                                                    height: '415px',
+                                                    marginLeft: '28%',
+                                                    borderRadius:  '12px',
+                                                    fontSize: '20px',
+                                                    position:'relative',
+                                                    top:'15%',
+                                                    left:'3%'
+                                                  }
                                                }
                                                }  
                                               >
-            <form onSubmit={addexpense}>
-                <h2 align="center">Ajouter frais </h2>
-                <br />
+            <form onSubmit={addexpense} style={{textAlign:"center"}}>
+                <h3 align="center">Ajouter frais </h3>
                 <br />
                 <TextField id="name" 
                       type="text"
                       label = " Nom "
-                      className={styles.FieldInput}
+                      style={ {width: "90%"}}
                       variant="outlined"
                       onChange={(e)=>{setExpenseName(e.target.value)}} 
                       required 
@@ -412,7 +445,7 @@ return (
                       multiline
                       type="text"
                       label = " Description "
-                      className={styles.FieldInput}
+                      style={ {width: "90%"}}
                       variant="outlined"
                       onChange={(e)=>{setExpenseDescription(e.target.value)}} 
                       required 
@@ -422,32 +455,42 @@ return (
                 <TextField id="value"
                       type="number" 
                       label = " Valeur "
-                      className={styles.FieldInput}
+                      style={ {width: "90%"}}
                       variant="outlined"
                       onChange={(e)=>{setExpenseValue(e.target.value)}} 
                       required 
                     />
                 <br />
                 <br />
-                <br />
-                <button className={styles.Btn}>Enregistrer</button>
+                <button className="defaultBtn">Enregistrer</button>
             </form>
         </Modal>
         <br/>
-        {expenses.map( (expense) => {
+        {expenses.map( (expense , index) => {
           return (
            <>
-            <div className={styles.Bloc}>
+            <div className={styles.Bloc} key={index}>
                <h4>Nom : {expense.expenseName} </h4>
                <h4>Description : {expense.expenseDescription} </h4>
                <h4>Valeur : {expense.expenseValue} </h4>
-               <input className={styles.BtnTask} type="button" value="Supprimer" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
-               <Link to={`/editExpense/${expense._id}`}><input className={styles.BtnTask} type="button" value="Modifier"  /></Link>
-            <Modal isOpen={deleteExpenses} onRequestClose = {() => setDeleteExpense(false)} className={styles.deleteItem}
+               <Link to={`/editExpense/${expense._id}`}><input className={styles.Btndefault} type="button" value="Modifier"  /></Link>
+               <input className={styles.BtnTransparent} type="button" value="Supprimer" onClick={()=> { setexpenseDelete(expense) ;  deletePopExpense() }} />
+            <Modal isOpen={deleteExpenses} onRequestClose = {() => setDeleteExpense(false)}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
                                                   overlay : {
                                                     backgroundColor : '#00000020'
+                                                  },
+                                                  content: {
+                                                    position:'relative',
+                                                    borderRadius:'30px',
+                                                    outline:'none',
+                                                    fontSize: '20px',
+                                                    top:'25%',
+                                                    left: '32%',
+                                                    width: '32%',
+                                                    height: '205px',
+                                                    textAlign: 'center'
                                                   }
                                                }
                                                }>
@@ -457,25 +500,19 @@ return (
                     <input type="button"  value="CONFIRMER" className= {styles.confirm_btn}  onClick={()=> {setDeleteExpense(false) ; deleteExpense(expenseDelete._id)}}/>
                     </div>
             </Modal>
-             </div>
+          </div>
            </>
           )
         })}
+        
         <br />
-  <br />
-  <br />
-        <div className={styles.paginationContainer}>
+        <br />
+        <br />
+    <div className="paginationContainer">
       {allPages.map((page) => {
         if (page === currentPage) {
           return (
-            <div
-                      key={page}
-                      onClick={() => {
-                        setCurrentPage(page);
-                        getExpenses(page);
-                      }}
-                      className="activePagination"
-            >
+            <div key={page} onClick={() => { setCurrentPage(page); getExpenses(page);}} className="activePagination">
               {page}
             </div>
                   );
@@ -494,11 +531,9 @@ return (
                   )}
       })}
     </div>
-
   </div>
-
-</>
-  )
+    </>)}
+    </>)
 }
 
 export default ProjectProfile

@@ -2,6 +2,115 @@
 body {
   font-family: 'Nunito', sans-serif;
 }
+/** PROJECT PROFILE  **/
+.Btndefault{
+  width: 20%;
+  height: 40px;
+  margin: 5px;
+  float: right;
+  padding: 5px;
+  background: #4682b4;
+  color:white;
+  cursor: pointer;
+  border-radius: 5px;
+  border:none;
+}
+.BtnTransparent{
+  width: 22%;
+  margin:5px;
+  float: right;
+  height: 40px;
+  padding: 7px;
+  background: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  border:1px solid grey;
+}
+.readMore{
+  position : relative;
+  left: 2%;
+  padding: 10px;
+  width: 95%;
+  height : 42px;
+  background : #bfc1c2;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius : 5px;
+  cursor:pointer
+}
+.Bloc {
+  display: inline-block;
+  box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
+  border-radius: 15px;
+  width: 29%;
+  margin: 7px;
+  margin-left: 2%;
+  padding: 5px;
+}
+.ModalParagraph{
+  position: relative;
+  top: 15%;
+}
+.btn_section{
+  position : relative;
+  left: 1.7%;
+  top:35%;
+  display: inline-block;
+  margin-top: 5%;
+}
+.white_btn{
+  background: none;
+  border: none;
+  padding : 10px ;
+  text-align : center;
+  cursor:pointer;
+  color: rgb(18, 64, 203);
+  border-radius: 8px;
+}
+.confirm_btn{
+  background: rgb(76, 117, 240);
+  border: none;
+  padding : 10px ;
+  border-radius: 5px;
+  text-align : center;
+  cursor:pointer;
+  color: white;
+}
+.Details{
+  border-bottom: 1px solid rgb(199, 199, 199);
+  padding-left: 25px;
+  width: 95%;
+  height: 475px;
+}
+.details{
+  border-bottom: 1px solid rgb(199, 199, 199);
+  padding-left:15px;
+  height: auto
+}
+.add_icon{
+  display: inline-block;
+  margin-left: 85%;
+  border-radius:50%;
+  background: #4682b4;
+  width: 2%;
+  height: 29px;
+  text-align: center;
+  padding: 13px;
+  cursor: pointer;
+}
+.add_icon:hover{
+  transform: scale(1.1);
+}
+
+
+
+
+
+
 .formInput{
     width: 20%;
     padding: 5px;
@@ -33,9 +142,7 @@ body {
     border: 1px solid rgb(212, 211, 211);
     border-radius: 30px;
 }
-.FieldInput{
-  width: 90%;
-}
+
 .deleteItem{
   color : black; 
   outline: none;
@@ -74,19 +181,7 @@ body {
   border-radius: 5px;
   border:none;
 }
-.Btn{
-  width: 20%;
-  height: 40px;
-  position: relative;
-  margin-top: -2%;
-  left: 40%;
-  padding: 5px;
-  background: rgb(187, 75, 142);
-  color:white;
-  cursor: pointer;
-  border-radius: 5px;
-  border:none;
-}
+
  /* ** Projects *** */
  .search_form  {
    position:relative;
@@ -96,20 +191,9 @@ body {
 
 
 
-.Bloc {
-  display: inline-block;
-  box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
-  border-radius: 15px;
-  width: 29%;
-  margin: 7px;
-  margin-left: 2%;
-  padding: 5px;
-  cursor: pointer;
-}
 
-.Bloc:hover{
-  box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
-}
+
+
 /* .icons {
   padding : 5px;
   border-radius: 50%;
@@ -142,37 +226,12 @@ body {
 .profile:hover {
   transform: scale(1.1);
 }
-.Details{
-  border-bottom: 1px solid rgb(199, 199, 199);
-  padding-left: 25px;
-  width: 90%;
-  height: 575px;
-}
 
-.modelEdit{
-  background: #fff;
-  padding:25px;
-  outline:none;
-  width: 30%;
-  height: 415px;
-  margin-left: 28%;
-  border-radius:  12px;
-  font-size: 15px;
-  position:relative;
-  top:15%;
-  left:7%;
-}
-.details{
-  border-bottom: 1px solid rgb(199, 199, 199);
-}
 .h4{
   font-size: 15px;
   font-weight: bold;
 }
-.add_icon{
-  float:right;
-  cursor:pointer
-}
+
 .add_iconExp{
   float:right;
   cursor: pointer;
@@ -181,22 +240,8 @@ body {
   color: rgb(187, 75, 142);
   transform: scale(1.1);
 }
-.add_icon:hover{
-  color: rgb(187, 75, 142);
-  transform: scale(1.1);
-}
-.readMore{
-  position : relative;
-  left: 2%;
-  padding: 10px;
-  width: 95%;
-  height : 42px;
-  background : grey;
-  color: white;
-  border: none;
-  border-radius : 5px;
-  cursor:pointer
-}
+
+
 .Modal {
   margin-top: 10%;
   background-color: #f7f7f7;
@@ -292,13 +337,6 @@ body {
   .search_btn{
   position: relative;
   top:-95%;
-  }
-  .modelEdit{
-    position:relative;
-    outline:none;
-    left: -22%;
-    width: 77%;
-    height: 405px;
   }
   .Details{
     width:95%;

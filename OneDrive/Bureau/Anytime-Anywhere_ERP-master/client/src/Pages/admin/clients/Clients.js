@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from "axios" ;
 import Modal from 'react-modal';
-import Styles from "../../../Css/Project.module.css";
+import Styles from "../../../Css/ProjectProfile.module.css";
 import styles from "../../../Css/Client.module.css";
 
 Modal.setAppElement('#root')

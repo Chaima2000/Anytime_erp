@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import styles from '../../../Css/Project.module.css';
+import styles from '../../../Css/ProjectProfile.module.css';
 import Styles from "../../../Css/Users.module.css";
 import Modal from 'react-modal';
 import { Link} from "react-router-dom";

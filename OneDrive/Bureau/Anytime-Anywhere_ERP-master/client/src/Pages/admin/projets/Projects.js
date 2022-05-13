@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import Select  from 'react-select';
 function Projects(props) {
   const [projectList , setprojectList] = useState([]);  
   const [disable , setDisable] = useState (false);
@@ -21,6 +22,7 @@ function Projects(props) {
   const[ EditProject, setEditProject] = useState([]);
   const [editItem , setEdit] = useState(false);
   const [end , setEnd] = useState("");
+  const [state, setState] = useState("");
   let { id } = useParams();
   var i=0;
 
@@ -42,6 +44,32 @@ function Projects(props) {
   useEffect(() => {
     getProjects(currentPage);
   }, []);
+  const updateProject = (id) => {
+    axios.put("/updateproject", { end: end , state:state, id:id })
+    .then((res) => {
+      if (res.data === "ERROR") {
+        alert("An error occured");
+      } else {
+        setprojectList(res.data);
+          }
+        });
+    };
+    const customStyles = {
+      control: (provided , state) => ({
+        ...provided,
+        border: state.isFocused ? 0 : 0,
+        paddingLeft:'4px',
+        border: ' 1px solid rgb(212, 211, 211) ',
+        fontSize: '10',
+        background: 'white',
+        opacity:1,
+        outline: 'none',
+        width: '72%',
+        borderRadius: '35px',
+        height: '48px',
+        boxShadow: state.isFocused ? null : null,
+      })
+    }
   function deleteProject(id) {
     axios.delete(`/deleteproject/${id}`).then((res) => {
       if (res.data === "ERROR") {
@@ -65,7 +93,12 @@ function Projects(props) {
         });
   }
   
-
+  //State options //
+  const options = [
+    { value: 'planning', label: 'planning' },
+    { value: 'in_progress', label: 'in progress' },
+    { value: 'closed', label: 'closed' }
+  ]
   const Disable = () => {
     setDisable(true);
   }
@@ -149,7 +182,7 @@ return (
               <Tippy content="modifier">
                 <span onClick={()=>{setEditProject(project); Edit()}}><FontAwesomeIcon icon={solid("edit")} size="lg" color="blue" /></span>
               </Tippy>
-              <Tippy content="fermer">
+              <Tippy content="vérouiller">
                 <span><FontAwesomeIcon icon={solid("lock")} size="lg" color="#1a1a1a"/></span>
                 </Tippy>
               <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)}
@@ -182,7 +215,7 @@ return (
                                                   content: {
                                                     padding:'25px',
                                                     position: 'relative',
-                                                    top:'25%',
+                                                    top:'12%',
                                                     left: '27%',
                                                     width: '50%',
                                                     borderRadius:'15px',
@@ -191,17 +224,22 @@ return (
                                               }
                                               }>
                    Projet: <h3 align="center" style={ {color:"rgb(187, 75, 142)" , textTransform: "uppercase" , fontWeight: "bold"}}>{project.name}</h3><br/>
-                   <p>Débute à :{EditProject.start}</p>
-                   <p>Termine à: &nbsp;&nbsp; <input  defaultValue={EditProject.end} type="date" className={styles.FormInput} onChange={(e) =>{setEnd(e.target.value)}}/> </p>
-                   <p>Etat: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select defaultValue={EditProject.state} className={styles.FormInput}>
-                              <option>En cours</option>
-                              <option>En pause</option>
-                              <option>Finis</option>
-                            </select>
+                   <p>Débute à : <b>{EditProject.start}</b></p>
+                   <p>Termine à: <br /><br /><input  defaultValue={EditProject.end} type="date" className={styles.FormInput} onChange={(e) =>{setEnd(e.target.value)}}/> </p>
+                   <p>Etat: <br /><br/>
+                   <Select 
+                          label="Etat"
+                          placeholder="Modifier l'état"
+                          id="state"
+                          onChange={ (e) => { setState(e.label)}}
+                          styles={customStyles}
+                          options={options} 
+                          
+                    />
                    </p> 
                     <div className={styles.btn_section}>
                       <input type="button"  value="ANNULER"  className= {styles.white_btn}   onClick= {() => setDeleteItem(false)} />
-                      <input type="button"  value="CONFIRMER" className= {styles.confirm_btn}  onClick={()=> {setDeleteItem(false) ; deleteProject(EditProject._id)}}/>
+                      <input type="button"  value="CONFIRMER" className= {styles.confirm_btn}  onClick={()=> {setEdit(false) ; updateProject(EditProject._id)}}/>
                     </div>
               </Modal>
               </div>

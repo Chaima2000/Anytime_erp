@@ -92,7 +92,8 @@ app.get("/getProject/:id", users.getProject);
 app.post("/getbanks", banks.getbanks);
 app.delete("/deletebank/:id", banks.deleteBank);
 app.post("/addbank", banks.addBank);
-app.post("/bank/details/:id",banks.getBank);
+app.post("/getbank",banks.getBank);
+app.put("/updateBalance",banks.updateBalance);
 
 // Checks 
 app.get("/check/getclient/:id", checks.getClient);

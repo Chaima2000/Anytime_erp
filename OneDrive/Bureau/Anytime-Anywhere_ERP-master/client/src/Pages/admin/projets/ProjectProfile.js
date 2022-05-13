@@ -47,7 +47,6 @@ function ProjectProfile(props) {
   const [expenseValue , setExpenseValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [allPages, setAllPages] = useState([]);
-  const [editTask , setEditTasks] = useState({});
   const [visible , setVisible] = useState(3);
   const slice = tasksList.slice( 0 , visible);
   const showMoreItems = () => {
@@ -189,16 +188,7 @@ const updateProject = (id) => {
         }
       });
   };
-  const updateTask = (id) => {
-    axios.put(`/updateTask/${id}`, {priorityTask:priorityTask,stateTask:stateTask, id:id })
-    .then((res) => {
-      if (res.data === "ERROR") {
-        alert("An error occured");
-      } else {
-        setTasksList(res.data);
-    } 
-    })
-    }
+
 const addtask =(e) => {
     e.preventDefault();
     const data = new FormData();

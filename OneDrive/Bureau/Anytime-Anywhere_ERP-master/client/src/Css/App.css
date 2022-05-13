@@ -81,9 +81,8 @@ table td {
 }
 
 .row {
-  display: inline-flex;
-  justify-content: center;
   width: 100%;
+  padding-left: 5%
 }
 
 .col2 {
@@ -94,12 +93,16 @@ table td {
 
 .col3 {
   padding: 10px;
+  box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
   border-radius: 10px;
-  box-shadow: 0 0 2px;
+  /* box-shadow: 0 0 2px; */
+  display: inline-block;
+  cursor:pointer;
   justify-content: center;
   align-content: center;
   margin: 5px;
-  width: calc(100% / 3);
+  width: calc(100% / 3.75);
+  height: auto;
   transition: all 0.6s;
 }
 
@@ -247,7 +250,6 @@ table td {
 
 .activePagination {
   transform: scale(1.2);
-  cursor: pointer;
   display: inline-flex;
   padding: 5px;
   text-decoration: underline;

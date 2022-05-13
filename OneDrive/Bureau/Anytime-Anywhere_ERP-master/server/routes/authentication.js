@@ -19,7 +19,7 @@ exports.createAccount = (req, res) => {
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
-  const image = req.file.filename;
+  // const image = req.file.filename;
   const token = crypto.randomBytes(10).toString("hex");
 
   const hash = bcrypt.hashSync(password, 10);
@@ -33,7 +33,7 @@ exports.createAccount = (req, res) => {
         lastName: lastName,
         email: email,
         password: hash,
-        image:image,
+        // image:image,
         token: token,
       });
       try {

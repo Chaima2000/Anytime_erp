@@ -15,6 +15,7 @@ import TeamDashboard from "../Pages/team/TeamDashboard";
 import TeamProjects from "../Pages/team/projects/Projects";
 import Bank from "../Pages/admin/finance/bank/Bank";
 import AddBank from "../Pages/admin/finance/bank/AddBank";
+import EditBank from '../Pages/admin/finance/bank/EditBank';
 import Checks from "../Pages/admin/finance/checks/AddCheck";
 import Addreceipts from "../Pages/admin/finance/receipts/Addreceipts";
 import Receipts from "../Pages/admin/finance/receipts/Receipts";
@@ -105,8 +106,8 @@ export const superAdminRoutes = (
       <Route path="/banks/add" exact>
         <AddBank />
       </Route>
-      <Route path="/banks" exact>
-        <Bank />
+      <Route path="/editbank/:id" exact>
+        <EditBank />
       </Route>
       <Route path="/receipts/add" exact>
         <Addreceipts />

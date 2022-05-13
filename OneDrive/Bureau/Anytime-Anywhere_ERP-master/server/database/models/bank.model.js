@@ -8,11 +8,11 @@ const bankSchema = mongoose.Schema(
     },
     description: {
       type: "string",
-      required: true,
+      required: true   ,
     },
     balance: {
-      type: "number",
-      required: true,
+      type: "string",
+      required: true   ,
     },
   },
   { timestamps: true }

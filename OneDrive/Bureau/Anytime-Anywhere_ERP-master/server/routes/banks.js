@@ -17,15 +17,15 @@ exports.getbanks = async (req, res) => {
   try {
     const banks = await bank
       .find({name: { $regex: ".*" + searchTerm + ".*" }})
-      .limit(3)
-      .skip((currentPage - 1) * 3)
+      .limit(6)
+      .skip((currentPage - 1) * 6)
       .sort({ date: -1 })
       .exec();
 
     const count = await bank.countDocuments({
       name: { $regex: ".*" + searchTerm + ".*" },
     });
-    let totalPages = Math.ceil(count / 3);
+    let totalPages = Math.ceil(count / 6);
     for (let i = 1; i <= totalPages; i++) {
       allPages.push(i);
     }
@@ -68,6 +68,19 @@ exports.addBank = (req, res) => {
     console.log(e);
   }
 };
+exports.updateBalance = async (req,res) => {
+  const balance = req.body.balance;
+  const id = req.body.id;
+  try{
+    await bank.findById(id, (error, row) => {
+      row.balance = balance;
+      row.save()
+    });
+  } catch(err) {
+    alert("Error")
+  }
+  res.send('updated')
+}
 exports.getBank = (req, res) => {
   const id = req.body.id;
   bank.findById(id, (err, row) => {

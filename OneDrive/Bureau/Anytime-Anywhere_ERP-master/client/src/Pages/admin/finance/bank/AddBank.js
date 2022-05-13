@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function AddBank(props) {
   const [name, setName] = useState("");
-  const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState("");
   const [description, setDescription] = useState("");
   const history = useHistory();
 

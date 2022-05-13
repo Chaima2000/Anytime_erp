@@ -1,19 +1,27 @@
 .icons {
-    padding : 5px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    margin: 5px;
-    width: 200px;
-    height: 10px;
+   border-radius: 50%;
+   background : #800080;
+   padding: 15px;
+   height: 20px;
+   width: 20px;
+   margin-right:15px;
+   font-size:15px;
+   cursor: pointer;
+   float:right;
+  }
+  .fontAwesome{
     position: relative;
-    left : 15%;
-    -moz-border-radius:50%;
-    -webkit-border-radius: 50%;
+    left:19%;
+    color: #fff;
   }
   .icons:hover {
-    background: rgb(182, 179, 179);
+    transform: scale(1.1);
   }
+  
+.iconEdit:hover{
+  cursor:pointer;
+  transform: scale(1.1);
+}
   .formInput {
     padding: 12px 20px;
     margin: 8px 0;
@@ -22,8 +30,35 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
+  .FormInput {
+    padding: 12px 20px;
+    width: 50%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .bloc{
+    border: 1px solid grey;
+    border-radius: 15px;
+    font-size:20px;
+    padding: 15px;
+    width:50%;
+  }
   .span{
     font-weight: bold;
+  }
+  .btn{
+    padding:10px;
+    border:none;
+    font-weight:bold;
+    color:var(--main-color);
+    cursor:pointer;
+    float:right;
+    height:50px;
+    background:none;
+
   }
   .btn_section{
     position : relative;

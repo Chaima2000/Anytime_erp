@@ -8,6 +8,7 @@ import axios from "axios";
 
 function Bank() {
   const [banksList, setBanksList] = useState([]);
+  const [balance, setBalance] = useState("");
   const [waiting, setWaiting] = useState(true);
   const [DeleteBank  , setDeleteBank] = useState({});
   const [deleteItem,setDeleteItem] = useState(false);
@@ -29,6 +30,15 @@ function Bank() {
           }
         })
       }
+      const updateBalance = (id) => {
+        axios.put("/updateBalance", { balance:balance, id:id })
+        .then((res) => {
+          if (res.data === "ERROR") {
+            alert("An error occured");
+          } else {
+            setBanksList(res.data);
+          }
+        })}
       function resetSearch() {
         document.getElementById("searchField").value = "";
         axios.post("/getbanks").then((res) => {
@@ -115,26 +125,26 @@ function Bank() {
             <FontAwesomeIcon icon={solid("spinner")} size={"2x"} spin />
           </div>
         ) : (
-          <div className="row">
-          <div align="center" className="col3">
-              <Link to="/banks/add">
+          <>
+          <Link to="/banks/add">
                 <FontAwesomeIcon
                   className="addBtn"
                   icon={solid("plus-circle")}
                   size={"2x"}
                 />
-              </Link>
-            </div>
+          </Link><br />
+          <div className="row">
+          
             {banksList.map((bank) => {
               return (
                 <>
-                <div key={bank._id} className="col3">
-                  <p>Name: <span className={styles.span}>{bank.name}</span></p>
-                  <p>Balance: <span className={styles.span}>{bank.balance}</span></p>
-                  <p>Description: <span className={styles.span}>{bank.description}</span></p>
-                  <Link to={`/bank/details/${bank._id}`}><span className={styles.icons}><FontAwesomeIcon icon={solid("file")} color = "#663399" /></span></Link>
-                  <span onClick = {() => {setDeleteBank(bank) ; Delete()}} className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} color = "#9f4576" /> </span>
-                </div>
+                <form key={bank._id} className="col3">
+                  <p>Name: <b>{bank.name}</b></p>
+                  <p name="balance">Balance: <input defaultValue={bank.balance} className={styles.FormInput} onChange={(e) => {setBalance(e.target.value)}} /> DT &nbsp; &nbsp; <FontAwesomeIcon icon={solid("edit")} color="#2a52be" className={styles.iconEdit} /></p>
+                  <p>Description: <b>{bank.description}</b></p>
+                  <button className={styles.btn}  onClick={()=>{updateBalance(bank._id)}}>ENREGISTRER</button>
+                  <div className={styles.icons}> <FontAwesomeIcon icon={solid("trash")} className={styles.fontAwesome} onClick = {() => {setDeleteBank(bank) ; Delete()}} /> </div>
+                </form>
                 <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} 
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
@@ -164,10 +174,9 @@ function Bank() {
                 </>
               );
             })}
-            
           </div>
+          </>
         )}
-        <br/>
       </section>
       <div className="paginationContainer">
       {allPages.map((page) => {
@@ -198,6 +207,7 @@ function Bank() {
                     </div>
                   )}
       })}
+      
     </div>
     </>
   );

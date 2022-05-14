@@ -18,9 +18,11 @@ exports.deleteTask =(req,res) => {
 exports.editTask = async (req,res) => {
     const id = req.body.id;
     const stateTask = req.body.stateTask;
+    const Urgent = req.body.Urgent;
   try{
     await task.findById(id, (error, row) => {
       row.stateTask= stateTask;
+      row.Urgent = Urgent;
       row.save();
     });
   } catch(err) {
@@ -34,12 +36,12 @@ exports.addTask =  (req , res) => {
   const nameTask = req.body.nameTask;
   const stateTask = req.body.stateTask;
   const descriptionTask = req.body.descriptionTask;
-  const priorityTask = req.body.priorityTask;
+  const Urgent = req.body.Urgent;
   const newTask = new task ( {
     nameTask: nameTask,
     stateTask: stateTask,
     descriptionTask: descriptionTask,
-    priorityTask: priorityTask,
+    Urgent: Urgent,
   });
   try {
     newTask.save();

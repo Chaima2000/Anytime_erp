@@ -1,18 +1,8 @@
-.icons {
-   border-radius: 50%;
-   background : #800080;
-   padding: 10px;
-   height: 20px;
-   width: 20px;
-   margin-right:15px;
-   font-size:15px;
-   cursor: pointer;
-   float:left;
-  }
+
   .fontAwesome{
     position: relative;
     left:19%;
-    color: #fff;
+    color: var(--secondary-color);;
   }
   .icons:hover {
     transform: scale(1.1);
@@ -49,16 +39,27 @@
   .span{
     font-weight: bold;
   }
+  .icons {
+    background : none;
+    padding: 10px;
+    border:none;
+    height: 20px;
+    width: 20px;
+    margin-right:15px;
+    font-size:15px;
+    cursor: pointer;
+    float:left;
+   }
   .btn{
     padding:8px;
-    border:1px solid var(--secondary-color);
-    border-radius: 5px;
+    border:none;
     font-weight:bold;
-    color:var(--secondary-color);
+    color: white;
+    border-radius: 15px;
     cursor:pointer;
     float:right;
     height:40px;
-    background:none;
+    background:#800080;
 
   }
   .btn:hover{

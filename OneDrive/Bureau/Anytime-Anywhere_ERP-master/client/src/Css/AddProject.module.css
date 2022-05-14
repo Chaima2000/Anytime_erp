@@ -1,0 +1,39 @@
+.formInput{
+    width: 20%;
+    padding: 5px;
+    height: 35px;
+    color:black;
+    outline:none;
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 30px;
+}
+.btnUpload{
+    width: 100%;
+    padding: 15px;
+    cursor:pointer;
+    color : grey;
+    height: 50px;
+    background: none;
+    outline:none;
+    border: none;
+}
+.btn{
+    width: 20%;
+    height: 40px;
+    position: relative;
+    margin-top: 5%;
+    left: -10%;
+    padding: 5px;
+    background: rgb(187, 75, 142);
+    color:white;
+    cursor: pointer;
+    border-radius: 5px;
+    border:none;
+  }
+
+  .formInput{
+    width:90%
+  }
+  .btnUpload{
+    width:100%;
+  }

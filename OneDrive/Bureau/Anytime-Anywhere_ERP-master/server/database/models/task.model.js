@@ -12,7 +12,7 @@ const TaskSchema = new mongoose.Schema(
             required : false,
         }
         ,
-        priorityTask : {
+        Urgent : {
             type: String,
             required: false
         }

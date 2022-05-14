@@ -42,15 +42,21 @@ body {
   border-radius : 5px;
   cursor:pointer
 }
+/***CARD ***/
 .Bloc {
+  border:1px solid grey;
   display: inline-block;
-  box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
-  border-radius: 15px;
+  margin: 5px;
+  padding: 15px;
   width: 29%;
-  margin: 7px;
-  margin-left: 2%;
-  padding: 5px;
+  font-size: 19px;
+  box-shadow: 0 0 4px;
 }
+
+
+
+
+
 .ModalParagraph{
   position: relative;
   top: 15%;
@@ -83,6 +89,7 @@ body {
 .Details{
   border-bottom: 1px solid rgb(199, 199, 199);
   padding-left: 25px;
+  font-size:17px;
   width: 95%;
   height: 475px;
 }
@@ -105,112 +112,6 @@ body {
 .add_icon:hover{
   transform: scale(1.1);
 }
-
-
-
-
-
-
-.formInput{
-    width: 20%;
-    padding: 5px;
-    height: 35px;
-    /* color: rgba(224, 222, 222, 0.2); */
-    color:black;
-    outline:none;
-    border: 1px solid rgb(212, 211, 211);
-    border-radius: 30px;
-}
-
-.btnUpload{
-    width: 100%;
-    padding: 15px;
-    cursor:pointer;
-    color : grey;
-    height: 50px;
-    background: none;
-    outline:none;
-    border: none;
-
-}
-.endDate{
-  width: 81%;
-    padding: 5px;
-    height: 35px;
-    background: rgba(224, 222, 222, 0.2);
-    outline:none;
-    border: 1px solid rgb(212, 211, 211);
-    border-radius: 30px;
-}
-
-.deleteItem{
-  color : black; 
-  outline: none;
-  background: white;
-  width: 480px;
-  height: 195px;
-  padding : 5px;
-  position : relative;
-  top:25%;
-  left: 35%;
-  border-radius: 15px;
-}
-.btn{
-  width: 20%;
-  height: 40px;
-  position: relative;
-  margin-top: 5%;
-  left: -10%;
-  padding: 5px;
-  background: rgb(187, 75, 142);
-  color:white;
-  cursor: pointer;
-  border-radius: 5px;
-  border:none;
-}
-.btnT{
-  width: 20%;
-  height: 40px;
-  position: relative;
-  margin-top: -7%;
-  left:40%;
-  padding: 5px;
-  background: rgb(187, 75, 142);
-  color:white;
-  cursor: pointer;
-  border-radius: 5px;
-  border:none;
-}
-
- /* ** Projects *** */
- .search_form  {
-   position:relative;
-   left:39%;
-   width: 25%;
- }
-
-
-
-
-
-
-/* .icons {
-  padding : 5px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  margin: 5px;
-  width: 200px;
-  height: 10px;
-  position: relative;
-  left : 15%;
-  -moz-border-radius:50%;
-  -webkit-border-radius: 50%;
-}
-.icons:hover {
-  background: rgb(182, 179, 179);
-} */
-/*projectProfile*/
 .profile {
   cursor: pointer;
   border: 2px solid grey;
@@ -222,139 +123,27 @@ body {
   margin: 5px;
   transition: all 0.3s;
 }
-
 .profile:hover {
   transform: scale(1.1);
 }
 
-.h4{
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.add_iconExp{
-  float:right;
-  cursor: pointer;
-}
-.add_iconExp:hover{
-  color: rgb(187, 75, 142);
-  transform: scale(1.1);
-}
-
-
-.Modal {
-  margin-top: 10%;
-  background-color: #f7f7f7;
-  width: 45%;
-  height: 435px;
-  overflow: scroll;
-  margin-left: 30%;
- padding: 22px;
- border-radius:  12px;
- font-size: 15px;
-}
-.XMARK{
-  float: right;
-  position: relative;
-  top:2%;
-  left: -2.8%;
-  cursor: pointer;
-}
-.inputTasks {
-  padding: 10px;
-  width: 90%;
-  border : 1px solid grey;
-  border-radius: 9px;
-}
-.ModalClose{
-  width: 30%;
-  height: 39%;
-  margin-top: 15%;
-  margin-left: 35%;
-  border-radius: 15px;
-}
-.TaskModal{
-  width: 30%;
-  height: 50%;
-  background: white;
-  margin-left: 35%;
-  margin-top: 12%;
-  border-radius: 12px;
-  padding: 12px;
-}
-/**Tasks**/
-.BtnTask{
-  padding: 12px;
-  border: 1px solid grey;
-  border-radius: 7px;
-  position: relative;
-  float: right;
-  right: 12%;
-  margin-bottom: 5%;
-  margin: 4px;
-  cursor: pointer;
-}
-.paginationContainer{
-  text-align: center;
-}
-
- @media (max-width: 480px) {
-  .btn{
-    margin-top: 5%;
-    left:5%;
-    height: 55px;
-    width: 330px;
-  }
-  .bloc_Section{
-    width: 95%;
-    
-   margin-top: 100px;
-   margin-left: -13px;
-
-  }
-  .paginationContainer{
-    text-align:center;
-  }
-  .Bloc{
+ @media (max-width:850px) {
+  .container{
     font-size: 19px;
-    display: block;
     height:280px;
-    padding: 15px;
-    width: 80%;
-    margin: 15px;
-  }
-  .search_box{
-    top:22%;
-    width: 70%;
-    margin-left: 1%;
-    background: #ffffff;
-  }
-  .search_text{
-    color : white;
+    float:left;
     width: 100%;
-    font-size: 18px;
   }
-  .search_btn{
-  position: relative;
-  top:-95%;
-  }
-  .Details{
-    width:95%;
+  .Bloc:hover{
+    background: #f5f5f5
   }
   .add_icon{
-    float:right
-  }
-  .add_iconExp{
     float:right;
+    width: 8%;
+    text-align:center;
+    height:25px;
   }
-  .formInput{
-    width:90%
+  .add_icon:hover{
+    transform: scale(1.1);
   }
-  .btnUpload{
-    width:100%;
-  }
-  .endDate{
-    width:78%;
-  }
-
 }

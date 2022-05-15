@@ -3,14 +3,12 @@
   height: 83vh;
   display: flex;
 }
-
 .separate{
   width: 50%;
   height: 480px;
   padding: 10px;
   position: relative;
 }
-
 .banner{
   width: 80%;
   position: absolute;
@@ -20,19 +18,16 @@
   opacity: 0;
   transition: 0.5s all;
 }
-
 .banner_img{
   width: 90%;
   height: 90%;
 }
-
 .copyright{
   width: 100%;
   position: absolute;
   bottom: 10px;
   text-align: center;
 }
-
 .form_section{
   width: 50%;
   height: 480px;
@@ -40,7 +35,6 @@
   position: relative;
   background: rgb(246, 231, 252);
 }
-
 .form_style{
   position: absolute;
   width: 100%;
@@ -48,7 +42,6 @@
   top: 35%;
   transform: translate(-40%, -35%);
 }
-
 .logo{
   width: 70px;
   height: 70px;
@@ -58,7 +51,6 @@
   opacity: 0;
   transition: 0.5s all;
 }
-
 .logo img{
   margin-top : 19%;
   margin-left:20%;
@@ -67,28 +59,23 @@
   height: 60%;
   border-radius: 50%;
 }
-
 .form_style h2{
   text-align: center;
   margin-bottom: 30px;
   opacity: 0;
   transition: 0.5s all;
 }
-
 .form{
   opacity: 0;
   transition: 0.5s all
 }
-
 .fields{
   margin: 20px 0px;
 }
-
 .fields label{
   font-size: 15px;
   margin-left: 15.5%;
 }
-
 .fields input{
   width: 65%;
   left: 15.5%;
@@ -100,30 +87,24 @@
   padding: 10px 20px 10px 5px;
   outline: none;
 }
-
 .p_right{
   float: right;
   margin-right: 20px;
   text-decoration : none;
   color : black;
 }
-
 .p_right:hover {
   transform: scale(1.1);
 }
-
 .p_left{
   float: left;
   margin-left: 20px;
   text-decoration : none;
   color : black;
 }
-
 .p_left:hover {
   transform: scale(1.1);
 }
-
-
 .submit_btn{
   clear: both;
   position: relative;
@@ -140,17 +121,78 @@
   cursor: pointer;
   transition: 0.4s all;
 }
-
 .submit_btn:hover{
   background: #cd94c6;
   color: #fff;
   border: 1px solid #DFD3EB;
 }
-
 .spinner{
   position : relative;
   left: 50%
 }
+/* FORGET PASSWORD*/
+.center{
+  width: 430px;
+  margin: 130px auto;
+  position: relative;
+}
+.center .header{
+font-size: 28px;
+font-weight: bold;
+color: white;
+padding: 25px 0 30px 25px;
+background: #5c1769;
+border-bottom: 1px solid #370e3f;
+border-radius: 5px 5px 0 0;
+}
+.center .forgetPasswordForm {
+  position: absolute;
+  background: white;
+  width: 100%;
+  padding: 50px 10px 0 30px;
+  box-sizing: border-box;
+  border: 1px solid #6d1c7d;
+  border-radius: 0 0 5px 5px;
+}
+.forgetPasswordForm input {
+  height: 50px;
+  width: 90%;
+  padding: 0 10px;
+  border-radius: 3px;
+  border: 1px solid silver;
+  font-size: 18px;
+  outline: none;
+}
+.forgetPasswordForm input[type="email"]{
+  margin-top: 20px;
+}
+
+.icons {
+  position: absolute;
+  font-size: 25px;
+  color: grey;
+  margin: 15px 0 0 -45px;
+  margin-top: 35px;
+}
+.defaultBtn{
+ margin-top: 40px;
+ margin-bottom: 40px;
+ width: 130px;
+ height: 45px;
+ color: white;
+ border:none;
+ cursor: pointer;
+ line-height: 45px;
+ border-radius: 45px;
+ border-radius: 5px;
+ background: #5c1769;
+}
+.defaultBtn:hover{
+  background: #491254;
+  transition: .5s;
+
+}
+/***           ***/
 @media(max-width: 700px){
   .wrapper{
     height: 100%;

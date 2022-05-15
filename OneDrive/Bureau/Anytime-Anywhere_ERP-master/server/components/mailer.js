@@ -26,4 +26,10 @@ exports.mailcss = {
   padding-top: 5px;
   padding-bottom: 5px;
   color: black;"`,
+  button: `
+  style="background:linear-gradient(90deg, rgba(171,74,230,1) 0%, rgba(160,20,103,1) 49%);
+  padding: 15px;
+  border: none;
+  boder-radius: 15px;
+  color: white; `
 };

@@ -41,8 +41,8 @@ exports.createAccount = (req, res) => {
         mailer.transporter.sendMail({
           from: '"Anytime & Anywhere" <' + process.env.AUTH_EMAIL + ">",
           to: email,
-          subject: "Activate account.",
-          text: "Follow the instructions to activate your account.",
+          subject: "Activer compte.",
+          text: "Suivez les instructions pour activer votre compte.",
           html:
             `<div ` +
             mailer.mailcss.background +
@@ -50,13 +50,14 @@ exports.createAccount = (req, res) => {
                       <div` +
             mailer.mailcss.body +
             `>
-                  <h3>Activate account</h3>
+                  <h3>Activer compte</h3>
                   <hr/>
-                  <h5>Use this link to activate your account:</h5>
+                  <h4>félicitation ! vous êtes presque prêt à commencer, cliquez simplement sur le lien ci-dessous pour réinitialiser votre mot de passe
                   <br/>
+                  <h4>
                   <h5>` +
             process.env.APP_URL +
-            `/activateaccount/` +
+            `/ActivateAccount/` +
             email +
             `/` +
             token +
@@ -132,8 +133,8 @@ exports.forgotPassword = (req, res) => {
       mailer.transporter.sendMail({
         from: '"Anytime & Anywhere" <' + process.env.AUTH_EMAIL + ">",
         to: email,
-        subject: "Reset password.",
-        text: "Follow the instructions to reset your password.",
+        subject: "Réinitialiser le mot de passe.",
+        text: "Suivez les instructions pour réinitialiser votre mot de passe.",
         html:
           `<div ` +
           mailer.mailcss.background +
@@ -141,11 +142,9 @@ exports.forgotPassword = (req, res) => {
                       <div` +
           mailer.mailcss.body +
           `>
-                      <h3>Reset password</h3>
+                      <h3>Réinitialiser le mot de passe</h3>
                       <hr/>
-                      <h5>Use this link to reset your password:</h5>
-                      <br/>
-                      <h5>` +
+                      <h4>Utilisez ce lien pour activer votre compte:</h4>` +
           process.env.APP_URL +
           `/resetpassword/` +
           email +
@@ -164,7 +163,6 @@ exports.forgotPassword = (req, res) => {
         console.log(err);
       }
       res.send("SUCCESS");
-      console.log("success")
     }
   });
 };

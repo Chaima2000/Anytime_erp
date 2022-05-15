@@ -36,7 +36,7 @@ function Signup() {
     document.getElementById("email").value="";
     document.getElementById("password").value="";
     document.getElementById("Confirmpassword").value= "";
-    setimage(avatar);
+    document.getElementById("file").value= "";
   }
 //   function convertBase64(file) {
 //     return new Promise((resolve, reject) => {
@@ -74,21 +74,30 @@ function Signup() {
       .then((res) => {
         if (res.data === "SUCCESS") {
           swal({
-            title: "SUCCESS",
-            text: "Added succesfully!",
+            title: "Un e-mail a été envoyé à   " +
+            email +
+            "    suivez le lien pour activer votre compte.",
             icon: "success",
             button: "OK!",
           });
           success();
         } else if (res.data === "USER EXISTS WITH EMAIL") {
-          alert("USER EXISTS WITH EMAIL");
-        } else {
           swal({
-            title: "ERROR",
+            title: "L'email   " +
+            email +
+              "   existe déjà ",
+            icon: "error",
             button: "OK!",
           });
         }
-      });
+        else {
+          swal({
+            title: "Désolé , vérifier vos informations ",
+            icon: "error",
+            button: "OK!",
+          });
+        }
+        });
       e.preventDefault();
   }
 
@@ -103,19 +112,19 @@ function Signup() {
                     <div className={styles.fields}>
                         <label>   
                         <FontAwesomeIcon icon={solid("user")} size="lg"  className={styles.icons} />
-                        <input type="text" placeholder="Enter your first name" onChange={(e) => {setFirstName(e.target.value);}} name="firstName" required />
+                        <input type="text" placeholder="Enter your first name" onChange={(e) => {setFirstName(e.target.value);}} name="firstName" id="firstName" required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
                         <FontAwesomeIcon icon={solid("user")} size="lg"  className={styles.icons} />
-                        <input type="text" placeholder="Enter your last name" onChange={(e) => {setlastName(e.target.value);}} name="lastName" required />
+                        <input type="text" placeholder="Enter your last name" onChange={(e) => {setlastName(e.target.value);}} name="lastName" id="lastName" required />
                         </label>
                     </div>
                     <div className={styles.fields}>
                         <label>   
                         <FontAwesomeIcon icon={solid("envelope")}  size="lg"  className={styles.icons} />
-                        <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} name="email" required />
+                        <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} name="email" id="email" required />
                         </label>
                     </div>
                     <div className={styles.fields}>

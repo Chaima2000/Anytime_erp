@@ -1,6 +1,6 @@
 import styles from  "../../Css/Login.module.css";
 import { Link, useHistory } from "react-router-dom";
-import Modal from 'react-modal';
+import swal from 'sweetalert';
 import { useState, useContext , useEffect , useRef } from "react";
 import { AppContext } from "../../Context/AppContext";
 import axios from "axios";
@@ -45,10 +45,18 @@ function Login() {
           history.push("/");
         } else if (res.data === "ERROR") {
           setWaiting(false);
-          alert("ACCOUNT NOT FOUND");
+          swal({
+            title: "Erreur",
+            icon: "ERROR",
+            button: "OK!",
+          });
         } else if (res.data === "WRONG PASSWORD") {
           setWaiting(false);
-          alert(res.data);
+          swal({
+            title: "Mot de passe invalide",
+            icon: "ERROR",
+            button: "OK!",
+          });
         }
       });
     e.preventDefault();

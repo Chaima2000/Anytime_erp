@@ -164,6 +164,7 @@ exports.forgotPassword = (req, res) => {
         console.log(err);
       }
       res.send("SUCCESS");
+      console.log("success")
     }
   });
 };

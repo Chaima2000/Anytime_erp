@@ -15,6 +15,7 @@
     "emailjs": "^4.0.0",
     "express": "^4.17.3",
     "framer-motion": "^6.3.3",
-    "mongoose": "^6.2.3"
+    "mongoose": "^6.2.3",
+    "nodemailer": "^6.7.5"
   }
 }

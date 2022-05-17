@@ -8,8 +8,11 @@ import { useHistory } from "react-router-dom";
 import { logout } from "./functions/logout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { useEffect } from "react";
+import axios from "axios";
 
 function Navbar(props) {
+  const [elements , setElements] = useState([]);
   const { user, closeSidebar } = useContext(AppContext);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProfileMobileMenu, setShowProfileMobileMenu] = useState(false);
@@ -19,6 +22,15 @@ function Navbar(props) {
     const menu = document.getElementById("mobileMenu");
     menu.classList.remove(styles.openMobileMenu);
   }
+  useEffect (() =>{
+      axios.post("/getElements").then( (res) => {
+        if(res.data === "SUCCESS"){
+          setElements(res.data);
+        }else{
+          alert("error");
+        }
+      })
+  },[])
 
   function toggleMobileMenu() {
     const menu = document.getElementById("mobileMenu");
@@ -264,13 +276,13 @@ function Navbar(props) {
                 Accés rapide
             </Link>
             { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
+                            {elements.map( (item) => {
+                              return(
+                                <>
+                                  {elements}
+                                </>
+                              )
+                            })}
                           </ul> ): 
                 null}
           </li>
@@ -441,15 +453,17 @@ function Navbar(props) {
               Tableau du bord
             </Link>
           </li>
-          <li className={styles.li}>
-          <li className={styles.access}>
+          
+          
+          <div className={styles.dropdown}>
+             <button className={styles.btnAccess}>
           <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
-              onMouseEnter={showDropdown} onMouseLeave={hideDropdown}
+              // onMouseEnter={showDropdown} onMouseLeave={hideDropdown}
             >
               Accés rapide
-              { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
+              {/* { state ? ( <ul  onMouseEnter={showDropdown}>
                             <li>value2</li>
                             <li>value2</li>
                             <li>value2</li>
@@ -458,12 +472,28 @@ function Navbar(props) {
                             <li>value2</li>
                             <li>value2</li>
                           </ul> ): 
-                null}
+                null} */}
             </Link>
             
-          </li>
+            </button>
+            <div className={styles.dropdown_content}>
+              <p className={styles.links}> {elements.map ( (item) => {
+                return(
+                  <>
+                    {item}
+                  </>
+                )
+              })}
+              </p>
+              <Link to={`/quickaccess`}> Voir toute la liste</Link>
+            
+            </div>
+            </div>
+
+            
           
-          </li>
+          
+          
         </ul>
       </div>
       <div className={styles.mobileInvisible}>

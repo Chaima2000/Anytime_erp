@@ -51,6 +51,7 @@ const clients = require("./routes/clients");
 const projects = require("./routes/project");
 const tasks = require("./routes/task");
 const expenses = require("./routes/expense");
+const quicks = require("./routes/quickaccess");
 const contacts = require("./routes/contact");
 const { path } = require("express/lib/application");
 // const { pipeline } = require("nodemailer/lib/xoauth2");
@@ -123,8 +124,9 @@ app.post("/getproject", projects.getProject);
 app.get("/getmembers", projects.getMembers);
 app.get("/getclients", projects.getClients);
 
-
-
+//quick access
+app.post("/addelement", quicks.addelement);
+app.post("/getElements", quicks.getElements);
 //Tasks
 app.post("/addTask" , tasks.addTask);
 app.put("/updateTask/:id", tasks.editTask);

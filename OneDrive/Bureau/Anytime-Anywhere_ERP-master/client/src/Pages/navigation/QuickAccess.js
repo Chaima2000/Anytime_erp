@@ -1,34 +1,40 @@
-import React , {useState} from 'react';
-import {Link} from "react-router-dom";
+import React ,  {useState} from 'react';
+import axios from 'axios';
 
-const QuickAccess = ()  => {
-    const [quickaccess, setQuickAccess] = useState({
-        elements: [],
-        response: [],
-      });
+
+function QuickAccess(){
+      const [quickaccess, setQuickAccess] = useState([]);
       const handleChange = (e) => {
         // Destructuring
         const { value, checked } = e.target;
-        const { elements } = quickaccess;
-        console.log(quickaccess)
         // Case 1 : The user checks the box
         if (checked) {
           setQuickAccess({
-            elements: [...elements, value],
-            response: [...elements, value],
+            quickaccess: [...quickaccess, value],
           });
         }
         // Case 2  : The user unchecks the box
     else {
         setQuickAccess({
-          elements: elements.filter((e) => e !== value),
-          response: elements.filter((e) => e !== value),
+          quickaccess: quickaccess.filter((e) => e !== value),
         });
       }
-    };
+    }
+      const addelement =(e) => {
+        e.preventDefault();
+        axios.post("/addelement", {
+          quickaccess: quickaccess, 
+        }).then((res)=>{
+          if(res.data === "SUCCESS"){
+            alert("check quick access")
+          }else{
+            alert("error")
+          }
+        }
+        )}
   return (
     <>
-        <form>
+        <form onSubmit={addelement}>
             <input type="checkbox" value="liste des utilisateurs" id="listUser" onChange={handleChange} />
             <label htmlFor='listUser'>Liste des utilisateurs</label><br />
             <input type="checkbox" value="liste des banques" id="listBank" onChange={handleChange} />
@@ -51,30 +57,12 @@ const QuickAccess = ()  => {
             <label htmlFor='listProjet'>Liste des projets</label><br />
             <input type="checkbox" value="Ajouter un projet" id="projet" onChange={handleChange} />
             <label htmlFor='projet'>Ajouter projet</label><br />
-            <textarea name="response" value={quickaccess.response} onChange={handleChange}></textarea><br />
-            <Listquickaccess value={quickaccess.response} />
+            <p name="response"  onChange={handleChange}>{quickaccess}<br /><br/></p>
+            <button>Ajouter</button>
         </form>
 
     </>
   )
 }
-function Listquickaccess(props){
-    const [state, setState] = useState(false);
-    const showDropdown=()=>{
-        setState(true);
-    }
-    const hideDropdown = () =>{
-        setState(false);
-    }
-  return (
-      <Link className="dropdown-menu" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
-         dropdown
-        { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
-            <li>{props.value}</li>
-        </ul> ): 
-        null}
-      </Link>
 
-  )
-}
-export default Listquickaccess;
+export default QuickAccess;

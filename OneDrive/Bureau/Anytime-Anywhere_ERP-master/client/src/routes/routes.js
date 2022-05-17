@@ -29,7 +29,7 @@ import EditTask from '../Pages/admin/projets/EditTask';
 import  EditExpenses from '../Pages/admin/projets/EditExpenses';
 import Messenger from "../Pages/Messenger/Messenger";
 import UpdateUserProfile from "../components/UpdateUserProfile";
-import Listquickaccess from '../Pages/navigation/QuickAccess';
+import QuickAccess from '../Pages/navigation/QuickAccess';
 import { Switch, Route } from "react-router-dom";
 
 export const userRoutes = (
@@ -51,9 +51,9 @@ export const teamRoutes = (
       <Route path="/" exact>
         <TeamDashboard />
       </Route>
-      <Route path="/quickaccess" exact>
+      {/* <Route path="/quickaccess" exact>
         <Listquickaccess />
-      </Route>
+      </Route> */}
       <Route path="/stats" exact>
         <div align="center">Stats</div>
       </Route>
@@ -76,9 +76,9 @@ export const adminRoutes = (
       <Route path="/" exact>
         <div align="center">Dashboard</div>
       </Route>
-      <Route path="/quickaccess" exact>
+      {/* <Route path="/quickaccess" exact>
         <Listquickaccess />
-      </Route>
+      </Route> */}
       <Route path="/stats" exact>
         <div align="center">Stats</div>
       </Route>
@@ -96,7 +96,7 @@ export const superAdminRoutes = (
         <div align="center">Dashboard</div>
       </Route>
       <Route path="/quickaccess" exact>
-        <Listquickaccess/>
+        <QuickAccess/>
       </Route>
       <Route path="/stats" exact>
         <div align="center">Stats</div>

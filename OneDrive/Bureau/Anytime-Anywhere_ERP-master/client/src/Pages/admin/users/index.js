@@ -6,6 +6,8 @@ import Switch from "@mui/material/Switch";
 import Button from "@mui/material/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import Tippy from '@tippy.js/react';
+import 'tippy.js/dist/tippy.css';
 /************************************************************************* */
 function Users() {
   const [usersList, setUsersList] = useState([]);
@@ -18,6 +20,7 @@ function Users() {
   const [allPages, setAllPages] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [waiting, setWaiting] = useState(true);
+
 /************************************************************************* */
   function toggleAlert() {
     setAlertVisible(!alertVisible);
@@ -107,7 +110,7 @@ function Users() {
                 variant="text"
                 size="small"
               >
-                Cancel
+                Annuler
               </Button>
               &nbsp;
               <Button
@@ -123,7 +126,7 @@ function Users() {
                 variant="contained"
                 size="small"
               >
-                Confirm
+                Confirmer
               </Button>
             </div>
           </div>
@@ -132,7 +135,7 @@ function Users() {
         <></>
       )}
       <section className={styles.container}>
-        <h2>Users Management</h2>
+        <h2>Gestion des utilisateurs</h2>
         <h3 className={styles.searchField}>
           <form
             onSubmit={(e) => {
@@ -152,7 +155,7 @@ function Users() {
               }}
               className={styles.formInput}
               type="text"
-              placeholder="User Name ..."
+              placeholder="Nom de l'utilisateur ..."
             />
             <button id="searchBtn" className="transparentBtn">
               <FontAwesomeIcon icon={solid("search")} size="lg" />
@@ -184,9 +187,9 @@ function Users() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Active</th>
+                  <th>Nom</th>
+                  <th>Rôle</th>
+                  <th>Activation</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -204,19 +207,19 @@ function Users() {
                             setAction("roleChange");
                             setRole(e.target.value);
                             setMsg(
-                              "Do you really want to change " +
-                                user.firstName +
-                                "'s role to " +
+                              "Voulez-vous vraiment changer le rôle de " +
+                                user.firstName + 
+                                " vers " + 
                                 e.target.value +
                                 "?"
                             );
                             toggleAlert();
                           }}
                         >
-                          <option value="USER">USER</option>
+                          <option value="USER">UTILISATEUR</option>
                           <option value="SUPER-ADMIN">SUPER-ADMIN</option>
                           <option value="ADMIN">ADMIN</option>
-                          <option value="DEVELOPER">DEVELOPER</option>
+                          <option value="DEVELOPER">DEVELOPPEUR</option>
                           <option value="DESIGNER">DESIGNER</option>
                           <option value="MARKETING">MARKETING</option>
                         </select>
@@ -228,15 +231,15 @@ function Users() {
                             setUserId(user._id);
                             if (user.active) {
                               setMsg(
-                                "Do you really want to Desactivate " +
-                                  user.firstName +
-                                  "'s account ?"
+                                "Voulez-vous vraiment désactiver le compte de  " +
+                                  user.firstName + 
+                                  "?"
                               );
                             } else {
                               setMsg(
-                                "Do you really want to Activate " +
-                                  user.firstName +
-                                  "'s account ?"
+                                "Voulez-vous vraiment activer le compte de  " +
+                                  user.firstName + 
+                                  "?"
                               );
                             }
                             setAction("activation");
@@ -246,21 +249,25 @@ function Users() {
                         />
                       </td>
                       <td>
+                      <Tippy content='voir'>
                         <Link
                           to={`/users/profile/${user._id}`}
                           className="primaryBtn"
                         >
+                        
                           <FontAwesomeIcon icon={solid("file")} />
                         </Link>
+                      </Tippy>
                         &nbsp;
+                      <Tippy content='supprimer'>
                         <span
                           onClick={() => {
                             setUserId(user._id);
                             setAction("deleteUser");
                             setMsg(
-                              "Do you really want to delete " +
-                                user.firstName +
-                                "'s account, This action can't be reverted !"
+                              "Voulez-vous vraiment supprimer le compte de  " +
+                                user.firstName + "?"+
+                                ". Cette action ne peut pas être annulée!"
                             );
                             toggleAlert();
                           }}
@@ -268,6 +275,7 @@ function Users() {
                         >
                           <FontAwesomeIcon icon={solid("trash")} />
                         </span>
+                      </Tippy>
                       </td>
                     </tr>
                   );

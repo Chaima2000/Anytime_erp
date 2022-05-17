@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "../../Css/Login.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import swal from 'sweetalert';
+
 
 function ResetPassword() {
   const url = window.location.pathname;
@@ -31,10 +35,18 @@ function ResetPassword() {
       })
       .then((result) => {
         if (result.data === "SUCCESS") {
-          alert("Password changed successfully");
+          swal({
+            title: "félicitation",
+            icon: "success",
+            button: "OK!",
+          });
           history.push("/");
         } else {
-          alert("An error occured, please try again later or contact us !");
+          swal({
+            title: "Erreur",
+            icon: "error",
+            button: "OK!",
+          });
           history.push("/");
         }
       });
@@ -43,24 +55,23 @@ function ResetPassword() {
 
   return (
     <>
-      <section className={styles.container}>
-        <div className="card">
-          <h1>Password Reset</h1>
-          <hr />
-          <form onSubmit={resetPassword}>
+    <div className={styles.center}>
+        <div className={styles.header}> Nouveau mot de passe </div>
+        <form onSubmit={resetPassword} className={styles.forgetPasswordForm}>
             <input
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
               required
               className="formInput"
-              placeholder="New Password ..."
+              placeholder="Nouveau mot de passe ..."
               type="password"
             />
-            <button className="defaultBtn">Confirm</button>
+             <i><FontAwesomeIcon icon={solid("key")}    className={styles.icon} />
+            </i>
+            <button className={styles.defaultBtn}>Confirmer</button>
           </form>
-        </div>
-      </section>
+      </div>
     </>
   );
 }

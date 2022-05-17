@@ -35,7 +35,33 @@ function UserProfile() {
         <Notfound />
       ) : (
         <>
-          <section className={styles.profileContainer}>
+      <div className={styles.content}>
+        <div className={styles.Profilecontainer}>
+          <div className={styles.imgContainer}>
+          <img
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = process.env.PUBLIC_URL + "/icons/user.jpg";
+                  }}
+                  src={process.env.PUBLIC_URL + "/icons/" + user.profilePicture}
+                  alt="user"
+                />
+          </div>
+          <h2>{user.firstName + " " + user.lastName}</h2>
+                <hr />
+                <h1>Rôle:</h1>
+                {user.role}
+                <h1>Projets affectés</h1>
+                {projects.map( (project) => {
+                  return (
+                    <>
+                    <li className={styles.li}>{project}</li><br /> 
+                    </>
+                  )
+                })}
+        </div>
+        </div>
+          {/* <section className={styles.profileContainer}>
             <div className={styles.profileCard}>
               <div className={styles.imageBox}>
                 <img
@@ -50,9 +76,9 @@ function UserProfile() {
               <div className={styles.details}>
                 <h2>{user.firstName + " " + user.lastName}</h2>
                 <hr />
-                <h1>Role:</h1>
+                <h1>Rôle:</h1>
                 {user.role}
-                <h1>Current Projects:</h1>
+                <h1>Projets affectés</h1>
                 {projects.map( (project) => {
                   return (
                     <>
@@ -63,7 +89,7 @@ function UserProfile() {
               </div>
             </div>
           </section>
-          <section align="center">History</section>
+          <section align="center">History</section> */}
         </>
       )}
     </>

@@ -54,7 +54,7 @@ function Login() {
           setWaiting(false);
           swal({
             title: "Mot de passe invalide",
-            icon: "ERROR",
+            icon: "error",
             button: "OK!",
           });
         }

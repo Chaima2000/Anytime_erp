@@ -45,7 +45,7 @@
   margin: 20px;
 }
 
-.navItems li {
+.navItems .li {
   margin: 5px;
   color: white;
   list-style: none;
@@ -55,14 +55,16 @@
   font-size: 17px;
   transition: 0.6s;
 }
-.navItems li:hover {
+.navItems .li:hover {
   background-color: rgb(187, 75, 142);
   padding: 10px;
   cursor: pointer;
   font-size: 17px;
   border-radius: 10px;
 }
-
+.access{
+  
+}
 .navItemsLeft {
   justify-content: flex-end;
   margin-left: auto;
@@ -84,7 +86,7 @@
   cursor: pointer;
 }
 
-.navItemsLeft li {
+.navItemsLeft .li {
   color: white;
   list-style: none;
   text-decoration: none;
@@ -133,7 +135,7 @@
   width: 220px;
 }
 
-.mobileMenu li {
+.mobileMenu .li {
   margin: 5px;
   list-style: none;
   text-decoration: none;
@@ -144,7 +146,7 @@
   transition: 0.6s;
 }
 
-.mobileMenu li:hover {
+.mobileMenu .li:hover {
   cursor: pointer;
   font-size: 17px;
   border-radius: 10px;

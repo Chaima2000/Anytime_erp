@@ -41,11 +41,19 @@ function Navbar(props) {
     setShowProfileMobileMenu(!showProfileMobileMenu);
   }
 
+  const [state, setState] = useState(false);
+  const showDropdown=()=>{
+        setState(true);
+  }
+  const hideDropdown = () =>{
+        setState(false);
+  }
+
   let userConnectedMobileRoutes = (
     <>
       <div className={styles.mobileNavItem}>
         <ul>
-          <li>
+          <li className={styles.li}>
             <img
               onClick={() => {
                 toggleProfileMobileMenu();
@@ -63,8 +71,8 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Gestion du profile</li>
-              <li>
+              <li className={styles.li}>Gestion du profile</li>
+              <li className={styles.li}>
                 <form
                   onSubmit={() => {
                     logout();
@@ -78,7 +86,7 @@ function Navbar(props) {
           ) : (
             <></>
           )}
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/">
               Bienvenue !
             </Link>
@@ -96,7 +104,7 @@ function Navbar(props) {
         className={styles.mobileNavItem}
       >
         <ul>
-          <li>
+          <li className={styles.li}>
             <img
               onClick={() => {
                 toggleProfileMobileMenu();
@@ -114,8 +122,8 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Gestion du profile</li>
-              <li>
+              <li className={styles.li}>Gestion du profile</li>
+              <li className={styles.li}>
                 <form
                   onSubmit={() => {
                     logout();
@@ -129,12 +137,13 @@ function Navbar(props) {
           ) : (
             <></>
           )}
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/">
               Tableau du bord
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
+          
             <Link className={styles.mobileLink} to="/quickaccess">
               Accés rapide
             </Link>
@@ -152,7 +161,7 @@ function Navbar(props) {
         className={styles.mobileNavItem}
       >
         <ul>
-          <li>
+          <li className={styles.li}>
           <img
               onClick={() => {
                 toggleProfileMobileMenu();
@@ -170,8 +179,8 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Gestion du profile</li>
-              <li>
+              <li className={styles.li}>Gestion du profile</li>
+              <li className={styles.li}>
                 <form
                   onSubmit={() => {
                     logout();
@@ -185,14 +194,18 @@ function Navbar(props) {
           ) : (
             <></>
           )}
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/">
               Tableau du bord
             </Link>
           </li>
-          <li>
-            <Link className={styles.mobileLink} to="/quickaccess">
-              Accés rapide
+          <li className={styles.li}>
+            <Link className={styles.mobileLink} to="/quickaccess" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+                Accés rapide
+                { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
+                            <li>value2</li>
+                          </ul> ): 
+                null}
             </Link>
           </li>
         </ul>
@@ -208,7 +221,7 @@ function Navbar(props) {
         className={styles.mobileNavItem}
       >
         <ul>
-          <li>
+          <li className={styles.li}>
             <img
               onClick={() => {
                 toggleProfileMobileMenu();
@@ -226,8 +239,8 @@ function Navbar(props) {
         >
           {showProfileMobileMenu ? (
             <>
-              <li>Gestion du profile</li>
-              <li>
+              <li className={styles.li}>Gestion du profile</li>
+              <li className={styles.li}>
                 <form
                   onSubmit={() => {
                     logout();
@@ -241,15 +254,25 @@ function Navbar(props) {
           ) : (
             <></>
           )}
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/">
               Tableau du bord
             </Link>
           </li>
-          <li>
-            <Link className={styles.mobileLink} to="/quickaccess">
-              Accés rapide
+          <li className={styles.li}>
+            <Link className={styles.mobileLink} to="/quickaccess" onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+                Accés rapide
             </Link>
+            { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                          </ul> ): 
+                null}
           </li>
         </ul>
       </div>
@@ -259,22 +282,22 @@ function Navbar(props) {
     <>
       <div className={styles.mobileNavItem}>
         <ul>
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/">
               Accueil
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/services">
               Services
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/about">
               À propos
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link className={styles.mobileLink} to="/contact">
               Contactez-nous
             </Link>
@@ -293,7 +316,7 @@ function Navbar(props) {
             closeProfileMenu();
           }}
         >
-          <li>
+          <li className={styles.li}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Bienvenue !
             </Link>
@@ -327,12 +350,12 @@ function Navbar(props) {
             closeProfileMenu();
           }}
         >
-          <li>
+          <li className={styles.li}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Tableau du bord
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
@@ -370,12 +393,12 @@ function Navbar(props) {
             closeProfileMenu();
           }}
         >
-          <li>
+          <li className={styles.li}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Tableau du bord
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
@@ -413,18 +436,33 @@ function Navbar(props) {
             closeProfileMenu();
           }}
         >
-          <li>
+          <li className={styles.li}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Tableau du bord
             </Link>
           </li>
-          <li>
-            <Link
+          <li className={styles.li}>
+          <li className={styles.access}>
+          <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
+              onMouseEnter={showDropdown} onMouseLeave={hideDropdown}
             >
               Accés rapide
+              { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                            <li>value2</li>
+                          </ul> ): 
+                null}
             </Link>
+            
+          </li>
+          
           </li>
         </ul>
       </div>
@@ -446,12 +484,12 @@ function Navbar(props) {
     <>
       <div className={styles.navItems}>
         <ul>
-          <li>
+          <li className={styles.li}>
             <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Accueil
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/services"
@@ -459,7 +497,7 @@ function Navbar(props) {
               Services
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/about"
@@ -467,7 +505,7 @@ function Navbar(props) {
               À propos
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/contact"
@@ -479,12 +517,12 @@ function Navbar(props) {
       </div>
       <div className={styles.navItemsLeft}>
         <ul>
-          <li>
+          <li className={styles.li}>
             <Link className={styles.link} to="/login">
               Connexion
             </Link>
           </li>
-          <li>
+          <li className={styles.li}>
             <Link className={styles.link} to="/signup">
               <button className="defaultBtn">S'inscrire</button>
             </Link>

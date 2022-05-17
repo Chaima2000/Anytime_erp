@@ -293,7 +293,16 @@ table td {
   font-weight: bold;
   color: var(--secondary-color);
 }
-
+.dropdown-list{
+  position :relative;
+  left: -20%;
+  margin-top:100%;
+  display:block;
+  width:100%;
+  height: 100%;
+  padding:16px;
+  background: blue;
+}
 @media (max-width: 800px) {
   .formContainer {
     padding-top: 10vh;

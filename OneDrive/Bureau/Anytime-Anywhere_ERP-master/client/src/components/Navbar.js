@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function Navbar(props) {
-  const [option , setOption] = useState("");
+  const [table , setOption] = useState([]);
   const { user, closeSidebar } = useContext(AppContext);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProfileMobileMenu, setShowProfileMobileMenu] = useState(false);
@@ -274,7 +274,7 @@ let i=0;
                 Accés rapide
             </Link>
             { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
-                            {option.map( (item) => {
+                            {table.map( (item) => {
                               return(
                                 <>
                               hkbjlk
@@ -464,7 +464,13 @@ let i=0;
             
             </button>
             <div className={styles.dropdown_content}>
-                     {option} 
+                     {table.map( (item)=>{
+                       return (
+                         <>
+                           <Link>{item}</Link><br/>
+                         </>
+                       )
+                     })} 
 
               <Link to={`/quickaccess`}> Voir toute la liste</Link>
             

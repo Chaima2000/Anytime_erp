@@ -3,28 +3,32 @@ import axios from 'axios';
 
 
 function QuickAccess(){
-      const [quickaccess, setQuickAccess] = useState([]);
-      const handleChange = (e) => {
-        // Destructuring
-        const { value, checked } = e.target;
-        // Case 1 : The user checks the box
-        if (checked) {
-          setQuickAccess({
-            quickaccess: [...quickaccess, value],
-          });
-        }
-        // Case 2  : The user unchecks the box
-    else {
-        setQuickAccess({
-          quickaccess: quickaccess.filter((e) => e !== value),
-        });
-      }
+  const [quickaccess, setQuickacess] = useState([]);
+  const handleChange = (e) => {
+    // Destructuring
+    const { value, checked } = e.target;
+    // Case 1 : The user checks the box
+    if (checked) {
+      setQuickacess([...quickaccess,value]);
     }
+    
+    // Case 2  : The user unchecks the box
+else {
+  setQuickacess([ quickaccess.filter((e) => e !== value)]);
+  }
+};
+
+console.log(quickaccess)
+
+
       const addelement =(e) => {
         e.preventDefault();
-        axios.post("/addelement", {
-          quickaccess: quickaccess, 
-        }).then((res)=>{
+        const data = new FormData();
+        data.append("quickaccess",quickaccess);
+        const datax = {
+          quickaccess:quickaccess,
+        }
+        axios.post("/addelement", datax).then((res)=>{
           if(res.data === "SUCCESS"){
             alert("check quick access")
           }else{
@@ -60,7 +64,6 @@ function QuickAccess(){
             <p name="response"  onChange={handleChange}>{quickaccess}<br /><br/></p>
             <button>Ajouter</button>
         </form>
-
     </>
   )
 }

@@ -12,22 +12,20 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function Navbar(props) {
-  const [elements , setElements] = useState([]);
+  const [option , setOption] = useState("");
   const { user, closeSidebar } = useContext(AppContext);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProfileMobileMenu, setShowProfileMobileMenu] = useState(false);
   const history = useHistory();
-
+let i=0;
   function closeMobileMenu() {
     const menu = document.getElementById("mobileMenu");
     menu.classList.remove(styles.openMobileMenu);
   }
   useEffect (() =>{
       axios.post("/getElements").then( (res) => {
-        if(res.data === "SUCCESS"){
-          setElements(res.data);
-        }else{
-          alert("error");
+        if(res.data){
+          setOption(res.data);
         }
       })
   },[])
@@ -276,10 +274,10 @@ function Navbar(props) {
                 Accés rapide
             </Link>
             { state ? ( <ul className="dropdown-list" onMouseEnter={showDropdown}>
-                            {elements.map( (item) => {
+                            {option.map( (item) => {
                               return(
                                 <>
-                                  {elements}
+                              hkbjlk
                                 </>
                               )
                             })}
@@ -460,31 +458,14 @@ function Navbar(props) {
           <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
-              // onMouseEnter={showDropdown} onMouseLeave={hideDropdown}
-            >
+              >
               Accés rapide
-              {/* { state ? ( <ul  onMouseEnter={showDropdown}>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                            <li>value2</li>
-                          </ul> ): 
-                null} */}
-            </Link>
+          </Link>
             
             </button>
             <div className={styles.dropdown_content}>
-              <p className={styles.links}> {elements.map ( (item) => {
-                return(
-                  <>
-                    {item}
-                  </>
-                )
-              })}
-              </p>
+                     {option} 
+
               <Link to={`/quickaccess`}> Voir toute la liste</Link>
             
             </div>

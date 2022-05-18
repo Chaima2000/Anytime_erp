@@ -1,7 +1,14 @@
 const { quick  } = require("../database/models/quickaccess.model");
 exports.getElements = async (req, res)=>{
-    const elements = await quick.find({}).exec()
-    res.send(elements);
+    const quickaccess = await quick.find({}).exec();
+    var option=[];
+    for(let i=0;i<quickaccess.length;i++){
+      
+      var table= quickaccess[i].quickaccess;
+    for(let j=0;i<table.length;j++){
+      console.log(table[j])
+    }
+    }  
 }
 exports.addelement =  (req , res) => {
     const quickaccess = req.body.quickaccess; 

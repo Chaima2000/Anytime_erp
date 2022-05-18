@@ -8,7 +8,6 @@ import styles from './../../Css/home.module.css';
 import download from './../../Css/Frame 19.PNG';
 import Services from './Services';
 import About from './About';
-import wave from '../../Css/wave.png';
 import { FaMapMarkerAlt, FaPhoneAlt, FaFax, FaEnvelope, FaGlobe} from "react-icons/fa";
 function Home() {
   useEffect(() => {

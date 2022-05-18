@@ -1,0 +1,44 @@
+.wrapper{
+    width: 98%;
+    position: relative;
+    left:2%;
+    margin-top: 13%;
+}
+.contain {
+   height: 200px;
+   display: inline-block;
+   margin: 5px;
+   border: 1px solid #cbddf2;
+   width: 200px;
+   padding: 15px;
+   background: white;
+   box-shadow: 0 0 25px rgba(17, 1 , 68 , 0.08);
+   border-radius: 8px;
+   position: relative;
+}
+.contain:hover{
+    transform: translateY(-1%);
+}
+.input{
+    position :relative;
+    float:right;
+    margin-top:4%;
+    left:-2%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.label{
+    border: none;
+    background: #8ab9f1;
+    width: 98%;
+    height: 155px;
+    text-align: center;
+}
+.label label {
+  font-size: 25px;
+  color:white;
+  font-weight: bold;
+  position :relative;
+  top: 25%
+}

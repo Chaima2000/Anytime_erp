@@ -17,7 +17,40 @@ function Navbar(props) {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showProfileMobileMenu, setShowProfileMobileMenu] = useState(false);
   const history = useHistory();
-let i=0;
+  const clicked = (data) =>{
+    var string="";
+    if(data === "liste des utilisateurs"){
+      return(
+      string=`users`
+      )
+    }else if (data === "liste des banques"){
+       return(
+         string=`banks`
+       )
+    }else if (data === "Ajouter un banque"){
+      return(
+        string=`banks/add`
+      )
+    }else if (data === "Ajouter un frais"){
+      return(
+        string=`receipts/add`
+      )
+    }else if ( data === "Ajouter un chèque"){
+      return (
+        string=`checks`
+      )
+    }else if (data === "Liste des clients"){
+      return (
+        string= `clients`
+      )
+    }else if (data === "Ajouter un client"){
+      string = `clients/add`
+    }else if (data === "Liste des projets"){
+      string=`projectList`
+    }else if (data === "Ajouter un projet" ){
+     string = `projects/add`
+    }
+  }
   function closeMobileMenu() {
     const menu = document.getElementById("mobileMenu");
     menu.classList.remove(styles.openMobileMenu);
@@ -465,14 +498,15 @@ let i=0;
             </button>
             <div className={styles.dropdown_content}>
                      {table.map( (item)=>{
+                       
                        return (
                          <>
-                           <Link>{item}</Link><br/>
+                           <Link className={styles.links} to={clicked(item)}>{item}</Link>
                          </>
                        )
                      })} 
 
-              <Link to={`/quickaccess`}> Voir toute la liste</Link>
+              <p style={ {background:"#dcdcdc"}}><Link className={styles.links} to={`/quickaccess`} onClick={clicked()}> Voir toute la liste</Link></p>
             
             </div>
             </div>

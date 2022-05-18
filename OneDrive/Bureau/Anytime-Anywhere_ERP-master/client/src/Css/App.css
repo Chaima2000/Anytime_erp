@@ -230,6 +230,46 @@ table td {
   left: 0;
 }
 
+.btn1{
+  border: 1px solid #a2a2d0;
+  background: none;
+  width: 30%;
+  margin-bottom: 5%;
+  left:37%;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family: "montserrat";
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+ }
+ .btn1::before{
+     content:"";
+     position: absolute;
+     left:0;
+     width: 100%;
+     height: 0%;
+     background: #a2a2d0;
+     z-index: -1;
+     transition: 0.8s;
+ }
+ .btn2{
+   color:#a2a2d0;
+ }
+ .btn2:hover{
+   color: #fff;
+ }
+ .btn2::before{
+   bottom:0;
+   border-radius: 50% 50% 0 0 ;
+ }
+ .btn2:hover::before{
+   height: 180%;
+ }
+
+
 .blurContent {
   z-index: 9999;
   position: fixed;

@@ -123,7 +123,8 @@ app.post("/getprojects", projects.getprojects);
 app.post("/getproject", projects.getProject);
 app.get("/getmembers", projects.getMembers);
 app.get("/getclients", projects.getClients);
-
+app.get("/getRowproject/:id", projects.getRowProject);
+app.get("/getRowProjectId/:id", projects.getRowProjectId);
 //quick access
 app.post("/addelement", quicks.addelement);
 app.post("/getElements", quicks.getElements);

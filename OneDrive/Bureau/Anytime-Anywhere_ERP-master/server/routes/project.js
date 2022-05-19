@@ -121,4 +121,30 @@ exports.getProject = (req, res) => {
     }
   });
 };
+exports.getRowProject = async (req,res) => {
+  const id=req.params.id;
+  try {
+    const user = await project.find({'user':id});
+    const projects=[];
+    for(let i=0;i<user.length;i++){
+      const userFullproject= user[i].name;
+      projects[i]=userFullproject;
+    }
+    res.send(projects);
+  }catch(err){
+    res.send("error");
+    console.log(err)
+  }
+}
+exports.getRowProjectId = async (req,res) => {
+  const id=req.params.id;
+  try {
+    const user = await project.find({'user':id});
+    
+    res.json(user);
+  }catch(err){
+    res.send("error");
+    console.log(err)
+  }
+}
 

@@ -15,19 +15,10 @@ import Checkbox from '@mui/material/Checkbox';
 import Select  from 'react-select';
 
 function ProjectProfile(props) {
-
-
-
-
-
-
   const { user } = useContext(AppContext);
   const [projectProfile, setProjectProfile] = useState([]);
   const [userList,setUserList]= useState([]);
   const [userImage,setUserImage]= useState("");
-  const[end , setEnd] = useState("");
-  const[state , setStateProject]= useState("");
-  const [membersList , setMembersList] = useState([]);
  
   /** Tasks states **/
   const [tasksList , setTasksList] = useState([]);
@@ -37,14 +28,12 @@ function ProjectProfile(props) {
   const[Urgent , setUrgent] = useState(false);
   const [waiting, setWaiting] = useState(true);
 /** Models's states **/
-  const [view , setViewTask] = useState(false);
   const [deleteTask,setDeleteTask] = useState(false);
   const [deleteExpenses,setDeleteExpense] = useState(false);
   const [modalIsOpen , setModalIsOpen] = useState(false);
   const [expenseIsOpen , setExpenseIsOpen] = useState(false);
   const [popProject , setPopProject] = useState({});
   const[ taskDelete , setDelete] = useState({});
-  const[ taskEdit , setEdit] = useState(false);
   const[ expenseDelete , setexpenseDelete] = useState({});
 
 /** Expenses's states **/

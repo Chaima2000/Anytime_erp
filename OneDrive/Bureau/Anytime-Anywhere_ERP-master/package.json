@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@capacitor/android": "^3.5.1",
+    "@capacitor/cli": "^3.5.1",
+    "@capacitor/core": "^3.5.1",
     "@mui/lab": "^5.0.0-alpha.81",
     "@tippy.js/react": "^3.1.1",
     "body-parser": "^1.19.2",

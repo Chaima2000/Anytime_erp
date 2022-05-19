@@ -1,0 +1,8 @@
+{
+  "appId": "com.example.app",
+  "appName": "anytime-anywhere_erp-master",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build"
+  
+}

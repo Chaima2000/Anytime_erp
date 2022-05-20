@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">anytime-anywhere_erp-master</string>
-    <string name="title_activity_main">anytime-anywhere_erp-master</string>
-    <string name="package_name">com.example.app</string>
-    <string name="custom_url_scheme">com.example.app</string>
+    <string name="app_name">any4any</string>
+    <string name="title_activity_main">any4any</string>
+    <string name="package_name">com.any4any.app</string>
+    <string name="custom_url_scheme">com.any4any.app</string>
 </resources>

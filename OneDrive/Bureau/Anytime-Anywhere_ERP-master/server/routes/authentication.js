@@ -1,25 +1,17 @@
 const { user } = require("../database/models/user.model");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
-const multer = require("multer");
 const mailer = require("../components/mailer");
 require("dotenv").config();
-const storage = multer.diskStorage({
-    destination: (req,file, callback) => {
-      callback(null, "../../client/src/uploads/");
-    },
-    filename: function (req, file, callback){
-      callback(null, file.originalname);
-    }
-  })
-  const upload = multer({storage:storage}).single("image");
+
+
 
 exports.createAccount = (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
   const password = req.body.password;
-  // const image = req.file.filename;
+  const image = req.file.path;
   const token = crypto.randomBytes(10).toString("hex");
 
   const hash = bcrypt.hashSync(password, 10);
@@ -33,7 +25,7 @@ exports.createAccount = (req, res) => {
         lastName: lastName,
         email: email,
         password: hash,
-        // image:image,
+        image:image,
         token: token,
       });
       try {

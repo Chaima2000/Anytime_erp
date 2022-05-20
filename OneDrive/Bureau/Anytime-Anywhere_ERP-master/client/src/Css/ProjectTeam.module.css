@@ -1,0 +1,119 @@
+.div{
+    height: 100vh;
+    width: 191vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+.book{
+    display: inline-block;
+    margin-top: -52%;
+    position: relative;
+    /* float: left; */
+    /* margin-right: 25px; */
+    align-items: center;
+  left:5%;
+    width: 40%;
+  
+    cursor: pointer;
+}
+.cover , .back_cover{
+    height: 500px;
+    width: 360px;
+    background: #353755;
+    border-radius: 2px 20px 20px 2px;
+    position: absolute;
+    box-shadow: 1px 1px 10px grey;
+    transform: rotateX(10deg);
+    transform-origin: center left;
+    z-index: -1;
+    }
+    .page, .last_page{
+        height: 450px;
+        padding: 15px;
+        width: 300px;
+        transform: rotateX(10deg);
+        background: white;
+        position: absolute;
+        z-index: -1;
+        border-radius: 2px 10px 10px 2px;
+        transform-origin: center left;
+    }
+    .last_page img , .cover img{
+        width: 140px;
+        height: 130px;
+        display: block;
+        border-radius: 50%;
+        margin: 20px auto;
+        position : relative;
+        z-index: -1;
+    }
+    .h2{
+        text-align: center;
+        background: whitesmoke;
+        font-size: 28px;
+    }
+    .H2{
+        text-align: center;
+        background: whitesmoke;
+        font-size: 21px;
+    }
+    .last_page h3{
+        font-size: 15px;
+        width: 100%;
+    }
+    .page:nth-child(2){
+        transition-duration: 1s;
+    }
+    .page:nth-child(3){
+        transition-duration: 0.6s;
+    }
+    .page:nth-child(4){
+        transition-duration: 0.2s;
+    }
+    .page:nth-child(5){
+        transition-duration: -1.8s;
+    }
+    .page:nth-child(6){
+        transition-duration: -1.4s;
+    }
+    .book:hover .page:nth-child(2){
+        transition-duration: 3s;
+    }
+    .book:hover .page:nth-child(3){
+        transition-duration: 2.7s;
+    }
+    .book:hover .page:nth-child(4){
+        transition-duration: 2.5s;
+    }
+    .book:hover .page:nth-child(5){
+        transition-duration: 2.4s;
+    }
+    .book:hover .page:nth-child(6){
+        transition-duration: 2.3s;
+    }
+.back_cover{
+    z-index: -2;
+  }
+  
+.cover{
+    z-index: 1;
+    transition: all 2s
+}
+.book:hover .cover {
+    transform: rotateX(10deg) rotateY(-180deg);
+  }
+  .book:hover .page {
+    transform: rotateX(10deg) rotateY(-180deg);
+    z-index: 2;
+  }
+
+
+ 
+
+
+
+
+
+

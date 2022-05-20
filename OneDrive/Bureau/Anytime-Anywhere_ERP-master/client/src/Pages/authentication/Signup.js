@@ -10,16 +10,20 @@ import avatar from "../../uploads/avatar.png";
 import img2 from "../../uploads/img2.png";
 function Signup() {
   const [firstName, setFirstName] = useState("");
-  const [image, setimage] = useState(avatar);
+  const [fileDate, setFileData]= useState()
+  const [image, setimage] = useState("");
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [waiting, setWaiting] = useState(null);
-  const OnChangeImage= (e) => {
-    setimage(e.target.files[0]); 
+  const OnChangeImage= ({target}) => {
+    setFileData(target.files[0]);
+    setimage(target.value)
 }
-
+//dufzsqylg
+//chaimaHS
+//https://api.cloudinary.com/v1_1/
   let imgs = useRef(null);
   let headers = useRef(null);
   let form = useRef(null);
@@ -60,7 +64,8 @@ function Signup() {
     data.append("lastName",lastName);
     data.append("email",email);
     data.append("password",password);
-    data.append("image",image);
+    data.append("image",fileDate);
+    data.append("upload_preset", "chaimaHS");
     const datax = {
       firstName:firstName,
       lastName:lastName,
@@ -69,10 +74,11 @@ function Signup() {
       image:image,
     }
     axios
-      .post("/createaccount",
+      .post("/createaccount", "https://api.cloudinary.com/v1_1/dufzsqylg/upload",
       datax)
       .then((res) => {
         if (res.data === "SUCCESS") {
+          console.log(res.data)
           swal({
             title: "Un e-mail a été envoyé à   " +
             email +
@@ -158,7 +164,8 @@ function Signup() {
                         <label className={styles.btn_file}>  <FontAwesomeIcon icon={solid("image")}  size="lg"  className={styles.icons} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload image 
                           <input type="file" className={styles.file_input} 
                             accept=".png, .jpg, .jpeg"
-                            onChange={OnChangeImage}
+                            value={image}
+                            onChange={(e)=>setimage(e.target.files[0])}
                             id="file"
                             name="image"
                           />

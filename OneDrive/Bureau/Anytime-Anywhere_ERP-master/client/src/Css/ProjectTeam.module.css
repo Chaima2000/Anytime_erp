@@ -63,6 +63,20 @@
         font-size: 15px;
         width: 100%;
     }
+    .btn_view{
+        position: relative;
+        left:20%;
+        border:none;
+        border-radius: 15px;
+        padding: 15px;
+        background: #87ceeb;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .btn_view:hover{
+        background: #6495ed;
+    }
     .page:nth-child(2){
         transition-duration: 1s;
     }

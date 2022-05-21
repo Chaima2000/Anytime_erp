@@ -129,15 +129,20 @@ exports.getRowProject = async (req,res) => {
     res.send(user);
   }catch(err){
     res.send("error");
-    console.log(err)
   }
 }
+
 exports.getRowProjectId = async (req,res) => {
   const id=req.params.id;
+  var projectId=[];
   try {
-    const user = await project.find({'user':id});
-    
-    res.send(user);
+    const projects = await project.find({'user':id});
+    for(let i=0;i<projects.length;i++){
+      const projectid= projects[i].id + projects[i].id;
+      projectId[i]=projectid;
+      
+    }
+    res.send(projectId)
   }catch(err){
     res.send("error");
     console.log(err)

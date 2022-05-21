@@ -21,6 +21,7 @@
     "emailjs": "^4.0.0",
     "express": "^4.18.1",
     "framer-motion": "^6.3.3",
+    "js-file-downloader": "^1.1.24",
     "mongoose": "^6.3.4",
     "multer": "^1.4.4",
     "multer-storage-cloudinary": "^4.0.0",

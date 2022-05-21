@@ -16,6 +16,7 @@ import Select  from 'react-select';
 
 function ProjectProfile(props) {
   const { user } = useContext(AppContext);
+  const [image,setImage]=useState([]);
   const [projectProfile, setProjectProfile] = useState([]);
   const [userList,setUserList]= useState([]);
   const [userImage,setUserImage]= useState("");
@@ -35,7 +36,6 @@ function ProjectProfile(props) {
   const [popProject , setPopProject] = useState({});
   const[ taskDelete , setDelete] = useState({});
   const[ expenseDelete , setexpenseDelete] = useState({});
-
 /** Expenses's states **/
   const [expenses , setExpenses] = useState([]);
   const [clientList, setClientList] = useState("");  
@@ -85,7 +85,13 @@ useEffect(() => {
       setProjectProfile(res.data);
       getClient(id);
       getUser(id);
-      // getUserImage(id);
+    }
+  });
+},[]);
+useEffect(() => {
+  axios.get(`/getUserImage/${id}`).then((res) => {
+    if (res.data) {
+      setImage(res.data)
     }
   });
 },[]);
@@ -221,15 +227,7 @@ const successExpense = () =>{
   document.getElementById("urgent").value=false;
   document.getElementById("value").value="";
 }
-  // function getUserImage(id){
-  //   axios.get(`/getUserImage/${id}`).then( (res)=>{
-  //     if(res.data){
-  //       setUserImage(res.data);
-  //     }else {
-  //       alert("error")
-  //     }
-  //   })
-  // }
+ 
 return (
     <>
     {waiting ? (
@@ -241,7 +239,7 @@ return (
       <form className={styles.Details}>
       <p>Nom du projet: &nbsp; &nbsp; &nbsp;<b>{projectProfile.name} </b></p>
       <p>Assigné par: &nbsp; &nbsp; &nbsp;<b><img src={user.image}  className={styles.profile}/>{user.firstName} {user.lastName}</b></p>
-      <p>Assigné pour :&nbsp; &nbsp; &nbsp; <b><img src={userImage} />  {userList.map( (element) =>{ return(<>{element},   </>)})}</b></p>
+      <p>Assigné pour :&nbsp; &nbsp; &nbsp; <b>{image.map( (img) => { return (<><img src={img} className={styles.profile} alt="user" /></>)})}   {userList.map( (element) =>{ return(<>{element},   </>)})}</b></p>
       <p>Etat: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<b> {projectProfile.state}</b></p>  
       <p>Client : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b b> {clientList}</b></p>   
       <p>Description : &nbsp; &nbsp; &nbsp; &nbsp;<b>{projectProfile.description}</b></p>

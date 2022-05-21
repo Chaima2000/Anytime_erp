@@ -34,13 +34,13 @@ function Projects() {
       let j=0;
       if(res.data){
        setProjectId(res.data);
-       getClient(res.data[j]);
-      //  {j=j+1}
-
-
+       getClient(res.data[j])
       }
+      j=j+1;
     })
   }
+  
+  console.log(projectId)
   function getClient(Id){
     axios.get(`/check/getclient/${Id}`).then( (res)=>{
       if(res.data){
@@ -75,8 +75,9 @@ function Projects() {
                         Client: <h3 >{ClientSociety}</h3>
                         {/* Description: <h3 >{project.description}</h3> */}
                         Débute à :  <h3 >{project.start}</h3>
-                        Termine à :  <h3 >{project.end}</h3>
-                        Fichiers: <input value='télécharger'  type="button" id="upload" /> <br/><br/>
+                        Termine à :  <h3 >{project.end}</h3><br />
+                        {/* <a href={project.file} download>Télécharger</a> */}
+                        {/* Fichiers: <input value='télécharger'  type="button" id="upload" /> <br/><br/> */}
                         <input  value=" Voir plus des détails" type="button" className={styles.btn_view}/>
                     </div>
                     </div>

@@ -18,9 +18,9 @@ function Home() {
 
   return (
     <>
-      <section id="home">
+      <section id="home" className={styles.home}>
         <div className={styles.container}>
-            <div className={styles.left} data-aos="fade-right">
+            {/* <div className={styles.left} data-aos="fade-right">
               <h1 className={styles.h1}>
                 <span>WELCOME TO OUR</span>
                 <span> Entreprise Ressource <br /> Planning</span>
@@ -30,7 +30,7 @@ function Home() {
             </div>
             <div className={styles.right} data-aos="fade-left">
               <img src={download} alt="phone" />
-            </div>
+            </div> */}
          </div>
          <br />
          <div className={styles.floatting_icon}>

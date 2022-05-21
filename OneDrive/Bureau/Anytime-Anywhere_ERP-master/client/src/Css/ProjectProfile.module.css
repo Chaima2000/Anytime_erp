@@ -28,6 +28,7 @@ body {
   border-radius: 5px;
   border:1px solid grey;
 }
+
 .readMore{
   position : relative;
   left: 2%;
@@ -116,8 +117,9 @@ body {
   cursor: pointer;
   border: 2px solid grey;
   padding: 2px;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
+  margin-top: 2%;
   border-radius: 50%;
   background-color: none;
   margin: 5px;

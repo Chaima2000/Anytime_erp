@@ -132,15 +132,26 @@ exports.getRowProject = async (req,res) => {
   }
 }
 
+  exports.getUserImage = async (req,res) => {
+    try{
+      const userList = await project.findById(req.params.id).populate('user', ["image"] );
+      const image=[];
+      for(let i=0;i<userList.user.length;i++){
+        const userFullName= userList.user[i].image;
+        image[i]=userFullName;
+      }
+      res.send(image);
+    }catch(err){
+      res.send(err);
+    }
+  }
 exports.getRowProjectId = async (req,res) => {
   const id=req.params.id;
   var projectId=[];
   try {
     const projects = await project.find({'user':id});
     for(let i=0;i<projects.length;i++){
-      const projectid= projects[i].id + projects[i].id;
-      projectId[i]=projectid;
-      
+      projectId[i]= projects[i]._id;
     }
     res.send(projectId)
   }catch(err){

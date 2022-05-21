@@ -4,6 +4,7 @@ import axios from "axios";
 import Notfound from "../../404";
 import styles from "../../../Css/Users.module.css";
 
+
 function UserProfile() {
   const [user, setUser] = useState({});
   const [notfound, setNotfound] = useState(false);
@@ -38,13 +39,13 @@ function UserProfile() {
       <div className={styles.content}>
         <div className={styles.Profilecontainer}>
           <div className={styles.imgContainer}>
-          <img
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = process.env.PUBLIC_URL + "/icons/user.jpg";
-                  }}
-                  src={process.env.PUBLIC_URL + "/icons/" + user.profilePicture}
-                  alt="user"
+          <img  className={styles.image} src={user.image} 
+                  // onError={(e) => {
+                  //   e.target.onerror = null;
+                  //   e.target.src = process.env.PUBLIC_URL + "/icons/user.jpg";
+                  // }}
+                  // src={process.env.PUBLIC_URL + "/icons/" + user.profilePicture}
+                  // alt="user"
                 />
           </div>
           <h2>{user.firstName + " " + user.lastName}</h2>

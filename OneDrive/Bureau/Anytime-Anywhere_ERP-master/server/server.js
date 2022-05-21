@@ -147,6 +147,7 @@ app.get("/getmembers", projects.getMembers);
 app.get("/getclients", projects.getClients);
 app.get("/getRowproject/:id", projects.getRowProject);
 app.get("/getRowProjectId/:id", projects.getRowProjectId);
+app.get("/getUserImage/:id",projects.getUserImage);
 //quick access
 app.post("/addelement", quicks.addelement);
 app.post("/getElements", quicks.getElements);

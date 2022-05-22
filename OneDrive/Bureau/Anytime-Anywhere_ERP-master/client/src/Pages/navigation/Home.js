@@ -5,8 +5,10 @@ import 'aos/dist/aos.css';
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import wave from "./../../Css/wave3D.jpg";
+import wave2 from "./../../Css/wave.png";
 import styles from './../../Css/home.module.css'; 
 import download from './../../Css/Frame 19.PNG';
+import ch from "./../../Css/ch.png";
 import Services from './Services';
 import About from './About';
 import { FaMapMarkerAlt, FaPhoneAlt, FaFax, FaEnvelope, FaGlobe} from "react-icons/fa";
@@ -20,20 +22,25 @@ function Home() {
   return (
     <>
       <section id="home" className={styles.home}>
-      <img src={wave}/>
         <div className={styles.container}>
+        <div className={styles.nav}><h4 className={styles.One}>Connexion</h4><h4 className={styles.Two}>S'inscrire</h4></div>
+        <div className={styles.one}></div>
+        <div className={styles.two}></div>
+        <div className={styles.right_div}></div>
+        <img src={wave2} className={styles.img} />
             {/* <div className={styles.left} data-aos="fade-right">
-              <h1 className={styles.h1}>
+              <h1 className={styles.h1}  >
                 <span>WELCOME TO OUR</span>
                 <span> Entreprise Ressource <br /> Planning</span>
               </h1>
               <p className= {styles.p}> Espace Of Creativity And Intelligency</p>
               <button className={styles.button}>Contact us</button>
-            </div>
-            <div className={styles.right} data-aos="fade-left">
+            </div> */}
+            {/* <div className={styles.right} data-aos="fade-left">
               <img src={download} alt="phone" />
             </div> */}
          </div>
+         {/* <img src={wave2} className={styles.img2}/> */}
          <br />
          {/* <div className={styles.floatting_icon}>
             <a href="#services">

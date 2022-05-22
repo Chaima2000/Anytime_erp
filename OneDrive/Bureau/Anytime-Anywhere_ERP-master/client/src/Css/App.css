@@ -3,6 +3,11 @@
   --secondary-color: rgba(160, 20, 103, 1);
   --black : #242D49;
   --gray : #788097;
+  --gradient: linear-gradient(
+    90deg,
+    var(--main-color) 0%,
+    var(--secondary-color) 49%
+  );
 }
 
 ::-webkit-scrollbar {

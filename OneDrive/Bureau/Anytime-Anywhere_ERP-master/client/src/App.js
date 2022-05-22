@@ -44,7 +44,7 @@ function App() {
         }}
       >
         <BrowserRouter>
-          <Navbar>
+          {/* <Navbar> */}
             {user.role === "SUPER-ADMIN"
               ? routes.superAdminRoutes
               : user.role === "USER"
@@ -56,7 +56,7 @@ function App() {
                 user.role === "MARKETING"
               ? routes.teamRoutes
               : routes.visitorRoutes}
-          </Navbar>
+          {/* </Navbar> */}
         </BrowserRouter>
       </AppContext.Provider>
     </>

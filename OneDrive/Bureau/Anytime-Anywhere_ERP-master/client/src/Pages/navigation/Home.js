@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import 'aos/dist/aos.css';
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import wave from "./../../Css/wave3D.jpg";
 import styles from './../../Css/home.module.css'; 
 import download from './../../Css/Frame 19.PNG';
 import Services from './Services';
@@ -19,6 +20,7 @@ function Home() {
   return (
     <>
       <section id="home" className={styles.home}>
+      <img src={wave}/>
         <div className={styles.container}>
             {/* <div className={styles.left} data-aos="fade-right">
               <h1 className={styles.h1}>
@@ -33,18 +35,18 @@ function Home() {
             </div> */}
          </div>
          <br />
-         <div className={styles.floatting_icon}>
+         {/* <div className={styles.floatting_icon}>
             <a href="#services">
             <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
             </a>
-        </div>
+        </div> */}
         <br /><br /> <br />
         
       </section>
-      <Services />
-      <About/>
+      {/* <Services />
+      <About/> */}
       {/* <Contact /> */}
-      <footer className={styles.footer} >
+      {/* <footer className={styles.footer} >
         <div className={styles.footer_box} data-aos="flip-down">
           <h4>Support: </h4>
           <div className={styles.links} >
@@ -78,7 +80,7 @@ function Home() {
           </p>
         </div>
       </footer>
-      <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a>
+      <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a> */}
     </>
   )
 }

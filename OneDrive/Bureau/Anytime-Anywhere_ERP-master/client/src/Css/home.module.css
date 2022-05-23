@@ -53,13 +53,13 @@
     padding-bottom: 1rem;
 }
 .h1>:nth-child(1){
-    color :var(--secondary-color);
+    color :#6a5acd;
     font-size: 3rem;
     font-weight: 100;
     display:block;
 }
 .h1>:nth-child(2){
-    color :var(--secondary-color);
+    color :#4c2882;
     font-size: 3rem;
     font-weight: 100;
     font-weight: 800;
@@ -82,16 +82,16 @@
     bottom:0;
     width: 65%;
     height: 1px;
-    background : var(--secondary-color);
+    background :blue;
 }
 .left{
     position: absolute;
-    top:0;
+    margin-top:8%;
     padding: 15px;
-    width: 100%;
-    left:0;
+    width: 50%;
+    left:3%;
     height: 400px;
-    background : rgba(230, 76, 235, 0.257)  
+    background : none  
 }
 .right{
     width: 40%;
@@ -124,13 +124,14 @@
   .floatting_icon{
       width: 3.5rem;
       height: 3.5rem;
-      background: rgb(215, 138, 210);
+      background: blue;
       border-radius : 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       position: absolute;
       left: 50%;
+      margin-top: 43%;
       transform: translateX(-50%);
       cursor:pointer; 
   }
@@ -180,6 +181,68 @@
         transform: translateY(25%);
     }
 }
+/*left side */
+.defaultLink{
+    color:white;
+    display: inline-block;
+    position: absolute;
+    padding: 10px;
+    top:0;
+}
+.defaultLink:hover{
+    background: var(--secondary-color);
+    border-radius: 10px;
+    color:#fff;
+    box-shadow:  0 0 20px var(--secondary-color);
+}
+.defaultBlackLink:hover{
+    background: var(--secondary-color);
+    border-radius: 10px;
+    color:#fff;
+    box-shadow:  0 0 20px var(--secondary-color);
+}
+.defaultBlackLink{
+    color:#191970;
+    display: inline-block;
+    position: absolute;
+    padding: 10px;
+    top:0;
+}
+
+.defaultLinkBtn{
+    color:#191970;
+    padding: 10px;
+    cursor: pointer;
+    border:none;
+    border-radius: 15px;
+    background: #fff;
+    display: inline-block;
+    position: absolute;
+    top:0;
+    box-shadow:  0 0 20px #fff;
+}
+
+.nav{
+    position: absolute;
+    top:0;
+    z-index: 1;
+    right: 0;
+    left:0;
+    background-color: none;
+}
+.nav img{
+display: inline-block;
+position: absolute;
+top:0;
+left: 0;
+}
+.img{ 
+    position: absolute;
+    right: 4%;
+    margin-top:9%;
+    width: 40%;
+}
+/*right side */
 .one{
     position: absolute;
     right: 0;
@@ -190,34 +253,6 @@
     border-bottom-right-radius: 36%;
   border-top-left-radius: 35%;
   border-bottom-left-radius: 60%;
-}
-.One{
-    color:white;
-    display: inline-block;
-    position: absolute;
-    top:0;
-    right: 15%;
-}
-.Two{
-    color:white;
-    display: inline-block;
-    position: absolute;
-    top:0;
-    right: 5%;
-}
-.nav{
-    position: absolute;
-    top:0;
-    z-index: 1;
-    right: 0;
-    left:0;
-    background-color: none;
-}
-.img{ 
-    position: absolute;
-    right: 4%;
-    margin-top:9%;
-    width: 40%;
 }
 .two{
     position: absolute;

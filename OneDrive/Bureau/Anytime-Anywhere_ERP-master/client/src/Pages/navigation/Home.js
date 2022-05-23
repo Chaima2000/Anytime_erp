@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 import 'aos/dist/aos.css';
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import wave from "./../../Css/wave3D.jpg";
+// import wave from "./../../Css/wave3D.jpg";
 import wave2 from "./../../Css/wave.png";
 import styles from './../../Css/home.module.css'; 
-import download from './../../Css/Frame 19.PNG';
-import ch from "./../../Css/ch.png";
+// import download from './../../Css/Frame 19.PNG';
+import logo from "./../../Css/logo.PNG";
 import Services from './Services';
 import About from './About';
 import { FaMapMarkerAlt, FaPhoneAlt, FaFax, FaEnvelope, FaGlobe} from "react-icons/fa";
@@ -23,11 +23,31 @@ function Home() {
     <>
       <section id="home" className={styles.home}>
         <div className={styles.container}>
-        <div className={styles.nav}><h4 className={styles.One}>Connexion</h4><h4 className={styles.Two}>S'inscrire</h4></div>
+        <div className={styles.nav}>
+        <img src={logo} data-aos="zoom-in" />
+        <h4 className={styles.defaultBlackLink} style={ {left:"15%"}}>Acceuil</h4>
+        <h4 className={styles.defaultBlackLink} style={ {left:"23%"}}>Services</h4>
+        <h4 className={styles.defaultBlackLink} style={ {left:"33%"}}>À propos</h4>
+        <h4 className={styles.defaultBlackLink} style={ {left:"43%"}}>Contactez-nous</h4>
+        <h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4></div>
+        <div className={styles.left} data-aos="fade-right">
+              <h1 className={styles.h1}  >
+                <span>WELCOME TO OUR</span>
+                <span> Entreprise Ressource <br /> Planning</span>
+              </h1>
+              <p className= {styles.p}> Espace Of Creativity And Intelligency</p>
+              <button className={styles.button}>Contact us</button>
+        </div>
+        <div className={styles.floatting_icon}>
+            <a href="#services">
+            <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
+            </a>
+        </div>
         <div className={styles.one}></div>
         <div className={styles.two}></div>
         <div className={styles.right_div}></div>
         <img src={wave2} className={styles.img} />
+        
             {/* <div className={styles.left} data-aos="fade-right">
               <h1 className={styles.h1}  >
                 <span>WELCOME TO OUR</span>

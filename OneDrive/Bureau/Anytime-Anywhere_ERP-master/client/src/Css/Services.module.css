@@ -1,13 +1,76 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+.card{
+  display: inline-block;
+  margin: 5px;
+  padding: 8px;
+  border: none;
+  width: 15%;
+  height: 100%;
+}
+.card h3{
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+p ul li {
+  list-style-type: none;
+}
+.services{
+  display: inline-block;
+  text-align: center;
+  padding: 15px;
+  margin: 5px;
+  color:black;
+  width: 97%;
+  height: 50%;
+  background: none;
+  position:absolute;
+  top:15%;
+}
 .bookMark{
   font-size: 40px;
+  color:#f5c71a
 }
-.container{
-  position:relative;
-  margin-top: 15%
+.arrowLeft{
+  position: absolute;
+  cursor: pointer;
+  margin-top: 11%;
+  left:5%;
+  color: #eed202
 }
+.arrowLeft:hover{
+  transform: scale(1.1);
+}
+.arrowRight{
+  position: absolute;
+  cursor: pointer;
+  margin-top: -4%;
+  right:4.3%;
+  color: #eed202
+}
+.arrowRight:hover{
+  transform: scale(1.1);
+}
+.services h2{
+  text-transform: uppercase;
+  font-size: 33px;
+  color:#f984e5
+}
+.slider{
+  background-color: grey;
+  height: 500px;
+  width: 66%;
+  left: 18%
+}
+
+
+
 .title{
   text-align: center;
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
 }
 .title>h2{
   font-size: 2.5rem;
@@ -17,13 +80,10 @@
   color: var(--secondary-color);
   margin: 1.5rem 0;
 }
-.p{
-  width: 50%;
-  min-width: 40rem;
-  margin: 0 auto;
-}
+
 .content{
 display: flex;
+margin-top: 10%;
 justify-content: center;
 }
 .left{
@@ -51,14 +111,7 @@ justify-content: center;
   left:50%;
   transform: translate(-50% , -50%);
 }
-.service_text h3{
-  font-size: 2rem;
-  font-weight: 300;
-  line-height: 1.4;
-  margin-top:0%;
-  text-transform: uppercase;
-  color: var(--secondary-color);
-}
+
 @media screen and (max-width: 480px){
   .content{
     flex-direction: column;

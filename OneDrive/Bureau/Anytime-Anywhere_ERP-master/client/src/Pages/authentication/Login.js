@@ -1,5 +1,6 @@
 import styles from  "../../Css/Login.module.css";
 import { Link, useHistory } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import swal from 'sweetalert';
 import { useState, useContext , useEffect , useRef } from "react";
 import { AppContext } from "../../Context/AppContext";
@@ -64,6 +65,7 @@ function Login() {
 
   return (
     <>
+      <Navbar />
        <div className={styles.wrapper}>
           <div className={styles.separate} id="start">
              <div className={styles.banner} ref={el => imgs = el}>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect , useState} from 'react';
 import AOS from 'aos';
 import {Link} from "react-router-dom";
 import 'aos/dist/aos.css';
@@ -13,64 +13,46 @@ import Services from './Services';
 import About from './About';
 import { FaMapMarkerAlt, FaPhoneAlt, FaFax, FaEnvelope, FaGlobe} from "react-icons/fa";
 function Home() {
+  
   useEffect(() => {
     AOS.init({
       duration:1000,
     });
   }, [])
-
+  
   return (
     <>
       <section id="home" className={styles.home}>
-        <div className={styles.container}>
-        <div className={styles.nav}>
-        <img src={logo} data-aos="zoom-in" />
-        <h4 className={styles.defaultBlackLink} style={ {left:"15%"}}>Acceuil</h4>
-        <h4 className={styles.defaultBlackLink} style={ {left:"23%"}}>Services</h4>
-        <h4 className={styles.defaultBlackLink} style={ {left:"33%"}}>À propos</h4>
-        <h4 className={styles.defaultBlackLink} style={ {left:"43%"}}>Contactez-nous</h4>
-        <h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4></div>
-        <div className={styles.left} data-aos="fade-right">
-              <h1 className={styles.h1}  >
-                <span>WELCOME TO OUR</span>
-                <span> Entreprise Ressource <br /> Planning</span>
-              </h1>
-              <p className= {styles.p}> Espace Of Creativity And Intelligency</p>
-              <button className={styles.button}>Contact us</button>
-        </div>
-        <div className={styles.floatting_icon}>
-            <a href="#services">
-            <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
-            </a>
-        </div>
-        <div className={styles.one}></div>
-        <div className={styles.two}></div>
-        <div className={styles.right_div}></div>
-        <img src={wave2} className={styles.img} />
-        
-            {/* <div className={styles.left} data-aos="fade-right">
-              <h1 className={styles.h1}  >
-                <span>WELCOME TO OUR</span>
-                <span> Entreprise Ressource <br /> Planning</span>
-              </h1>
-              <p className= {styles.p}> Espace Of Creativity And Intelligency</p>
-              <button className={styles.button}>Contact us</button>
-            </div> */}
-            {/* <div className={styles.right} data-aos="fade-left">
-              <img src={download} alt="phone" />
-            </div> */}
-         </div>
-         {/* <img src={wave2} className={styles.img2}/> */}
-         <br />
-         {/* <div className={styles.floatting_icon}>
-            <a href="#services">
-            <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
-            </a>
-        </div> */}
-        <br /><br /> <br />
-        
+          <div className={styles.nav}>
+            <img src={logo} data-aos="zoom-in" />
+            <a href="#home"><h4 className={styles.defaultBlackLink} style={ {left:"15%"}}>Acceuil</h4></a>
+            <a href="#services"><h4 className={styles.defaultBlackLink} style={ {left:"23%"}}>Services</h4></a>
+            <a href="#About"><h4 className={styles.defaultBlackLink} style={ {left:"33%"}}>À propos</h4></a>
+            <h4 className={styles.defaultBlackLink} style={ {left:"43%"}}>Contactez-nous</h4>
+            <Link className={styles.link} to="/login"><h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4></Link><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4>
+          </div>
+          <div className={styles.left} data-aos="fade-right">
+                <h1 className={styles.h1}  >
+                  <span>BIENVENUE DANS</span>
+                  <span> NOTRE GESTION DES <br /> RESSOURCES <br />D'ENTREPRISE</span>
+                </h1>
+                <p className= {styles.p}> Espace Of Creativity And Intelligency</p>
+                <button className={styles.button}>Contact us</button>
+          </div>
+          <div className={styles.floatting_icon}>
+              <a href="#services">
+              <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
+              </a>
+          </div>
+          <div className={styles.one}></div>
+            <img src={wave2} className={styles.img} />
+        <br /><br /><br /> <br />
+        <div className={styles.services}> <Services /></div>
+        <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a>
       </section>
-      {/* <Services />
+      <br />
+      
+      {/* 
       <About/> */}
       {/* <Contact /> */}
       {/* <footer className={styles.footer} >
@@ -107,7 +89,7 @@ function Home() {
           </p>
         </div>
       </footer>
-      <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a> */}
+       */}
     </>
   )
 }

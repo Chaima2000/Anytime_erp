@@ -5,13 +5,6 @@ import styles from './../../Css/Services.module.css';
 import styled from "styled-components";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Slide} from 'react-slideshow-image';
-import {BsHexagon} from "react-icons/bs";
-import frame from "../../Css/Frame 19.PNG";
-import { BiBarChartAlt } from "react-icons/bi";
-import {BiGroup} from "react-icons/bi";
-import {BiCoinStack} from "react-icons/bi";
-import download from '../../uploads/download.png';
 
 
 function Services() {
@@ -63,14 +56,14 @@ function Services() {
   }`
   return (
     <>
-    <section className={styles.services} id="services" >
+    <section className={styles.services} id="services"  >
          <FontAwesomeIcon icon={solid("bookmark")} color="#682860" className={styles.bookMark} />
          <h2>Notre Services</h2>
-        <div id="body">
-         <div id="scene">
+        <div id="body" >
+         <div id="scene" data-aos="flip-right">
         <div id="left-zone">
             <ul className="list">
-                <li className="item"><input type="radio" id="radio_The garden strawberry" name="basic_carousel" checked={true}  /><label className="label_strawberry" for="radio_The garden strawberry"><FontAwesomeIcon icon={solid("project-diagram")} size="lg" /> Service n°1:</label>
+                <li className="item"><input type="radio" id="radio_The garden strawberry" name="basic_carousel"/><label className="label_strawberry" for="radio_The garden strawberry"><FontAwesomeIcon icon={solid("project-diagram")} size="lg" /> Service n°1:</label>
                     <div className="content content_strawberry"><span className="picto"></span>
                         <h1>Suivi du projet</h1>
                         <p>Avoir toute l'information pour piloter ses projets et améliorer la rentabilité: <br/><br/>
@@ -95,7 +88,7 @@ function Services() {
                 <li className="item"><input type="radio" id="radio_The orange" name="basic_carousel" /><label className="label_orange" for="radio_The orange">Service n°4:</label>
                     <div className="content content_orange"><span className="picto"></span>
                         <h1>Gestion financière</h1>
-                        <p>Plus l'entreprise grossit plus sa base de données grossissent.Dans ce cas, il devient dur de centraliser les informations et c</p>
+                        <p>La conformité financière est indispensable pour toutes les entreprises.C'est là où les logiciels ERP interviennent, ils garantissent que les entreprises disposent de capacités de suivi avec des pistes d'audit, de sorte qu'elles ne se retrouvent jamais dans une mauvaise posture. </p>
                     </div>
                 </li>
             </ul>
@@ -104,92 +97,9 @@ function Services() {
         <div id="right-zone"></div>
     </div>
     </div> 
-
-      
-        {/* <div className={styles.title}>
-          <FontAwesomeIcon icon={solid("bookmark")} color="#682860" className={styles.bookMark} />
-          <h2>Our Services</h2> */}
-          {/* <p className={styles.p}>
-            gfvbhklmlmù
-          </p> */}
-        {/* </div> */}
-      {/* <div className={styles.content}>
-        <div className={styles.left} data-aos="zoom-in-up">
-            <img src={frame} />
-        </div>
-        <div className={styles.right} data-aos="zoom-in-up" >
-          <div className={styles.floatting_icon}>
-          <div className={styles.right}>
-          <div className={styles.floatting_icon}>
-            <div className={styles.service}>
-              <div className={styles.service_icon}>
-                <BsHexagon color="#915c83" size={55} />
-                <div className={styles.inner_icons}>
-                  <BiBarChartAlt size={25} color="#6495ed" />
-                </div>
-              </div>
-              <div className= {styles.service_text}>
-                <h3> Suivi de projet</h3>
-                <p className={styles.p}> Avoir toute l'information pour piloter ses projets et améliorer la rentabilité: 
-                <ul><li>Suivi des temps passés sur le projet</li></ul>
-                <ul><li>Suivi des coûts du projet et rentabilité</li></ul>
-                <ul><li>Etat d'avancement de facturation</li></ul>
-                <ul><li>Suivi des tâches du projet</li></ul>
-                <ul><li>Diagrammes de Gantt</li></ul></p>
-              </div> 
-            </div>
-            <div className={styles.service}>
-              <div className={styles.service_icon}>
-                <BsHexagon color="#915c83" size={55} />
-                <div className={styles.inner_icons}>
-                <BiGroup color="#6495ed" size={25}/>
-                </div>
-              </div>
-              <div className= {styles.service_text}>
-                <h3> Gestion des clients</h3>
-                <p className={styles.p}> hello and welcome</p>
-              </div> 
-            </div>
-            <div className={styles.service}>
-              <div className={styles.service_icon}>
-                <BsHexagon color="#915c83" size={55} />
-                <div className={styles.inner_icons}>
-                  <BiCoinStack size={25} color="#6495ed" />
-                </div>
-              </div>
-              <div className= {styles.service_text}>
-                <h3> Gestion des finances</h3>
-                <p className={styles.p}> hello and welcome</p>
-              </div> 
-            </div>
-            <div className={styles.service}>
-              <div className={styles.service_icon}>
-                <BsHexagon color="#915c83" size={55} />
-                <div className={styles.inner_icons}>
-                  <BiGroup size={25} color="#6495ed" />
-                </div>
-              </div>
-              <div className= {styles.service_text}>
-                <h3> Gestion des RH</h3>
-                <p className={styles.p}> hello and welcome</p>
-              </div> 
-            </div>
-          </div>
-         </div>
-
-
-
-
-            
-              
-            
-          </div>
-        </div>
-      </div> */}
    </section>
-    
     </>
   )
-}
+  }
 
 export default Services

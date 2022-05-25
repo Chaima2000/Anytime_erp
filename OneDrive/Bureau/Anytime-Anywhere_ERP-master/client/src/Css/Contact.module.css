@@ -1,24 +1,45 @@
-.Container{
-    /* background: url(image2.jpg); */
+.contact{
     position: absolute;
-    top:9%;
+    margin-top:165%;
     left:0;
     right:0;
     width: 100%;
     background-size: cover;
-    height: 548px;
+    height: 662px;
     background-blend-mode: multiply;
-    /* background-color: rgb(77, 59, 124); */
+    background-color: rgb(77, 59, 124);
 }
-.contactForm{
+.left{
     position: relative;
-    width: 45%;
-    left:38%;
+    width: 40%;
+    float: left;
+    left:1%;
     top:5%;
-    height:500px;
-    background-color: rgba(203, 211, 215, 0.613);
-    border-radius: 15px;
+    text-align: center;
+    height:570px;
+    /* background-image: url(contact.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(203, 211, 215, 0.8);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
+.left h1{
+    position: absolute;
+    width: 100%;
+    top:35%;
+    height: 150px;
+    /* transform: translateX(-50%); */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 3em;
+    color:#fff;
+    background: black;
+    text-transform: uppercase;
+    text-shadow: 0 5px 10px rgba(0,0,0,1);
+    mix-blend-mode: overlay;
+} 
 .imgSection{
     background-color: red;
     position: relative;

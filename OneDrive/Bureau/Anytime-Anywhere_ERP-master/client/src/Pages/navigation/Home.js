@@ -11,7 +11,7 @@ import styles from './../../Css/home.module.css';
 import logo from "./../../Css/logo.PNG";
 import Services from './Services';
 import About from './About';
-import { FaMapMarkerAlt, FaPhoneAlt, FaFax, FaEnvelope, FaGlobe} from "react-icons/fa";
+import Contact from './Contact';
 function Home() {
   
   useEffect(() => {
@@ -26,9 +26,9 @@ function Home() {
           <div className={styles.nav}>
             <img src={logo} data-aos="zoom-in" />
             <a href="#home"><h4 className={styles.defaultBlackLink} style={ {left:"15%"}}>Acceuil</h4></a>
-            <a href="#services"><h4 className={styles.defaultBlackLink} style={ {left:"23%"}}>Services</h4></a>
-            <a href="#About"><h4 className={styles.defaultBlackLink} style={ {left:"33%"}}>À propos</h4></a>
-            <h4 className={styles.defaultBlackLink} style={ {left:"43%"}}>Contactez-nous</h4>
+            <a href="#About"><h4 className={styles.defaultBlackLink} style={ {left:"23%"}}>À propos</h4></a>
+            <a href="#services"><h4 className={styles.defaultBlackLink} style={ {left:"33%"}}>Services</h4></a>
+            <a href="#Contact"><h4 className={styles.defaultBlackLink} style={ {left:"43%"}}>Contactez-nous</h4></a>
             <Link className={styles.link} to="/login"><h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4></Link><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4>
           </div>
           <div className={styles.left} data-aos="fade-right">
@@ -48,13 +48,11 @@ function Home() {
             <img src={wave2} className={styles.img} />
         <br /><br /><br /> <br />
         <div className={styles.services}> <Services /></div>
+        <div className={styles.about}> <About /></div>
         <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a>
       </section>
       <br />
-      
-      {/* 
-      <About/> */}
-      {/* <Contact /> */}
+      <div className={styles.contact}><Contact /></div>
       {/* <footer className={styles.footer} >
         <div className={styles.footer_box} data-aos="flip-down">
           <h4>Support: </h4>

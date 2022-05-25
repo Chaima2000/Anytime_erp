@@ -1,131 +1,16 @@
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
-.card{
-  display: inline-block;
-  padding: 8px;
-  background: transparent;
-  border: none;
-}
-.component{
- background : #f5f5f5; 
- position:absolute;
- padding-top: 45px;
- justify-content: center;
- align-items: center;
- top:6.8%; 
- left:11%;
- width: 78%;
- height: 17%;
-}
-.card h3{
-  font-size: 25px;
-  font-weight: 300;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--secondary-color);
-}
-p ul li {
-  list-style-type: none;
-}
 .services{
   display: inline-block;
   width: 97%;
-  height: 50%;
-  background : #e5e4e2;
+  height: 12.6%;
+  background : linear-gradient(
+    90deg,
+    white 0%,
+    #bcd4e6 49%
+  );
   position:absolute;
   top:15%;
   text-align: center;
   padding: 15px;
   margin: 5px;
   color:black;
-}
-
-.bookMark{
-  font-size: 40px;
-  color:#f5c71a
-}
-.arrowLeft{
-  position: absolute;
-  cursor: pointer;
-  margin-top: 11%;
-  left:5%;
-  color: #eed202
-}
-.arrowLeft:hover{
-  transform: scale(1.1);
-}
-.arrowRight{
-  position: absolute;
-  cursor: pointer;
-  margin-top: -4%;
-  right:4.3%;
-  color: #eed202
-}
-.arrowRight:hover{
-  transform: scale(1.1);
-}
-.services h2{
-  text-transform: uppercase;
-  font-size: 33px;
-  color:#fefe33
-
-}
-.slider{
-  background-color: transparent;
-  height: 380px;
-  width: 61%;
-  left: 19%
-}
-
-
-
-
-.title{
-  text-align: center;
-  /* margin-bottom: 4rem; */
-}
-.title>h2{
-  font-size: 2.5rem;
-  font-weight: 300;
-  line-height: 1.4;
-  text-transform: uppercase;
-  color: var(--secondary-color);
-  margin: 1.5rem 0;
-}
-
-.content{
-display: flex;
-margin-top: 10%;
-justify-content: center;
-}
-.left{
-  flex: 1;
-  text-align: center;
-}
-.left img{
-  width:80%;
-}
-.right{
-  flex:1;
-}
-.service{
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-}
-.service_icon{
-  position:relative;
-  margin-right: 2rem;
-}
-.inner_icons{
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50% , -50%);
-}
-
-@media screen and (max-width: 480px){
-  .content{
-    flex-direction: column;
-  }
 }

@@ -386,6 +386,188 @@ table td {
   font-weight: bold;
   color: var(--secondary-color);
 }
+@keyframes slidein {
+  0% {
+    top: -400px;
+    opacity: 0;
+ }
+  100% {
+    opacity: 1;
+    top: 0px;
+ }
+}
+@keyframes slideout {
+  0% {
+    top: 0;
+    opacity: 1;
+ }
+  100% {
+    top: -400px;
+    opacity: 0;
+ }
+}
+#body {
+  background: #eee;
+  font-family: "Tahoma";
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#body #scene {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 1000px;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+}
+#body #scene #left-zone {
+  background: #fff;
+  height: 75%;
+  flex-grow: 0;
+  display: flex;
+  width: 350px;
+  align-items: center;
+  justify-content: left;
+}
+#body #scene #left-zone .list {
+  display: flex;
+  list-style: none;
+  align-content: stretch;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+}
+#body #scene #left-zone .list li.item input[type="radio"] {
+  display: none;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ label {
+  display: block;
+  opacity: 0.5;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ label:first-letter {
+  text-transform: uppercase;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ label:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content {
+  position: absolute;
+  left: 350px;
+  top: -400px;
+  width: 650px;
+  height: 400px;
+  animation-duration: 0.75s;
+  animation-name: slideout;
+  animation-timing-function: ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_strawberry .picto {
+  height: 105px;
+  width: 148px;
+  background-image: url(service2.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_strawberry h1 {
+  color: #d64541;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_banana .picto {
+  height: 110px;
+  width: 155px;
+  background-image: url(service2.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_banana h1 {
+  color: #f5d76e;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_apple .picto {
+  height: 100px;
+  width: 159px;
+  background-image: url(service1.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_apple h1 {
+  color: #00b16a;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_orange .picto {
+  height: 100px;
+  width: 140px;
+  background-image: url(service3.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_orange h1 {
+  color: #f27935;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content h1:first-letter {
+  text-transform: uppercase;
+}
+#body #scene #left-zone .list li.item input[type="radio"] ~ .content p {
+  max-width: 50%;
+  text-align: center;
+}
+#body #scene #left-zone .list li.item input[type="radio"]:checked ~ label {
+  opacity: 1;
+  animation: all 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+#body #scene #left-zone .list li.item input[type="radio"]:checked ~ label.label_strawberry {
+  color: #d64541;
+  border-right: solid 4px #d64541;
+}
+#body #scene #left-zone .list li.item input[type="radio"]:checked ~ label.label_banana {
+  color: #f5d76e;
+  border-right: solid 4px #f5d76e;
+}
+#body #scene #left-zone .list li.item input[type="radio"]:checked ~ label.label_apple {
+  color: #00b16a;
+  border-right: solid 4px #00b16a;
+}
+#body #scene #left-zone .list li.item input[type="radio"]:checked ~ label.label_orange {
+  color: #f27935;
+  border-right: solid 4px #f27935;
+}
+#body #scene #left-zone .list li.item input[type="radio"]:checked ~ .content {
+  animation-duration: 0.75s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+#body #scene #middle-border {
+  background-color: #eee;
+  height: 75%;
+  flex-grow: 1;
+  max-width: 2px;
+  z-index: 0;
+}
+#body #scene #right-zone {
+  background: #fff;
+  height: 100%;
+  flex-grow: 3;
+}
 
 @media (max-width: 800px) {
   .formContainer {

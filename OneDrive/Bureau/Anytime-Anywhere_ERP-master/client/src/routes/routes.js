@@ -1,4 +1,5 @@
 import Home from "../Pages/navigation/Home";
+import Navbar from "../components/Navbar";
 import About from "../Pages/navigation/About";
 import Services from "../Pages/navigation/Services";
 import Contact from "../Pages/navigation/Contact";
@@ -93,7 +94,9 @@ export const superAdminRoutes = (
   <>
     <Switch>
       <Route path="/" exact>
+        <Navbar></Navbar>
         <div align="center">Dashboard</div>
+        
       </Route>
       <Route path="/quickaccess" exact>
         <QuickAccess/>

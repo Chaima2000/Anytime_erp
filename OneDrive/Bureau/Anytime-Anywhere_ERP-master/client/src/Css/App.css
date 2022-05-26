@@ -589,3 +589,53 @@ table td {
     margin-bottom: 20px;
   }
 }
+@media screen AND (max-width:485px){
+
+    #body #scene {
+      display: flex;
+      width:380px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      overflow: hidden;
+
+  }
+  #body #scene #left-zone {
+    background: #fff;
+    height: 75%;
+    flex-grow: 0;
+    display: flex;
+    width: 150px;
+    align-items: center;
+    justify-content: left;
+  }
+  #body #scene #left-zone .list li.item input[type="radio"] ~ .content {
+    position: absolute;
+    left: 350px;
+    top: -400px;
+    width: 650px;
+    height: 400px;
+    animation-duration: 0.75s;
+    animation-name: slideout;
+    animation-timing-function: ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #body #scene #left-zone .list li.item input[type="radio"] ~ .content.content_strawberry .picto {
+    height: 105px;
+    width: 148px;
+    background: blue;
+    background-image: url(service2.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

@@ -13,7 +13,7 @@ import Services from './Services';
 import About from './About';
 import Contact from './Contact';
 function Home() {
-  
+  const [isOpen , setIsOpen]=useState(false);
   useEffect(() => {
     AOS.init({
       duration:1000,
@@ -25,12 +25,34 @@ function Home() {
       <section id="home" className={styles.home}>
           <div className={styles.nav}>
             <img src={logo} data-aos="zoom-in" />
-            <a href="#home"><h4 className={styles.defaultBlackLink} style={ {left:"15%"}}>Acceuil</h4></a>
-            <a href="#About"><h4 className={styles.defaultBlackLink} style={ {left:"23%"}}>À propos</h4></a>
-            <a href="#services"><h4 className={styles.defaultBlackLink} style={ {left:"33%"}}>Services</h4></a>
-            <a href="#Contact"><h4 className={styles.defaultBlackLink} style={ {left:"43%"}}>Contactez-nous</h4></a>
+            <input type="checkbox" id="click" style={{display:"none"}}  onClick={()=>setIsOpen(!isOpen)} />
+            <label htmlFor='click'>
+            <p><FontAwesomeIcon icon={solid("list")} color="#191970" className={styles.list_icon} /></p>
+            </label>
+            <div className={styles.item}>
+            <a href="#home"><h4 className={styles.defaultBlackLink}>Acceuil</h4></a>
+            <a href="#About"><h4 className={styles.defaultBlackLink}>À propos</h4></a>
+            <a href="#services"><h4 className={styles.defaultBlackLink}>Services</h4></a>
+            <a href="#Contact"><h4 className={styles.defaultBlackLink}>Contactez-nous</h4></a>
+            </div>
+            {isOpen ? (
+              <>
+             
+            <div className={styles.itemafter} data-aos="fade-down">
+            <label htmlFor='click'>
+            <p><FontAwesomeIcon icon={solid("xmark")} color="white" className={styles.xmark} /></p>
+            </label>
+            <a href="#home" ><h4 className={styles.defaultBlackLink}>Acceuil</h4></a>
+            <a href="#About"><h4 className={styles.defaultBlackLink}>À propos</h4></a>
+            <a href="#services"><h4 className={styles.defaultBlackLink}>Services</h4></a>
+            <a href="#Contact"><h4 className={styles.defaultBlackLink}>Contactez-nous</h4></a>
+            </div>
+            </>
+            ):
+          null }
             <Link className={styles.link} to="/login"><h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4></Link><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4>
           </div>
+         
           <div className={styles.left} data-aos="fade-right">
                 <h1 className={styles.h1}  >
                   <span>BIENVENUE DANS</span>
@@ -41,18 +63,18 @@ function Home() {
           </div>
           <div className={styles.floatting_icon}>
               <a href="#services">
-              <FontAwesomeIcon icon={solid("computer-mouse")} color="white" size="lg" className={styles.mouse} />
+              <FontAwesomeIcon icon={solid("computer-mouse")} color="white" className={styles.mouse} />
               </a>
           </div>
           <div className={styles.one}></div>
             <img src={wave2} className={styles.img} />
         <br /><br /><br /> <br />
         <div className={styles.services}> <Services /></div>
-        <div className={styles.about}> <About /></div>
+        {/* <div className={styles.about}> <About /></div> */}
         <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a>
       </section>
       <br />
-      <div className={styles.contact}><Contact /></div>
+      {/* <div className={styles.contact}><Contact /></div> */}
       {/* <footer className={styles.footer} >
         <div className={styles.footer_box} data-aos="flip-down">
           <h4>Support: </h4>

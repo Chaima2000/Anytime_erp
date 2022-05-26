@@ -14,3 +14,13 @@
   margin: 5px;
   color:black;
 }
+@media screen AND (max-width:485px){
+  .services{
+    position: absolute;
+    /* padding-top: 15%; */
+    top:170%;
+    width: 90%;
+    height: 100%;
+    background: red;
+  }
+}

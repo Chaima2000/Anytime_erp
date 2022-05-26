@@ -2,11 +2,15 @@
   width: 100%;
 }
 .container h2 {
-  padding-left: 10px;
+  position: absolute;
+  left: 2%;
 }
 .searchField {
   display: flex;
-  justify-content: right;
+  float: right;
+}
+.searchField button{
+  height: 55px;
 }
 .li{
  list-style-type: none;

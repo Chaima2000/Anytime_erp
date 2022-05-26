@@ -1,4 +1,5 @@
 const { task  } = require("../database/models/task.model");
+const {project} = require("../database/models/project.model");
 exports.getTasks = (req, res) => {
   task.find({}).then((tasks) => {
     res.send(tasks);
@@ -37,11 +38,13 @@ exports.addTask =  (req , res) => {
   const stateTask = req.body.stateTask;
   const descriptionTask = req.body.descriptionTask;
   const Urgent = req.body.Urgent;
+  const projectId=req.body.project;
   const newTask = new task ( {
     nameTask: nameTask,
     stateTask: stateTask,
     descriptionTask: descriptionTask,
     Urgent: Urgent,
+    project:projectId
   });
   try {
     newTask.save();

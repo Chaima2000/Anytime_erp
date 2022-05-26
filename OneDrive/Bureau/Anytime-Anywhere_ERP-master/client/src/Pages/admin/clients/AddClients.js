@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-
+import Navbar from "../../../components/Navbar";
 
 function AddClients(props) {
   const [type , setType] = useState("");
@@ -63,6 +63,7 @@ function AddClients(props) {
     )}
  return ( 
    <>
+   <Navbar></Navbar>
     <section className={styles.section}>        
       <div className={styles.container}>
           <div className={styles.form }>

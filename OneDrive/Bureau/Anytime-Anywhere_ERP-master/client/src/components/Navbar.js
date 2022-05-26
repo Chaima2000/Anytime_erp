@@ -18,7 +18,7 @@ function Navbar(props) {
   const [showProfileMobileMenu, setShowProfileMobileMenu] = useState(false);
   const history = useHistory();
   const clicked = (data) =>{
-    var string="";
+    var string=``;
     if(data === "liste des utilisateurs"){
       return(
       string=`users`

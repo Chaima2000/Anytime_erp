@@ -10,6 +10,7 @@ import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Select  from 'react-select';
+import Navbar from '../../../components/Navbar';
 function Projects(props) {
   const [projectList , setprojectList] = useState([]);  
   const [disable , setDisable] = useState (false);
@@ -110,6 +111,7 @@ function Projects(props) {
 }
 return (
     <>
+    <Navbar></Navbar>
     {waiting ? (
     <div className="row">
             <FontAwesomeIcon icon={solid("spinner")} size={"3x"} spin />
@@ -173,18 +175,18 @@ return (
                 <p>Etat: {project.state}</p>
               </div>
               <div className={styles.icons}>
-              <Tippy content='Voir'>
+              {/* <Tippy content='Voir'> */}
                 <Link to={`/project/details/${project._id}`}><span><FontAwesomeIcon icon={solid("file")} size="lg" color="#367588"/></span></Link>
-              </Tippy>
-              <Tippy content='supprimer'>
+              {/* </Tippy> */}
+              {/* <Tippy content='supprimer'> */}
                 <span onClick = {() => {setDeleteProject(project) ; Delete()}}><FontAwesomeIcon icon={solid("trash")} size="lg" color="#cd5c5c" /></span>
-              </Tippy>
-              <Tippy content="modifier">
+              {/* </Tippy> */}
+              {/* <Tippy content="modifier"> */}
                 <span onClick={()=>{setEditProject(project); Edit()}}><FontAwesomeIcon icon={solid("edit")} size="lg" color="blue" /></span>
-              </Tippy>
-              <Tippy content="vérouiller">
+              {/* </Tippy> */}
+              {/* <Tippy content="vérouiller"> */}
                 <span><FontAwesomeIcon icon={solid("lock")} size="lg" color="#1a1a1a"/></span>
-                </Tippy>
+                {/* </Tippy> */}
               <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  

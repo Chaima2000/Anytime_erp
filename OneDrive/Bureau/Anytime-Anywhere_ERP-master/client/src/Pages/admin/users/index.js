@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Tippy from '@tippy.js/react';
+import Navbar from "../../../components/Navbar";
 import 'tippy.js/dist/tippy.css';
 /************************************************************************* */
 function Users() {
@@ -63,6 +64,9 @@ function Users() {
         }
       });
   }
+  useEffect(() => {
+    getUsers(currentPage);
+  }, []);
 /************************************************************************* */
   function resetSearch() {
     document.getElementById("searchField").value = "";
@@ -86,12 +90,11 @@ function Users() {
     });
   }
 /************************************************************************* */
-  useEffect(() => {
-    getUsers(currentPage);
-  }, []);
+
 /************************************************************************* */
   return (
     <>
+    <Navbar></Navbar>
       {alertVisible ? (
         <div
           onClick={() => {
@@ -136,8 +139,8 @@ function Users() {
       )}
       <section className={styles.container}>
         <h2>Gestion des utilisateurs</h2>
-        <h3 className={styles.searchField}>
           <form
+            className={styles.searchField}
             onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
               document.getElementById("resetBtn").hidden = false;
@@ -175,9 +178,7 @@ function Users() {
               <FontAwesomeIcon icon={solid("undo")} size="lg" />
             </button>
           </form>
-        </h3>
-        <hr />
-
+        <hr style={{marginTop:"5%"}} />
         {waiting ? (
           <div className={styles.spinner}>
             <FontAwesomeIcon icon={solid("spinner")} spin size="3x" />
@@ -249,7 +250,7 @@ function Users() {
                         />
                       </td>
                       <td>
-                      <Tippy content='voir'>
+                      {/* <Tippy content='voir'> */}
                         <Link
                           to={`/users/profile/${user._id}`}
                           className="primaryBtn"
@@ -257,9 +258,9 @@ function Users() {
                         
                           <FontAwesomeIcon icon={solid("file")} />
                         </Link>
-                      </Tippy>
+                      {/* </Tippy> */}
                         &nbsp;
-                      <Tippy content='supprimer'>
+                        
                         <span
                           onClick={() => {
                             setUserId(user._id);
@@ -273,9 +274,11 @@ function Users() {
                           }}
                           className="dangerBtn"
                         >
+
                           <FontAwesomeIcon icon={solid("trash")} />
+                          
                         </span>
-                      </Tippy>
+
                       </td>
                     </tr>
                   );

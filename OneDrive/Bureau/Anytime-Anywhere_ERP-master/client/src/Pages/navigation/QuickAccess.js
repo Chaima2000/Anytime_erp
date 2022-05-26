@@ -2,6 +2,7 @@ import React ,  {useState, useEffect} from 'react';
 import axios from 'axios';
 import styles from '../../Css/QuickAccess.module.css';
 import AOS from 'aos';
+import Navbar from '../../components/Navbar';
 
 
 
@@ -44,7 +45,8 @@ else {
         )}
   return (
     <>
-        <form onSubmit={addelement}>
+    <Navbar>
+       <form onSubmit={addelement}>
         <div className={styles.wrapper}>
           <div className={styles.contain} >
             <input type="checkbox" className={styles.input} value="liste des utilisateurs" id="listUser" onChange={handleChange} /><br/><br/>
@@ -115,6 +117,7 @@ else {
         </div>
         <button className="btn1 btn2">Ajouter à l'accés rapide</button>
         </form>
+        </Navbar>
     </>
   )
 }

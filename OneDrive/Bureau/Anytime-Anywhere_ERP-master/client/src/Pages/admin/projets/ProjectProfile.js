@@ -13,6 +13,7 @@ import Tippy from '@tippy.js/react';
 import 'tippy.js/dist/tippy.css';
 import Checkbox from '@mui/material/Checkbox';
 import Select  from 'react-select';
+import Navbar from '../../../components/Navbar';
 
 function ProjectProfile(props) {
   const { user } = useContext(AppContext);
@@ -23,6 +24,7 @@ function ProjectProfile(props) {
  
   /** Tasks states **/
   const [tasksList , setTasksList] = useState([]);
+  const project=useParams();
   const[nameTask , setNameTask] = useState("");
   const [stateTask , setStateTask] = useState(null);
   const[descriptionTask , setDescriptionTask] = useState("");
@@ -39,7 +41,6 @@ function ProjectProfile(props) {
 /** Expenses's states **/
   const [expenses , setExpenses] = useState([]);
   const [clientList, setClientList] = useState("");  
-
   const [expenseName , setExpenseName] = useState("");
   const [expenseDescription , setExpenseDescription ] = useState("");
   const [expenseValue , setExpenseValue] = useState("");
@@ -60,11 +61,13 @@ var i=0;
     data.append("state",stateTask);
     data.append("description",descriptionTask);
     data.append("urgent",Urgent);
+    data.append("project",project);
     const dataT = {
       nameTask:nameTask,
       stateTask:stateTask,
       descriptionTask:descriptionTask,
-      urgent:Urgent
+      urgent:Urgent,
+      project: project
     }
     axios.post("/addTask", dataT).then((res)=>{
       if(res.data === "ERROR"){
@@ -230,6 +233,7 @@ const successExpense = () =>{
  
 return (
     <>
+    <Navbar></Navbar>
     {waiting ? (
     <div className="row">
             <FontAwesomeIcon icon={solid("spinner")} size={"3x"} spin />
@@ -252,9 +256,9 @@ return (
 
     <div className={styles.details}>
         <h2>Tâches 
-        <Tippy content='Ajouter une tâche'>
+        {/* <Tippy content='Ajouter une tâche'> */}
           <p className={styles.add_icon}><FontAwesomeIcon icon= {solid("plus")} color = "white"  onClick={() => {setPopProject(projectProfile) ;  Pop()}} /></p>
-        </Tippy> 
+        {/* </Tippy>  */}
         </h2>
         <Modal isOpen={modalIsOpen} onRequestClose = {() => setModalIsOpen(false)}
                 shouldCloseOnOverlayClick={true}
@@ -311,6 +315,7 @@ return (
                     onChange={handleChange}
                   />
                 </h4>
+                <h4>projectId: {id} </h4>
                 <button className="defaultBtn" >Enregistrer</button>
             </form>
         </Modal>
@@ -368,9 +373,10 @@ return (
   </div>
       <div className={styles.details}>
         <h2>Frais 
-        <Tippy content='Ajouter un frais'>
+        {/* <Tippy content='Ajouter un frais'> */}
         <p className={styles.add_icon}><FontAwesomeIcon icon= {solid("plus")} color = "white" onClick={() => {setPopProject(projectProfile) ;  ExpensePop()}} /></p>
-        </Tippy></h2>
+       
+       </h2>
         <Modal isOpen={expenseIsOpen} onRequestClose = {() => setExpenseIsOpen(false)} 
                                               shouldCloseOnOverlayClick={true}
                                               style = {

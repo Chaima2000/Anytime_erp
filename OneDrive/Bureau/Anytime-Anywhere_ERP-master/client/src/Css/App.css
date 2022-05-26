@@ -29,6 +29,7 @@
 
 /* Default Table Style */
 table {
+  margin-top: 5%;
   width: 100%;
   background: white;
   border-collapse: collapse;

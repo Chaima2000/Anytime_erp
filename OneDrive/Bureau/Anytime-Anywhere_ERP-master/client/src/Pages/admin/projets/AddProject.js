@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import Navbar from "../../../components/Navbar";
 toast.configure()
 
 
@@ -118,6 +119,7 @@ function AddProject() {
 
   return (
     <>
+    <Navbar></Navbar>
     <div className={styles.overlay}>
       <section className={styles.section}>        
         <div className={styles.container}>

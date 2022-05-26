@@ -3,8 +3,10 @@ import { AppContext } from "../../../Context/AppContext";
 import axios from 'axios';
 import styles from '../../../Css/ProjectTeam.module.css';
 import BOOK from '../../../Css/book1.png';
+import Navbar from '../../../components/Navbar';
 function Projects() {
   const [projectId,setProjectId]=useState([]);
+  const [onclick,setOnclick]=useState(false);
   const [ClientSociety,setClientSociety]=useState([]);
   const [projects, setProjects] = useState([{}]);
   const { user} = useContext(AppContext);
@@ -29,6 +31,16 @@ function Projects() {
       } 
     })
   }
+  function show(project){
+   return(
+     <>
+      <p className={styles.paragh}>Description: <h3>{project.description}</h3></p> 
+      <p className={styles.paragh}>Fichiers: <a href={project.file} download>Télécharger</a></p><br/>
+      <button className={styles.btnView}>Voir les tâches</button><br/><br/>
+      <button className={styles.btnView}>Voir les frais</button>
+      </>
+   )
+  }
   function getProjectId(data){
     axios.get(`/getRowProjectId/${data}`).then( (res)=>{
       let j=0;
@@ -51,7 +63,7 @@ function Projects() {
   return (
     
     <>
-    
+    <Navbar></Navbar>
     {projects.map( (project) => {
       {i=i+1}
                   return (
@@ -67,18 +79,24 @@ function Projects() {
                     <div className={styles.page}></div>
                     <div className={styles.page}></div>
                     <div className={styles.page}></div>
-                    <div className={styles.page}></div>
+                    <div className={styles.page}>
+                    {onclick ? (
+                          show(project)
+                        ):
+                        null} 
+                    </div>
                     <div className={styles.back_cover}></div>
                     <div className={styles.last_page}>
                         <h2 className={styles.H2}>{project.name}</h2>
                         Etat: <h3 >{project.state}</h3>
                         Client: <h3 >{ClientSociety}</h3>
-                        {/* Description: <h3 >{project.description}</h3> */}
                         Débute à :  <h3 >{project.start}</h3>
                         Termine à :  <h3 >{project.end}</h3><br />
-                        {/* <a href={project.file} download>Télécharger</a> */}
-                        {/* Fichiers: <input value='télécharger'  type="button" id="upload" /> <br/><br/> */}
-                        <input  value=" Voir plus des détails" type="button" className={styles.btn_view}/>
+                        {!onclick ? (
+                        <button  className={styles.btn_view} onClick={()=>{setOnclick(true)}}>Voir plus des détails</button>
+                        ):
+                        <button  className={styles.btn_view} onClick={()=>{setOnclick(false)}}>Masquer les détails</button>
+                        }
                     </div>
                     </div>
                   </div>

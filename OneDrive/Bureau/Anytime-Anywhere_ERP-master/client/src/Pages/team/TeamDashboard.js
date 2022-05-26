@@ -1,7 +1,11 @@
 import React from "react";
+import Navbar from "../../components/Navbar";
 
-function TeamDashboard(props) {
-  return <div>Team Dashboard</div>;
+function TeamDashboard() {
+  return (<>
+  <Navbar></Navbar>
+  <div>gjhkjl</div>
+  </>)
 }
 
 export default TeamDashboard;

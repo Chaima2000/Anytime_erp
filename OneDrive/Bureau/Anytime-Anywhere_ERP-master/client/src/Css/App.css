@@ -29,10 +29,19 @@
 
 /* Default Table Style */
 table {
-  margin-top: 5%;
-  width: 100%;
+  /* margin-top: -15%; */
+  width: 97%;
+  margin-left:2%;
   background: white;
   border-collapse: collapse;
+}
+table thead{
+  height: 40px;
+  background: #4f86f7;
+  color:white
+}
+.table tbody tr:hover {
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0.2);
 }
 table thead th,
 table tfoot th {
@@ -350,10 +359,13 @@ table td {
 }
 
 .select {
+  position: relative;
   width: 80%;
+  float: left;
+  margin-left: 10%;
   outline:none;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(231, 231, 231);
   border-radius: 5px;
   cursor: pointer;
   background-color: #fff;
@@ -363,6 +375,10 @@ table td {
   align-items: center;
   text-align: center;
   margin: 20px;
+  border:1px solid grey;
+  width: 4%;
+  border-radius: 5px;
+  margin-left:47%;
 }
 
 .pagination {

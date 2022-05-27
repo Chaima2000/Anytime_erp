@@ -181,9 +181,13 @@
   text-align: center;
   border: 1px solid #dee2e685;
 }
-.table tbody tr:hover{
+.tr:hover{
   cursor:pointer;
-  box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
+  /* box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
+   */
+   background: red;
+   transition: scale(1.02);
+   box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0.2);
 }
 /************    ****************/
 .viewClientDetails{

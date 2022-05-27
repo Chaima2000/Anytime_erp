@@ -6,11 +6,13 @@ import Switch from "@mui/material/Switch";
 import Button from "@mui/material/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import Tippy from '@tippy.js/react';
+import Tooltip from "@material-ui/core/Tooltip";
 import Navbar from "../../../components/Navbar";
 import 'tippy.js/dist/tippy.css';
+
 /************************************************************************* */
 function Users() {
+  const [counter, setCounter] = useState();
   const [usersList, setUsersList] = useState([]);
   const [alertVisible, setAlertVisible] = useState(false);
   const [userId, setUserId] = useState("");
@@ -21,7 +23,8 @@ function Users() {
   const [allPages, setAllPages] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [waiting, setWaiting] = useState(true);
-
+  let i=0;
+  console.log(counter)
 /************************************************************************* */
   function toggleAlert() {
     setAlertVisible(!alertVisible);
@@ -50,10 +53,10 @@ function Users() {
       }
     });
   }
-/************************************************************************* */
-  function getUsers(page) {
+/************************************************************************* */ 
+function getUsers(page) {
     axios
-      .post("/getusers", { currentPage: page, searchTerm: searchTerm })
+      .post("/getusers", { currentPage: page, searchTerm: searchTerm, counter:counter })
       .then((res) => {
         if (res.data === "ERROR") {
           alert("error !");
@@ -139,6 +142,12 @@ function Users() {
       )}
       <section className={styles.container}>
         <h2>Gestion des utilisateurs</h2>
+        {waiting ? (
+          <div className={styles.spinner}>
+            <FontAwesomeIcon icon={solid("spinner")} spin size="3x" />
+          </div>
+        ) : (
+          <>
           <form
             className={styles.searchField}
             onSubmit={(e) => {
@@ -178,17 +187,14 @@ function Users() {
               <FontAwesomeIcon icon={solid("undo")} size="lg" />
             </button>
           </form>
-        <hr style={{marginTop:"5%"}} />
-        {waiting ? (
-          <div className={styles.spinner}>
-            <FontAwesomeIcon icon={solid("spinner")} spin size="3x" />
-          </div>
-        ) : (
-          <>
+       
+          
             <table className="table">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Nom</th>
+                  <th>Gmail</th>
                   <th>Rôle</th>
                   <th>Activation</th>
                   <th>Action</th>
@@ -198,8 +204,10 @@ function Users() {
                 {usersList.map((user) => {
                   return (
                     <tr key={user._id}>
-                      <td>{user.firstName} {user.lastName}</td>
-                      <td>
+                    <td>{i=i+1}</td>
+                      <td className={styles.name}>{user.firstName} {user.lastName}</td>
+                      <td>{user.email}</td>
+                      <td className={styles.rôle}>
                         <select
                           className="select"
                           defaultValue={user.role}
@@ -250,17 +258,17 @@ function Users() {
                         />
                       </td>
                       <td>
-                      {/* <Tippy content='voir'> */}
+                      <Tooltip title="Afficher">
                         <Link
                           to={`/users/profile/${user._id}`}
-                          className="primaryBtn"
+                          className={styles.primaryBtn}
                         >
                         
-                          <FontAwesomeIcon icon={solid("file")} />
+                          <FontAwesomeIcon icon={solid("file")} color="rgb(0, 174, 255)" />
                         </Link>
-                      {/* </Tippy> */}
+                      </Tooltip>
                         &nbsp;
-                        
+                        <Tooltip title="Supprimer">
                         <span
                           onClick={() => {
                             setUserId(user._id);
@@ -272,18 +280,20 @@ function Users() {
                             );
                             toggleAlert();
                           }}
-                          className="dangerBtn"
+                          className={styles.dangerBtn}
+                       
                         >
 
-                          <FontAwesomeIcon icon={solid("trash")} />
+                          <FontAwesomeIcon icon={solid("trash")} color="red" />
                           
                         </span>
-
+                        </Tooltip>
                       </td>
                     </tr>
                   );
                 })}
               </tbody>
+              <tfoot><tr><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none" , paddingTop:"35px", float:"left"}}> <b>{i}</b>  / <b>{usersList.length} personnes</b> </td></tr></tfoot>
             </table>
             <div className="paginationContainer">
               {allPages.map((page) => {

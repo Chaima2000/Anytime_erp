@@ -109,7 +109,7 @@ function Clients(){
               <tbody>
                 {clientsList.map( (client) => {
                   return ( 
-                  <tr key = {client._id}>
+                  <tr key = {client._id} className={styles.tr}>
                     <td data-label="Societé">  {client.society} </td>
                     <td data-label="Activité"> {client.activity}</td>
                     <td data-label="Email">{client.email}</td>

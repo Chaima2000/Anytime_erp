@@ -6,8 +6,7 @@ import Modal from 'react-modal';
 import { Link} from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Tippy from '@tippy.js/react';
-import 'tippy.js/dist/tippy.css';
+import Tooltip from "@material-ui/core/Tooltip";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Select  from 'react-select';
 import Navbar from '../../../components/Navbar';
@@ -175,18 +174,18 @@ return (
                 <p>Etat: {project.state}</p>
               </div>
               <div className={styles.icons}>
-              {/* <Tippy content='Voir'> */}
+              <Tooltip title="Afficher">
                 <Link to={`/project/details/${project._id}`}><span><FontAwesomeIcon icon={solid("file")} size="lg" color="#367588"/></span></Link>
-              {/* </Tippy> */}
-              {/* <Tippy content='supprimer'> */}
+             </Tooltip>
+             <Tooltip title="Supprimer">
                 <span onClick = {() => {setDeleteProject(project) ; Delete()}}><FontAwesomeIcon icon={solid("trash")} size="lg" color="#cd5c5c" /></span>
-              {/* </Tippy> */}
-              {/* <Tippy content="modifier"> */}
+              </Tooltip>
+              <Tooltip title="Modifier">
                 <span onClick={()=>{setEditProject(project); Edit()}}><FontAwesomeIcon icon={solid("edit")} size="lg" color="blue" /></span>
-              {/* </Tippy> */}
-              {/* <Tippy content="vérouiller"> */}
+              </Tooltip>
+              <Tooltip title="Vérouiller">
                 <span><FontAwesomeIcon icon={solid("lock")} size="lg" color="#1a1a1a"/></span>
-                {/* </Tippy> */}
+              </Tooltip>
               <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)}
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  

@@ -4,12 +4,16 @@ import Navbar from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useContext} from "react";
 import avatar from "../../Css/avatar.png";
+import { AppContext } from "../../Context/AppContext";
+
 
 function Messenger() {
-   const [usersList, setUsersList] = useState([]);
+   const [userList, setUserList] = useState([]);
+   const [isOpen, setIsopen] = useState(false);
    const [waiting, setWaiting] = useState(true);
+   const { user} = useContext(AppContext);
    useEffect (() => {
       axios
       .post("/getUsers")
@@ -18,15 +22,20 @@ function Messenger() {
           alert("error !");
         } else {
           setWaiting(false);
-          setUsersList(res.data);
+          setUserList(res.data);
+          console.log(res.data)
         }
       })
       }, []);
+      function open (){
+        setIsopen(!isOpen)
+      }
   return (
    <>
     <Navbar></Navbar>
-    <div className={styles.main__chatbody}>
-    <div className={styles.main__chatlist}>
+  <div className={styles.main__chatbody}>
+
+      <div className={styles.main__chatlist}>
         <button className={styles.btn}>
         <i><FontAwesomeIcon icon= {solid("plus")} /></i>
           <span>New conversation</span>
@@ -45,17 +54,17 @@ function Messenger() {
             </button>
           </div>
         </div>
-        <p>
-        {/* {usersList.map((item) =>{
-         <div className={styles.chatlist__items}>
-                  {console.log(item)}
-                  <p key={item._id}>{item.firstName} {item.lastName}</p>
-                  
+        <div className={styles.chatlist__items}>
+            {userList.map((item) =>{
+                return(
+                  <>
                  
-                  chaima
-         </div>
-         })} */}
-         </p>
+                    <p>{item.firstName} {item.lastName}</p>
+
+                  </>
+                )
+            })}
+        </div>
         {/* {waiting ? (
           <div className={styles.spinner}>
             <FontAwesomeIcon icon={solid("spinner")} spin size="3x" />
@@ -66,56 +75,62 @@ function Messenger() {
               </>
         )} */}
         
-        </div>
-        <div className={styles.main__chatcontent}>
+      </div>
+      <div className={styles.main__chatcontent}>
         <div className={styles.content__header}>
-          <div className={styles.blocks}>
-            <div className={styles.current_chatting_user}>
               <img
                 src={avatar}
-                isOnline="active"
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU"
-                style={{borderRadius:"50%", width:"20%" , marginLeft: "10%"}}
+                // isOnline="active"
+                className={styles.img}
               />
-              <p>Tim Hover</p>
-            </div>
-          </div>
+              <p className={styles.p}>Tim Hover</p>
          </div>
+         <div className={styles.middle__content}>
+
+         </div>
+         <div className={styles.content__footer}>
+          <div className={styles.sendNewMessage}>
+            <button className={styles.addFiles}>
+             <i><FontAwesomeIcon icon= {solid("plus")} /></i>
+            </button>
+            <input
+              type="text"
+              placeholder="Type a message here"
+            />
+            <button className={styles.btnSendMsg} id="sendMsgBtn">
+            <i><FontAwesomeIcon icon= {solid("paper-plane")}  /></i>
+            </button>
+          </div>
         </div>
+      </div>
+      <div className={styles.main__userprofile}>
+        <div className={styles.profile__card}>
+          <div className={styles.profile__image}>
+            <img src={avatar} />
+          </div>
+          <h4>{user.firstName} {user.lastName}</h4>
+          <p>{user.role}</p>
+        </div>
+       
+          <div className={styles.profile__card}>
+          <div className={styles.card__header}  onClick={()=>{open()}}>
+            <h4>Informations</h4>
+            <i ><FontAwesomeIcon icon= {solid("angle-down")}/></i>
+          </div>
+          {isOpen ? (
+          <>
+            <div className={styles.card__content}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            ultrices urna a imperdiet egestas. Donec in magna quis ligula
+            </div>
+          </>
+        ):
+        null}
+          </div>
+       
+      </div>
      </div>
-     {/* <div className={styles.messenger_content}>
-        <div className={styles.chat_list}>
-          <div className={styles.new_conversation}>
-               <span className={styles.plus_icon}><FontAwesomeIcon icon= {solid("plus")} color = "black" /></span>
-               <input type="text" placeholder='new conversation' className={styles.input} />
-          </div>
-          <h3 className={styles.h3}>Chats</h3>
-          <div className={styles.search_section}>
-               <span className={styles.search_icon}><FontAwesomeIcon icon= {solid("search")} color = "black" /></span>
-               <input type="text" placeholder=' search here' className={styles.input} />
-          </div>
-          <div className={styles.users_list}>
-              <div className={styles.user}>
-                 user1
-              </div>
-          </div>
-        </div>
-        <div className={styles.chat_content}>
-            <div className={styles.content_header}>
-               header
-            </div>
-            <div className={styles.content_bottom}>
-               <span className={styles.plus_icon}><FontAwesomeIcon icon= {solid("plus")} color = "black" /></span>
-               <input type="text" placeholder='type a message' className={styles.input_msg} />
-               <span className={styles.send_icon}><FontAwesomeIcon icon= {solid("paper-plane")} color = "black" /></span>
-            </div>
-        </div>
-        <div className={styles.user_profile}>
-           <div className={styles.user_picture}>
-                 user logo
-           </div>
-        </div>
-    </div>  */}
+    
     </>
   )
 }

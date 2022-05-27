@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Tooltip from "@material-ui/core/Tooltip";
 import Navbar from "../../../components/Navbar";
-import 'tippy.js/dist/tippy.css';
 
 /************************************************************************* */
 function Users() {
@@ -24,7 +23,6 @@ function Users() {
   const [searchTerm, setSearchTerm] = useState("");
   const [waiting, setWaiting] = useState(true);
   let i=0;
-  console.log(counter)
 /************************************************************************* */
   function toggleAlert() {
     setAlertVisible(!alertVisible);

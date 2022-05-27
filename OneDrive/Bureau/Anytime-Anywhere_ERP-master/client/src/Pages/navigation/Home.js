@@ -24,13 +24,13 @@ function Home() {
     <>
       <section id="home" className={styles.home}>
           <div className={styles.nav}>
-            <img src={logo} data-aos="zoom-in" />
+            <Link to={`/`}><img src={logo} data-aos="zoom-in" /></Link>
             <input type="checkbox" id="click" style={{display:"none"}}  onClick={()=>setIsOpen(!isOpen)} />
             <label htmlFor='click'>
             <p><FontAwesomeIcon icon={solid("list")} color="#191970" className={styles.list_icon} /></p>
             </label>
             <div className={styles.item}>
-            <a href="#home"><h4 className={styles.defaultBlackLink}>Acceuil</h4></a>
+            <Link to={`/`}><h4 className={styles.defaultBlackLink}>Acceuil</h4></Link>
             <a href="#About"><h4 className={styles.defaultBlackLink}>À propos</h4></a>
             <a href="#services"><h4 className={styles.defaultBlackLink}>Services</h4></a>
             <a href="#Contact"><h4 className={styles.defaultBlackLink}>Contactez-nous</h4></a>

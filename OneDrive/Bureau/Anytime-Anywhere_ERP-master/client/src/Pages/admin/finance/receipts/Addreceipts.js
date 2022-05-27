@@ -1,6 +1,7 @@
 import React, { useState , useEffect , useRef } from 'react';
 import Select  from 'react-select';
 import axios from 'axios';
+import Navbar from '../../../../components/Navbar';
 import swal from 'sweetalert';
 import styles from '../../../../Css/Client.module.css'
 import Styles from '../../../../Css/Receipts.module.css'
@@ -116,7 +117,8 @@ function Addreceipts() {
       ]
   return (
     <>
-    <section className={styles.section}>        
+    <Navbar></Navbar>
+    <section className={Styles.section} >        
       <div className={styles.container}>
           <div className={styles.form }>
           <form onSubmit={addreceipt}>

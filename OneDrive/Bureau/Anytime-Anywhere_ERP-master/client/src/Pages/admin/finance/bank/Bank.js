@@ -1,10 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useState, useEffect } from "react";
+import Navbar from "../../../../components/Navbar";
 import { Link } from "react-router-dom";
 import styles from "../../../../Css/Bank.module.css";
 import Modal from 'react-modal';
 import axios from "axios";
+
 
 function Bank() {
   const [banksList, setBanksList] = useState([]);
@@ -78,6 +80,7 @@ function Bank() {
   // }
   return (
     <>
+        <Navbar></Navbar>
         <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
@@ -126,7 +129,7 @@ function Bank() {
           </div>
         ) : (
           <>
-          <Link to="/banks/add">
+          <Link to="/banks/add" style={{marginLeft:"3%"}}>
                 <FontAwesomeIcon
                   className="addBtn"
                   icon={solid("plus-circle")}

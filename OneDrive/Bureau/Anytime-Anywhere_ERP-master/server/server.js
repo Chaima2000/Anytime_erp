@@ -168,3 +168,6 @@ app.delete("/deleteExpense/:id", expenses.deleteExpense);
 
 //contact
 app.post("/contact", contacts.AddContact);
+
+//Messenger 
+app.post("/getUsers", users.getAllUser);

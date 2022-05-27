@@ -93,10 +93,13 @@ export const adminRoutes = (
 export const superAdminRoutes = (
   <>
     <Switch>
+
+    <Route path="/home" exact>
+        <Home />
+    </Route>
       <Route path="/" exact>
         <Navbar></Navbar>
         <div align="center">Dashboard</div>
-        
       </Route>
       <Route path="/quickaccess" exact>
         <QuickAccess/>

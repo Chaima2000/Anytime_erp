@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from "axios" ;
 import Modal from 'react-modal';
+import Navbar from '../../../components/Navbar';
 import Styles from "../../../Css/ProjectProfile.module.css";
 import styles from "../../../Css/Client.module.css";
 
@@ -66,6 +67,7 @@ function Clients(){
   }
   return (
     <>
+     <Navbar></Navbar>
      <h2>Liste des clients </h2>
      <form onSubmit={(e) => {document.getElementById("searchField").disabled = true;document.getElementById("resetBtn").hidden = false;document.getElementById("searchBtn").hidden = true;e.preventDefault();getClients();setCurrentPage(1);}}
                   className={styles.search_form}>

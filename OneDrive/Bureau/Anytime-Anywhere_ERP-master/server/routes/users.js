@@ -73,6 +73,10 @@ exports.getProject = async (req,res) => {
   }
   
 }
+exports.getAllUser = async ( res , req) => {
+  const usersList = await user.find({}).exec();
+  res.send(usersList);
+}
 exports.getUser = (req, res) => {
   const id = req.body.id;
   user.findById(id, (err, row) => {

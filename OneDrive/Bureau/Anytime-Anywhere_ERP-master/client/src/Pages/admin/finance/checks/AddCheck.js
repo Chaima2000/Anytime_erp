@@ -2,8 +2,9 @@ import React, { useState , useEffect} from 'react';
 import Select  from 'react-select';
 import axios from 'axios';
 import swal from 'sweetalert';
-import styles from '../../../../Css/Client.module.css'
-import { useParams } from 'react-router-dom';
+import styles from '../../../../Css/Checks.module.css';
+import Styles from '../../../../Css/Client.module.css';
+import Navbar from "../../../../components/Navbar";
 function Checks() {
   const [name, setName] = useState("");
   const [description , setDescription] = useState("");
@@ -123,15 +124,16 @@ function Checks() {
     
   return (
     <>
+      <Navbar></Navbar>
       <section className={styles.section}>        
-      <div className={styles.container}>
-          <div className={styles.form }>
+      <div className={Styles.container}>
+          <div className={Styles.form }>
           <form onSubmit={addcheck}>
-            <h2 className={styles.h2}>Add check: </h2>
-            <div className={styles.div1}>
-              <input type="text" id="name" className={styles.formInput} placeholder="Enter name" onChange= { (e) => { setName(e.target.value)}} required />
-              <textarea id="description" className={styles.formInput} placeholder="Enter description" onChange= { (e) => { setDescription(e.target.value)}} required />
-              <input type="number" id="value" className={styles.formInput} placeholder="Enter value" onChange= { (e) => { setValue(e.target.value)}} required />
+            <h2 className={Styles.h2}>Add check: </h2>
+            <div className={Styles.div1}>
+              <input type="text" id="name" className={Styles.formInput} placeholder="Enter name" onChange= { (e) => { setName(e.target.value)}} required />
+              <textarea id="description" className={Styles.formInput} placeholder="Enter description" onChange= { (e) => { setDescription(e.target.value)}} required />
+              <input type="number" id="value" className={Styles.formInput} placeholder="Enter value" onChange= { (e) => { setValue(e.target.value)}} required />
               <br />
               <br />
             <Select 
@@ -145,7 +147,7 @@ function Checks() {
                 required
           />
             </div><br />
-            <div className={styles.div2}>
+            <div className={Styles.div2}>
             <Select 
                 placeholder="Select State"
                 name="state"
@@ -174,7 +176,7 @@ function Checks() {
             </div>
             <br />
             <br />
-              <button className={styles.btn}>SAVE</button>
+              <button className={Styles.btn}>SAVE</button>
         </form> 
           </div>
         </div>

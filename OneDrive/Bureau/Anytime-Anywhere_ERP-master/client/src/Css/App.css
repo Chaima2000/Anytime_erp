@@ -585,7 +585,26 @@ table td {
   height: 100%;
   flex-grow: 3;
 }
-
+.box {
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  top:0;
+  background-color: white;
+  color: #fff;
+  padding: 20px;
+  float: left;
+}
+.box.arrow-bottom:after {
+  content: " ";
+  position: absolute;
+  left: 13px;
+  bottom: -15px;
+  border-top: 15px solid white;
+  border-right: 13px solid transparent;
+  border-left: 13px solid transparent;
+  border-bottom: none;
+}
 @media (max-width: 800px) {
   .formContainer {
     padding-top: 10vh;
@@ -606,6 +625,7 @@ table td {
     margin-bottom: 20px;
   }
 }
+
 @media screen AND (max-width:485px){
 
     #body #scene {

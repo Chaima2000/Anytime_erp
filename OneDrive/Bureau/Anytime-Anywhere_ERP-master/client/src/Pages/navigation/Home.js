@@ -1,7 +1,7 @@
 import React, {useEffect , useState} from 'react';
 import AOS from 'aos';
-import {Link} from "react-router-dom";
 import 'aos/dist/aos.css';
+import {Link} from "react-router-dom";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import wave from "./../../Css/wave3D.jpg";

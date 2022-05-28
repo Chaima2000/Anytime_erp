@@ -81,6 +81,7 @@ function Projects(props) {
           }
         })
       }
+     
   function resetSearch() {
         document.getElementById("searchField").value = "";
         axios.post("/getprojects").then((res) => {
@@ -268,7 +269,7 @@ return (
     </>
     )}
     
-        
+    
     </>
   )
 }

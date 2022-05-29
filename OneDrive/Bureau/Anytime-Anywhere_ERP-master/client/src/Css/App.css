@@ -585,14 +585,15 @@ table td {
   height: 100%;
   flex-grow: 3;
 }
+/**** ChatContent****/
 .box {
-  width: 100px;
+  width: 80px;
   height: 30px;
-  position: absolute;
-  top:0;
+  position: relative;
+  margin-top:-22%;
   background-color: white;
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   float: left;
 }
 .box.arrow-bottom:after {
@@ -605,6 +606,29 @@ table td {
   border-left: 13px solid transparent;
   border-bottom: none;
 }
+.box2 {
+  width: auto;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  margin-top:27%;
+  left:-74%;
+  background-color: white;
+  color: black;
+  padding: 8px;
+  font-size: 14px;
+}
+.box2.arrow-top:after {
+  content: " ";
+  position: absolute;
+  right: 13px;
+  top: -15px;
+  border-bottom: 15px solid white;
+  border-right: 13px solid transparent;
+  border-left: 13px solid transparent;
+  border-top: none;
+}
+
 @media (max-width: 800px) {
   .formContainer {
     padding-top: 10vh;

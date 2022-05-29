@@ -1,4 +1,4 @@
-import React, { Component, useState, createRef,useContext, useEffect } from "react";
+import React, {useState, createRef,useContext, useEffect } from "react";
 import styles from '../../Css/Messenger.module.css';
 import Navbar from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,17 +6,23 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from "axios";
 import avatar from "../../Css/avatar.png";
 import { AppContext } from "../../Context/AppContext";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 
 function Messenger() {
    const [userList, setUserList] = useState([]);
+   const [searchItem, setSearch] = useState("");
    const [isOpen, setIsopen] = useState(false);
+   const [Open, setOpen] = useState(false);
    const [isShow , setIsShow] = useState(false);
    const [waiting, setWaiting] = useState(true);
    const { user} = useContext(AppContext);
-   
+   const [style, setStyle] = useState(false);
+   const changeStyle  = () => {
+     setStyle(!style)
+   }
+   function chaima(){
+     setOpen(!Open)
+   }
    const [msg,setMsg]=useState("");
    const messagesEndRef = createRef(null);
   const chatItms = [
@@ -73,7 +79,7 @@ function Messenger() {
   const [chat,setChat]=useState(chatItms);
 const scrollToBottom = () => {
   if (messagesEndRef && messagesEndRef.current) {
-  messagesEndRef.current.scrollIntoView({behavio: "smooth"});
+  messagesEndRef.current.scrollIntoView({behavior: "smooth"});
   }
 }
 window.addEventListener("keydown", (e) => {
@@ -122,11 +128,11 @@ setMsg(e.target.value );
         setIsShow(!isShow);
       }
       const ChatItem = (props) =>{
-        return (
+        return(
           <>
-             <div
-        style={{ animationDelay: `0.8s` }}
-        className={`chat__item ${props.user ? props.user : ""}`}
+        <div
+        style={{ animationDelay: "0.8s" }}
+        className={`chat__item ${props.users ? props.users : ""}`}
       >
         <div className={styles.chat__item__content}>
           <div className={styles.chat__msg}>{props.msg}</div>
@@ -135,34 +141,29 @@ setMsg(e.target.value );
             <span>Seen 1.03PM</span>
           </div>
         </div>
-        {/* <Avatar isOnline="active" image={props.image} /> */}
+        {/* <Avatar isOnline="active" image={this.props.image} /> */}
       </div>
-          </>
+      </>
         )
       }
   return (
    <>
     <Navbar></Navbar>
   <div className={styles.main__chatbody}>
-
       <div className={styles.main__chatlist}>
         <button className={styles.btn}>
-        <i><FontAwesomeIcon icon= {solid("plus")} /></i>
+          <i><FontAwesomeIcon icon= {solid("plus")} /></i>
           <span>Nouveau groupe</span>
         </button>
         <div className={styles.chatlist__heading}>
-          <h2>Chats</h2>
+          <h2>Discussion</h2>
           <button className={styles.btn_nobg}>
-          <FontAwesomeIcon icon= {solid("ellipsis")}/>
+          <i><FontAwesomeIcon icon= {solid("ellipsis")}/></i>
           </button>
         </div>
-        <div className={styles.chatList__search}>
-          <div className={styles.search_wrap}>
-            <input type="text" placeholder="Chercher ici"/>
-            <button className={styles.search_btn}>
-            <FontAwesomeIcon icon= {solid("search")} color = "black" />
-            </button>
-          </div>
+        <div className={styles.search_wrap}>
+            <input type="text" placeholder="Chercher ici" onChange={(e)=>{setSearch(e.target.value)}}/>
+            <i><FontAwesomeIcon icon= {solid("search")} color = "black" /></i>
         </div>
         {waiting ? (
           <div className={styles.spinner}>
@@ -171,10 +172,16 @@ setMsg(e.target.value );
         ) : (
           <>
         <div className={styles.chatlist__items}>
-            {userList.map((item) =>{
+            {userList.filter((val)=>{
+              if(searchItem == ""){
+                return val
+              }else if (val.firstName.toLowerCase().includes(searchItem.toLocaleLowerCase())){
+                return val
+              }
+            }).map((item) =>{
                 return(
                   <>
-                  <div className={styles.content__item}>
+                  <div className={styles.content__item} onClick={changeStyle}>
                     <img src={item.image} className={styles.imgUser} /><p className={styles.pUser}>{item.firstName} {item.lastName}</p>
                   </div>
                   </>
@@ -187,73 +194,62 @@ setMsg(e.target.value );
       </div>
       <div className={styles.main__chatcontent}>
         <div className={styles.content__header}>
-              <img
-                src={avatar}
-                // isOnline="active"
-                className={styles.img}
-              />
-              <p className={styles.p}>Tim Hover</p>
-              <div className={styles.blocks}>
-                <div className={styles.settings}>
-                  <button className={styles.btn_nobg}>
+              <img src={avatar} className={styles.imgUser} />
+              <p className={styles.pUser}>Tim Hover</p>
+              <div className={styles.settings}>
+                  <button className={styles.btn_nobg}  onClick={()=>{chaima()}}>
                     <i><FontAwesomeIcon icon={solid("gear")}/></i>
                   </button>
-                </div>
+                  {Open ? ( 
+                    <div className="box2 arrow-top" >
+                      <p>Supprimer la conversation</p>
+                      <p>Supprimer un message</p>
+                    </div>
+                  ):null}
               </div>
-         </div>
-         <div className={styles.content__body }>
-          
+        </div>
+        <div className={styles.content__body }> 
           {chat.map((itm, index) => {
               return (
                 <ChatItem
                   animationDelay={index + 2}
                   key={itm.key}
-                  user={itm.type ? itm.type : "me"}
+                  users={itm.type ? itm.type : "me"}
                   msg={itm.msg}
                   image={itm.image}
                 />
+              
               );
             })}
-            <div ref={messagesEndRef} />
-          
- 
-        </div>
-         <div className={styles.content__footer}>
-         
-             {isShow ? ( 
-              <div className="box arrow-bottom" id="icons">
-                <i className={styles.icons}><FontAwesomeIcon icon={solid("image")} /></i>
-                <i className={styles.icons}><FontAwesomeIcon icon={solid("file")} /></i>
-             </div>
-            ):null}
-         
+        </div> 
+        <div className={styles.content__footer}>
           <div className={styles.sendNewMessage}>
-            <button className={styles.addFiles}>
+            <button>
              <i><FontAwesomeIcon icon= {solid("plus")} onClick={()=>{show()}} /></i>
             </button>
-            <input
-              type="text"
-              placeholder="Type a message here"
-            />
-            <button className={styles.btnSendMsg} id="sendMsgBtn">
+            <input type="text" placeholder="Type a message here" />
+            <button>
             <i><FontAwesomeIcon icon= {solid("paper-plane")}  /></i>
             </button>
           </div>
         </div>
+        {isShow ? ( 
+              <div className="box arrow-bottom" id="icons">
+                <i className={styles.icons}><FontAwesomeIcon icon={solid("image")} /></i>
+                <i className={styles.icons}><FontAwesomeIcon icon={solid("file")} /></i>
+             </div>
+        ):null}
       </div>
       <div className={styles.main__userprofile}>
         <div className={styles.profile__card}>
-          <div className={styles.profile__image}>
-            <img src={avatar} />
-          </div>
+          <img src={avatar} className={styles.profile__image}/>
           <h4>{user.firstName} {user.lastName}</h4>
           <p>{user.role}</p>
         </div>
-       
         <div className={styles.profile__card}>
           <div className={styles.card__header}  onClick={()=>{open()}}>
             <h4>Informations</h4>
-            <i ><FontAwesomeIcon icon= {solid("angle-down")}/></i>
+            <i className={styles.i} ><FontAwesomeIcon icon= {solid("angle-down")}/></i>
           </div>
           {isOpen ? (
           <>

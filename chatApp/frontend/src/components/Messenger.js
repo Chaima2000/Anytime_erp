@@ -2,6 +2,7 @@ import React from 'react';
 import {BsThreeDots,FaEdit,BiSearch} from "react-icons/all";
 import ActiveFriend from './ActiveFriend';
 import Friends from './Friends';
+import RightSide from './RightSide';
 function Messenger() {
   return (
     <div className="messenger">
@@ -36,15 +37,34 @@ function Messenger() {
                         <ActiveFriend/>
                     </div>
                     <div className="friends">
+                        <div className="hover-friend active">
+                            <Friends />
+                        </div>
+                    </div>
+                    <div className="friends">
+                        <div className="hover-friend">
+                            <Friends />
+                        </div>
+                    </div>
+                    <div className="friends">
+                        <div className="hover-friend">
+                            <Friends />
+                        </div>
+                    </div>
+                    <div className="friends">
+                        <div className="hover-friend">
+                            <Friends />
+                        </div>
+                    </div>
+                    <div className="friends">
                         <div className="hover-friend">
                             <Friends />
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <RightSide />
         </div>
-
     </div>
   )
 }

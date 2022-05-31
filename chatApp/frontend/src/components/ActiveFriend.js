@@ -16,6 +16,18 @@ function ActiveFriend() {
                 <img src="/image/1341Capture5.PNG" alt="" />
                 <div className="active-icon"></div>
             </div>
+            <div className="image">
+                <img src="/image/1341Capture5.PNG" alt="" />
+                <div className="active-icon"></div>
+            </div>
+            <div className="image">
+                <img src="/image/1341Capture5.PNG" alt="" />
+                <div className="active-icon"></div>
+            </div>
+            <div className="image">
+                <img src="/image/1341Capture5.PNG" alt="" />
+                <div className="active-icon"></div>
+            </div>
         </div>
     </div>
   )

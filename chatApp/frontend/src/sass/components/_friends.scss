@@ -2,23 +2,47 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        overflow: hidden;
+    }
+    .hover-friend.active{
+        background: rgba(43,51,85,.568);
+    }
     .hover-friend{
+        &:hover{
+            background: rgba(43,51,85,.568);
+        }
+        cursor: pointer;
+        &:hover{
+            background: rgba(43,51,85,.568);
+        }
         .friend{
             display: flex;
             width: 100%;
+            padding: 7px 15px;
             .friend-image{
-             width: 45px;
-             height: 45px;
-             overflow: hidden;
-             border-radius: 50%;
-             img{
-                 width: 100%;
-                 height: 100%;
-             }
+                .image{
+                    width: 45px;
+                    height: 45px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            
             }
             .friend-name{
                display: flex;
-               align-items: center;     
+               align-items: center;
+               h4{
+                   padding-left: 10px;
+                   color: #fff;
+                   font-weight: 600
+
+               }     
             }
         }
     }

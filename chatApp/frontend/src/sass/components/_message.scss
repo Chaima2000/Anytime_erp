@@ -1,0 +1,78 @@
+.message-show{
+    height: 100%;
+    padding: 10px;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+     overflow: hidden;
+    }
+    .my-message{
+        float: right;
+        .my-text{
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            width: 370px;
+            .message-text{
+                text-align: end;
+                padding: 10px;
+                border-radius: 10px;
+                img{
+                    width: 220px;
+                    height: 270px;
+                    margin-right: 0px;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    object-fit:cover;
+                }
+            }
+        }
+        .time{
+            text-align: end;
+            padding: 5px 0px;
+            color: yellowgreen;
+        }
+    }
+    .fd-message{
+        float: left;
+        .fd-text{
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            width: 370px;        
+            .message-text{
+                text-align: start;
+                border-radius: 10px;
+                img{
+                    width: 220px;
+                    height: 270px;
+                    margin-right: 0px;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    object-fit:cover;
+                }
+            }
+        }
+    }
+}
+.image-message-time, .image-message{
+    display: flex;
+    img{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%; 
+        overflow: hidden;
+        margin-right: 10px;
+    }
+    .message-text{
+        padding: 10px;
+        color: #fff;
+        background-color: #28325ed9;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 10px;
+    }
+    .time{
+        padding: 5px 0px;
+        color: yellowgreen;
+    }
+}

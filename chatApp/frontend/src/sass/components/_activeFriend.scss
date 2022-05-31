@@ -4,6 +4,9 @@
         .image-active-icon{
             overflow-x: scroll;
             display: flex;
+            &::-webkit-scrollbar{
+                overflow: hidden;
+            }
             .image{
                 margin: 5px;
                 position: relative;

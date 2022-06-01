@@ -103,7 +103,7 @@ table td {
 }
 
 .row {
-  width: 100%;
+  /* width: 100%; */
   padding-left: 5%
 }
 
@@ -586,26 +586,6 @@ table td {
   flex-grow: 3;
 }
 /**** ChatContent****/
-.box {
-  width: 80px;
-  height: 30px;
-  position: relative;
-  margin-top:-22%;
-  background-color: white;
-  color: #fff;
-  padding: 10px;
-  float: left;
-}
-.box.arrow-bottom:after {
-  content: " ";
-  position: absolute;
-  left: 13px;
-  bottom: -15px;
-  border-top: 15px solid white;
-  border-right: 13px solid transparent;
-  border-left: 13px solid transparent;
-  border-bottom: none;
-}
 .box2 {
   width: auto;
   height: auto;

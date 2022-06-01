@@ -7,6 +7,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
+
 const { mongoose } = require("./database/mongoose");
 
 const storage = new CloudinaryStorage({
@@ -66,6 +67,7 @@ const tasks = require("./routes/task");
 const expenses = require("./routes/expense");
 const quicks = require("./routes/quickaccess");
 const contacts = require("./routes/contact");
+const messages = require("./routes/messages");
 const { path } = require("express/lib/application");
 // const { pipeline } = require("nodemailer/lib/xoauth2");
 // server API'S
@@ -162,3 +164,6 @@ app.post("/contact", contacts.AddContact);
 
 //Messenger 
 app.post("/getUsers", users.getAllUser);
+
+app.post("/addmsg/", messages.addMessage);
+app.post("/getmsg/", messages.getMessages);

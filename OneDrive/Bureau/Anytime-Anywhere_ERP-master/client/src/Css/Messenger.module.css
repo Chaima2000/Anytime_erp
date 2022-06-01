@@ -156,6 +156,7 @@
   position: absolute;
   bottom:0%;
   width: 97%;
+  height: 35px;
   background-color: #fff;
   display: flex;
   justify-content: space-between;
@@ -163,28 +164,35 @@
   border-radius: 8px;
 }
 .sendNewMessage button {
-  width: 36px;
-  height: 36px;
-  background-color: #ecefff;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: #4665ff;
-  border-radius: 5px;
-  line-height: 36px;
-  transition: all 0.3s cubic-bezier(0.88, 0.19, 0.37, 1.11);
+    width: 36px;
+    height: 36px;
+    background-color: #ecefff;
+    border: none;
+    box-shadow: none;
+    float: left;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #4665ff;
+    padding: 0;
+    border-radius: 5px;
+    line-height: 36px;
+    transition: all 0.3s cubic-bezier(0.88, 0.19, 0.37, 1.11);
 }
 .sendNewMessage button:hover {
   transform: scale(1.2);
 }
 .sendNewMessage button i {
   display: block;
+  cursor: pointer;
 }
 .sendNewMessage input {
+  position: absolute;
   padding: 0 15px;
   background-color: transparent;
+  left:80px;
+  top:20px;
+  width: 78%;
   border: none;
   outline: none;
 }
@@ -208,6 +216,14 @@
 }
 .chat__msg {
   user-select: none;
+}
+.icons{
+  cursor: pointer;
+  color:black;
+  margin: 10px;
+}
+.icons:hover{
+  color:#4462ff
 }
 /*** UserProfile****/
 .main__userprofile {
@@ -328,9 +344,6 @@
   100% {
     transform: scale(1);
   }
-}
-.chatlist__item:first-child {
-  margin-top: 0;
 }
   
   

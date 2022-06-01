@@ -74,7 +74,7 @@ exports.getProject = async (req,res) => {
   
 }
 exports.getAllUser = async ( res , req) => {
-  const userList = await user.find({}).exec();
+  const userList = await user.find({});
   res.send(userList);
 }
 exports.getUser = (req, res) => {

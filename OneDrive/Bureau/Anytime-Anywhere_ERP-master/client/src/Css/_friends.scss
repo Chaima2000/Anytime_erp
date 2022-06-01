@@ -1,0 +1,51 @@
+.friends{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    overflow-y: auto;
+    &::-webkit-scrollbar{
+        overflow: hidden;
+    }
+    .hover-friend.active{
+        background: rgba(43,51,85,.568);
+    }
+    .hover-friend{
+        width: 95%;
+        &:hover{
+            background: rgba(43,51,85,.568);
+        }
+        cursor: pointer;
+        .friend{
+            width: 90%;
+            padding: 7px 15px;
+            .friend-image{
+                float: left;
+                width: 20%;
+                display: flex;
+                .image{
+                    width: 45px;
+                    height: 45px;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            
+            }
+            .friend-name{
+                float: left;
+               display: flex;
+               width: 50%;
+               align-items: center;
+               h4{
+                   padding-left: 10px;
+                   color: #fff;
+                   font-weight: 600
+
+               }     
+            }
+        }
+    }
+}

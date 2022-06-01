@@ -1,0 +1,109 @@
+.col-9{
+    .right-side{
+        position: absolute;
+        left:25%;
+        display: flex;
+        width: 777px;
+        height: 100%;
+        .row{
+            height: 665px;
+            .col-8{
+                position: absolute;
+                left:0;
+                bottom: 0;
+                width: 650px;
+                top:0;
+                transition: all .5s;
+                .message-send-show{
+                    height: 100%;
+                    border-right: 1px solid #213156bf;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .header{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 10px;
+                        border-bottom: 1px solid #213156bf;
+                        .image-name{
+                            display: flex;
+                            
+                            .image{
+                                margin-right: 24px;
+                                position:relative;
+                                width:40px;
+                                height: 40px;
+                                img{
+                                    border-radius: 50%;
+                                    width: 60px;
+                                    height: 60px;
+                                }
+                                .active-icon{
+                                    position: absolute;
+                                    width: 10px;
+                                    height: 10px;
+                                    border-radius: 50%;
+                                    background-color: green;
+                                    top:45px;
+                                    left:45px;
+                                    right: 0px;
+                                    bottom:0px;
+                                }
+                            }
+                            .name{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                h3{
+                                    padding-left: 10px;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                        .icons{
+                            display: flex;
+                            .icon{
+                                font-size: 12px;
+                                height: 35px;
+                                width: 35px;
+                                border-radius: 50%;
+                                margin-left: 8px;
+                                border-radius: 24px;
+                                color: #fff;
+                                cursor: pointer;
+                                background-color: #0a0a1357;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                label{
+                                    display: flex;
+                                    margin-bottom: 0px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .col-4{
+            }
+        }
+        #dot{
+            display: none;
+        }
+        #dot:checked ~ .row .col-4{
+            display: none;
+        }
+        #dot:checked ~ .row .col-8{
+            width: 100%;
+        }
+        #dot:checked ~ .row .col-8 .message-show .my-message .my-text{
+           width: 500px;
+        }
+        #dot:checked ~ .row .col-8 .message-show .fd-message .fd-text{
+            width: 500px;
+         }
+    }
+}

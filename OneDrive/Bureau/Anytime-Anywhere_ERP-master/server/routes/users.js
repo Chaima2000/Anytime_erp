@@ -87,6 +87,11 @@ exports.getUser = (req, res) => {
     }
   });
 };
+exports.getCurrentUser = async(req, res) => {
+  const id = req.params.id;
+  const currentUser=await user.findById(id);
+  res.send(currentUser)
+};
 
 exports.toggleActivateUser = (req, res) => {
   const id = req.body.id;

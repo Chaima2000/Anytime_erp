@@ -4,11 +4,51 @@ import  "./../../Css/_messenger.scss";
 import {FiMoreHorizontal,FiEdit} from "react-icons/fi";
 import { BiSearch } from "react-icons/bi";
 import ActiveFriend from '../Messenger/ActiveFriend';
-import Friends from './Friends';
+// import Friends from './Friends';
 import RightSide from './RightSide';
+import "../../Css/_friends.scss";
 import { AppContext } from "../../Context/AppContext";
 function Messenger() {
     const {user} = useContext(AppContext);
+    const [currentUSer,setCurrentUser]=useState(false);
+    const [selected, setSelected] = useState();
+    function Friends() {
+        const [userList,setUserList]=useState([]);
+        let i =0;
+         useEffect(()=>{
+             axios.post("/getUsers").then((res)=>{
+                 if(res.data === "ERROR"){
+                     alert("error")
+                 }
+                 else{
+                     setUserList(res.data.users)
+                 }
+             })
+         },[])
+        return (
+          <>
+          {userList.map( (item,index)=>{
+            return(
+              <>
+            <div className="hover-friend">
+              <div className="friend"  key={index} onClick={()=>{setSelected(item._id)}}>
+                <div className="friend-image">
+                  <div className="image">
+                    <span><img src={item.image} /></span>
+                  </div>
+                </div>
+                <div className="friend-name">
+                    <h4>{item.firstName} {item.lastName}</h4>
+                </div>
+              </div>
+            </div>
+              </>
+            )
+            
+          })}
+          </>
+        )
+      }
   return (
     <div className="messenger">
         <div className="row">
@@ -41,12 +81,16 @@ function Messenger() {
                     <div className="active_friends">
                         <ActiveFriend/>
                     </div>
-                    <div className="friends">
+                    <div className="friends" onClick={()=>{setCurrentUser(true)}}>
                             <Friends />
                     </div>
                 </div>
             </div>
-            <RightSide />
+            <div className="col-9">
+            {currentUSer ? 
+              <RightSide current={selected}/> : 'Please select ur friend'
+            }
+            </div>
         </div>
     </div>
   )

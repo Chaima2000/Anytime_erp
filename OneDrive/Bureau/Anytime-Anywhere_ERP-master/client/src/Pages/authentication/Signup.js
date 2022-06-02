@@ -1,4 +1,5 @@
 import styles from "../../Css/Signup.module.css";
+import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 import { useState , useRef , useEffect } from "react";
 import axios from "axios";
@@ -86,6 +87,7 @@ function Signup() {
 
   return (
     <>
+     <Navbar />
      <div className={styles.wrapper}>
           
           <div className={styles.form_section}>

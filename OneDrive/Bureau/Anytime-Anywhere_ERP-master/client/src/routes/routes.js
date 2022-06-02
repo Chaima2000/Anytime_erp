@@ -9,6 +9,7 @@ import ForgotPassword from "../Pages/authentication/ForgotPassword";
 import ResetPassword from "../Pages/authentication/ResetPassword";
 import ActivateAccount from "../Pages/authentication/ActivateAccount";
 import Users from "../Pages/admin/users";
+import Dashboard from "../Pages/admin/dashboard/Dashboard";
 import UserProfile from "../Pages/admin/users/UserProfile";
 import Notfound from "../Pages/404";
 import Welcome from "../Pages/freshuser/Welcome";
@@ -94,12 +95,11 @@ export const superAdminRoutes = (
   <>
     <Switch>
 
-    <Route path="/home" exact>
+    <Route path="/" exact>
         <Home />
     </Route>
-      <Route path="/" exact>
-        <Navbar></Navbar>
-        <div align="center">Dashboard</div>
+      <Route path="/dashboard" exact>
+        <Dashboard />
       </Route>
       <Route path="/quickaccess" exact>
         <QuickAccess/>

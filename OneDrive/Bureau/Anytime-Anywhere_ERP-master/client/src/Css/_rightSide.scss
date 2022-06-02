@@ -1,10 +1,10 @@
 .col-9{
+    width: 650px;
+    position: absolute;
+    left:26%;
+    height: 664px;
     .right-side{
-        position: absolute;
-        left:25%;
         display: flex;
-        width: 777px;
-        height: 100%;
         .row{
             height: 665px;
             .col-8{
@@ -88,6 +88,7 @@
                 }
             }
             .col-4{
+                transition: all .5s;
             }
         }
         #dot{
@@ -97,7 +98,7 @@
             display: none;
         }
         #dot:checked ~ .row .col-8{
-            width: 100%;
+            width: 960px;
         }
         #dot:checked ~ .row .col-8 .message-show .my-message .my-text{
            width: 500px;

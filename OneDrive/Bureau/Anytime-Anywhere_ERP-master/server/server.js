@@ -99,6 +99,7 @@ app.post("/checkactivatetoken", authentication.checkActivateToken);
 // Users
 app.post("/getusers", users.getUsers);
 app.post("/getuser", users.getUser);
+app.post("/getCurrentUser/:id",users.getCurrentUser);
 app.post("/toggleactivateuser", users.toggleActivateUser);
 app.post("/changerole", users.changeRole);
 app.delete("/deleteuser/:userId", users.deleteUser);

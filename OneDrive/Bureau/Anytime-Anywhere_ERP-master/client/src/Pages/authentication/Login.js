@@ -43,7 +43,7 @@ function Login() {
       .then((res) => {
         if (res.data.connected) {
           setUser(res.data);
-          history.push("/");
+          history.push("/dashboard");
         } else if (res.data === "ERROR") {
           setWaiting(false);
           swal({

@@ -275,7 +275,7 @@ height: 80%;
     }
 }
 
-@media screen AND (max-width:485px){
+@media screen AND (max-width:800px){
     .home{
         width: 100%;
         flex-direction: column;

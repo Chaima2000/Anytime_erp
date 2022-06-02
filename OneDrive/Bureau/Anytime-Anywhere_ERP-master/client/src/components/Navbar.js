@@ -536,9 +536,9 @@ function Navbar(props) {
       <div className={styles.navItems}>
         <ul>
           <li className={styles.li}>
-            {/* <Link style={{ textDecoration: "none", color: "white" }} to="/"> */}
+            <Link style={{ textDecoration: "none", color: "white" }} to="/">
               Accueil
-            {/* </Link> */}
+            </Link>
           </li>
           <li className={styles.li}>
             <Link

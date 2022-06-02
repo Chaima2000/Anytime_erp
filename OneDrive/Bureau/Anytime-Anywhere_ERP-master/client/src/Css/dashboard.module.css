@@ -1,0 +1,64 @@
+.dash_content{
+    position: absolute;
+    top:9%;
+    left:0;
+    right:0;
+    height: 91vh;
+    background: rgb(239, 239, 239);
+}
+.dash_title{
+    padding: 15px;
+    display: flex;
+    border-radius: 15px;
+    position: relative;
+    left:3%;
+    margin-top: 15px;
+    width: 500px;
+}
+.dash_title h3{
+    display: flex;
+    margin-top: 25px;
+    position: relative;
+    width: 35%;
+    height: 50px;
+}
+.dash_title span {
+    height: 50px;
+    color: black;
+    position: relative;
+    margin-left: -895px;
+    margin-top: 60px;
+    display: flex;
+    width: 192px;
+    font-size: 15px;
+}
+.dash_title img{
+    width: 200px;
+    height: 150px;
+}
+@media(max-width: 800px){
+.dash_content{
+    position: absolute;
+    top:5%;
+    width: 100%;
+    display: block;
+}
+.dash_title{
+    display: block;
+    width: 88%;
+    height:500px;
+}
+.dash_title img {
+    width: 100%;
+    height: 300px;
+}
+.dash_title h3{
+    position: relative;
+    left: 9%;
+    font-size: 35px;
+    width: 300px;
+}
+.dash_title span {
+    
+}
+}

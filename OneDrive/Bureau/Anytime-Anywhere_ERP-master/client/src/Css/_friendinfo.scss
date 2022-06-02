@@ -1,11 +1,12 @@
+.col-4{
 .friend-info{
     position: absolute;
-    left:83.5%;
-    width: 292px;
+    left:100%;
+    width: 280px;
+    height: 630px;
     padding: 12px 15px;
     display: flex;
     justify-content: start;
-    height: 100%;
     flex-direction: column;
     .image-name{
         display: flex;
@@ -74,4 +75,5 @@
     #gallery:checked ~ .gallery{
         display: grid;
     }
+}
 }

@@ -7,11 +7,12 @@
     background: rgb(239, 239, 239);
 }
 .dash_title{
+    background: transparent;
     padding: 15px;
     display: flex;
     border-radius: 15px;
     position: relative;
-    left:3%;
+    left:28%;
     margin-top: 15px;
     width: 500px;
 }
@@ -19,34 +20,83 @@
     display: flex;
     margin-top: 25px;
     position: relative;
-    width: 35%;
+    width: 36%;
     height: 50px;
 }
 .dash_title span {
     height: 50px;
-    color: black;
-    position: relative;
-    margin-left: -895px;
-    margin-top: 60px;
+    width: 190px;
     display: flex;
-    width: 192px;
-    font-size: 15px;
+    margin-top: 50px;
+    margin-left: -175px;
 }
 .dash_title img{
     width: 200px;
     height: 150px;
 }
+.component {
+    background: none;
+    position: absolute;
+    left: 4%;
+    width: 1200px;
+    height: 170px;
+}
+.component{
+    height: 300px;
+}
+.card1{
+    background: white;
+    width: 300px;
+    height: 290px;
+    float: left;
+    padding-left: 15px;
+    border-radius: 15px;
+    margin: 5px;
+}
+.card2{
+    background: white;
+    width: 300px;
+    height: 300px;
+    float: right;
+    border-radius: 15px;
+    padding-left: 15px;
+}
+.circleBar{
+    position: absolute;
+   left:33%;
+    top:15%;
+    width: 200px;
+    height: 200px;
+}
+.card3{
+    background: white;
+    width: 300px;
+    height: 300px;
+    float: right;
+    padding-left: 15px;
+    margin-right: 145px;
+    border-radius: 15px;
+    /* position: absolute; */
+    /* margin: 5px; */
+}
+
 @media(max-width: 800px){
 .dash_content{
     position: absolute;
     top:5%;
-    width: 100%;
-    display: block;
+    left:0;
+    right:0;
+    height: 95vh;
+    background: rgb(239, 239, 239);
 }
 .dash_title{
+    position: absolute;
+    top:0;
+    left:0;
+    background: transparent;
     display: block;
-    width: 88%;
-    height:500px;
+    width: 92%;
+    height:750px;
 }
 .dash_title img {
     width: 100%;
@@ -54,11 +104,17 @@
 }
 .dash_title h3{
     position: relative;
-    left: 9%;
+    font-size: 18px;
+    left: 5%;
     font-size: 35px;
-    width: 300px;
+    width: 340px;
 }
 .dash_title span {
-    
+    height: 80px;
+    width: 320px;
+    font-size: 28px;
+    display: flex;
+    margin-top: -22px;
+    margin-left: 8%;
 }
 }

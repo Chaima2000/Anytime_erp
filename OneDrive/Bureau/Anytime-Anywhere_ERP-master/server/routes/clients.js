@@ -94,7 +94,10 @@ const { client } = require("../database/models/clients.model");
       }
       res.send('updated')
     }
-    
+    exports.getallclient = async(req,res)=>{
+      const clientNumber = await client.find({}).exec();
+      res.send(clientNumber);
+    }
     exports.getClient = (req, res) => {
       const id = req.body.id;
       client.findById(id, (err, row) => {

@@ -3,8 +3,8 @@
     top:9%;
     left:0;
     right:0;
-    height: 91vh;
-    background: rgb(239, 239, 239);
+    height: 300vh;
+    background: rgb(246, 246, 246);
 }
 .dash_title{
     background: transparent;
@@ -39,11 +39,9 @@
     position: absolute;
     left: 4%;
     width: 1200px;
-    height: 170px;
+    height: 470px;
 }
-.component{
-    height: 300px;
-}
+
 .card1{
     background: white;
     width: 300px;
@@ -76,10 +74,29 @@
     padding-left: 15px;
     margin-right: 145px;
     border-radius: 15px;
-    /* position: absolute; */
-    /* margin: 5px; */
 }
-
+.histo{
+    position: relative;
+    float: left;
+    margin-top: 20px;
+   margin-left:1%;
+   width: 750px;
+   height: 300px
+}
+.secondComponent{
+    display: inline-block;
+    padding-top: 15px;
+    position: relative;
+    margin-top: 28%;
+    width: 100%;
+    height: 400px
+}
+.check_histo{
+    width: 435px;
+    float: left;
+    height: 310px;
+    margin-top: 25px;
+}
 @media(max-width: 800px){
 .dash_content{
     position: absolute;

@@ -168,3 +168,7 @@ app.post("/getUsers", users.getAllUser);
 
 app.post("/addmsg/", messages.addMessage);
 app.post("/getmsg/", messages.getMessages);
+
+//Dashboard
+app.post("/projectNumbers",projects.getProjectNumber);
+app.post("/getClients", clients.getallclient);

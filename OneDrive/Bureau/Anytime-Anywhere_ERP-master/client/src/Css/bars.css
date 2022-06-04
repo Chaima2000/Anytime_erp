@@ -1,7 +1,7 @@
 .circular{
     height:100px;
     margin-left: 29%;
-    margin-top: 35%;
+    margin-top: 25%;
     width: 100px;
     position: relative;
     transform:scale(2);
@@ -18,15 +18,59 @@
     border-radius: 100%;
    
   }
+  .circular .inneruser{
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    height: 80px;
+    width: 80px;
+    margin: -40px 0 0 -40px;
+    background: #ffe5b4;
+    border-radius: 100%;
+   
+  }
+  .circular .innerclient{
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    height: 80px;
+    width: 80px;
+    margin: -40px 0 0 -40px;
+    background: #d0f0c0;
+    border-radius: 100%;
+   
+  }
   .circular .number{
     position: absolute;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
     z-index:10;
-    font-size:18px;
+    font-size:15px;
     font-weight:500;
     color:#4158d0;
+  }
+  .circular .numberuser{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index:10;
+    font-size:15px;
+    font-weight:500;
+    color:orangered;
+  }
+  .circular .numberclient{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index:10;
+    font-size:15px;
+    font-weight:500;
+    color:green;
   }
   .circular .bar{
     position: absolute;
@@ -44,26 +88,61 @@
     clip: rect(0px, 50px, 100px, 0px);
     background: #4158d0;
   }
+  .circle .bar .progressuser{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-border-radius: 100%;
+    clip: rect(0px, 50px, 100px, 0px);
+    background: orangered;
+  }
+  .circle .bar .progressclient{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-border-radius: 100%;
+    clip: rect(0px, 50px, 100px, 0px);
+    background: green;
+  }
   .circle .left .progress{
     z-index:1;
     animation: left 1s linear both;
   }
+  .circle .left .progressuser {
+    z-index:1;
+    animation: leftuser 1s linear both;
+  }
+  .circle .left .progressclient {
+    z-index:1;
+    animation: leftclient 1s linear both;
+  }
   @keyframes left{
     100%{
-      transform: rotate(180deg);
+      transform: rotate(10deg);
+    }
+  }
+  @keyframes leftuser{
+    100%{
+      transform: rotate(60deg);
+    }
+  }
+  @keyframes leftclient{
+    100%{
+      transform: rotate(60deg);
     }
   }
   .circle .right {
-    transform: rotate(180deg);
+    transform: rotate(35deg);
     z-index:3;
    
   }
-  .circle .right .progress{
+  .circle .right .progress, .circle .right .progressuser, .circle .right .progressclient {
     animation: right 1s linear both;
     animation-delay:1s;
   }
-  @keyframes right{
-    100%{
-      transform: rotate(180deg);
-    }
-  }
+
+  /* @keyframes right{
+    30%{
+      transform: rotate(-10deg);
+    } */
+  

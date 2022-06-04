@@ -92,7 +92,6 @@ exports.getCurrentUser = async(req, res) => {
   const currentUser=await user.findById(id);
   res.send(currentUser)
 };
-
 exports.toggleActivateUser = (req, res) => {
   const id = req.body.id;
   user.findById(id, (err, row) => {

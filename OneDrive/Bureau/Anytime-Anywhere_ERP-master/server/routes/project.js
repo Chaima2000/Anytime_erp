@@ -42,6 +42,11 @@ exports.getClients = async (req, res)=>{
   const clientList = await client.find({}).exec()
   res.send(clientList);
 }
+exports.getProjectNumber = async (req,res)=>{
+  const projectnumber = await project.find()
+  res.send(projectnumber)
+  }
+
 
 exports.addProject =  (req , res) => {
   const name = req.body.name;

@@ -81,6 +81,10 @@ exports.updateBalance = async (req,res) => {
   }
   res.send('updated')
 }
+exports.getallbank = async (req,res)=>{
+  const banklist = await bank.find({}).exec();
+  res.send(banklist);
+}
 exports.getBank = (req, res) => {
   const id = req.body.id;
   bank.findById(id, (err, row) => {

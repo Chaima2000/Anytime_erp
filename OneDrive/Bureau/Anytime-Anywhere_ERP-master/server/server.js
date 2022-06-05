@@ -172,3 +172,4 @@ app.post("/getmsg/", messages.getMessages);
 //Dashboard
 app.post("/projectNumbers",projects.getProjectNumber);
 app.post("/getClients", clients.getallclient);
+app.post("/getBanks", banks.getallbank);

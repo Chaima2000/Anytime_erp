@@ -1,36 +1,55 @@
 import React, {useEffect , useState} from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useHistory } from "react-router-dom";
 import {Link} from "react-router-dom";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import wave from "./../../Css/wave3D.jpg";
 import wave2 from "./../../Css/wave.png";
 import styles from './../../Css/home.module.css'; 
-// import download from './../../Css/Frame 19.PNG';
 import logo from "./../../Css/logo.PNG";
 import Services from './Services';
 import About from './About';
 import Contact from './Contact';
 function Home() {
   const [isOpen , setIsOpen]=useState(false);
+  const history = useHistory();
   useEffect(() => {
     AOS.init({
       duration:1000,
     });
   }, [])
-  
+  //navbar scroll when active state
+  const [navbar, setNavbar] = useState(false)
+
+
+  //navbar scroll changeBackground function
+  const changeBackground = () => {
+    if (window.scrollY >= 66) {
+      setNavbar(true)
+    } else {
+      setNavbar(false)
+    }
+  }
+
+  useEffect(() => {
+    changeBackground()
+    // adding the event when scroll change background
+    window.addEventListener("scroll", changeBackground)
+  })
+
   return (
     <>
       <section id="home" className={styles.home}>
-          <div className={styles.nav}>
-            <Link to={`/`}><img src={logo} data-aos="zoom-in" /></Link>
+      {navbar ? (
+          <div className={styles.navbar} style={{background: "white" , boxShadow:"0 0 20px #ebebeb"}}>
+            <img src={logo} data-aos="zoom-in" />
             <input type="checkbox" id="click" style={{display:"none"}}  onClick={()=>setIsOpen(!isOpen)} />
             <label htmlFor='click'>
             <p><FontAwesomeIcon icon={solid("list")} color="#191970" className={styles.list_icon} /></p>
             </label>
             <div className={styles.item}>
-            <Link to={`/`}><h4 className={styles.defaultBlackLink}>Acceuil</h4></Link>
+            <a onClick={()=> {history.push("/")}}><h4 className={styles.defaultBlackLink}>Acceuil</h4></a>
             <a href="#About"><h4 className={styles.defaultBlackLink}>À propos</h4></a>
             <a href="#services"><h4 className={styles.defaultBlackLink}>Services</h4></a>
             <a href="#Contact"><h4 className={styles.defaultBlackLink}>Contactez-nous</h4></a>
@@ -49,9 +68,40 @@ function Home() {
             </div>
             </>
             ):
-          null }
-            <Link className={styles.link} to="/login"><h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4></Link><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4>
+            null }
+            <Link className={styles.link} onClick={()=> {history.push("/login")}}><h4 className={styles.defaultLink} style={ {right: "23%", color:"#191970"}}>Connexion</h4></Link><a onClick={()=> {history.push("/signup")}}><h4 className={styles.defaultLinkBtn} style={ {right: "10%" , background:"linear-gradient(180deg, rgba(160, 20, 103, 1) 26.71%, rgba(171, 74, 230, 1) 99.36%)", color:"white", boxShadow:  "0 0 8px blue"}}>S'inscrire</h4></a>
           </div>
+          ) : 
+          <div className={styles.navbar} style={{background: "transparent"}}>
+            <button onClick={()=> {history.push("/")}}><img src={logo} data-aos="zoom-in" /></button>
+            <input type="checkbox" id="click" style={{display:"none"}}  onClick={()=>setIsOpen(!isOpen)} />
+            <label htmlFor='click'>
+            <p><FontAwesomeIcon icon={solid("list")} color="#191970" className={styles.list_icon} /></p>
+            </label>
+            <div className={styles.item}>
+            <a onClick={()=> {history.push("/")}}><h4 className={styles.defaultBlackLink}>Acceuil</h4></a>
+            <a href="#About"><h4 className={styles.defaultBlackLink}>À propos</h4></a>
+            <a href="#services"><h4 className={styles.defaultBlackLink}>Services</h4></a>
+            <a href="#Contact"><h4 className={styles.defaultBlackLink}>Contactez-nous</h4></a>
+            </div>
+            {isOpen ? (
+              <>
+             
+            <div className={styles.itemafter} data-aos="fade-down">
+            <label htmlFor='click'>
+            <p><FontAwesomeIcon icon={solid("xmark")} color="white" className={styles.xmark} /></p>
+            </label>
+            <a href="#home" ><h4 className={styles.defaultBlackLink}>Acceuil</h4></a>
+            <a href="#About"><h4 className={styles.defaultBlackLink}>À propos</h4></a>
+            <a href="#services"><h4 className={styles.defaultBlackLink}>Services</h4></a>
+            <a href="#Contact"><h4 className={styles.defaultBlackLink}>Contactez-nous</h4></a>
+            </div>
+            </>
+            ):
+            null }
+            <Link className={styles.link} onClick={()=> {history.push("/login")}}><h4 className={styles.defaultLink} style={ {right: "23%"}}>Connexion</h4></Link><a onClick={()=> {history.push("/signup")}}><h4 className={styles.defaultLinkBtn} style={ {right: "10%"}}>S'inscrire</h4></a>
+          </div>
+          }
          
           <div className={styles.left} data-aos="fade-right">
                 <h1 className={styles.h1}  >

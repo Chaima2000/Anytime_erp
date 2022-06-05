@@ -480,7 +480,7 @@ function Navbar(props) {
           }}
         >
           <li className={styles.li}>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+            <Link style={{ textDecoration: "none", color: "white" }} to="/dashboard">
               Tableau du bord
             </Link>
           </li>
@@ -602,7 +602,7 @@ function Navbar(props) {
 
       {/* desktop menu */}
       <section className={styles.container}>
-        <Link to="/">
+        <Link>
           <img
             className={styles.logo}
             src={process.env.PUBLIC_URL + "/logo.png"}

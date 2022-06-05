@@ -46,7 +46,7 @@
 }
 /*****/
 .h1{
-    margin-top:-5%;
+    margin-top:3%;
     line-height: 1.4;
     text-transform: uppercase;
     position: relative;
@@ -133,7 +133,7 @@
       align-items: center;
       position: absolute;
       left: 50%;
-      margin-top: 39%;
+      margin-top: 44%;
       transform: translateX(-50%);
       cursor:pointer; 
   }
@@ -226,14 +226,30 @@ margin: 59px;
     display: none;
 }
 
-.nav{
+.navbar{
     height: 80px;
+    position: fixed;
     width: 100%;
-    background: none;
-}
-.nav img{
+    z-index: 1;
+    /* background: transparent; */
+  }
+  .active{
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background: white;
+  }
+.navbar img{
 height: 80%;
 }
+.navbar button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 .img{ 
     position: absolute;
     right: 4%;
@@ -245,7 +261,8 @@ height: 80%;
     position: absolute;
     right: 0;
     top:0;
-    background: #d8bfd8;
+    background: #007fff;
+    /* #d8bfd8; */
     width: 50%;
     height: 655px;
     border-bottom-right-radius: 0%;
@@ -362,12 +379,12 @@ height: 80%;
          left: -21%;
          width: 200px;
      }
-     .nav{
+     .navbar{
          background: white;
          position: fixed;
          z-index: 1;
      }
-     .nav img{
+     .navbar img{
          position: absolute;
          height: 70px;
          top:0.7%;

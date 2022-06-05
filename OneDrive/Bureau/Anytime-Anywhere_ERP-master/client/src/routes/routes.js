@@ -93,8 +93,7 @@ export const adminRoutes = (
 
 export const superAdminRoutes = (
   <>
-    <Switch>
-
+  <Switch>
     <Route path="/" exact>
         <Home />
     </Route>

@@ -12,11 +12,22 @@ function Messenger() {
     const {user} = useContext(AppContext);
     const [currentUSer,setCurrentUser]=useState(false);
     const [selected, setSelected] = useState();
-  
+    let i =0;
+    const [usersList,setUsersList]=useState({});
+    function userlist(selected){
+      axios.post(`/getCurrentUser/${selected}`).then((res)=>{
+          if(res.data === "ERROR"){
+              alert("error")
+          }
+          else{
+              setUsersList(res.data);
+          }
+      })
+  }
     function Friends() {
         const [userList,setUserList]=useState([]);
         
-        let i =0;
+      
          useEffect(()=>{
              axios.post("/getUsers").then((res)=>{
                  if(res.data === "ERROR"){
@@ -33,7 +44,7 @@ function Messenger() {
             return(
               <>
             <div className="hover-friend">
-              <div className="friend"  key={index} onClick={()=>{setSelected(item._id)}}>
+              <div className="friend"  key={index} onClick={()=>{setSelected(item._id); userlist(selected)}}>
                 <div className="friend-image">
                   <div className="image">
                     <span><img src={item.image} /></span>
@@ -90,7 +101,7 @@ function Messenger() {
             </div>
             <div className="col-9">
             {currentUSer ? 
-              <RightSide current={selected}/> : 'Please select ur friend'
+              <RightSide current={usersList}/> : 'Please select ur friend'
             }
             </div>
         </div>

@@ -10,19 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 function RightSide(props) {
   const {user} = useContext(AppContext);
-  const [usersList,setUsersList]=useState({});
- 
-  useEffect(()=>{
-    axios.post(`/getCurrentUser/${props.current}`).then((res)=>{
-        console.log(props.current)
-        if(res.data === "ERROR"){
-            alert("error")
-        }
-        else{
-            setUsersList(res.data);
-        }
-    })
-},[])
+  let {current} = props;
   return (
     // <div className="col-9">
         <div className="right-side">
@@ -33,13 +21,13 @@ function RightSide(props) {
                         <div  className="header">
                             <div className="image-name">
                               <div className="image">
-                                <img src={user.image} />
+                                <img src={current.image} />
                                 <div className="active-icon">
 
                                 </div>
                               </div>
                               <div className="name">
-                                  <h3> {usersList.firstName} {usersList.lastName}</h3>
+                                  <h3> {current.firstName} {current.lastName}</h3>
                               </div>
                             </div>
                         <div className="icons"> 

@@ -9,7 +9,7 @@ import ForgotPassword from "../Pages/authentication/ForgotPassword";
 import ResetPassword from "../Pages/authentication/ResetPassword";
 import ActivateAccount from "../Pages/authentication/ActivateAccount";
 import Users from "../Pages/admin/users";
-import Dashboard from "../Pages/admin/dashboard/Dashboard";
+import Dashboard from "../Pages/dashboard/Dashboard";
 import UserProfile from "../Pages/admin/users/UserProfile";
 import Notfound from "../Pages/404";
 import Welcome from "../Pages/freshuser/Welcome";
@@ -50,7 +50,7 @@ export const userRoutes = (
 export const teamRoutes = (
   <>
     <Switch>
-      <Route path="/" exact>
+      <Route path="/dashboard" exact>
         <TeamDashboard />
       </Route>
       {/* <Route path="/quickaccess" exact>

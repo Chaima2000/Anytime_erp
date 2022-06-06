@@ -7,17 +7,19 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Message from '../Messenger/Message';
 import Friendinfo from '../Messenger/Friendinfo';
 import { useEffect } from 'react';
+import axios from 'axios';
 function RightSide(props) {
   const {user} = useContext(AppContext);
-  const [current,setCurrent]=useState('');
-  console.log(curr)
+  const [usersList,setUsersList]=useState({});
+ 
   useEffect(()=>{
-    axios.post("/getUsers").then((res)=>{
+    axios.post(`/getCurrentUser/${props.current}`).then((res)=>{
+        console.log(props.current)
         if(res.data === "ERROR"){
             alert("error")
         }
         else{
-            setUserList(res.data.users)
+            setUsersList(res.data);
         }
     })
 },[])
@@ -37,7 +39,7 @@ function RightSide(props) {
                                 </div>
                               </div>
                               <div className="name">
-                                  <h3>Himel Islam</h3>
+                                  <h3> {usersList.firstName} {usersList.lastName}</h3>
                               </div>
                             </div>
                         <div className="icons"> 

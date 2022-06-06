@@ -394,18 +394,44 @@ function Navbar(props) {
           }}
         >
           <li className={styles.li}>
-            <Link style={{ textDecoration: "none", color: "white" }} to="/">
+            <Link style={{ textDecoration: "none", color: "white" }} to="/dashboard">
               Tableau du bord
             </Link>
           </li>
           <li className={styles.li}>
-            <Link
+          <div className={styles.dropdown}>
+             <button className={styles.btnAccess}>
+          <Link
               style={{ textDecoration: "none", color: "white" }}
               to="/quickaccess"
-            >
+              >
               Accés rapide
-            </Link>
+          </Link>
+            
+            </button>
+            <div className={styles.dropdown_content}>
+                     {table.map( (item)=>{
+                       
+                       return (
+                         <>
+                           <Link className={styles.links} to={clicked(item)}>{item}</Link>
+                         </>
+                       )
+                     })} 
+
+              <p style={ {background:"#dcdcdc"}}><Link className={styles.links} to={`/quickaccess`} onClick={clicked()}> Voir toute la liste</Link></p>
+            
+            </div>
+            </div>
+
+            
+          
+          
           </li>
+
+
+
+          
         </ul>
       </div>
       <div className={styles.mobileInvisible}>

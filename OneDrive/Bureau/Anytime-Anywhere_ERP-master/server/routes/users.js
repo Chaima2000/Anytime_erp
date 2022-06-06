@@ -77,6 +77,7 @@ exports.getAllUser = async ( res , req) => {
   const userList = await user.find({});
   res.send(userList);
 }
+
 exports.getUser = (req, res) => {
   const id = req.body.id;
   user.findById(id, (err, row) => {

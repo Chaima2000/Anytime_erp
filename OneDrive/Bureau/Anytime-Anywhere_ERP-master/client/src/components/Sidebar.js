@@ -255,6 +255,40 @@ function Sidebar() {
             &nbsp; Projects
           </li>
         </Link>
+        <Link
+          onClick={() => {
+            toggleSidebar();
+          }}
+          className={styles.link}
+          to="/team/projects"
+        >
+          <li className={styles.dropdown}>
+          <FontAwesomeIcon icon={solid("coins")} size="lg" />
+          &nbsp; Finance
+          <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/receipts/add"
+          >
+            <div className={styles.submenu}>
+              <FontAwesomeIcon icon={solid("receipt")} /> &nbsp; Receipts
+            </div>
+          </Link>
+          <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/checks"
+          >
+            <div className={styles.submenu}>
+              <FontAwesomeIcon icon={solid("check")} /> &nbsp; Checks
+            </div>
+          </Link>
+        </li>
+        </Link>
       </div>
     </>
   );

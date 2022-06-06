@@ -12,8 +12,10 @@ function Messenger() {
     const {user} = useContext(AppContext);
     const [currentUSer,setCurrentUser]=useState(false);
     const [selected, setSelected] = useState();
+  
     function Friends() {
         const [userList,setUserList]=useState([]);
+        
         let i =0;
          useEffect(()=>{
              axios.post("/getUsers").then((res)=>{

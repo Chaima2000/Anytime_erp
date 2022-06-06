@@ -1,36 +1,12 @@
 import React , {useContext, useState,useEffect} from 'react';
-import { AppContext } from "../../../Context/AppContext";
-import Navbar from '../../../components/Navbar';
-import styles from '../../../Css/dashboard.module.css';
-import Avatar from '../../../Css/avatarDashboard.PNG';
-import "../../../Css/bars.css"
+import { AppContext } from "../../Context/AppContext";
+import Navbar from '../../components/Navbar';
+import styles from '../../../src/Css/dashboard.module.css';
+import Avatar from '../../../src/Css/avatarDashboard.PNG';
+import "../../../src/Css/bars.css"
 import axios from 'axios';
+import {Bar} from "react-chartjs-2";
 import {PieChart, Pie, Sector, Cell, ScatterChart, Scatter, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-const datach = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-
-
-
 
 function Dashboard() {
     const { user } = useContext(AppContext);
@@ -47,38 +23,34 @@ function Dashboard() {
      let counterproject=0;
      let counterclient=0;
      let counterbank=0;
-     
-      const data = [
-        {
-          name: '',
-          uv: 2000,
-          // pv: 2400,
-        },
-        {
-          name: 'Terminé',
-          uv: 3000,
-          // pv: 1398,
-          // amt: 1210,
-        },
-        {
-          name: 'En cours',
-          uv: 3000,
-          // pv: 1398,
-          // amt: 1210,
-        },
-        {
-          name: 'En pause',
-          uv: 3000,
-          // pv: 1398,
-          // amt: 1210,
-        },
-        {
-          name: '',
-          uv: 3000,
-          // pv: 1398,
-          // amt: 1210,
-        },
-      ];
+//      const labels = "chaima";
+// const data = {
+//   labels: labels,
+//   datasets: [{
+//     label: 'My First Dataset',
+//     data: [65, 59, 80, 81, 56, 55, 40],
+//     backgroundColor: [
+//       'rgba(255, 99, 132, 0.2)',
+//       'rgba(255, 159, 64, 0.2)',
+//       'rgba(255, 205, 86, 0.2)',
+//       'rgba(75, 192, 192, 0.2)',
+//       'rgba(54, 162, 235, 0.2)',
+//       'rgba(153, 102, 255, 0.2)',
+//       'rgba(201, 203, 207, 0.2)'
+//     ],
+//     borderColor: [
+//       'rgb(255, 99, 132)',
+//       'rgb(255, 159, 64)',
+//       'rgb(255, 205, 86)',
+//       'rgb(75, 192, 192)',
+//       'rgb(54, 162, 235)',
+//       'rgb(153, 102, 255)',
+//       'rgb(201, 203, 207)'
+//     ],
+//     borderWidth: 1
+//   }]
+// };
+    
     useEffect(()=>{
       axios.post("/projectNumbers").then((res)=>{
         if(res.data === "ERROR"){
@@ -258,25 +230,7 @@ function Dashboard() {
         <div className={styles.secondComponent}>
           <div className={styles.histo}>
             <h4 align="center">Etat du projet: </h4>
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart
-                width={500}
-                height={400}
-                data={data}
-                margin={{
-                  top: 10,
-                  right: 30,
-                  left: 0,
-                  bottom: 0,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Area type="monotone" dataKey="uv" stroke="#fada5e" fill="#fffacd" />
-              </AreaChart>
-            </ResponsiveContainer>
+            {/* <Bar data={data} /> */}
           </div>
           <div className={styles.check_histo}>
             <h3 align="center">Etat des tâches</h3>
@@ -286,45 +240,11 @@ function Dashboard() {
         <div className={styles.componentTwo}>
           <div className={styles.receiptCheck}>
             <h4 align="center">Etat des chèques</h4>
-            <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400}>
-              <Pie
-                data={datach}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-                >
-                {datach.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-            </PieChart>
-            </ResponsiveContainer>
+            
           </div>
           <div className={styles.secondo}>
             <h4 align="center"> Etat des frais</h4>
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart width={400} height={400}>
-                <Pie
-                  data={datach}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={renderCustomizedLabel}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {datach.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
+            
           </div>
         </div>
       </div>

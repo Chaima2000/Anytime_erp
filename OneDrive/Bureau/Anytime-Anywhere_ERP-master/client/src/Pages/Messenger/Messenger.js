@@ -15,8 +15,9 @@ function Messenger() {
     const [usersList,setUsersList]=useState({});
     const [newMessage, setNewMessage] = useState("💕");
     const [newImage,setNewImage]=useState("");
+    const [messageList,setMessageList]=useState({});
     const senderId = user.id;
-    const [receiverId , setReceiverId]=useState('');
+    const [receiverId,setReceiverId] = useState('');
     const senderName= user.firstName +" "+ user.lastName;
     let i=0;
     const inputHandle = (e)=>{
@@ -34,6 +35,15 @@ function Messenger() {
        };
      });
    }
+   useEffect(()=>{
+    axios.get(`/getMessage/${senderId}`).then((res)=>{
+      if(res.data=="ERROR"){
+        alert("ERROR")
+      }else {
+        setMessageList(res.data)
+      }
+    })
+  },[])
     const fileHandle = async(e)=>{
         const file = e.target.files[0];
         const base64 = await convertBase64(file);
@@ -52,10 +62,9 @@ function Messenger() {
         }
       axios.post("/addmesg",data).then ( (res)=>{
         if(res.data === "ERROR"){
-          console.log(res)
+          alert("Error")
         }
       })
-       console.log(data);
     }
     
     useEffect(()=>{
@@ -76,7 +85,8 @@ function Messenger() {
        }
        else{
            setUsersList(res.data);
-           setReceiverId(res.data._id);
+           setReceiverId(res.data._id)
+
        }
    })
 }
@@ -84,6 +94,7 @@ useEffect(()=>{
   if(userList.length>0){
     setUsersList(userList[0]);
     setReceiverId(userList[0]._id)
+  
   }
 },[userList])
  
@@ -124,7 +135,7 @@ useEffect(()=>{
                       userList.map( (item,index)=>{
                       return(
                         <>
-                        {usersList._id === userList[i]._id? 
+                        {(usersList._id === userList[i]._id)? 
                       <div className="hover-friendActive" onClick={()=>{userlist(item._id)}}>
                         <div className="friend"  key={index}>
                           <div className="friend-image">
@@ -166,6 +177,8 @@ useEffect(()=>{
               inputHandle={inputHandle} 
               fileHandle={fileHandle} 
               sendMessage={sendMessage}
+              message={messageList}
+              receiver={receiverId}
               /> 
                
             

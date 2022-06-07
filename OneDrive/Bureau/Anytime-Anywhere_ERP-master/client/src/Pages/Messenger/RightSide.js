@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 function RightSide(props) {
   const {user} = useContext(AppContext);
-  const {current, inputHandle , fileHandle,sendMessage}=props;
+  const {current, inputHandle , fileHandle,sendMessage , message , receiver}=props;
   // console.log(newMessage)
   // const  = props;
   return (
@@ -41,7 +41,7 @@ function RightSide(props) {
                              </div>
                         </div>
                         </div>
-                        <Message />
+                        <Message message={message} receiver={receiver}/>
                         <MessageSend sendMessage={sendMessage} inputHandle={inputHandle} fileHandle={fileHandle}  />
                     </div>
                 </div>

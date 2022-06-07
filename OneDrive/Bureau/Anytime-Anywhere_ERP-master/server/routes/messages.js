@@ -19,12 +19,11 @@ const {message} = require("../database/models/messages.model");
   };
   exports.getMessage= async ( req,res) =>{
     const sender = req.params.id;
-    const receiver = req.body.receiverId;
-    console.log(sender);
     try{
-      const messageList = await message.find(receiver).exec();
-      res.send(messageList);
+      const messageList = await message.find({'senderId':sender});
+      res.json(messageList);
     }catch (e) {
-      res.send("ERROR");
+      console.log(e)
+
   }
 }

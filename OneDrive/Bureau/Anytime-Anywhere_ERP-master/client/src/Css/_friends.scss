@@ -6,14 +6,14 @@
     &::-webkit-scrollbar{
         overflow: hidden;
     }
-    .hover-friend.active{
+    .hover-friendActive{
         background: rgba(43,51,85,.568);
     }
-    .hover-friend{
+    .hover-friend:hover{
+        background: rgba(43,51,85,.568);
+    }
+    .hover-friend,.hover-friendActive{
         width: 95%;
-        &:hover{
-            background: rgba(43,51,85,.568);
-        }
         cursor: pointer;
         .friend{
             width: 90%;

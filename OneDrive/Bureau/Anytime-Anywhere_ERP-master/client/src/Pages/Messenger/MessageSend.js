@@ -1,7 +1,8 @@
 import React from 'react';
 import "./../../Css/_messageSend.scss";
 import {BsPlusCircle,BsCardImage} from 'react-icons/bs'
-function MessageSend() {
+function MessageSend({inputHandle,fileHandle,sendMessage}) {
+
   const emojis = [
     "😀","​😃","​😄","😁​",
     "😆","😅","​🤣","😂​",
@@ -29,6 +30,7 @@ function MessageSend() {
     "​💯","💬​","💣","💦​",
     "💫​","💥","​💢","👋"
   ]
+  
   return (
     <div className="message-send-section">
         <input type="checkbox" id="emoji" />
@@ -36,14 +38,14 @@ function MessageSend() {
           <BsPlusCircle/>
         </div>
         <div className="file">
-          <input type="file" id="pic" className="form-control" />
+          <input type="file" id="pic" onChange={fileHandle}  accept=".png, .jpg, .jpeg" className="form-control" />
           <label htmlFor='pic'><BsCardImage/></label>
         </div>
         <div className="message-type">
-            <input type="text" name="message" id="message" placeholder="Aa" className="form-control" />
+            <input onChange={inputHandle} type="text" name="message" id="message" placeholder="Aa"  className="form-control" />
             <label htmlFor="emoji">😀</label>
         </div>
-        <div className="file">💕</div>
+        <div className="file" onClick={sendMessage}>💕</div>
         <div className="emoji-section">
             <div className="emoji">
                 {

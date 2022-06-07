@@ -11,57 +11,82 @@ import { AppContext } from "../../Context/AppContext";
 function Messenger() {
     const {user} = useContext(AppContext);
     const [currentUSer,setCurrentUser]=useState(false);
-    const [selected, setSelected] = useState();
-    let i =0;
+    const [userList,setUserList]=useState([]);
     const [usersList,setUsersList]=useState({});
-    function userlist(selected){
-      axios.post(`/getCurrentUser/${selected}`).then((res)=>{
+    const [newMessage, setNewMessage] = useState("💕");
+    const [newImage,setNewImage]=useState("");
+    const senderId = user.id;
+    const [receiverId , setReceiverId]=useState('');
+    const senderName= user.firstName +" "+ user.lastName;
+    let i=0;
+    const inputHandle = (e)=>{
+      setNewMessage(e.target.value);
+    }
+    function convertBase64(file) {
+      return new Promise((resolve, reject) => {
+       const fileReader = new FileReader();
+       fileReader.readAsDataURL(file);
+       fileReader.onload = () => {
+         resolve(fileReader.result);
+       };
+       fileReader.onerror = (error) => {
+         reject(error);
+       };
+     });
+   }
+    const fileHandle = async(e)=>{
+        const file = e.target.files[0];
+        const base64 = await convertBase64(file);
+        setNewImage(base64);
+  }
+  
+  //  console.log(newImage) 
+    const sendMessage=(e)=>{
+      e.preventDefault();
+      const data = {
+        senderId: senderId,
+        senderName: senderName,
+        receiverId: receiverId,
+        newMessage:newMessage,
+        newImage:newImage
+        }
+      axios.post("/addmesg",data).then ( (res)=>{
+        if(res.data === "ERROR"){
+          console.log(res)
+        }
+      })
+       console.log(data);
+    }
+    
+    useEffect(()=>{
+      axios.post("/getUsers").then((res)=>{
           if(res.data === "ERROR"){
               alert("error")
           }
           else{
-              setUsersList(res.data);
+              setUserList(res.data.users)
           }
       })
+  },[])
+ 
+  function userlist(id){
+   axios.post(`/getCurrentUser/${id}`).then((res)=>{
+       if(res.data === "ERROR"){
+           alert("error")
+       }
+       else{
+           setUsersList(res.data);
+           setReceiverId(res.data._id);
+       }
+   })
+}
+useEffect(()=>{
+  if(userList.length>0){
+    setUsersList(userList[0]);
+    setReceiverId(userList[0]._id)
   }
-    function Friends() {
-        const [userList,setUserList]=useState([]);
-        
-      
-         useEffect(()=>{
-             axios.post("/getUsers").then((res)=>{
-                 if(res.data === "ERROR"){
-                     alert("error")
-                 }
-                 else{
-                     setUserList(res.data.users)
-                 }
-             })
-         },[])
-        return (
-          <>
-          {userList.map( (item,index)=>{
-            return(
-              <>
-            <div className="hover-friend">
-              <div className="friend"  key={index} onClick={()=>{setSelected(item._id); userlist(selected)}}>
-                <div className="friend-image">
-                  <div className="image">
-                    <span><img src={item.image} /></span>
-                  </div>
-                </div>
-                <div className="friend-name">
-                    <h4>{item.firstName} {item.lastName}</h4>
-                </div>
-              </div>
-            </div>
-              </>
-            )
-            
-          })}
-          </>
-        )
-      }
+},[userList])
+ 
   return (
     <div className="messenger">
         <div className="row">
@@ -73,7 +98,7 @@ function Messenger() {
                              <img src={user.image} />
                             </div>
                             <div className="name">
-                              <h3>Himel</h3>
+                              <h3>{user.firstName} {user.lastName}</h3>
                             </div>
                         </div>
                         <div className="icons">
@@ -95,14 +120,55 @@ function Messenger() {
                         <ActiveFriend/>
                     </div>
                     <div className="friends" onClick={()=>{setCurrentUser(true)}}>
-                            <Friends />
+                    {userList.length >0 ? 
+                      userList.map( (item,index)=>{
+                      return(
+                        <>
+                        {usersList._id === userList[i]._id? 
+                      <div className="hover-friendActive" onClick={()=>{userlist(item._id)}}>
+                        <div className="friend"  key={index}>
+                          <div className="friend-image">
+                            <div className="image">
+                              <span><img src={item.image} /></span>
+                            </div>
+                          </div>
+                          <div className="friend-name">
+                              <h4>{item.firstName} {item.lastName}</h4>
+                          </div>
+                        </div>
+                      </div>
+                      : 
+                      <div className="hover-friend" onClick={()=>{userlist(item._id)}}>
+                        <div className="friend"  key={index}>
+                          <div className="friend-image">
+                            <div className="image">
+                              <span><img src={item.image} /></span>
+                            </div>
+                          </div>
+                          <div className="friend-name">
+                              <h4>{item.firstName} {item.lastName}</h4>
+                          </div>
+                        </div>
+                      </div>
+                      }
+                      {i=i+1}
+                        </>
+                      )
+          }):
+          'aucun amie'}
                     </div>
                 </div>
             </div>
             <div className="col-9">
-            {currentUSer ? 
-              <RightSide current={usersList}/> : 'Please select ur friend'
-            }
+            {/* {!currentUSer ? : 'Please select ur friend'}  */}
+              <RightSide
+              current={usersList}
+              inputHandle={inputHandle} 
+              fileHandle={fileHandle} 
+              sendMessage={sendMessage}
+              /> 
+               
+            
             </div>
         </div>
     </div>

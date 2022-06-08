@@ -68,6 +68,7 @@ const expenses = require("./routes/expense");
 const quicks = require("./routes/quickaccess");
 const contacts = require("./routes/contact");
 const messages = require("./routes/messages");
+const messengers = require("./routes/messenger");
 const { path } = require("express/lib/application");
 // const { pipeline } = require("nodemailer/lib/xoauth2");
 // server API'S
@@ -164,7 +165,7 @@ app.delete("/deleteExpense/:id", expenses.deleteExpense);
 app.post("/contact", contacts.AddContact);
 
 //Messenger 
-app.post("/getUsers", users.getAllUser);
+app.post("/getUsers", messengers.getAllUser);
 app.post("/addmesg",messages.AddMessage);
 app.get("/getMessage/:id", messages.getMessage);
 //Dashboard

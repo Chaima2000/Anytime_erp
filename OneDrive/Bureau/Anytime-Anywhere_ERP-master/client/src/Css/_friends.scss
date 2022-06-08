@@ -7,10 +7,10 @@
         overflow: hidden;
     }
     .hover-friendActive{
-        background: rgba(43,51,85,.568);
+        background: rgba(198, 203, 225, 0.568);
     }
     .hover-friend:hover{
-        background: rgba(43,51,85,.568);
+        background: rgba(198, 203, 225, 0.568);
     }
     .hover-friend,.hover-friendActive{
         width: 95%;
@@ -41,7 +41,8 @@
                align-items: center;
                h4{
                    padding-left: 10px;
-                   color: #fff;
+                   color: black;
+                //    #fff
                    font-weight: 600
 
                }     

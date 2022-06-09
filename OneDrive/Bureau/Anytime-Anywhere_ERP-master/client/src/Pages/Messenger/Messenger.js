@@ -19,6 +19,7 @@ function Messenger() {
     const senderId = user.id;
     const [receiverId,setReceiverId] = useState(usersList._id);
     const senderName= user.firstName +" "+ user.lastName;
+    const [dataT,setData]=useState([]);
     let i=0;
     
 /**getFriendsList **/
@@ -35,7 +36,7 @@ function Messenger() {
   useEffect(()=>{
     if(userList.length>0){
       setUsersList(userList[0]);
-      setReceiverId(userList[0]._id)
+      setReceiverId(userList[0]._id);
     }
   },[userList])
     const inputHandle = (e)=>{
@@ -53,17 +54,21 @@ function Messenger() {
        };
      });
    }
-  //  console.log(messageList)
   
-   useEffect(()=>{
-    axios.post("/getMessage").then((res)=>{
+  const SendEmoji=(emoji)=>{
+    setNewMessage(`${newMessage}`+emoji)
+  }
+  
+   function Allmessages(){
+    axios.post(`/getMessage/a`).then((res)=>{
       if(res.data=="ERROR"){
         console.log(res.data)
       }else {
         setMessageList(res.data)
       }
     })
-  },[])
+  }
+  console.log(senderId)
     const fileHandle = async(e)=>{
         const file = e.target.files[0];
         const base64 = await convertBase64(file);
@@ -81,12 +86,11 @@ function Messenger() {
       axios.post("/addmesg",data).then ( (res)=>{
         if(res.data === "ERROR"){
           alert("Error")
+        }else{
+          setData(data);
         }
       })
     }
-  
-    
- 
   function userlist(id){
    axios.post(`/getCurrentUser/${id}`).then((res)=>{
        if(res.data === "ERROR"){
@@ -143,7 +147,7 @@ function Messenger() {
                   <div key={index}>
                   {item._id != user.id? 
                     <>
-                  {(usersList._id === userList[i-1]._id ) ? 
+                  {(usersList._id == userList[i-1]._id ) ? 
                       <div className="hover-friendActive" onClick={()=>{userlist(item._id)}} key={index}>
                         <div className="friend"  >
                           <div className="friend-image">
@@ -157,7 +161,7 @@ function Messenger() {
                         </div>
                       </div>
                       : 
-                      <div className="hover-friend" onClick={()=>{userlist(item._id)}} key={index}>
+                      <div className="hover-friend" onClick={()=>{userlist(item._id); Allmessages()}} key={index}>
                         <div className="friend"  >
                           <div className="friend-image">
                             <div className="image">
@@ -188,8 +192,11 @@ function Messenger() {
               inputHandle={inputHandle} 
               fileHandle={fileHandle} 
               sendMessage={sendMessage}
-              message={messageList}
+              message={dataT}
               receiver={receiverId}
+              emojis={SendEmoji}
+              newMessage={newMessage}
+              listOFMessage={Allmessages}
               /> 
                
             

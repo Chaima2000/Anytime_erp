@@ -1,7 +1,7 @@
 import React from 'react';
 import "./../../Css/_messageSend.scss";
 import {BsPlusCircle,BsCardImage} from 'react-icons/bs'
-function MessageSend({inputHandle,fileHandle,sendMessage}) {
+function MessageSend({inputHandle,newMessage,fileHandle,Emojis,sendMessage}) {
   const emojis = [
     "😀","​😃","​😄","😁​",
     "😆","😅","​🤣","😂​",
@@ -41,7 +41,7 @@ function MessageSend({inputHandle,fileHandle,sendMessage}) {
           <label htmlFor='pic'><BsCardImage/></label>
         </div>
         <div className="message-type">
-            <input onChange={inputHandle} type="text" name="message" id="message" placeholder="Aa"  className="form-control" />
+            <input onChange={inputHandle} value={newMessage} type="text" name="message" id="message" placeholder="Aa"  className="form-control" />
             <label htmlFor="emoji">😀</label>
         </div>
         <div className="file" onClick={sendMessage}>💕</div>
@@ -49,7 +49,7 @@ function MessageSend({inputHandle,fileHandle,sendMessage}) {
             <div className="emoji">
                 {
                   emojis.map((e,index)=>
-                    <span key={index} className="emoji-click">{e}</span>
+                    <span key={index} className="emoji-click" onClick={()=>{Emojis(e)}}>{e}</span>
                   )
                 }
             </div>

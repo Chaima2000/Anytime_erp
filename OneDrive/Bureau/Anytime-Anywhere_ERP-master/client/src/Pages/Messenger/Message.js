@@ -2,39 +2,38 @@ import React , {useEffect,useState , useContext} from 'react';
 import "./../../Css/_message.scss";
 import { AppContext } from "../../Context/AppContext";
 import axios from 'axios';
-function Message({message , receiver,current}) {
+function Message({message ,liste, messageList, receiver,current, newMessage}) {
   const {user} = useContext(AppContext);
+  console.log(messageList)
   return (
   <div className="message-show" key={"message"}>
-    {message.length>0 ? message.map((item,index)=>{
-      console.log(item.receiverId != user.id && item.senderId == user.id && item.receiverId == receiver)
-      return(<>
-        {(item.receiverId != user.id && item.senderId == user.id && item.receiverId == receiver)?
-          <div className="my-message" key={index}>
+      
+        {( message.receiverId != user.id && message.senderId == user.id && message.receiverId == receiver)?
+          <div className="my-message" key={message._id}>
             <div className="image-message">
                 <div className="my-text">
-                  <p className="message-text">{item.newMessage}
-                  {item.newImage.length >0 ? 
-                  <img src={item.newImage} />
+                  <p className="message-text">{message.newMessage}
+                  {message.newImage.length >0 ? 
+                  <img src={message.newImage} />
                   : null }</p>
                 </div>
             </div>
             <div className="time">
-                {item.createdAt}
+                {message.createdAt}
             </div>
           </div> :
           <>
-          {(item.receiverId == user.id && item.senderId == receiver )?
-            <div className="fd-message" key={index}>
+          {( message.receiverId == user.id && message.senderId == receiver )?
+            <div className="fd-message" key={message._id}>
             <div className="image-message-time">
               <img src={current.image} alt="" />
               <div className="message-time">
                   <div className="fd-text">
-                    <p className="message-text">{item.newMessage}<br/><br/>
-                    {item.newImage.length>0 ? <img src={item.newImage}/>:null}</p>
+                    <p className="message-text">{message.newMessage}<br/><br/>
+                    {message.newImage.length>0 ? <img src={message.newImage}/>:null}</p>
                   </div>
                   <div className="time">
-                  {item.createdAt}
+                  {message.createdAt}
                   </div>
               </div>
             </div>
@@ -78,10 +77,7 @@ function Message({message , receiver,current}) {
         :null
       } */}
          
-      </>
-      )
-    }):
-    null}
+      
   </div>
   )
 }

@@ -7,18 +7,23 @@
         overflow: hidden;
     }
     .hover-friendActive{
+        margin-bottom: 15px;
+        width: 275px;
+        padding: 1px;
+        height: 90%;
         background: rgba(198, 203, 225, 0.568);
     }
     .hover-friend:hover{
         background: rgba(198, 203, 225, 0.568);
+        height: 70px;
+        width: 276px;
     }
     .hover-friend,.hover-friendActive{
-        width: 95%;
         cursor: pointer;
         .friend{
-            width: 90%;
             padding: 7px 15px;
             .friend-image{
+                margin-top: 4px;
                 float: left;
                 width: 20%;
                 display: flex;
@@ -36,9 +41,10 @@
             }
             .friend-name{
                 float: left;
-               display: flex;
-               width: 50%;
-               align-items: center;
+                display: flex;
+                width: 50%;
+                margin-top: -6px;
+                align-items: center;
                h4{
                    padding-left: 10px;
                    color: black;

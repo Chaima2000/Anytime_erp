@@ -16,6 +16,7 @@
                 text-align: end;
                 padding: 10px;
                 border-radius: 10px;
+                border-bottom-left-radius: 5px;
                 img{
                     width: 220px;
                     height: 270px;
@@ -27,8 +28,10 @@
             }
         }
         .time{
+            margin-top: -15px;
             text-align: end;
-            padding: 5px 0px;
+            font-size: 15px;
+            padding: 5px 5px;
             color: yellowgreen;
         }
     }
@@ -65,15 +68,16 @@
     }
     .message-text{
         padding: 10px;
-        color: black;
-        // #fff
-        background-color: #28325ed9;
-        font-size: 14px;
-        font-weight: 400;
+        color: #fff;
+        background-color: #8b94f7d9;
+        font-size: 17px;
+        font-weight: 600;
         border-radius: 10px;
     }
     .time{
-        padding: 5px 0px;
+        padding: 2px 0px;
+        margin-top: -15px;
+        font-size: 15px;
         color: yellowgreen;
     }
 }

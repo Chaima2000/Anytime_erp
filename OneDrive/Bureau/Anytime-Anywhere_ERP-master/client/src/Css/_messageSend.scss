@@ -62,6 +62,18 @@
             display: grid;
             grid-template-columns: repeat(8,1fr);
             grid-gap:4px;
+            .emoji-click{
+                cursor: pointer;
+                border-radius: 50%;
+                width: 30px;
+                height: 27px;
+                padding: 1px;
+                padding-top: 7px;
+                text-align: center;
+            }
+            .emoji-click:hover{
+                background: rgba(197, 197, 247, 0.275);
+            }
         }
     }
     #emoji{

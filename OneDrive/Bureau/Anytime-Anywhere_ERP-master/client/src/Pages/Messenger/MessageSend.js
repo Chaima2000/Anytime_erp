@@ -2,7 +2,6 @@ import React from 'react';
 import "./../../Css/_messageSend.scss";
 import {BsPlusCircle,BsCardImage} from 'react-icons/bs'
 function MessageSend({inputHandle,fileHandle,sendMessage}) {
-
   const emojis = [
     "😀","​😃","​😄","😁​",
     "😆","😅","​🤣","😂​",
@@ -49,8 +48,8 @@ function MessageSend({inputHandle,fileHandle,sendMessage}) {
         <div className="emoji-section">
             <div className="emoji">
                 {
-                  emojis.map(e=>
-                    <span>{e}</span>
+                  emojis.map((e,index)=>
+                    <span key={index} className="emoji-click">{e}</span>
                   )
                 }
             </div>

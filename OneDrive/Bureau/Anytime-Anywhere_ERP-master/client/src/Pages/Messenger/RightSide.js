@@ -10,7 +10,7 @@ import Message from '../Messenger/Message';
 function RightSide(props) {
   const {user} = useContext(AppContext);
   const {current, inputHandle , fileHandle,sendMessage , message , receiver}=props;
-  console.log(current)
+  // console.log(current)
   return (
       <div className="secondComponent">
         <div className="right-side">
@@ -37,7 +37,7 @@ function RightSide(props) {
                     </div>
                   </div>
                 </div>
-                <Message message={message} receiver={receiver}/>
+                <Message message={message} receiver={receiver} current={current}/>
                 <MessageSend sendMessage={sendMessage} inputHandle={inputHandle} fileHandle={fileHandle}  />
               </div>
             

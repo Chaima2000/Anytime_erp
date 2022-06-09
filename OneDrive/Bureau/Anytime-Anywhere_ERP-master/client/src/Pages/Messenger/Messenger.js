@@ -17,10 +17,10 @@ function Messenger() {
     const [newImage,setNewImage]=useState("");
     const [messageList,setMessageList]=useState({});
     const senderId = user.id;
-    const [receiverId,setReceiverId] = useState('');
+    const [receiverId,setReceiverId] = useState(usersList._id);
     const senderName= user.firstName +" "+ user.lastName;
     let i=0;
-
+    
 /**getFriendsList **/
     useEffect(()=>{
       axios.post("/getUsers").then((res)=>{
@@ -32,7 +32,12 @@ function Messenger() {
               }
       })
   },[])
-
+  useEffect(()=>{
+    if(userList.length>0){
+      setUsersList(userList[0]);
+      setReceiverId(userList[0]._id)
+    }
+  },[userList])
     const inputHandle = (e)=>{
       setNewMessage(e.target.value);
     }
@@ -48,10 +53,12 @@ function Messenger() {
        };
      });
    }
+  //  console.log(messageList)
+  
    useEffect(()=>{
-    axios.get(`/getMessage/${senderId}`).then((res)=>{
+    axios.post("/getMessage").then((res)=>{
       if(res.data=="ERROR"){
-        alert("ERROR")
+        console.log(res.data)
       }else {
         setMessageList(res.data)
       }
@@ -87,18 +94,10 @@ function Messenger() {
        }
        else{
            setUsersList(res.data);
-           setReceiverId(res.data._id)
-
+           setReceiverId(res.data._id);
        }
    })
 }
-useEffect(()=>{
-  if(userList.length>0){
-    setUsersList(userList[0]);
-    setReceiverId(userList[0]._id)
-  
-  }
-},[userList])
  
   return (
     <>
@@ -130,7 +129,7 @@ useEffect(()=>{
               <button><BiSearch/></button> 
             </div>
           </div>
-          <div className="friends" onClick={()=>{setCurrentUser(true)}}>
+          <div className="friends" onClick={()=>{setCurrentUser(true)}} key={"userList"}>
           {userList.length >0 ? 
               userList.filter((val)=>{
                 if(searchTerm == ""){
@@ -141,10 +140,11 @@ useEffect(()=>{
               }).map( (item,index)=>{
                 {i=i+1}
                 return(
-                  <>
-                  {item._id != user.id? <>
+                  <div key={index}>
+                  {item._id != user.id? 
+                    <>
                   {(usersList._id === userList[i-1]._id ) ? 
-                  <div className="hover-friendActive" onClick={()=>{userlist(item._id)}}>
+                      <div className="hover-friendActive" onClick={()=>{userlist(item._id)}} key={index}>
                         <div className="friend"  >
                           <div className="friend-image">
                             <div className="image">
@@ -157,7 +157,7 @@ useEffect(()=>{
                         </div>
                       </div>
                       : 
-                      <div className="hover-friend" onClick={()=>{userlist(item._id)}}>
+                      <div className="hover-friend" onClick={()=>{userlist(item._id)}} key={index}>
                         <div className="friend"  >
                           <div className="friend-image">
                             <div className="image">
@@ -172,7 +172,7 @@ useEffect(()=>{
                       }
                         </>
                   :null}
-                  </>
+                  </div>
                       )
                      
           }):

@@ -16,15 +16,15 @@ function Friendinfo({current}) {
             </div>
             <div className="others">
               <div className="custom-chat">                  
-                <h4>Customize chat</h4>                      
+                <h4>Personnaliser la discussion</h4>                      
                 <label><BsChevronDown/></label>
               </div>                                
               <div className="privacy">
-                <h4>Privacy and Support</h4>
+                <h4>Confidentialité et assistance</h4>
                 <label><BsChevronDown/></label>
               </div>                          
               <div className="media">
-                <h4>Share Media</h4>
+                <h4>Contenu multimédia</h4>
                 <label htmlFor="gallery"><BsChevronDown/></label>                   
               </div>             
             </div>

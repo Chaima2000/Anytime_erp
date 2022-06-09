@@ -628,7 +628,7 @@ function Navbar(props) {
 
       {/* desktop menu */}
       <section className={styles.container}>
-        <Link>
+        <Link to="/#">
           <img
             className={styles.logo}
             src={process.env.PUBLIC_URL + "/logo.png"}

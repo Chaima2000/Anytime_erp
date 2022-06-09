@@ -9,7 +9,7 @@
     .friendZone{ 
         position: absolute;
         top:0;
-        width: 100%;
+        width: 297px;
         left:0;
         bottom:0;
         right:0;
@@ -21,7 +21,6 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            justify-content: start;
             .top{
                 width: 100%;
                 position: relative;

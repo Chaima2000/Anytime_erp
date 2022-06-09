@@ -38,32 +38,31 @@
                         border-bottom: 1px solid #cacccfbf;
                         .image-name{
                             display: flex;
+                            width: 90%;
                             .image{
-                                margin-right: 24px;
                                 position:relative;
-                                width:40px;
-                                height: 40px;
+                                width:65px;
+                                height: 65px;
+                                padding-top: 5px;
                                 img{
                                     border-radius: 50%;
-                                    width: 60px;
-                                    height: 60px;
+                                    width: 50px;
+                                    height: 50px;
                                 }
                                 .active-icon{
                                     position: absolute;
                                     width: 10px;
                                     height: 10px;
                                     border-radius: 50%;
-                                    background-color: green;
-                                    top:45px;
-                                    left:45px;
+                                    top:40px;
+                                    left:40px;
                                     right: 0px;
                                     bottom:0px;
                                 }
                             }
                             .name{
                                 display: flex;
-                                justify-content: center;
-                                align-items: center;
+                                width: 90%;
                                 h3{
                                     padding-left: 10px;
                                     color: black;

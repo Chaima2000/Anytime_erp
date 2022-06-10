@@ -41,7 +41,7 @@ function MessageSend({inputHandle,newMessage,fileHandle,Emojis,sendMessage}) {
           <label htmlFor='pic'><BsCardImage/></label>
         </div>
         <div className="message-type">
-            <input onChange={inputHandle} value={newMessage} type="text" name="message" id="message" placeholder="Aa"  className="form-control" />
+            <input onChange={inputHandle} defaultValue="" type="text" name="message" id="message" placeholder="Aa"  className="form-control" />
             <label htmlFor="emoji">😀</label>
         </div>
         <div className="file" onClick={sendMessage}>💕</div>

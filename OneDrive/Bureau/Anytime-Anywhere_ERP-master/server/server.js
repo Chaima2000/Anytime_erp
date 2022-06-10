@@ -167,7 +167,8 @@ app.post("/contact", contacts.AddContact);
 //Messenger 
 app.post("/getUsers", messengers.getAllUser);
 app.post("/addmesg",messages.AddMessage);
-app.post("/getMessage", messages.getMessage);
+app.post("/getTimeMessage/:id", messages.getTimeMessage);
+app.post("/getMessages",messages.getMessages)
 //Dashboard
 app.post("/projectNumbers",projects.getProjectNumber);
 app.post("/getClients", clients.getallclient);

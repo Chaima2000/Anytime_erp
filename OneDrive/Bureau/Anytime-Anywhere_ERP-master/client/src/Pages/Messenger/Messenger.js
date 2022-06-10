@@ -15,13 +15,15 @@ function Messenger() {
     const [usersList,setUsersList]=useState({});
     const [newMessage, setNewMessage] = useState("💕");
     const [newImage,setNewImage]=useState("");
-    const [messageList,setMessageList]=useState({});
+    const [word,setWord]=useState("");
+    const [dataT,setData]=useState([]);
+    const [messageList,setTable]=useState({});
     const senderId = user.id;
     const [receiverId,setReceiverId] = useState(usersList._id);
     const senderName= user.firstName +" "+ user.lastName;
-    const [dataT,setData]=useState([]);
     let i=0;
-    
+    let j= 0;
+  
 /**getFriendsList **/
     useEffect(()=>{
       axios.post("/getUsers").then((res)=>{
@@ -58,22 +60,32 @@ function Messenger() {
   const SendEmoji=(emoji)=>{
     setNewMessage(`${newMessage}`+emoji)
   }
-  
-   function Allmessages(){
-    axios.post(`/getMessage/a`).then((res)=>{
+  useEffect(()=>{
+    axios.post(`/getMessages`,{senderId}).then((res)=>{
       if(res.data=="ERROR"){
         console.log(res.data)
       }else {
-        setMessageList(res.data)
+        setTable(res.data);
+        Allmessages(res.data)
       }
     })
-  }
-  console.log(senderId)
+  },[])
+  
+   function Allmessages(id){
+    axios.post(`/getTimeMessage/${id}`).then((res)=>{
+      if(res.data=="ERROR"){
+        console.log(res.data)
+      }else {
+        setWord(res.data)
+      }
+    })
+    }
     const fileHandle = async(e)=>{
         const file = e.target.files[0];
         const base64 = await convertBase64(file);
         setNewImage(base64);
   }
+ 
     const sendMessage=(e)=>{
       e.preventDefault();
       const data = {
@@ -81,14 +93,14 @@ function Messenger() {
         senderName: senderName,
         receiverId: receiverId,
         newMessage:newMessage,
-        newImage:newImage
+        newImage:newImage,
         }
-      axios.post("/addmesg",data).then ( (res)=>{
+        axios.post("/addmesg",data).then ( (res)=>{
         if(res.data === "ERROR"){
           alert("Error")
-        }else{
-          setData(data);
         }
+        setData(data);
+       
       })
     }
   function userlist(id){
@@ -161,7 +173,7 @@ function Messenger() {
                         </div>
                       </div>
                       : 
-                      <div className="hover-friend" onClick={()=>{userlist(item._id); Allmessages()}} key={index}>
+                      <div className="hover-friend" onClick={()=>{userlist(item._id)}} key={index}>
                         <div className="friend"  >
                           <div className="friend-image">
                             <div className="image">
@@ -192,11 +204,12 @@ function Messenger() {
               inputHandle={inputHandle} 
               fileHandle={fileHandle} 
               sendMessage={sendMessage}
-              message={dataT}
+              message={messageList}
               receiver={receiverId}
               emojis={SendEmoji}
               newMessage={newMessage}
-              listOFMessage={Allmessages}
+              dateMesg={word}
+              currentMsg={dataT}
               /> 
                
             

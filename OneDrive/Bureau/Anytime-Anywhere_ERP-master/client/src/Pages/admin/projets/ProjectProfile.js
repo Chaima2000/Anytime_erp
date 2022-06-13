@@ -250,7 +250,7 @@ return (
       <p> Débute à : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<b> {projectProfile.start}</b></p>
       <p>Termine à : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<b>{projectProfile.end}</b> </p>
       <br />
-      <button className="defaultBtn">SAVE</button>
+      <button className="defaultBtn">Enregistrer</button>
     </form>
 
 

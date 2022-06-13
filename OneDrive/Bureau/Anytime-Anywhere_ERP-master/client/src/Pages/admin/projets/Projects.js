@@ -119,8 +119,7 @@ return (
           :(
             <>
     <div className={styles.Boss}>
-    <br />
-    <h1>Liste des projets</h1>
+    <h2>Liste des projets</h2>
     <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
@@ -138,7 +137,7 @@ return (
                   onChange={(e) => {
                     setSearchTerm(e.target.value);
                   }}
-                  className={Styles.formInput}
+                  className={styles.formInput}
                   type="text"
                   placeholder="Nom du projet ..."
                 />

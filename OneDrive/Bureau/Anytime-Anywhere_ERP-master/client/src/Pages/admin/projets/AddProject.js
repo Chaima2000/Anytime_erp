@@ -1,15 +1,17 @@
 import React, { useState , useEffect } from 'react';
 import Select  from 'react-select';
 import styles from '../../../Css/Client.module.css';
+import { Link} from "react-router-dom";
 import Styles from '../../../Css/AddProject.module.css';
 import TextField from "@material-ui/core/TextField";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from 'axios';
-import {makeStyles} from '@material-ui/core';
 import swal from 'sweetalert';
+import {makeStyles} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import {toast} from 'react-toastify';
+import Tooltip from "@material-ui/core/Tooltip";
 import 'react-toastify/dist/ReactToastify.css'; 
 import Navbar from "../../../components/Navbar";
 toast.configure()
@@ -29,6 +31,7 @@ function AddProject() {
   const [end , setEnd] = useState("");
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState({});
+  const [waiting, setWaiting] = useState(true);
   const history = useHistory();
   const [file , setFile] = useState([]);
   const classes= useStyles();
@@ -52,6 +55,7 @@ function AddProject() {
             options.push({value: element._id, label: fullName} );
         })
         setMembersList(options);
+        setWaiting(false);
       }
     });
   }, []);
@@ -104,6 +108,9 @@ const customstyles = {
     boxShadow: state.isFocused ? null : null,
   })
 }
+const success=()=>{
+  window.location.reload()
+}
 
   const addproject =(e) => {
     e.preventDefault();
@@ -134,36 +141,47 @@ const customstyles = {
         });
         console.log(e);
       }else if(res.data === "SUCCESS"){
-        history.push("/projectList");
+        swal({
+          title: "Good job", 
+          text: "Ajouté avec succés!", 
+          type: "success"
+        }).then(function(){
+          window.location.reload()
+        });
       }
     }
     )}
-
+     
   return (
     <>
     <Navbar></Navbar>
+    {waiting ? (
+    <div className="row">
+            <FontAwesomeIcon icon={solid("spinner")} size={"3x"} spin />
+    </div>)
+          :(
+            <>
     <div className={Styles.overlay}>
-      <section className={styles.section}>   
+      <section className={styles.section}>
+      <Tooltip title="Liste des projets"> 
+        <Link to={"/projectList"} className={Styles.spanOne}><FontAwesomeIcon icon={solid("arrow-left")}/></Link>
+      </Tooltip>
         <div className={Styles.container}>
+        
           <div className={Styles.form }>
             <form onSubmit={addproject}>
-            <br/>
-            <span className={Styles.span}><FontAwesomeIcon icon={solid("plus")} size="lg" color="white"/></span>     
-              <h2 align="center" className={styles.h2}>Add project </h2>
+            <span className={Styles.span}><FontAwesomeIcon icon={solid("plus")} color="white"/></span>     
+              <h2 align="center" className={styles.h2}>Ajouter un projet </h2>
               <div className={styles.div1}>
               <TextField
               id="name"
-              label="Entrer votre nom ..."
+              label="Entrer le nom ..."
               onChange={(e) => {
                 setName(e.target.value);
               }}
               className={classes.field}
               variant= "outlined"
               />
-              {/* <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br /><br /> */}
-              {/* Start date:
-              <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} placeholder="Start date" required /> <br /> <br />
-               */}
                <br/><br/>
                <TextField
               id="start"
@@ -202,9 +220,6 @@ const customstyles = {
               className={classes.field}
               variant= "outlined"
               />
-              {/* End date:
-              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  placeholder="End date"  /> <br /> */}
-              {/* <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  /> <br /> */}
               </div>
               <div className={styles.div2}>
                 <Select 
@@ -243,6 +258,7 @@ const customstyles = {
                 onChange={(e) => {
                   setState(e.label)
                 }}
+                
                 styles={customStyles}
                 options={options} 
                 
@@ -267,20 +283,22 @@ const customstyles = {
                         setFile(array);
                       }}
             />
-            <label htmlFor="file">
+            <label htmlFor="file" style={{cursor:'pointer'}}>
                 <span>Télécharger fichiers</span>
               </label>
           </div>
         </div>
         </div>
-        <button className={styles.btn}>SAVE</button>
-            
-
+        <div className={Styles.buttons}>
+        <button className={Styles.btn}>Enregistrer</button>
+        </div>
         </form> 
   </div>
   </div>
   </section>
 </div>
+</>
+    )}
    </>
   )
 }

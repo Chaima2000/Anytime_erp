@@ -376,10 +376,10 @@ table td {
   align-items: center;
   text-align: center;
   margin: 20px;
-  border:1px solid grey;
-  width: 4%;
+  border:none;
+  width: 45%;
   border-radius: 5px;
-  margin-left:47%;
+  margin-left:27%;
 }
 
 .pagination {

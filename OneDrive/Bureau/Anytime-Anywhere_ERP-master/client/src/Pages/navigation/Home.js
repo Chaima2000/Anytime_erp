@@ -120,12 +120,11 @@ function Home() {
             <img src={wave2} className={styles.img} />
         <br /><br /><br /> <br />
         <div className={styles.services}> <Services /></div>
-        {/* <div className={styles.about}> <About /></div> */}
+        <div className={styles.about}> <About /></div>
         <a href="#home"><button className={styles.arrow_up}><FontAwesomeIcon icon={solid("arrow-up")} color="white" size="lg"/></button></a>
-      </section>
-      <br />
+      
       {/* <div className={styles.contact}><Contact /></div> */}
-      {/* <footer className={styles.footer} >
+      <footer className={styles.footer} >
         <div className={styles.footer_box} data-aos="flip-down">
           <h4>Support: </h4>
           <div className={styles.links} >
@@ -135,31 +134,32 @@ function Home() {
             <a href="#contact">&bull; Contact</a>
           </div>
         </div>
-        <div className={styles.footer_box} data-aos="flip-down">
+       <div className={styles.footer_box} data-aos="flip-down">
           <h4>Contact Us</h4>
           <div className={styles.footer_contact}>
             <p> 
-             <Link className={styles.link} to='https://www.google.tn/maps/place/Anytime+%26+Anywhere/@35.8363658,10.6283984,17z/data=!3m1!4b1!4m5!3m4!1s0x13027576542f7433:0x98bf17040044656b!8m2!3d35.8363702!4d10.6305813?hl=fr'><FaMapMarkerAlt /> &nbsp; Address:immeuble meliene, Rue Ribat, Sousse </Link>
+             {/* <Link className={styles.link} to='https://www.google.tn/maps/place/Anytime+%26+Anywhere/@35.8363658,10.6283984,17z/data=!3m1!4b1!4m5!3m4!1s0x13027576542f7433:0x98bf17040044656b!8m2!3d35.8363702!4d10.6305813?hl=fr'><FaMapMarkerAlt /> &nbsp; Address:immeuble meliene, Rue Ribat, Sousse </Link> */}
             </p>
             <p> 
-             <FaPhoneAlt /> &nbsp; Phone: +216 56254878
+             {/* <FaPhoneAlt /> &nbsp; Phone: +216 56254878 */}
             </p>
             <p> 
-             <FaEnvelope /> &nbsp; Email: info@socialx.com
+             {/* <FaEnvelope /> &nbsp; Email: info@socialx.com */}
             </p>
             <p> 
-             <FaGlobe /> &nbsp; Website: hgjklkmlù
+             {/* <FaGlobe /> &nbsp; Website: hgjklkmlù */}
             </p>
           
           </div>
-        </div>
+          </div>
         <div className={styles.footer_box}>
           <p className={styles.p}>
             &copy; Copyright 2021. SocialX.com
           </p>
         </div>
       </footer>
-       */}
+      </section>
+      <br />
     </>
   )
 }

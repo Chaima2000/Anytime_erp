@@ -37,8 +37,8 @@
 .component {
     background: none;
     position: absolute;
-    left: 4%;
-    width: 1200px;
+    left: 0%;
+    width: 1170px;
     height: 470px;
 }
 
@@ -82,7 +82,7 @@
     height: 300px;
     float: right;
     padding-left: 15px;
-    margin-right: 245px;
+    margin-right: 215px;
     border-radius: 15px;
 }
 .histo{

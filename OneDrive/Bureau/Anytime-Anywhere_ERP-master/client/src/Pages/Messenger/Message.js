@@ -1,8 +1,7 @@
-import React , {useEffect,useState , useContext} from 'react';
+import React , {useContext} from 'react';
 import "./../../Css/_message.scss";
 import { AppContext } from "../../Context/AppContext";
-import axios from 'axios';
-function Message({message ,dateMesg, currentMsg,messageList, receiver,current, newMessage}) {
+function Message({message, receiver,current,scrollRef}) {
   const {user} = useContext(AppContext);
   return (
   <div className="message-show" key={"message"}>
@@ -12,31 +11,32 @@ function Message({message ,dateMesg, currentMsg,messageList, receiver,current, n
         return(
         <>
         {(item.senderId == user.id && item.receiverId == receiver)?
-          <div className="my-message" key={item._id}>
+          <div ref={scrollRef} className="my-message" key={item._id}>
             <div className="image-message">
                 <div className="my-text">
                   <p className="message-text">{item.newMessage}
                   {item.newImage.length >0 ? 
-                  <img src={item.newImage} />
+                  <><br/><br/><img src={item.newImage} /></>
+                  
                   : null }</p>
                 </div>
             </div>
             <div className="time">
-                {dateMesg}
+                {item.dateMsg}
             </div>
           </div> :
           <>
-          {( item.senderId != user.id && item.receiverId == receiver )?
-            <div className="fd-message" key={item._id}>
+          {( item.senderId != user.id && item.receiverId == user.id )?
+            <div ref={scrollRef} className="fd-message" key={item._id}>
             <div className="image-message-time">
               <img src={current.image} alt="" />
               <div className="message-time">
                   <div className="fd-text">
-                    <p className="message-text">{item.newMessage}<br/><br/>
-                    {item.newImage!="" ? <img src={item.newImage}/>:null}</p>
+                    <p className="message-text">{item.newMessage}
+                    {item.newImage!="" ? <><br/><br/><img src={item.newImage}/></>:null}</p>
                   </div>
                   <div className="time">
-                  {dateMesg}
+                  {item.dateMsg}
                   </div>
               </div>
             </div>
@@ -49,81 +49,8 @@ function Message({message ,dateMesg, currentMsg,messageList, receiver,current, n
         )
       })}
       </>
-      :null}
-      
-    
-        {(currentMsg.senderId == user.id && currentMsg.receiverId == receiver)?
-          <div className="my-message" key={currentMsg._id}>
-            <div className="image-message">
-                <div className="my-text">
-                  <p className="message-text">{currentMsg.newMessage}
-                  {currentMsg.newImage.length >0 ? 
-                  <img src={currentMsg.newImage} />
-                  : null }</p>
-                </div>
-            </div>
-            <div className="time">
-                {dateMesg}
-            </div>
-          </div>
-           :
-           null}
-          
-          {( currentMsg.senderId != user.id && currentMsg.receiverId == receiver )?
-          <div className="fd-message" key={currentMsg._id}>
-            <div className="image-message-time">
-              <img src={current.image} alt="" />
-              <div className="message-time">
-                  <div className="fd-text">
-                    <p className="message-text">{currentMsg.newMessage}<br/><br/>
-                    {currentMsg.newImage!="" ? <img src={currentMsg.newImage}/>:null}</p>
-                  </div>
-                  <div className="time">
-                  {dateMesg}
-                  </div>
-              </div>
-            </div>
-            
-          </div>:null
-          }
-    
-     
-      
-        {/* {(newMessage.senderId != user.id && currentMsg.receiverId == receiver)?
-        <div className="fd-message" key={index}>
-            <div className="image-message-time">
-              <img src="/image/1341Capture5.PNG" />
-              <div className="message-time">
-                  <div className="fd-text">
-                    <p className="message-text">{item.newMessage}</p>
-                  </div>
-                  <div className="time">
-                   
-                  </div>
-              </div>
-            </div>
-          </div>
         :null
-      } */}
-      {/* {console.log(item.senderId != user.id && item.receiverId == user.id)}
-      {(item.senderId != user.id && item.receiverId == user.id)?
-        <div className="fd-message">
-            <div className="image-message-time">
-              <img src="/image/1341Capture5.PNG" />
-              <div className="message-time">
-                  <div className="fd-text">
-                    <p className="message-text">{item.newMessage}</p>
-                  </div>
-                  <div className="time">
-                   
-                  </div>
-              </div>
-            </div>
-          </div>
-        :null
-      } */}
-         
-      
+        }      
   </div>
   )
 }

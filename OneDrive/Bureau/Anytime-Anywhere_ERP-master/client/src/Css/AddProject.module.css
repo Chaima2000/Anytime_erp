@@ -7,15 +7,52 @@
     border: 1px solid rgb(212, 211, 211);
     border-radius: 30px;
 }
-.btnUpload{
-    width: 100%;
-    padding: 15px;
+.overlay {
+  background:rgb(247, 247, 247);
+  height:543px;
+}
+.span{
+  text-align:center;
+  background:rgb(29, 155, 29);
+  border-radius:50%;
+  padding: 10px;
+  width: 30%;
+  height: 28%;
+  margin-top:2%;
+  position: relative;
+  margin-left:48%
+}
+.btnupload{
+    width:300px;
+    padding-top:16px;
+    padding-left: 13px;
     cursor:pointer;
     color : grey;
-    height: 50px;
-    background: none;
-    outline:none;
-    border: none;
+    height:37px;
+    margin-top:0%;
+    border-radius:5px;
+    border: 1px solid rgb(164, 164, 164)
+}
+.container {
+  position: relative;
+  margin-top:2%;
+  width: 800px;
+  height: 480px;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.form{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
 }
 .btn{
     width: 20%;

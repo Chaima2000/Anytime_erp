@@ -2,14 +2,22 @@ import React, { useState , useEffect } from 'react';
 import Select  from 'react-select';
 import styles from '../../../Css/Client.module.css';
 import Styles from '../../../Css/AddProject.module.css';
+import TextField from "@material-ui/core/TextField";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from 'axios';
+import {makeStyles} from '@material-ui/core';
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import Navbar from "../../../components/Navbar";
 toast.configure()
-
+const useStyles= makeStyles({
+  field:{
+    width:'300px'
+  }
+})
 
 function AddProject() {
   const [name , setName] = useState("");
@@ -23,6 +31,7 @@ function AddProject() {
   const [members , setMembers] = useState({});
   const history = useHistory();
   const [file , setFile] = useState([]);
+  const classes= useStyles();
   useEffect(() => {
     axios.get("/getclients").then((res) => {
       if (res.data){
@@ -70,15 +79,28 @@ function AddProject() {
  const customStyles = {
   control: (provided , state) => ({
     ...provided,
-    border: state.isFocused ? 0 : 0,
+    // border: state.isFocused ? 0 : 0,
     paddingLeft:'4px',
-    fontSize: '10',
-    background: 'rgba(224, 222, 222, 0.2)',
+    fontSize: '18',
     opacity:1,
     outline: 'none',
     width: '1300',
-    borderRadius: '35px',
-    height: '19px',
+    // borderRadius: '35px',
+    height: '55px',
+    boxShadow: state.isFocused ? null : null,
+  })
+}
+const customstyles = {
+  control: (provided , state) => ({
+    ...provided,
+    // border: state.isFocused ? 0 : 0,
+    paddingLeft:'4px',
+    fontSize: '18',
+    opacity:1,
+    outline: 'none',
+    width: '800',
+    // borderRadius: '35px',
+    height: '55px',
     boxShadow: state.isFocused ? null : null,
   })
 }
@@ -120,24 +142,73 @@ function AddProject() {
   return (
     <>
     <Navbar></Navbar>
-    <div className={styles.overlay}>
-      <section className={styles.section}>        
-        <div className={styles.container}>
-          <div className={styles.form }>
+    <div className={Styles.overlay}>
+      <section className={styles.section}>   
+        <div className={Styles.container}>
+          <div className={Styles.form }>
             <form onSubmit={addproject}>
-              <h2 className={styles.h2}>Add project: </h2>
+            <br/>
+            <span className={Styles.span}><FontAwesomeIcon icon={solid("plus")} size="lg" color="white"/></span>     
+              <h2 align="center" className={styles.h2}>Add project </h2>
               <div className={styles.div1}>
-              <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br /><br />
-              Start date:
+              <TextField
+              id="name"
+              label="Entrer votre nom ..."
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              className={classes.field}
+              variant= "outlined"
+              />
+              {/* <input type="text" id="name" className={styles.formInput} onChange={(e)=>{setName(e.target.value)}} placeholder="Enter name ..." required  /> <br /><br /> */}
+              {/* Start date:
               <input type="date" id="start" className={styles.formInput} onChange={(e)=>{setStart(e.target.value)}} placeholder="Start date" required /> <br /> <br />
-              End date:
-              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  placeholder="End date"  /> <br />
-              <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  /> <br />
+               */}
+               <br/><br/>
+               <TextField
+              id="start"
+              type="date"
+              label="Date de début ..."
+              onChange={(e) => {
+                setStart(e.target.value)
+              }}
+              className={classes.field}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant= "outlined"
+              />
+              <br/><br/>
+              <TextField
+              id="end"
+              type="date"
+              label="Date de fin ... "
+              onChange={(e) => {
+                setEnd(e.target.value)
+              }}
+              className={classes.field}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              variant= "outlined"
+              />
+              <br/><br/>
+              <TextField
+              id="description"
+              label="Décrire le projet ..."
+              onChange={(e) => {
+                setDescription(e.target.value)
+              }}
+              className={classes.field}
+              variant= "outlined"
+              />
+              {/* End date:
+              <input type="date" id="end" className={styles.formInput} onChange={(e)=>{setEnd(e.target.value)}}  placeholder="End date"  /> <br /> */}
+              {/* <textarea id="description" className={styles.formInput} onChange={(e)=>{setDescription(e.target.value)}} placeholder=" Enter description ..."  required  /> <br /> */}
               </div>
               <div className={styles.div2}>
-              <br />
                 <Select 
-                      placeholder="Select Client"
+                      placeholder="Sélectionner les membres ..."
                       name="client"
                       id="client"
                       onChange={(e) => {
@@ -147,10 +218,10 @@ function AddProject() {
                       options={clientsList} 
                       required
                 />
-              <br /> <br /><br />
+              <br /> 
           <Select 
                 isMulti
-                placeholder="Select Member"
+                placeholder="Sélectionner les employés..."
                 name="members"
                 id="members"
                 onChange={(e) => {
@@ -164,9 +235,9 @@ function AddProject() {
                   options={membersList} 
                   required
           />
-        <br /> <br />
+        <br />
           <Select 
-                placeholder="Select State"
+                placeholder="Etat du projet..."
                 name="state"
                 id="state"
                 onChange={(e) => {
@@ -178,7 +249,7 @@ function AddProject() {
           />
         <div>
         <br />
-        <br />
+        <div className={Styles.btnupload}>
             <input
               accept="image/*"
               id="file"
@@ -196,9 +267,10 @@ function AddProject() {
                         setFile(array);
                       }}
             />
-            <label htmlFor="file" className={Styles.btnUpload}>
-                <span>Upload Files</span>
+            <label htmlFor="file">
+                <span>Télécharger fichiers</span>
               </label>
+          </div>
         </div>
         </div>
         <button className={styles.btn}>SAVE</button>

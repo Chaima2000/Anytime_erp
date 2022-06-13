@@ -1,5 +1,8 @@
+
 .message-send-section{
     position: relative;
+    width: 98%;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,13 +23,74 @@
          #pic{
              display: none;
          }
+         
 
 
+    }
+    
+    .message-type-image{
+        display: flex;
+        width: 100%;
+        padding-right: 0px;
+        padding-top: 15px;
+        height: 100px;
+        border-radius: 20px;
+        border: none;
+        align-items: center;
+        .upload{
+            background: none;
+            position: absolute;
+            width:18%;
+            top:10px;
+            left: 90px;
+            text-align: center;
+            height: auto;
+            padding-left: 15px;
+            padding-top: 5px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            button {
+                border-radius: 50%;
+                border: 1px solid rgb(67, 67, 67);
+                background: rgb(246, 245, 245);
+                color: rgb(67, 67, 67);
+                cursor: pointer;
+                position: absolute;
+                left: 105px;
+                top:0px
+            }
+            img{
+                width: 100%;
+                height: 100%;
+                margin-bottom: 15px;
+            }
+        }
+        .formControl{
+            padding-left: 15px;
+            position: absolute;
+            top:65%;
+            width: 64%;
+            height: 40px;
+            outline: none;
+            color: rgb(86, 86, 86);
+            border-radius: 50px;
+            background:transparent;
+            border: none;
+        }
+        .emoji-icon{
+            position: absolute;
+            right: 60px;
+            top:45px;
+            font-size: 20px;
+            margin-right: 5px;
+            cursor: pointer;
+            background: red;
+        }
     }
     .message-type{
         display: flex;
         width: 80%;
-        height: 40px;
+        height: auto;
         background: #d0d0d059;
         border-radius: 50px;
         border: none;
@@ -34,7 +98,7 @@
         .form-control{
             padding-left: 15px;
             width: 100%;
-            height: 100%;
+            height: 40px;
             outline: none;
             color: rgb(86, 86, 86);
             border-bottom-left-radius: 50px;;
@@ -47,9 +111,10 @@
             margin-right: 5px;
             cursor: pointer;
                 }
+                
     }
     .emoji-section{
-        width: 480px;
+        width: 300px;
         background: #0e131d;
         position: absolute;
         right: 60px;
@@ -58,6 +123,8 @@
         border-radius: 8px;
         border-bottom-right-radius: 0px;
         display: none;
+        overflow: auto;
+        height: 300px;
         .emoji{
             display: grid;
             grid-template-columns: repeat(8,1fr);
@@ -75,6 +142,15 @@
                 background: rgba(197, 197, 247, 0.275);
             }
         }
+        &::-webkit-scrollbar{
+            overflow: hidden;
+            border-radius: 14px;
+            background:rgba(197, 197, 247, 0.275) ;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 14px;
+            background:rgba(197, 197, 247, 0.275) ;
+        }
     }
     #emoji{
         display: none;
@@ -82,4 +158,5 @@
     #emoji:checked ~ .emoji-section{
         display: block;
     }
+   
 }

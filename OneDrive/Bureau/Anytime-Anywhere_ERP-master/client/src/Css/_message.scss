@@ -3,7 +3,13 @@
     padding: 10px;
     overflow-y: auto;
     &::-webkit-scrollbar{
-     overflow: hidden;
+        overflow: hidden;
+        background:rgba(197, 197, 247, 0.275) ;
+        border-radius:14px ;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 14px;
+        background:rgba(123, 123, 141, 0.275) ;
     }
     .my-message{
         float: right;
@@ -14,6 +20,7 @@
             width: 370px;
             .message-text{
                 text-align: end;
+                background: #6495ed;
                 padding: 10px;
                 border-radius: 10px;
                 border-bottom-left-radius: 5px;
@@ -43,6 +50,7 @@
             justify-content: flex-start;
             width: 370px;        
             .message-text{
+                background: rgb(159, 159, 159);
                 text-align: start;
                 border-radius: 10px;
                 img{

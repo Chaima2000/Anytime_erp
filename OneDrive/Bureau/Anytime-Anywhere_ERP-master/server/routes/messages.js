@@ -2,13 +2,14 @@ const {message} = require("../database/models/messages.model");
 
 
   exports.AddMessage = async (req, res) => {
-  const {senderName, senderId,receiverId,newMessage,newImage}= req.body;
+  const {senderName,dateMsg, senderId,receiverId,newMessage,newImage}= req.body;
   const newmessage = new  message({
     senderId: senderId,
     senderName: senderName,
     receiverId: receiverId,
     newMessage:newMessage,
-    newImage:newImage
+    newImage:newImage,
+    dateMsg:dateMsg
   });
  
   try {
@@ -18,30 +19,24 @@ const {message} = require("../database/models/messages.model");
       res.send("ERROR");
     }
   };
-  exports.getMessages =async(req,res)=>{
-    const sender=req.body.senderId;
+  exports.getSenderMessages =async(req,res)=>{
+    const senderId=req.body.senderId;
+    const receiverId = req.params.id;
     try{
-    const messages= await message.find({'senderId':sender}).exec();
-    res.send(messages)
+    let messageList= await message.find({}).exec();
+    messageList = messageList.filter(m=>m.senderId == senderId && m.receiverId == receiverId ||m.receiverId == senderId && m.senderId == receiverId)
+    res.send(messageList)
     }catch(e){
       console.log(e)
     }
   }
-  exports.getTimeMessage= async ( req,res) =>{
+  exports.getLastMesg= async(req,res) =>{
     const id=req.params.id;
-    const times=[];
-    const days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     try{
-      for(let i=0;i<id.length;i++){
-        const Hours= id[i].createdAt.getHours();
-        const minutes= id[i].createdAt.getMinutes();
-        const day=id[i].createdAt.getDay();
-        const Day= days[day-1]; 
-        times[i]=Day+"    "+String((Hours)+":"+minutes)
-      }
-      res.send(times);
-    }
-    catch (e) {
+      const lastOne = await message.find({'senderId':id});
+      res.send(lastOne[lastOne.length-1].id)
+    }catch(e){
       console.log(e)
+    }
   }
-}
+  

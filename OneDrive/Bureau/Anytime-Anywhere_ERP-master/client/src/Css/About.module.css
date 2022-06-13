@@ -10,7 +10,7 @@
   position:absolute;
   align-items: center;
   justify-content: center;
-  top:29%;
+  top:27%;
   text-align: center;
   padding: 15px;
   margin: 5px;
@@ -18,27 +18,29 @@
 }
 
 .left{
-    width: 40%;
+    width: 60%;
     margin-left:5%;
-    margin-top: 3%;
-    height: 450px;
+    position: absolute;
+    height: 500px;
     background-image: url(Frame19.PNG);
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 8px;
+    top:15%;
+    /* border-radius: 8px; */
 }
 .right{
-    width: 40%;
+    width: 47%;
     min-height: 390px;
     background-color: #2f3d3c;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
     padding: 30px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     color: white;
-    margin-left: 500px;
-    margin-top: -340px;
+    left: 23%;
+    top:15%;
 }
 .right h1{
     font-size: 40px;

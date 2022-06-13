@@ -1,8 +1,8 @@
 .secondComponent{
-    width: 148vh;
+    width: 143.5vh;
     position: absolute;
     display: inline-block;
-    left:23.2%;
+    left:25.5%;
     height: 90vh;
     .right-side{
         width: 100%;
@@ -29,6 +29,7 @@
                     flex-direction: column;
                     justify-content: space-between;
                     .header{
+                        height: 50px;
                         width: 97%;
                         display: flex;
                         flex-direction: row;
@@ -109,7 +110,7 @@
          
      }
      #dot:checked ~ .row .col-8{
-         width: 980px;
+         width: 870px;
      }
      #dot:checked ~ .row .col-8 .message-show .my-message .my-text{
         width: 500px;

@@ -5,25 +5,34 @@ body {
 /** PROJECT PROFILE  **/
 .Btndefault{
   width: 20%;
-  height: 40px;
-  margin: 5px;
-  float: right;
-  padding: 5px;
-  background: #4682b4;
+  text-align:center;
+  margin-right:5px;
+  float: left;
+  padding: 11px;
+  background: #4169e1;
   color:white;
   cursor: pointer;
   border-radius: 5px;
   border:none;
 }
+.edit{
+  position:relative;
+  margin-top:15%;
+  margin-left:48%;
+  background:green;
+  padding:10px;
+  border-radius:50%;
+  width:25px;
+  height:23px;
+}
 .BtnTransparent{
-  width: 22%;
-  margin:5px;
-  float: right;
-  height: 40px;
-  padding: 7px;
+  width: 24%;
+  float: left;
+  text-align:center;
+  padding: 10px;
   background: none;
   color: black;
-  font-weight: bold;
+  font-size:13px;
   cursor: pointer;
   border-radius: 5px;
   border:1px solid grey;
@@ -45,15 +54,24 @@ body {
 }
 /***CARD ***/
 .Bloc {
-  border:1px solid grey;
+  border:1px solid rgb(204, 204, 204);
   display: inline-block;
-  margin: 5px;
+  margin: 10px;
   padding: 15px;
-  width: 29%;
-  font-size: 19px;
-  box-shadow: 0 0 4px;
+  width: 28%;
+  font-size: 15px;
+  border-radius:8px;
 }
-
+.btnView{
+  border:none;
+  border-radius: 5px;
+  padding:11px;
+  background: #ff8243;
+  cursor:pointer;
+  color:white;
+  float:left;
+  margin-right:5px
+}
 
 
 
@@ -90,9 +108,10 @@ body {
 .Details{
   border-bottom: 1px solid rgb(199, 199, 199);
   padding-left: 25px;
+  padding-bottom: 25px;
   font-size:17px;
   width: 95%;
-  height: 475px;
+  height: auto;
 }
 .details{
   border-bottom: 1px solid rgb(199, 199, 199);
@@ -100,18 +119,45 @@ body {
   height: auto
 }
 .add_icon{
-  display: inline-block;
-  margin-left: 85%;
+  position:absolute;
+  right:3%;
+  top:95%;
+  padding:10px;
+  font-size:15px;
   border-radius:50%;
-  background: #4682b4;
-  width: 2%;
-  height: 29px;
+  background: green;
+  width: 15px;
+  height: 18px;
   text-align: center;
   padding: 13px;
   cursor: pointer;
 }
 .add_icon:hover{
   transform: scale(1.1);
+}
+.defaultBtn{
+  background: #ff7518;
+  position:absolute;
+  left:40%;
+  bottom:4%;
+  height:44px;
+  border:none;
+  outline:none;
+  padding:10px;
+  border-radius:8px;
+  color:white;
+  font-weight: 600;
+}
+.plus_icon{
+  position:absolute;
+  background:rgb(128, 228, 128);
+  padding:10px;
+  border-radius:50%;
+  width: 19px;
+  height:19px;
+  text-align:center;
+  left:45%;
+  top:1%;
 }
 .profile {
   cursor: pointer;

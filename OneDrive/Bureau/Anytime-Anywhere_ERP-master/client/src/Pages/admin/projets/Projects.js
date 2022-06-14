@@ -23,18 +23,19 @@ function Projects(props) {
   const [editItem , setEdit] = useState(false);
   const [end , setEnd] = useState("");
   const [state, setState] = useState("");
+  const [filter,setfilter]=useState("");
   let { id } = useParams();
-  var i=0;
-
+  var i = projectList.length;
+  console.log(filter, searchTerm)
   Modal.setAppElement('#root')
-  
   function getProjects(page) {
     axios
-      .post("/getprojects", { currentPage: page, searchTerm: searchTerm })
+      .post("/getprojects", { currentPage: page, searchTerm: searchTerm , filter:filter })
       .then((res) => {
         if (res.data === "ERROR") {
           alert("error !");
         } else {
+          i++;
           setWaiting(false);
           setprojectList(res.data.projects);
           setAllPages(res.data.allPages);
@@ -120,6 +121,15 @@ return (
             <>
     <div className={styles.Boss}>
     <h2>Liste des projets</h2>
+    <i><FontAwesomeIcon icon={solid("filter")}/></i>
+    <select name="" id="select" onChange={(e)=>setfilter(e.target.value)}>
+      <option > Filtrer par: </option>
+      <option value="start">Date de début</option>
+      <option value="end">Date de fin </option>
+      <option value="state">Etat</option>
+      <option value="name">Nom</option>
+    </select>
+    {filter !=""?
     <form 
         onSubmit={(e) => {
               document.getElementById("searchField").disabled = true;
@@ -131,6 +141,7 @@ return (
             }}
         className={styles.search_form}
         >
+        {filter =="start" ? 
         <input
                   id="searchField"
                   required
@@ -138,10 +149,50 @@ return (
                     setSearchTerm(e.target.value);
                   }}
                   className={styles.formInput}
-                  type="text"
-                  placeholder="Nom du projet ..."
+                  type="date"
+                  placeholder="Date de début ..."
                 />
-                <button id="searchBtn" className="transparentBtn">
+        :
+        null}
+    {filter == "end" ? 
+    <input
+        id="searchField"
+        required
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+        }}
+        className={styles.formInput}
+        type="date"
+        placeholder="Date de fin ..."
+    /> :null
+    }
+      {filter == "name" ?
+        <input
+          id="searchField"
+          required
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+                  className={styles.formInput}
+                  type="text"
+                  placeholder="Entrer le nom ..."
+                />
+    :null
+    }
+    {filter == "state" ?
+        <input
+          id="searchField"
+          required
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+                  className={styles.formInput}
+                  type="text"
+                  placeholder="Entrer l'état ..."
+                />
+    :null
+    }
+    <button id="searchBtn" className={styles.transparentBtn}>
                           <FontAwesomeIcon icon={solid("search")} size="lg" />
                 </button>
                 <button
@@ -154,18 +205,20 @@ return (
                           }}
                           hidden
                           id="resetBtn"
-                          className="transparentBtn"
+                          className={styles.transparentBtn}
                 >
                           <FontAwesomeIcon icon={solid("undo")} size="lg" />
                 </button>
     </form>
+    :null}
     <br /><br />
+    <div className={styles.blocks}>
         {projectList.map ( (project)  => {
-          return(
+           return(
           <>
             <div className={styles.Block}>
               <div className={styles.underBlock}>
-                <p>Projet {i=i+1}:</p><br/>
+                <p>Nom du projet:</p><br/>
                 <span>{project.name}</span>
               </div>
               <br /><hr /><br/>
@@ -249,13 +302,16 @@ return (
           </>
             );
            })}
+           </div>
     </div>
     <div className="paginationContainer">
       {allPages.map((page) => {
         if (page === currentPage) {
+          console.log(i)
           return (
             <div key={page} onClick={() => { setCurrentPage(page); getProjects(page);}} className="activePagination">
               {page}
+
             </div>
           );
           } else {

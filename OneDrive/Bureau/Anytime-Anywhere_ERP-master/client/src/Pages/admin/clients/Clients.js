@@ -67,8 +67,8 @@ function Clients(){
   }
   return (
     <>
-     <Navbar></Navbar>
-     <h2>Liste des clients </h2>
+     <Navbar />
+     <h2 align="center">Liste des clients </h2>
      <form onSubmit={(e) => {document.getElementById("searchField").disabled = true;document.getElementById("resetBtn").hidden = false;document.getElementById("searchBtn").hidden = true;e.preventDefault();getClients();setCurrentPage(1);}}
                   className={styles.search_form}>
                   <input id="searchField" required onChange={(e) => {setSearchTerm(e.target.value)}} 
@@ -141,7 +141,6 @@ function Clients(){
                                                       }
                     }>
                     <h2 align="center"> Informations du {ViewClient.society}</h2>
-                    <div className={styles.avatarCircle}></div>
                       <div className={styles.viewClientDetails}>
                           <p>Activité: <span  className={styles.span}>{ViewClient.activity}</span></p>
                           <p>Type: <span  className={styles.span}>{ViewClient.type}</span></p>

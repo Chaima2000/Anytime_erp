@@ -15,6 +15,7 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@mui/lab": "^5.0.0-alpha.81",
     "@tippy.js/react": "^3.1.1",
     "body-parser": "^1.19.2",

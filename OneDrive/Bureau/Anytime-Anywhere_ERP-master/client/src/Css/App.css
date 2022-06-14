@@ -37,7 +37,7 @@ table {
 }
 table thead{
   height: 40px;
-  background: #4f86f7;
+  background: #191970;
   color:white
 }
 .table tbody tr:hover {
@@ -142,7 +142,7 @@ table td {
   border:none;
   border-radius:12px;
   height: 100%;
-  background: #bb3385;
+  background: #bcd4e6;
   z-index: -1;
   transition : .2s linear;
   cursor:pointer;

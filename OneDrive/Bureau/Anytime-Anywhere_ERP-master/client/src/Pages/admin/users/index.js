@@ -190,7 +190,7 @@ function getUsers(page) {
             <table className="table">
               <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>Image</th>
                   <th>Nom</th>
                   <th>Gmail</th>
                   <th>Rôle</th>
@@ -202,7 +202,9 @@ function getUsers(page) {
                 {usersList.map((user) => {
                   return (
                     <tr key={user._id}>
-                    <td>{i=i+1}</td>
+                    <td><img className={styles.images} src={user.image} />
+                    {/* {i=i+1} */}
+                    </td>
                       <td className={styles.name}>{user.firstName} {user.lastName}</td>
                       <td>{user.email}</td>
                       <td className={styles.rôle}>
@@ -291,7 +293,6 @@ function getUsers(page) {
                   );
                 })}
               </tbody>
-              <tfoot><tr><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none"}}></td><td style={{border:"none" , paddingTop:"35px", float:"left"}}> <b>{i}</b>  / <b>{usersList.length} personnes</b> </td></tr></tfoot>
             </table>
             <div className="paginationContainer">
               {allPages.map((page) => {

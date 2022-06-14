@@ -62,9 +62,9 @@ function AddProject() {
 
   //State options //
   const options = [
-    { value: 'planning', label: 'planning' },
-    { value: 'in_progress', label: 'in progress' },
-    { value: 'closed', label: 'closed' }
+    { value: 'planning', label: 'En planification' },
+    { value: 'in_progress', label: 'En cours' },
+    { value: 'closed', label: 'Terminé' }
   ]
 
   function convertBase64(file) {

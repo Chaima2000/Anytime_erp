@@ -4,6 +4,7 @@ const { client  } = require("../database/models/clients.model");
 exports.getprojects = async (req, res) => {
   var currentPage;
   var searchTerm;
+  var filter;
   var allPages = [];
   if (req.body.currentPage) {
     currentPage = req.body.currentPage;
@@ -15,14 +16,74 @@ exports.getprojects = async (req, res) => {
   } else {
     searchTerm = "";
   }
-  try {
-    const projects = await project
+  if (req.body.filter) {
+    filter = req.body.filter;
+  } else {
+    filter = "";
+  }
+    try {
+        if(filter == "start"){
+          const projects = await project
+        .find({start: { $regex: ".*" + searchTerm + ".*" }})
+        .limit(9)
+        .skip((currentPage - 1) * 9)
+        .sort({ date: -1 })
+        .exec();
+      const count = await project.countDocuments({
+        start: { $regex: ".*" + searchTerm + ".*" },
+      });
+      let totalPages = Math.ceil(count / 9);
+      for (let i = 1; i <= totalPages; i++) {
+        allPages.push(i);
+      }
+      res.send({
+        projects,
+        allPages,
+      });
+        }
+        else if (filter == "end"){
+            const projects = await project
+          .find({end: { $regex: ".*" + searchTerm + ".*" }})
+          .limit(9)
+          .skip((currentPage - 1) * 9)
+          .sort({ date: -1 })
+          .exec();
+        const count = await project.countDocuments({
+          end: { $regex: ".*" + searchTerm + ".*" },
+        });
+        let totalPages = Math.ceil(count / 9);
+        for (let i = 1; i <= totalPages; i++) {
+          allPages.push(i);
+        }
+        res.send({
+          projects,
+          allPages,
+        })
+      }else if (filter == "state"){
+            const projects = await project
+          .find({state: { $regex: ".*" + searchTerm + ".*" }})
+          .limit(9)
+          .skip((currentPage - 1) * 9)
+          .sort({ date: -1 })
+          .exec();
+        const count = await project.countDocuments({
+          state: { $regex: ".*" + searchTerm + ".*" },
+        });
+        let totalPages = Math.ceil(count / 9);
+        for (let i = 1; i <= totalPages; i++) {
+          allPages.push(i);
+        }
+        res.send({
+          projects,
+          allPages,
+        })
+      }else {
+        const projects = await project
       .find({name: { $regex: ".*" + searchTerm + ".*" }})
       .limit(9)
       .skip((currentPage - 1) * 9)
       .sort({ date: -1 })
       .exec();
-
     const count = await project.countDocuments({
       name: { $regex: ".*" + searchTerm + ".*" },
     });
@@ -33,11 +94,12 @@ exports.getprojects = async (req, res) => {
     res.send({
       projects,
       allPages,
-    });
-  } catch (err) {
-    res.send(err)
+    })
   }
-};
+    }catch (err) {
+      res.send(err)
+      }
+  };
 exports.getClients = async (req, res)=>{
   const clientList = await client.find({}).exec()
   res.send(clientList);

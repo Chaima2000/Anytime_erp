@@ -19,11 +19,12 @@
     }
     .Block{
       border: 1px solid rgb(189, 188, 188);
-      box-shadow : -2px -2px 5px #babecc, 2px 2px 5px #babecc;
+      box-shadow : -2px -2px 5px #e2e4ea, 2px 2px 5px #f3f5fa;
       width: 22%;
       height:auto;
       display:inline-block;
-      margin: 5px;
+      margin-bottom: 35px;
+      margin-right:15px
     }
     .Block hr{
       color: rgb(189, 188, 188);
@@ -46,6 +47,32 @@
     }
     .Boss{
       text-align:center
+    }
+    .Boss i {
+      font-size: 17px;
+      z-index:1;
+      position :absolute;
+      color: grey;
+      left:13%;
+      padding:5px;
+      height: 23px;
+      border-top: 1px solid rgb(189, 188, 188);
+      border-left: 1px solid rgb(189, 188, 188);
+      border-bottom: 1px solid rgb(189, 188, 188);
+      
+    }
+    .Boss select{
+      position :absolute;
+      left:13%;
+      width:145px;
+      outline:none;
+      padding-left:29px;
+      cursor:pointer;
+      height: 35px;
+      border-top: 1px solid rgb(189, 188, 188);
+      border-right: 1px solid rgb(189, 188, 188);
+      border-left:none;
+      border-bottom: 1px solid rgb(189, 188, 188);
     }
     .icons{
       padding: 20px;
@@ -79,9 +106,35 @@
       border-radius: 50%;
       
     }
+    .transparentBtn {
+      position:absolute;
+      right:0;
+      height: 38px;
+      border-width: 1px;
+      padding: 10px;
+      border: 1px solid rgb(212, 211, 211);
+      color: black;
+      background-color: rgba(255, 255, 255, 0);
+      transition: all 0.6s;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .transparentBtn:hover {
+      background-color: rgb(244, 244, 244);
+    }
+    .blocks{
+      position:relative;
+      margin-top:5%;
+    }
     .formInput {
+      position:absolute;
+      top:50%;
+      left:0%;
+      outline:none;
       padding: 13px;
-      border-radius: 5px;
+      height: 10px;
+      width: 200px;
+      border-radius: 3px;
       border:1px solid rgb(212, 211, 211)
     }
     .FormInput{
@@ -126,8 +179,8 @@
       font-size: 20px;
     }
     .search_form  {
-      position:relative;
-      left:39%;
-      width: 25%;
+      position:absolute;
+      right:9%;
+      width: 22.5%;
     }
     /****************/

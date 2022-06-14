@@ -39,7 +39,7 @@ function UserProfile() {
         </>
       ) : (
         <>
-        <Navbar></Navbar>
+        <Navbar/>
       <div className={styles.content}>
         <div className={styles.Profilecontainer}>
           <div className={styles.imgContainer}>

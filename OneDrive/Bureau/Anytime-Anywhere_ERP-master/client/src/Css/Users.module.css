@@ -4,6 +4,12 @@
 .container h2 {
   text-align: center;
 }
+.images{
+  width: 30px;
+  height:30px;
+  border-radius:50%;
+
+}
 .rôle{
   width: 25%;
 }
@@ -16,13 +22,13 @@
  z-index:2
 }
 .tableOne thead {
-  background: #d3e8ef;
+  background: #ebf5f8;
 }
 .tableOne thead tr form {
   margin: 15px;
 }
 .searchField {
-  background: #d3e8ef;
+  background: #e5eff3;
   width: 97%;
   margin-top: 5%;
   margin-left:2%;

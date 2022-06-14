@@ -1,5 +1,6 @@
 import React , {useState ,  useEffect} from 'react';
 import axios from 'axios';
+import Navbar from "../../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import {Link} from "react-router-dom";
@@ -30,9 +31,10 @@ function EditClient () {
         }
 return(
     <>
+    <Navbar/>
     <Link to="/Clients">
           <FontAwesomeIcon className="navIcon" icon={solid("arrow-left")} />
-        </Link>
+    </Link>
      <form className={styles.bloc}>
     <h3>Nom du la société :  {client.society} </h3>
     <h3>Type :  {client.type} </h3>

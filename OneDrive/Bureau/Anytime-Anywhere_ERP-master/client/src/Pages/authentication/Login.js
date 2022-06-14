@@ -1,4 +1,4 @@
-import styles from  "../../Css/Login.module.css";
+import "../../Css/Login.scss";
 import { Link, useHistory } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import swal from 'sweetalert';
@@ -7,8 +7,7 @@ import { AppContext } from "../../Context/AppContext";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import {TweenMax} from "gsap";
-import img1 from "../../uploads/img1.png";
+import img1 from "../../Css/wave.png";
 
 function Login() {
   const history = useHistory();
@@ -16,21 +15,46 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [waiting, setWaiting] = useState(null);
-   
-  let imgs = useRef(null);
-  let headers = useRef(null);
-  let logos = useRef(null);
-  let form = useRef(null);
+   function click(){
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-up-mode");
+    });
+    sign_in_btn.addEventListener("click", () => {
+      container.classList.remove("sign-up-mode");
+    });
+   }
+   function click(){
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-up-mode");
+    });
+    sign_in_btn.addEventListener("click", () => {
+      container.classList.remove("sign-up-mode");
+    });
+   }
+  
 
-  useEffect ( () => {
-    TweenMax.to(imgs,1,{delay:-0.6 , opacity: 1 , ease : "easeOut"})
-    TweenMax.to(logos,2,{delay:-0.7 , opacity: 1 , ease : "easeOut"})
-    TweenMax.to(headers,2,{delay:-0.8 , opacity: 1 , ease : "easeOut"})
-    TweenMax.to(form,2,{delay:-0.9 , opacity: 1 , ease : "easeOut"})
-  })
-
-
-
+function click(){
+  
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
+if(sign_up_btn){
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+}
+if(sign_in_btn){
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});
+}
+}
 
 
   function login(e) {
@@ -62,47 +86,75 @@ function Login() {
       });
     e.preventDefault();
   }
-
   return (
     <>
-      <Navbar />
-       <div className={styles.wrapper}>
-          <div className={styles.separate} id="start">
-             <div className={styles.banner} ref={el => imgs = el}>
-                <img src={img1} alt="main-img" className={styles.banner_img} />
-             </div>
-             <p className={styles.copyright}>© 2021 A&A  All rights reserved</p>
-          </div>
-          <div className={styles.form_section}>
-             <div className={styles.form_style}>
-                <div className={styles.logo} ref={el => logos = el}>
-                <img src={process.env.PUBLIC_URL + "/logo.png"} />
-                </div>
-                <h2 ref={el => headers = el}>Welcome !</h2>
-                <form ref={el => form = el} className={styles.form} onSubmit={login}>
-                    <div className={styles.fields}>
-                      <label> Email</label><br />
-                      <input type="email" placeholder="Enter your email" onChange={(e) => {setEmail(e.target.value);}} required />
-                    </div>
-                    <div className={styles.fields}>
-                      <label>Password</label><br />
-                      <input type="password" placeholder="Enter your password" onChange={(e) => { setPassword(e.target.value)}} required />
-                    </div>
-                    {waiting ? (
-                          <FontAwesomeIcon icon={solid("spinner")}  spin size="2x" className={styles.spinner} />
-                        ) : (
-                          <>
-                          <button type="submit" className={styles.submit_btn}> Login </button>
-                          </>
-                        )}
-                    <br />
-                    <Link to="/forgotpassword"  className={styles.p_right}><p>Forgot Password?</p></Link>
-                    <br />
-                    <Link to="/signup" className={styles.p_left}>Don't have an account ? create one !</Link>
-                </form>
-             </div>
-          </div>
+    
+    <div className="container" id="container">
+      <div className="forms-container">
+        <div className="signin-signup">
+          <form className="sign-in-form" onSubmit={login}>
+            <h2 className="title">S'identifier</h2>
+            <div className="input-field">
+            <i><FontAwesomeIcon icon={solid("user")} /></i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div className="input-field">
+            <i><FontAwesomeIcon icon={solid("lock")} /></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <input type="submit" value="Login" className="btn solid"/>
+            <p className="social-text">Or Sign in with social platforms</p>
+          </form>
+          <form className="sign-up-form">
+            <h2 className="title">S'inscrire</h2>
+            <div className="input-field">
+            <i><FontAwesomeIcon icon={solid("user")} /></i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div className="input-field">
+            <i><FontAwesomeIcon icon={solid("envelope")} /></i>
+              <input type="email" placeholder="Email" />
+            </div>
+            <div className="input-field">
+            <i><FontAwesomeIcon icon={solid("lock")} /></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <input type="submit" className="btn" value="Sign up" />
+            <p className="social-text">Or Sign up with social platforms</p>
+          </form>
+        </div>
       </div>
+
+      <div className="panels-container">
+        <div className="panel left-panel">
+          <div className="content">
+            <h3>New here ?</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
+            </p><br/>
+            <button className="btn transparent" id="sign-up-btn" onClick={click()}>
+              S'inscrire
+            </button>
+          </div>
+          <img src={img1} className="image" alt="" />
+        </div>
+        <div className="panel right-panel">
+          <div className="content">
+            <h3>One of us ?</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+              laboriosam ad deleniti.
+            </p>
+            <button className="btn transparent" id="sign-in-btn" onClick={click()}>
+              Se connecter
+            </button>
+          </div>
+          <img src={img1} className="image" alt="" />
+        </div>
+      </div>
+    </div> 
+    
     </>
   );
 }

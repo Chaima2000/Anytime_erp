@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import styles from "../../Css/Login.module.css";
+import styles from "../../Css/Login.scss";
 
 function ActivateAccount() {
   const [activated, setActivated] = useState(null);

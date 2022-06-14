@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../Css/Login.module.css";
+import styles from "../../Css/Login.scss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

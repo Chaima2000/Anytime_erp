@@ -1,4 +1,4 @@
-import styles from "../../Css/Login.module.css";
+import styles from "../../Css/Login.scss";
 import { useState } from "react";
 import axios from "axios";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";

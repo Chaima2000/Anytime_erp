@@ -9,7 +9,6 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import axios from 'axios';
 import swal from 'sweetalert';
 import {makeStyles} from '@material-ui/core';
-import { useHistory } from "react-router-dom";
 import {toast} from 'react-toastify';
 import Tooltip from "@material-ui/core/Tooltip";
 import 'react-toastify/dist/ReactToastify.css'; 
@@ -32,7 +31,6 @@ function AddProject() {
   const [membersList , setMembersList] = useState([]);
   const [members , setMembers] = useState({});
   const [waiting, setWaiting] = useState(true);
-  const history = useHistory();
   const [file , setFile] = useState([]);
   const classes= useStyles();
   useEffect(() => {
@@ -88,28 +86,11 @@ function AddProject() {
     fontSize: '18',
     opacity:1,
     outline: 'none',
-    width: '1300',
+    width: '300px',
     // borderRadius: '35px',
     height: '55px',
     boxShadow: state.isFocused ? null : null,
   })
-}
-const customstyles = {
-  control: (provided , state) => ({
-    ...provided,
-    // border: state.isFocused ? 0 : 0,
-    paddingLeft:'4px',
-    fontSize: '18',
-    opacity:1,
-    outline: 'none',
-    width: '800',
-    // borderRadius: '35px',
-    height: '55px',
-    boxShadow: state.isFocused ? null : null,
-  })
-}
-const success=()=>{
-  window.location.reload()
 }
 
   const addproject =(e) => {
@@ -136,14 +117,15 @@ const success=()=>{
     axios.post("/addproject", datax).then((res)=>{
       if(res.data === "ERROR"){
         swal({
-          title: "ERROR",
-          button: "OK!",
+          title: "Erreur se produit", 
+          text: "Veuillez vérifier vos donnée!", 
+          type: "error"
+        }).then(function(){
+          window.location.reload()
         });
-        console.log(e);
       }else if(res.data === "SUCCESS"){
         swal({
-          title: "Good job", 
-          text: "Ajouté avec succés!", 
+          title: "Ajouté avec succés ", 
           type: "success"
         }).then(function(){
           window.location.reload()
@@ -170,58 +152,61 @@ const success=()=>{
         
           <div className={Styles.form }>
             <form onSubmit={addproject}>
-            <span className={Styles.span}><FontAwesomeIcon icon={solid("plus")} color="white"/></span>     
-              <h2 align="center" className={styles.h2}>Ajouter un projet </h2>
-              <div className={styles.div1}>
-              <TextField
-              id="name"
-              label="Entrer le nom ..."
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              className={classes.field}
-              variant= "outlined"
-              />
-               <br/><br/>
-               <TextField
-              id="start"
-              type="date"
-              label="Date de début ..."
-              onChange={(e) => {
-                setStart(e.target.value)
-              }}
-              className={classes.field}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant= "outlined"
-              />
-              <br/><br/>
-              <TextField
-              id="end"
-              type="date"
-              label="Date de fin ... "
-              onChange={(e) => {
-                setEnd(e.target.value)
-              }}
-              className={classes.field}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant= "outlined"
-              />
-              <br/><br/>
-              <TextField
-              id="description"
-              label="Décrire le projet ..."
-              onChange={(e) => {
-                setDescription(e.target.value)
-              }}
-              className={classes.field}
-              variant= "outlined"
-              />
+              <FontAwesomeIcon icon={solid("plus")} color="white"  className={Styles.span}/>   
+              <br/>
+              <br/>
+              <br/>
+              <h2 align="center">Ajouter un projet </h2>
+              <div className={Styles.div1}>
+                <TextField
+                id="name"
+                label="Entrer le nom ..."
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                className={classes.field}
+                variant= "outlined"
+                />
+                <br/><br/>
+                <TextField
+                id="start"
+                type="date"
+                label="Date de début ..."
+                onChange={(e) => {
+                  setStart(e.target.value)
+                }}
+                className={classes.field}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant= "outlined"
+                />
+                <br/><br/>
+                <TextField
+                id="end"
+                type="date"
+                label="Date de fin ... "
+                onChange={(e) => {
+                  setEnd(e.target.value)
+                }}
+                className={classes.field}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant= "outlined"
+                />
+                <br/><br/>
+                <TextField
+                id="description"
+                label="Décrire le projet ..."
+                onChange={(e) => {
+                  setDescription(e.target.value)
+                }}
+                className={classes.field}
+                variant= "outlined"
+                />
               </div>
-              <div className={styles.div2}>
+              <div className={Styles.div2}>
                 <Select 
                       placeholder="Sélectionner les membres ..."
                       name="client"
@@ -234,35 +219,34 @@ const success=()=>{
                       required
                 />
               <br /> 
-          <Select 
-                isMulti
-                placeholder="Sélectionner les employés..."
-                name="members"
-                id="members"
-                onChange={(e) => {
-                  let values =[]
-                  e.forEach(element=>{
-                  values.push(element.value)
-                  })
-                  setMembers(values)
-                }}
-                styles={customStyles}
-                  options={membersList} 
-                  required
-          />
-        <br />
-          <Select 
-                placeholder="Etat du projet..."
-                name="state"
-                id="state"
-                onChange={(e) => {
-                  setState(e.label)
-                }}
-                
-                styles={customStyles}
-                options={options} 
-                
-          />
+              <Select 
+                    isMulti
+                    placeholder="Sélectionner les employés..."
+                    name="members"
+                    id="members"
+                    onChange={(e) => {
+                      let values =[]
+                      e.forEach(element=>{
+                      values.push(element.value)
+                      })
+                      setMembers(values)
+                    }}
+                    styles={customStyles}
+                      options={membersList} 
+                      required
+              />
+            <br />
+            <Select 
+                  placeholder="Etat du projet..."
+                  name="state"
+                  id="state"
+                  onChange={(e) => {
+                    setState(e.label)
+                  }}
+                  
+                  styles={customStyles}
+                  options={options}   
+            />
         <div>
         <br />
         <div className={Styles.btnupload}>
@@ -285,7 +269,7 @@ const success=()=>{
             />
             <label htmlFor="file" style={{cursor:'pointer'}}>
                 <span>Télécharger fichiers</span>
-              </label>
+            </label>
           </div>
         </div>
         </div>

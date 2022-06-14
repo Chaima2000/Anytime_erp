@@ -55,9 +55,9 @@ function ResetPassword() {
 
   return (
     <>
-    <div className={styles.center}>
-        <div className={styles.header}> Nouveau mot de passe </div>
-        <form onSubmit={resetPassword} className={styles.forgetPasswordForm}>
+    <div className="center">
+        <div className="header"> Nouveau mot de passe </div>
+        <form onSubmit={resetPassword} className="forgetPasswordForm">
             <input
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -67,9 +67,9 @@ function ResetPassword() {
               placeholder="Nouveau mot de passe ..."
               type="password"
             />
-             <i><FontAwesomeIcon icon={solid("key")}    className={styles.icon} />
+             <i><FontAwesomeIcon icon={solid("key")}    className="icon" />
             </i>
-            <button className={styles.defaultBtn}>Confirmer</button>
+            <button className="DefaultBtn">Confirmer</button>
           </form>
       </div>
     </>

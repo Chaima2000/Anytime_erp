@@ -1,0 +1,39 @@
+h4{
+    color:rgb(99, 99, 99);
+    float:left;
+}
+table tr td{
+    padding:20px;
+    border:none;
+    height:105px; 
+}
+table tr:hover {
+    cursor:pointer;
+    background:rgb(245, 245, 245);
+}
+table tr:nth-child(1), table tr:nth-child(2) , table tr:nth-child(3){
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+.image{
+    border-radius: 50%;
+    width:50%;
+    height:100%;
+    cursor:pointer;
+}
+b,p{
+    float: left;
+    color:grey
+}
+.div{
+    border:1px solid rgb(165, 165, 165);
+    border-radius: 15px;
+    width: 99%;
+}
+i{
+    float:right;
+    color:black;
+    cursor: pointer;
+}
+i:hover{
+    color:blue
+}

@@ -14,13 +14,25 @@
 .span{
   text-align:center;
   background:green;
+  padding-bottom: 35px;
   border-radius:50%;
-  padding: 8px;
-  width: 2.5%;
-  height: 3.8%;
+  padding: 15px;
+  font-size: 18px;
   position: absolute;
   left:48%;
   top:4%;
+}
+.div1{
+  position:absolute;
+  left:5%;
+  top:30%;
+  width: 300px;
+}
+.div2{
+  width: 300px;
+  position: absolute;
+  right:5%;
+  top:30%;
 }
 .btnupload{
     width:300px;
@@ -28,16 +40,16 @@
     padding-left: 13px;
     cursor:pointer;
     color : grey;
-    height:37px;
+    height:55px;
     margin-top:0%;
     border-radius:5px;
-    border: 1px solid rgb(164, 164, 164)
+    border: 1px solid rgb(189, 189, 189)
 }
 .container {
   position: relative;
   margin-top: 1.5%;
   width: 800px;
-  height: 500px;
+  height: 550px;
   background: white;
   border-radius: 10px;
   display: flex;
@@ -52,23 +64,23 @@
   position:absolute;
   top:15%;
   font-size:15px;
-  left:5%;
+  left:4%;
   color:white;
   background: rgb(87, 179, 87);
   padding:10px;
   border-radius:5px;
   cursor:pointer;
-  width: 1.5%;
+  width: 3%;
 }
 .spanOne:hover{
   transform:scale(1.1)
 }
 .form{
   position: absolute;
-  width: 90%;
+  width: 100%;
   top:-0.1%;
-  height: 420px;
-  padding: 40px;
+  height: 100%;
+  padding: 20px;
   border-radius:10px;
 }
 
@@ -76,7 +88,7 @@
     position :absolute;
     text-align:center;
     padding-top:10px;
-    bottom:0;
+    bottom:5%;
     left:35%;
     width:230px;
     height:50px;

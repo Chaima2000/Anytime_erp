@@ -1,10 +1,7 @@
-import Home from "../Pages/navigation/Home";
-import Navbar from "../components/Navbar";
 import About from "../Pages/navigation/About";
 import Services from "../Pages/navigation/Services";
 import Contact from "../Pages/navigation/Contact";
 import Login from "../Pages/authentication/Login";
-import Signup from "../Pages/authentication/Signup";
 import ForgotPassword from "../Pages/authentication/ForgotPassword";
 import ResetPassword from "../Pages/authentication/ResetPassword";
 import ActivateAccount from "../Pages/authentication/ActivateAccount";
@@ -95,7 +92,7 @@ export const superAdminRoutes = (
   <>
   <Switch>
     <Route path="/" exact>
-        <Home />
+        <Login />
     </Route>
       <Route path="/dashboard" exact>
         <Dashboard />
@@ -172,7 +169,7 @@ export const visitorRoutes = (
   <>
     <Switch>
       <Route path="/" exact>
-        <Home />
+        <Login />
       </Route>
       <Route path="/services" exact>
         <Services />
@@ -185,9 +182,6 @@ export const visitorRoutes = (
       </Route>
       <Route path="/login" exact>
         <Login />
-      </Route>
-      <Route path="/signup" exact>
-        <Signup />
       </Route>
       <Route path="/forgotpassword" exact>
         <ForgotPassword />

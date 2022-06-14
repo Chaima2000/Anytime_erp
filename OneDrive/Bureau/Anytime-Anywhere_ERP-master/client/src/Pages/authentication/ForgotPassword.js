@@ -34,9 +34,9 @@ function ForgotPassword() {
   }
   return (
     <>
-      <div className={styles.center}>
-        <div className={styles.header}> Rénitialiser le mot de passe</div>
-        <form onSubmit={forgotPassword} className={styles.forgetPasswordForm}>
+      <div className="center">
+        <div className="header"> Rénitialiser le mot de passe</div>
+        <form onSubmit={forgotPassword} className="forgetPasswordForm">
             <input
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -47,9 +47,9 @@ function ForgotPassword() {
               type="email"
               id="email"
             />
-            <i><FontAwesomeIcon icon={solid("envelope")}  size="lg"  className={styles.icons} />
+            <i><FontAwesomeIcon icon={solid("envelope")}  size="lg"  className="icon" />
             </i>
-            <button className={styles.defaultBtn}>Confirmer</button>
+            <button className="DefaultBtn">Confirmer</button>
           </form>
       </div>
     </>

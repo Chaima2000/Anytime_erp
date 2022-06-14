@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import styles from "../../Css/Login.scss";
 
 function ActivateAccount() {
   const [activated, setActivated] = useState(null);
   const history = useHistory();
+ 
   const url = window.location.pathname;
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function ActivateAccount() {
 
   return (
     <>
-      <section className={styles.container}>
+      <section className="Activated">
         {activated ? (
           <div className="card" align="center">
             <img
@@ -48,7 +49,7 @@ function ActivateAccount() {
             <hr />
             <h2>Account activated successfully</h2>
             <br />
-            <h4>Redirecting to the login page ...</h4>
+            <Link to="/Login"><h4>Redirecting to the login page ...</h4></Link>
           </div>
         ) : !activated ? (
           <div className="card" align="center">
@@ -62,7 +63,7 @@ function ActivateAccount() {
             <h2>Activation failed please contact us:</h2>
             <code>contact@Anytime&Anywhere.com</code>
             <br />
-            <h4>Redirecting to the login page ...</h4>
+            <Link to="/Login"><h4>Redirecting to the login page ...</h4></Link>
           </div>
         ) : null}
       </section>

@@ -317,8 +317,11 @@ border-radius: 5px 5px 0 0;
 .panel p {
   font-size: 0.95rem;
   padding: 0.7rem 0;
+  color:white;
 }
-
+.h4{
+  color:white
+}
 .btn.transparent {
   margin: 0;
   background: none;
@@ -427,7 +430,7 @@ border-radius: 5px 5px 0 0;
     font-size: 1.2rem;
   }
 
-  .panel p {
+  .panel .para {
     font-size: 0.7rem;
     padding: 0.5rem 0;
   }

@@ -9,7 +9,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 4px;
-  background-color:  #c1388a;
+  background-color:  #4f86f7;
 }
 .container{
   border-radius: 50%;
@@ -32,7 +32,7 @@
   border-bottom-right-radius: 10px;
   border-top-left-radius: 19px;
   border-top-right-radius: 19px;
-  height: 160px
+  height: 140px
 }
 .section{
   border : 1px solid rgb(196, 194, 194);
@@ -100,6 +100,17 @@
   margin-top: 4%;
   left: 3%;
   width : 70%;
+}
+.BTN{
+  position:absolute;
+  top:55%;
+  background: #6495ed;
+  cursor: pointer;
+  outline:none;
+  border:none;
+  border-radius: 5px;
+  color:white;
+  padding:10px;
 }
 .updateBtn{
   padding: 12px;

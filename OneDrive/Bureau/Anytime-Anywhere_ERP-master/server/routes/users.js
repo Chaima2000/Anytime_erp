@@ -139,4 +139,23 @@ exports.deleteUser = (req, res) => {
   });
 };
 
-
+exports.editUsers = async (req,res) => {
+  const password = req.body.password;
+  const id = req.body.id;
+  // const firstName = req.body.firstName;
+  // const lastName= req.body.lastName;
+  // const password = req.body.password;
+try{
+  await user.findById(id, (error, row) => {
+    row.password= password;
+    // row.firstName = firstName;
+    // row.lastName=lastName;
+    // row.password = password;
+    // row.email = email;
+    row.save();
+  });
+} catch(err) {
+  console.log(err);
+}
+res.send('updated')
+}

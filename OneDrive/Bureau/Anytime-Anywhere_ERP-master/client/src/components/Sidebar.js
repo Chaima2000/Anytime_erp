@@ -152,7 +152,7 @@ function Sidebar() {
             className={styles.link}
             to="/discussion"
           >
-          <FontAwesomeIcon icon={solid("comment")} size="lg" />
+          <FontAwesomeIcon icon={solid("comment")}  />
           &nbsp; Discussion
          
           </Link>

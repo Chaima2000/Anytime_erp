@@ -35,8 +35,8 @@
 .profile {
   cursor: pointer;
   padding: 10px;
-  width: 35px;
-  height: 40px;
+  width: 55px;
+  height:59px;
   border-radius: 50%;
   background-color: none;
   margin: 5px;
@@ -62,7 +62,7 @@
   transition: 0.6s;
 }
 .navItems .li:hover {
-  background-color: rgb(187, 75, 142);
+  background-color: rgb(198, 193, 196);
   padding: 10px;
   cursor: pointer;
   font-size: 17px;
@@ -78,7 +78,7 @@
   cursor: pointer;
 }
 .btnAccess:hover {
-  background-color: rgb(187, 75, 142);
+  background-color: rgb(198, 193, 196);
   padding: 10px;
   cursor: pointer;
   font-size: 17px;

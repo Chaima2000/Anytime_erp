@@ -115,6 +115,7 @@ else {
             </div>
           </div>
         </div>
+        <br/>
         <button className="btn1 btn2">Ajouter à l'accés rapide</button>
         </form>
         </Navbar>

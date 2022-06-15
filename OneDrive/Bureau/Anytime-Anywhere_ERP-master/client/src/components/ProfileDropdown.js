@@ -28,7 +28,7 @@ function ProfileDropdown() {
               history.push("/");
             }}
           >
-            <button className="defaultBtn">Logout</button>
+            <button className={styles.BTN}>Logout</button>
           </form>
         </h5>
         </div>

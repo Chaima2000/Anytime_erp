@@ -167,7 +167,7 @@ function getUsers(page) {
               type="text"
               placeholder="Nom de l'utilisateur ..."
             />
-            <button id="searchBtn" className="transparentBtn">
+            <button id="searchBtn" className={styles.transparentBtn}>
               <FontAwesomeIcon icon={solid("search")} size="lg" />
             </button>
             <button
@@ -180,12 +180,16 @@ function getUsers(page) {
               }}
               hidden
               id="resetBtn"
-              className="transparentBtn"
+              className={styles.transparentBtn}
             >
               <FontAwesomeIcon icon={solid("undo")} size="lg" />
             </button>
           </form>
-       
+       <br/>
+       <br/>
+       <br/>
+       <br/>
+       <br/>
           
             <table className="table">
               <thead>

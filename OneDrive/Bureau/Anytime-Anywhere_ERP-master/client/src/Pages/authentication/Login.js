@@ -235,8 +235,8 @@ function login(e) {
       <div className="panels-container" onClick={click()}>
         <div className="panel left-panel">
           <div className="content">
-            <h4>Tu es nouveau ici ?</h4>
-            <h4>
+            <h4 className="h4">Tu es nouveau ici ?</h4>
+            <h4 className="h4">
               Bienvenu dans notre application de gestion des ressources des entreprises
               <br/>
               Veuillez créer un compte pour nous rejoindre ?
@@ -262,7 +262,7 @@ function login(e) {
         <div className="panel right-panel">
           <div className="content">
             <h3 align="center">Tu es un membre ?</h3>
-            <p>
+            <p className="para">
               Faire authentifier pour nous rejoindre
             </p>
             <button className="btn transparent" id="sign-in-btn">

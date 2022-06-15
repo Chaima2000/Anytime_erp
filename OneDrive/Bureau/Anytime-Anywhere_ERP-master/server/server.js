@@ -105,6 +105,7 @@ app.post("/toggleactivateuser", users.toggleActivateUser);
 app.post("/changerole", users.changeRole);
 app.delete("/deleteuser/:userId", users.deleteUser);
 app.get("/getProject/:id", users.getProject);
+app.put("/modifyUser",users.editUsers);
 
 // Banks
 app.post("/getbanks", banks.getbanks);

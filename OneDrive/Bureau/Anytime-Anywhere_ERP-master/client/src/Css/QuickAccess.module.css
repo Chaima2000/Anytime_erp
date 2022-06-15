@@ -2,14 +2,16 @@
     width: 98%;
     position: relative;
     left:2%;
-    margin-top: 13%;
+    height:auto;
+    top: 13%;
 }
 .contain {
-   height: 200px;
+   height: 250px;
    display: inline-block;
-   margin: 5px;
+   margin: 18px;
    border: 1px solid #cbddf2;
-   width: 200px;
+   width: 220px;
+   margin-left:15px;
    padding: 15px;
    background: white;
    box-shadow: 0 0 25px rgba(17, 1 , 68 , 0.08);

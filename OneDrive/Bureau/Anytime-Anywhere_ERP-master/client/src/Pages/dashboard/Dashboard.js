@@ -134,7 +134,9 @@ function Dashboard() {
             <h3>Bonjour {user.firstName} {user.lastName} ! </h3><br/>
             <span>Bienvenue dans votre tableau de bord</span>
         </div>
-        <hr style={{width:"590px" , background:"#ccc" , border: "1px solid #ccc"}} />
+        <hr style={{marginLeft:'350px',width:"590px" , background:"#ccc" , border: "1px solid #ccc"}} />
+        <br/>
+        <br/>
       <div className={styles.component}>
           <div className={styles.card1}>
               <h3 align="center">Nombre des utilisateurs: </h3>
@@ -200,17 +202,17 @@ function Dashboard() {
                 </div>
             </div>
         </div>
-        <div className={styles.secondComponent}>
+        {/* <div className={styles.secondComponent}>
           <div className={styles.histo}>
             <h4 align="center">Etat du projet: </h4>
-            {/* <Bar data={data} /> */}
+            <Bar data={data} />
           </div>
           <div className={styles.check_histo}>
             <h3 align="center">Etat des tâches</h3>
               
           </div>
-        </div>
-        <div className={styles.componentTwo}>
+        </div> */}
+        {/* <div className={styles.componentTwo}>
           <div className={styles.receiptCheck}>
             <h4 align="center">Etat des chèques</h4>
             
@@ -219,7 +221,7 @@ function Dashboard() {
             <h4 align="center"> Etat des frais</h4>
             
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )

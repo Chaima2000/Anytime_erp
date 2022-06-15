@@ -20,10 +20,55 @@ table tr:nth-child(1), table tr:nth-child(2) , table tr:nth-child(3){
     height:100%;
     cursor:pointer;
 }
-b,p{
+
+b,.p{
     float: left;
     color:grey
 }
+/****Modal****/
+.h2{
+    color:white;
+}
+.bigImage{
+    width:210px;
+    height:210px;
+    border-radius: 50%;
+}
+.divBtn{
+    position:absolute;
+    top:80%;
+    text-align: center;
+    left:22%;
+    width:310px;
+    height:60px;
+}
+.bttn{
+    padding:10px;
+    border: 3px solid white;
+    outline:none;
+    background:transparent;
+    color:white;
+    font-weight: 600;
+    float:left;
+    margin-right:25px;
+    cursor: pointer;
+}
+.btN{
+    padding:10px;
+    border: 3px solid rgb(204, 204, 204);
+    outline:none;
+    background:transparent;
+    color:blue;
+    font-weight: 600;
+    float:right;
+    margin-right: 99px;
+    cursor: pointer;
+}
+.bttn:hover{
+    background: rgb(232, 227, 227);
+    color:grey
+}
+/*******/
 .div{
     border:1px solid rgb(165, 165, 165);
     border-radius: 15px;

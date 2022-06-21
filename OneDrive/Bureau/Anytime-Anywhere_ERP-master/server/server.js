@@ -70,6 +70,7 @@ const contacts = require("./routes/contact");
 const messages = require("./routes/messages");
 const messengers = require("./routes/messenger");
 const congé = require("./routes/congé");
+const plaintes = require("./routes/plainte");
 const { path } = require("express/lib/application");
 const { conge } = require("./database/models/congé.model");
 // const { pipeline } = require("nodemailer/lib/xoauth2");
@@ -83,6 +84,8 @@ app.get("/", (req, res) => {
 app.post("/createaccount" ,authentication.createAccount);
 app.post("/addconge", congé.AddCongé);
 app.post("/getall",congé.getAll);
+app.post("/addPlainte",plaintes.AddPlainte)
+app.post("/getall",plaintes.getAll)
 app.post("/login", authentication.login);
 
 app.get("/getlogin", authentication.getlogin);

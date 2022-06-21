@@ -195,7 +195,7 @@ function Navbar(props) {
       </div>
     </>
   );
-  let adminConnectedMobileRoutes = (
+  let RHConnectedMobileRoutes = (
     <>
       <div
         onClick={() => {
@@ -448,7 +448,7 @@ function Navbar(props) {
       <Sidebar />
     </>
   );
-  let adminConnectedDesktopRoutes = (
+  let RHConnectedDesktopRoutes = (
     <>
       <div
         onClick={() => {
@@ -619,8 +619,8 @@ function Navbar(props) {
             user.role === "DESIGNER" ||
             user.role === "MARKETING"
           ? teamConnectedMobileRoutes
-          : user.role === "ADMIN"
-          ? adminConnectedMobileRoutes
+          : user.role === "RH"
+          ? RHConnectedMobileRoutes
           : user.role === "SUPER-ADMIN"
           ? superAdminConnectedMobileRoutes
           : disconnectedMobileRoutes}
@@ -641,8 +641,8 @@ function Navbar(props) {
             user.role === "DESIGNER" ||
             user.role === "MARKETING"
           ? teamConnectedDesktopRoutes
-          : user.role === "ADMIN"
-          ? adminConnectedDesktopRoutes
+          : user.role === "RH"
+          ? RHConnectedDesktopRoutes
           : user.role === "SUPER-ADMIN"
           ? superAdminConnectedDesktopRoutes
           : disconnectedDesktopRoutes}

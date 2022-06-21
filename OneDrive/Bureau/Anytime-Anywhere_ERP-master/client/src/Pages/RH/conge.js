@@ -1,39 +1,37 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState , useContext } from 'react';
 import { TextField } from '@mui/material';
-import conge from '../../../uploads/congé.jpg';
+import conge from '../../uploads/congé.jpg';
 import { useHistory } from "react-router-dom";
-import styles from '../../../Css/congé.module.css';
+import styles from '../../Css/congé.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import {makeStyles} from '@material-ui/core';
-import {toast} from 'react-toastify';
 import Tooltip from "@material-ui/core/Tooltip";
 import axios from 'axios';
+import { AppContext } from '../../Context/AppContext';
 import { Link} from "react-router-dom";
 import swal from 'sweetalert';
-toast.configure()
 const useStyles= makeStyles({
   field:{
     width:'98%'
   }
 })
 function Conge() {
+  const {user}= useContext(AppContext);
   const classes= useStyles();
   const history = useHistory();
   const [objet, setObjet]=useState("");
   const [debut, setStart]=useState("");
   const [end, setEnd]=useState("");
   const [raison, setRaison]=useState("");
-  const [email,setEmail]=useState("");
-
-  const [congélist, setCongeList]=useState("");
-
+  const [email,setEmail]=useState(user.email);
+  var role = user.role;
+  var reponse="En cours";
   function addConge(){
-    axios.post("/addconge",{objet:objet, debut:debut, end:end, raison:raison,email:email,congélist:congélist}).then((res)=>{
+    axios.post("/addconge",{objet:objet, debut:debut, end:end, raison:raison,email:email,role:role,reponse:reponse}).then((res)=>{
       if(res.data === "ERROR"){
         swal("veuillez vérifier vos données ?")
       }else{
-        setCongeList(res.data);
         swal("Envoyé avec succès").then(function(){
           history.push("/liste/congés")
         })
@@ -65,7 +63,7 @@ function Conge() {
               <TextField
                   label="Email"
                   type="email"
-                  onChange={(e)=>{setEmail(e.target.value)}}
+                  value={email}
                   className={classes.field}
                   variant= "outlined"
                   /><br/><br/>

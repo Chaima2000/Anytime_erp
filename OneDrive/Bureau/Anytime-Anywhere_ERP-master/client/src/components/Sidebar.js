@@ -43,7 +43,7 @@ function Sidebar() {
               toggleSidebar();
             }}
             className={styles.link}
-            to="/add/congé"
+            to="/liste/congés"
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("users")} size="lg" />
@@ -190,7 +190,7 @@ function Sidebar() {
     </>
   );
 
-  let adminSidebar = (
+  let RHSidebar = (
     <>
       <div
         className={styles.icon}
@@ -206,51 +206,34 @@ function Sidebar() {
       </div>
       <hr />
       <div className={styles.list}>
-        <Link
-          onClick={() => {
-            toggleSidebar();
-          }}
-          className={styles.link}
-          to="/admin/users"
-        >
-          <li>
-            <FontAwesomeIcon icon={solid("users")} size="lg" />
-            &nbsp; Users
+      <li className={styles.dropdown}>
+      <FontAwesomeIcon icon={solid("id-card")} size="lg" />
+          &nbsp; RH
+          <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/liste/congés"
+          >
+            <div className={styles.submenu}>
+              <FontAwesomeIcon icon={solid("users")} size="lg" />
+              &nbsp; Congés
+            </div>
+          </Link>
+          <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/add/plainte"
+          >
+            <div className={styles.submenu}>
+              <FontAwesomeIcon icon={solid("users")} size="lg" />
+              &nbsp; Plaintes
+            </div>
+          </Link>
           </li>
-        </Link>
-        <Link
-          onClick={() => {
-            toggleSidebar();
-          }}
-          className={styles.link}
-          to="/admin/banks"
-        >
-          <li>
-            <FontAwesomeIcon icon={solid("bank")} /> &nbsp; Banks
-          </li>
-        </Link>
-        <Link
-          onClick={() => {
-            toggleSidebar();
-          }}
-          className={styles.link}
-          to="/admin/receipts"
-        >
-          <li>
-            <FontAwesomeIcon icon={solid("receipt")} /> &nbsp; Receipts
-          </li>
-        </Link>
-        <Link
-          onClick={() => {
-            toggleSidebar();
-          }}
-          className={styles.link}
-          to="/admin/checks"
-        >
-          <li>
-            <FontAwesomeIcon icon={solid("check")} /> &nbsp; Checks
-          </li>
-        </Link>
       </div>
     </>
   );
@@ -334,8 +317,8 @@ function Sidebar() {
         user.role === "DESIGNER" ||
         user.role === "MARKETING" ? (
           teamSidebar
-        ) : user.role === "ADMIN" ? (
-          adminSidebar
+        ) : user.role === "RH" ? (
+          RHSidebar
         ) : user.role === "SUPER-ADMIN" ? (
           superAdminSidebar
         ) : (

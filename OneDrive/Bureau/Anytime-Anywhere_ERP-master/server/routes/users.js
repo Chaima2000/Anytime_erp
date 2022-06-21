@@ -25,7 +25,7 @@ exports.getUsers = async (req, res) => {
             $or: [
               { role: "USER" },
               { role: "SUPER-ADMIN" },
-              { role: "ADMIN" },
+              { role: "RH" },
               { role: "DEVELOPER" },
               { role: "DESIGNER" },
               { role: "MARKETING" },

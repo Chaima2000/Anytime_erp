@@ -171,6 +171,10 @@ top:5%;
     float:right;
     border: 1px solid rgb(187, 187, 187);
 }
+.etat{
+    padding: 10px;
+    margin:10px
+}
 @media (max-width: 850px) {
     .container {
       position:absolute;
@@ -181,15 +185,19 @@ top:5%;
     }
     .liste{
         position:absolute;
-        width: 98%;
+        background: white;
+        width: 95%;
         top:25%;
     }
     .link{
         float: right;
         margin-top: 15%;
     }
+ 
     .table{
-        box-shadow: 0px none;
+        box-shadow: none;
+        position: absolute;
+        left:0;
     }
     .table thead {
         display: none;
@@ -197,6 +205,10 @@ top:5%;
       }
       .table tr {
         margin-bottom: 15px;
+        background: white;
+      }
+      .table tr:hover{
+        background: transparent;
       }
       .table , .table tbody,.table tr , .table td{
         display: block;

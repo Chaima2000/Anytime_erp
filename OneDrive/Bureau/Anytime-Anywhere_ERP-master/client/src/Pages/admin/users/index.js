@@ -231,7 +231,7 @@ function getUsers(page) {
                         >
                           <option value="USER">UTILISATEUR</option>
                           <option value="SUPER-ADMIN">SUPER-ADMIN</option>
-                          <option value="ADMIN">ADMIN</option>
+                          <option value="ADMIN">RH</option>
                           <option value="DEVELOPER">DEVELOPPEUR</option>
                           <option value="DESIGNER">DESIGNER</option>
                           <option value="MARKETING">MARKETING</option>

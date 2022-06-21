@@ -51,8 +51,8 @@ function App() {
               ? routes.superAdminRoutes
               : user.role === "USER"
               ? routes.userRoutes
-              : user.role === "ADMIN"
-              ? routes.adminRoutes
+              : user.role === "RH"
+              ? routes.RHRoutes
               : user.role === "DEVELOPER" ||
                 user.role === "DESIGNER" ||
                 user.role === "MARKETING"

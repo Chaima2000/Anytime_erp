@@ -14,6 +14,12 @@ const congeSchema = new mongoose.Schema({
     },
     raison:{
         type:String
+    },
+    role:{
+        type:String
+    },
+    reponse:{
+        type:String
     }
 },{ timestamps: true })
 const conge = mongoose.model("conge", congeSchema);

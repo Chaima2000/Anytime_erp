@@ -1,7 +1,8 @@
 import About from "../Pages/navigation/About";
 import Navbar from "../components/Navbar";
-import Plainte from "../Pages/admin/RH/plainte";
-import Liste from "../Pages/admin/RH/Liste";
+import ListePlainte from "../Pages/RH/listePlainte";
+import Plainte from "../Pages/RH/plainte";
+import Liste from "../Pages/RH/Liste";
 import Services from "../Pages/navigation/Services";
 import Contact from "../Pages/navigation/Contact";
 import Login from "../Pages/authentication/Login";
@@ -33,7 +34,7 @@ import Messenger from "../Pages/Messenger/Messenger";
 import UpdateUserProfile from "../components/UpdateUserProfile";
 import QuickAccess from '../Pages/navigation/QuickAccess';
 import { Switch, Route } from "react-router-dom";
-import Conge from "../Pages/admin/RH/conge";
+import Conge from "../Pages/RH/conge";
 
 export const userRoutes = (
   <>
@@ -73,10 +74,14 @@ export const teamRoutes = (
   </>
 );
 
-export const adminRoutes = (
+export const RHRoutes = (
   <>
     <Switch>
-      <Route path="/" exact>
+    <Route path="/" exact>
+      <Login/>
+      </Route>
+      <Route path="/dashboard" exact>
+      <Navbar/>
         <div align="center">Dashboard</div>
       </Route>
       {/* <Route path="/quickaccess" exact>
@@ -84,6 +89,22 @@ export const adminRoutes = (
       </Route> */}
       <Route path="/stats" exact>
         <div align="center">Stats</div>
+      </Route>
+      <Route path="/add/congé" exact>
+        <Navbar/>
+        <Conge/>
+      </Route>
+      <Route path="/liste/congés" exact>
+        <Navbar/>
+        <Liste/>
+      </Route>
+      <Route path="/add/plainte" exact>
+        <Navbar/>
+        <Plainte/>
+      </Route>
+      <Route path="/list/plaintes" exact>
+        <Navbar/>
+        <ListePlainte/>
       </Route>
       <Route>
         <Notfound />
@@ -115,6 +136,10 @@ export const superAdminRoutes = (
       <Route path="/add/plainte" exact>
         <Navbar/>
         <Plainte/>
+      </Route>
+      <Route path="/list/plaintes" exact>
+        <Navbar/>
+        <ListePlainte/>
       </Route>
       <Route path="/stats" exact>
         <div align="center">Stats</div>

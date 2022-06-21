@@ -1,12 +1,13 @@
 const { conge } = require("../database/models/congé.model");
 exports.AddCongé = (req, res) => {
-    const {objet,email,debut,end,raison}= req.body;
+    const {objet,email,debut,end,raison,role}= req.body;
     const newConge = new  conge({
       objet:objet,
       email:email,
       debut:debut,
       end:end,
-      raison:raison
+      raison:raison,
+      role:role
     });
     try {
         newConge.save();

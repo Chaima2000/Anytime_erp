@@ -68,6 +68,7 @@ function AddClients(props) {
       <div className={styles.container}>
           <div className={styles.form }>
           <form onSubmit={addclient}>
+          <FontAwesomeIcon icon={solid("plus")} color="white"  className={styles.span}/>   
             <h2 className={styles.h2}>Ajouter un client: </h2>
             <div className={styles.div1}>
               <input className={styles.formInput} type="text" placeholder='Nom' onChange={(e)=>{setSociety(e.target.value)}} name="society" id="society" required /><br />

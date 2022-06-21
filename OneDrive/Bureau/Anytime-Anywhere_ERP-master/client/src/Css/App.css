@@ -32,14 +32,16 @@ table {
   /* margin-top: -15%; */
   width: 97%;
   margin-left:2%;
-  background: white;
+  background: transparent;
   border-collapse: collapse;
 }
 table thead{
   height: 40px;
-  background: #191970;
-  color:white
+  background: #aec6cf;
+  color:white;
 }
+
+
 .table tbody tr:hover {
   box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0.2);
 }
@@ -632,7 +634,9 @@ table td {
 }
 
 @media screen AND (max-width:485px){
-
+.table{
+  width: 0%;
+}
     #body #scene {
       display: flex;
       width:380px;

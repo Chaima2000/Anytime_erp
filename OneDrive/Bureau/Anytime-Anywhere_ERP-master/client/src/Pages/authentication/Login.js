@@ -236,11 +236,11 @@ function login(e) {
         <div className="panel left-panel">
           <div className="content">
             <h4 className="h4">Tu es nouveau ici ?</h4>
-            <h4 className="h4">
+            <br/>
+            <h4 className="parag">
               Bienvenu dans notre application de gestion des ressources des entreprises
-              <br/>
               Veuillez créer un compte pour nous rejoindre ?
-            </h4><br/>
+            </h4><br/><br/>
             <Stack spacing={2} sx={{ width: '100%' }}>
             <div onClick={handleClick}>
             <button className="btn transparent" id="sign-up-btn" >

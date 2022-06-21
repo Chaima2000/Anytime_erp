@@ -207,7 +207,7 @@ function getUsers(page) {
                   return (
                     <tr key={user._id}>
                     <td><img className={styles.images} src={user.image} />
-                    {/* {i=i+1} */}
+
                     </td>
                       <td className={styles.name}>{user.firstName} {user.lastName}</td>
                       <td>{user.email}</td>

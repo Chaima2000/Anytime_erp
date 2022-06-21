@@ -278,7 +278,8 @@ border-radius: 5px 5px 0 0;
 }
 
 .image {
-  width: 100%;
+  width: 600px;
+  margin-left: 65%;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.4s;
 }
@@ -320,7 +321,12 @@ border-radius: 5px 5px 0 0;
   color:white;
 }
 .h4{
-  color:white
+  color:white;
+  font-size: 35px;
+}
+.parag{
+  color:white;
+  font-size: 15px;
 }
 .btn.transparent {
   margin: 0;
@@ -330,6 +336,7 @@ border-radius: 5px 5px 0 0;
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+  margin-top: 5%;
 }
 
 .right-panel .image,
@@ -431,14 +438,17 @@ border-radius: 5px 5px 0 0;
   }
 
   .panel .para {
-    font-size: 0.7rem;
+    font-size: 1.5rem;
     padding: 0.5rem 0;
   }
-
+.panel .center {
+  font-size: 3rem;
+}
   .btn.transparent {
-    width: 110px;
-    height: 35px;
-    font-size: 0.7rem;
+    width: 150px;
+    height: 45px;
+    text-align: center;
+    font-size: 0.9rem;
   }
 
   .container:before {

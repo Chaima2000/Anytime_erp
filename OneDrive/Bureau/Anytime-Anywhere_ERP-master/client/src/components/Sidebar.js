@@ -35,9 +35,37 @@ function Sidebar() {
       </div>
       <hr />
       <div className={styles.list}>
+      <li className={styles.dropdown}>
+          <FontAwesomeIcon icon={solid("id-card")} size="lg" />
+          &nbsp; RH
+          <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/add/congé"
+          >
+            <div className={styles.submenu}>
+              <FontAwesomeIcon icon={solid("users")} size="lg" />
+              &nbsp; Congés
+            </div>
+          </Link>
+          <Link
+            onClick={() => {
+              toggleSidebar();
+            }}
+            className={styles.link}
+            to="/add/plainte"
+          >
+            <div className={styles.submenu}>
+              <FontAwesomeIcon icon={solid("users")} size="lg" />
+              &nbsp; Plaintes
+            </div>
+          </Link>
+        </li>
         <li className={styles.dropdown}>
           <FontAwesomeIcon icon={solid("id-card")} size="lg" />
-          &nbsp; HR
+          &nbsp; Utilisateurs
           <Link
             onClick={() => {
               toggleSidebar();
@@ -47,13 +75,13 @@ function Sidebar() {
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("users")} size="lg" />
-              &nbsp; Users
+              &nbsp; Liste 1
             </div>
           </Link>
         </li>
         <li className={styles.dropdown}>
           <FontAwesomeIcon icon={solid("coins")} size="lg" />
-          &nbsp; Finance
+          &nbsp; Finances
           <Link
             onClick={() => {
               toggleSidebar();
@@ -62,7 +90,7 @@ function Sidebar() {
             to="/banks"
           >
             <div className={styles.submenu}>
-              <FontAwesomeIcon icon={solid("bank")} /> &nbsp; Banks
+              <FontAwesomeIcon icon={solid("bank")} /> &nbsp; Banques
             </div>
           </Link>
           <Link
@@ -73,7 +101,7 @@ function Sidebar() {
             to="/receipts/add"
           >
             <div className={styles.submenu}>
-              <FontAwesomeIcon icon={solid("receipt")} /> &nbsp; Receipts
+              <FontAwesomeIcon icon={solid("receipt")} /> &nbsp; Frais
             </div>
           </Link>
           <Link
@@ -84,7 +112,7 @@ function Sidebar() {
             to="/checks"
           >
             <div className={styles.submenu}>
-              <FontAwesomeIcon icon={solid("check")} /> &nbsp; Checks
+              <FontAwesomeIcon icon={solid("check")} /> &nbsp; Chèques
             </div>
           </Link>
         </li>
@@ -100,7 +128,7 @@ function Sidebar() {
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("list")} size="lg" />
-              &nbsp; List
+              &nbsp; Liste
             </div>
           </Link>
           <Link
@@ -112,7 +140,7 @@ function Sidebar() {
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("plus")} size="lg" />
-              &nbsp; Add
+              &nbsp; Ajouter 
             </div>
           </Link>
         </li>
@@ -128,7 +156,7 @@ function Sidebar() {
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("list")} size="lg" />
-              &nbsp; List
+              &nbsp; Liste
             </div>
           </Link>
           <Link
@@ -140,7 +168,7 @@ function Sidebar() {
           >
             <div className={styles.submenu}>
               <FontAwesomeIcon icon={solid("plus")} size="lg" />
-              &nbsp; Add
+              &nbsp; nouveau projet
             </div>
           </Link>
         </li>

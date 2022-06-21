@@ -1,4 +1,7 @@
 import About from "../Pages/navigation/About";
+import Navbar from "../components/Navbar";
+import Plainte from "../Pages/admin/RH/plainte";
+import Liste from "../Pages/admin/RH/Liste";
 import Services from "../Pages/navigation/Services";
 import Contact from "../Pages/navigation/Contact";
 import Login from "../Pages/authentication/Login";
@@ -30,6 +33,7 @@ import Messenger from "../Pages/Messenger/Messenger";
 import UpdateUserProfile from "../components/UpdateUserProfile";
 import QuickAccess from '../Pages/navigation/QuickAccess';
 import { Switch, Route } from "react-router-dom";
+import Conge from "../Pages/admin/RH/conge";
 
 export const userRoutes = (
   <>
@@ -99,6 +103,18 @@ export const superAdminRoutes = (
       </Route>
       <Route path="/quickaccess" exact>
         <QuickAccess/>
+      </Route>
+      <Route path="/add/congé" exact>
+        <Navbar/>
+        <Conge/>
+      </Route>
+      <Route path="/liste/congés" exact>
+        <Navbar/>
+        <Liste/>
+      </Route>
+      <Route path="/add/plainte" exact>
+        <Navbar/>
+        <Plainte/>
       </Route>
       <Route path="/stats" exact>
         <div align="center">Stats</div>

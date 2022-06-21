@@ -1,10 +1,12 @@
 import React from "react";
+import styles from '../../Css/fresh.module.css';
 import Navbar from '../../components/Navbar';
 function Welcome() {
   return (
   <>
   <Navbar />
-  <div>Welcome please contact your supervisor to get a role !
+  <div className={styles.freshDiv}>
+     <p>Veuillez contacter votre superviseur pour obtenir un rôle</p>
   </div>
   </>);
 }

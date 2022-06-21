@@ -1,0 +1,13 @@
+.freshDiv{
+    border: 13px solid grey;
+    text-align: center;
+    width: 60%;
+    height: 270px;
+    position: absolute;
+    padding:35px;
+    padding-top: 60px;
+    left:20%;
+    top:30%;
+    font-size:33px;
+    font-weight: 600;
+}

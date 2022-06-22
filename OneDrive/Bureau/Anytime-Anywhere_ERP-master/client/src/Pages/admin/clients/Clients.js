@@ -7,7 +7,8 @@ import Modal from 'react-modal';
 import Navbar from '../../../components/Navbar';
 import Styles from "../../../Css/ProjectProfile.module.css";
 import styles from "../../../Css/Client.module.css";
-
+import Tooltip from "@material-ui/core/Tooltip";
+import img from '../../../uploads/pic4.jpg';
 Modal.setAppElement('#root')
 function Clients(){
   const [clientsList, setClientsList] = useState([]);
@@ -69,6 +70,7 @@ function Clients(){
     <>
      <Navbar />
      <h2 align="center">Liste des clients </h2>
+     <Link to={`/clients/add`} className={styles.link_right}><Tooltip title="Consulter le client"><i className={styles.ii}><FontAwesomeIcon icon={solid("circle-arrow-right")} /></i></Tooltip></Link>
      <form onSubmit={(e) => {document.getElementById("searchField").disabled = true;document.getElementById("resetBtn").hidden = false;document.getElementById("searchBtn").hidden = true;e.preventDefault();getClients();setCurrentPage(1);}}
                   className={styles.search_form}>
                   <input id="searchField" required onChange={(e) => {setSearchTerm(e.target.value)}} 
@@ -115,9 +117,16 @@ function Clients(){
                     <td data-label="Societé">  {client.society} </td>
                     <td data-label="Activité"> {client.activity}</td>
                     <td data-label="Email">{client.email}</td>
-                    <td data-label="Action"><span onClick={()=> {setViewClient(client) ; View()}}><FontAwesomeIcon  icon={solid("file") }  color="#1a9cd4" /></span>&nbsp;&nbsp;
-                    <Link to={`/EditClient/${client._id}`}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></Link>&nbsp;&nbsp;
-                    <span onClick={()=> {setDeleteClient(client) ; Delete()}}> <FontAwesomeIcon icon={solid("trash")} color = "#c71585"  /> </span></td> 
+                    <td data-label="Action">
+                    <Tooltip title="Consulter sa fiche">
+                      <span onClick={()=> {setViewClient(client) ; View()}}>
+                      <FontAwesomeIcon  icon={solid("file") }  color="#1a9cd4" />
+                      </span></Tooltip>&nbsp;&nbsp;&nbsp;
+                    <Tooltip title="Modifier"><Link to={`/EditClient/${client._id}`}><FontAwesomeIcon icon={solid("edit")} color = "#0e03a7"/></Link></Tooltip>&nbsp;&nbsp;
+                    <Tooltip title="Supprimer"><span onClick={()=> {setDeleteClient(client) ; Delete()}}> <FontAwesomeIcon icon={solid("trash")} color = "#c71585"  /> </span></Tooltip></td>
+                   
+                   
+                    
                     <Modal isOpen={deleteItem} onRequestClose = {() => setDeleteItem(false)} className={styles.deleteItem} 
                                               shouldCloseOnOverlayClick={true} style = {
                                                 {  
@@ -137,21 +146,32 @@ function Clients(){
                                                         {  
                                                           overlay : {
                                                             backgroundColor : '#00000010'
+                                                          },
+                                                          content: {
+                                                            width: '1200px',
+                                                            borderRadius:'0px',
+                                                            marginLeft:'-290px',
+                                                            height:'600px',
+                                                            padding:'20px',
+                                                            marginTop:'-15px'
                                                           }
                                                       }
-                    }>
-                    <h2 align="center"> Informations du {ViewClient.society}</h2>
+                    }><p>Nom du client:</p>
+                    <h2 style={{fontSize:'28px', textTransform:'uppercase'}}>{ViewClient.society}</h2>
                       <div className={styles.viewClientDetails}>
-                          <p>Activité: <span  className={styles.span}>{ViewClient.activity}</span></p>
-                          <p>Type: <span  className={styles.span}>{ViewClient.type}</span></p>
-                          <p>Email :<span  className={styles.span}> {ViewClient.email}</span> </p>
-                          <p>CEO : <span  className={styles.span}> {ViewClient.ceo}</span> </p>
-                          <p>Telephone: <span className={styles.span}>{client.phone.map((number)=>{
-                              return( <>{number.phone} ,  </>)})}</span></p>
-                          <p>Ville : <span  className={styles.span}>{ViewClient.city}</span> </p>
-                          <p>Pays : <span  className={styles.span}>{ViewClient.country}</span> </p>
-                          <p>Adresse : <span  className={styles.span}>{ViewClient.address}</span> </p>
-                          <p>Code postal :<span  className={styles.span}> {ViewClient.zipCode}</span> </p>
+                          <p>Activité: <span>{ViewClient.activity}</span></p><br/>
+                          <p>Type: <span>{ViewClient.type}</span></p><br/>
+                          <p>Email :<span> {ViewClient.email}</span> </p><br/>
+                          <p>CEO : <span> {ViewClient.ceo}</span> </p><br/>
+                          <p>Telephone: <span>{client.phone.map((number)=>{
+                              return( <>{number.phone} ,  </>)})}</span></p><br/>
+                          <p>Ville : <span>{ViewClient.city}</span></p><br/>
+                          <p>Pays : <span>{ViewClient.country}</span></p><br/>
+                          <p>Adresse : <span>{ViewClient.address}</span></p><br/>
+                          <p>Code postal :<span> {ViewClient.zipCode}</span></p>
+                      </div>
+                      <div className={styles.imageClientDetails}>
+                            <img src={img} />
                       </div>
                     </Modal>
                     </tr>

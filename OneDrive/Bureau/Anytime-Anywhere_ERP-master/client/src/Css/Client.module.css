@@ -9,8 +9,11 @@
 }
 
 .section{
+  position:absolute;
+  top:15%;
+  left:0;
+  right:0;
   display: flex;
-  margin-top: 5%;
   justify-content: center;
   align-items: center;
 }
@@ -33,11 +36,12 @@
  } */
 
  .container {
-   position: relative;
-   margin-top:0.5%;
+   position: absolute;
+   top:15%;
+   left:9%;
+   z-index:1;
    width: 800px;
    min-height: 380px;
-   background: white;
    border-radius: 10px;
    display: flex;
    justify-content: center;
@@ -46,6 +50,20 @@
    border: 1px solid rgba(255,255,255,0.5);
    border-right: 1px solid rgba(255,255,255,0.2);
    border-bottom: 1px solid rgba(255,255,255,0.2);
+ }
+ .right_side{
+  position:absolute;
+  right:10%;
+  height: 590px;
+  top:80%;
+  width: 490px;
+ }
+ .right_side img{
+  position:absolute;
+  top:15%;
+  left:18%;
+  width: 100%;
+  height: 60%;
  }
  .div1{
   position:absolute;
@@ -96,10 +114,10 @@
     border-bottom: 1px solid rgba(255,255,255,0.2);
   }
 .btn{
-  background: rgb(187, 75, 142);
+  background: orangered;
   padding: 15px;
   margin-top: 54%;
-  width: 40%;
+  width: 50%;
   border: 1px solid rgba(255,255,255,0.5);
   box-shadow: 0 25px 45px rgba(0,0,0,0.1);
   color : #fff;
@@ -113,7 +131,7 @@
   cursor:pointer
 }
 .Btn{
-  background: rgb(187, 75, 142);
+  background: orangered;
   padding: 15px;
   position: relative;
   left: 40%;
@@ -127,7 +145,28 @@
   border-radius: 18px;
   font-weight: 600;
 }
-
+.link{
+  border-radius: 50%;
+  position:absolute;
+  font-size: 20px;
+  left:3%;
+  padding: 15px;
+  background: orange;
+}
+.link_right{
+  border-radius: 50%;
+  position:absolute;
+  font-size: 20px;
+  right:3%;
+  padding: 15px;
+  background: orange;
+}
+.ii{
+  color:white
+}
+.ii:hover{
+  color:white
+}
 /*******Clients *****/
 .searchInput{
   width: 45%;
@@ -172,13 +211,20 @@
   justify-content: center;
   text-align : center;
 }
+.i{
+  float: right;
+  width: 20%;
+}
 /*********Table *************/
 .table thead{
-  background: #b784a7;
+  background: none;
+}
+.table thead tr:hover{
+  background: none
 }
 .textThead{
-  color: white;
-  font-weight: bold;
+  color: rgb(107, 105, 247);
+  font-size: 20px;
 }
 .table{
   position: absolute;
@@ -198,7 +244,7 @@
   border: 1px solid #dee2e685;
 }
 .table tbody tr td {
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.35px;
   font-weight: bold;
   height: 60px;
@@ -210,18 +256,36 @@
 }
 .tr:hover{
   cursor:pointer;
-  /* box-shadow: 2px 2px 12px rgba(214, 214, 214, 0.644), -1px -1px 8px rgba(187, 186, 186, 0.774);
-   */
    transition: scale(1.02);
    box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0,0,0,0.2);
 }
+.i{
+  float: left;
+  font-size: 20px;
+  margin: 12px;
+}
 /************    ****************/
 .viewClientDetails{
-  padding-left: 35px;
-  float: left;
-  font-size: 14px;
-  width : 80%;
-  top:2%;
+  position: absolute;
+  font-size: 23px;
+  width : 50%;
+  height: 480px;
+  padding: 25px;
+  left:0;
+  top:18%;
+  overflow: auto;
+  border-right: 1px solid rgb(223, 223, 223);
+}
+.imageClientDetails{
+  position:absolute;
+  right: 0%;
+  top:21%;
+  width: 500px;
+  height: 330px;
+}
+.imageClientDetails img{
+  width: 80%;
+  height: 100%;
 }
 .Details{
 padding-left: 10px;
@@ -270,7 +334,7 @@ padding-left: 10px;
   border-radius: 15px;
 }
 .span{
-  background: green;
+  background: none;
   font-weight: bold;
   padding: 15px;
   border-radius: 50%;
@@ -310,7 +374,6 @@ padding-left: 10px;
   }
   .section{
     position: relative;
-    background: red;
     width: 100%;
     margin-top:-9%;
     flex-direction: column;

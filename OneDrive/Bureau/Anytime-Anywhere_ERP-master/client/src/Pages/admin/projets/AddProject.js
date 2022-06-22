@@ -144,7 +144,7 @@ function AddProject() {
           :(
             <>
     <div className={Styles.overlay}>
-      <section className={styles.section}>
+      <section className={Styles.sectionP}>
       <Tooltip title="Liste des projets"> 
         <Link to={"/projectList"} className={Styles.spanOne}><FontAwesomeIcon icon={solid("arrow-left")}/></Link>
       </Tooltip>

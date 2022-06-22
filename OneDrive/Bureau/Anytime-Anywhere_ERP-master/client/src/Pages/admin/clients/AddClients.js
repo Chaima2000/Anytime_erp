@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import styles from '../../../Css/Client.module.css';
+import img from '../../../uploads/pic2.png';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import Navbar from "../../../components/Navbar";
+import { Link} from "react-router-dom";
+import Tooltip from "@material-ui/core/Tooltip";
 
 function AddClients(props) {
   const [type , setType] = useState("");
@@ -64,9 +67,10 @@ function AddClients(props) {
  return ( 
    <>
    <Navbar></Navbar>
-    <section className={styles.section}>        
+   <Link to={`/clients`} className={styles.link}><Tooltip title="Consulter la liste des clients"><i className={styles.ii}><FontAwesomeIcon icon={solid("circle-arrow-left")} /></i></Tooltip></Link>
+    <div className={styles.section}>        
       <div className={styles.container}>
-          <div className={styles.form }>
+        <div className={styles.form }>
           <form onSubmit={addclient}>
           <FontAwesomeIcon icon={solid("plus")} color="white"  className={styles.span}/>   
             <h2 className={styles.h2}>Ajouter un client: </h2>
@@ -98,10 +102,11 @@ function AddClients(props) {
             <br />
             <br />
               <button className={styles.btn}>Enregistrer</button>
-        </form> 
-          </div>
+            </form> 
         </div>
-    </section>
+      </div>
+      <div className={styles.right_side}><img src={img}/></div>
+    </div>
    </>
  )
 }

@@ -1,12 +1,14 @@
 .bloc{
     border:1px solid rgb(187, 185, 185);
-    border-radius:15px;
     position:relative;
     left:9%;
     width:80%;
     padding: 15px;
 }
-
+.h3{
+position: relative;
+margin-left: -150%;
+}
 .formInput{
     width: 50%;
     padding: 8px;

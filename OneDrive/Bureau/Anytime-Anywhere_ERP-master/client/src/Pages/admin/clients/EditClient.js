@@ -36,19 +36,20 @@ return(
           <FontAwesomeIcon className="navIcon" icon={solid("arrow-left")} />
     </Link>
      <form className={styles.bloc}>
-    <h3>Nom du la société :  {client.society} </h3>
-    <h3>Type :  {client.type} </h3>
-    <h3>Activité: {client.activity}</h3>
-    <h3>Email: &nbsp;&nbsp;&nbsp; <FontAwesomeIcon icon={solid("edit")} color = "blue"/> </h3>
+    <p className={styles.p}>Nom du la société :  {client.society} </p>
+    <p className={styles.p}>Type
+     :  {client.type} </p>
+    <p className={styles.p}>Activité: {client.activity}</p>
+    <p className={styles.p}>Email: &nbsp;&nbsp;&nbsp; <FontAwesomeIcon icon={solid("edit")} color = "blue"/> </p>
     <input placeholder="Modifier l'email" defaultValue={client.email} type="email" className={styles.formInput}onChange={(e)=>{setEmail(e.target.value)}} />
-    <h3>CEO: {client.ceo}</h3>
-    <h3>Telephone: <span>{client.phone.map((number)=>{
-     return( <>{number.phone} , </>)})}</span></h3>
-    <h3>Ville: {client.city}</h3>
-    <h3>Pays: {client.country}</h3>
-    <h3>Addresse: &nbsp;&nbsp;&nbsp; <FontAwesomeIcon icon={solid("edit")} color = "blue"/></h3>
+    <p className={styles.p}>CEO: {client.ceo}</p>
+    <p>Telephone: <span>{client.phone.map((number)=>{
+     return( <>{number.phone} , </>)})}</span></p>
+    <p>Ville: {client.city}</p>
+    <p>Pays: {client.country}</p>
+    <p>Addresse: &nbsp;&nbsp;&nbsp; <FontAwesomeIcon icon={solid("edit")} color = "blue"/></p>
     <input placeholder="Modifier l'addresse" defaultValue={client.address} className={styles.formInput}onChange={(e)=>{setAddress(e.target.value)}} />
-    <h3>Code postal:{client.zipCode}</h3>
+    <p>Code postal:{client.zipCode}</p>
     <br />
     <button className="defaultBtn" onClick={()=>{updateClient(client._id)}}>Enregistrer</button>
     </form>

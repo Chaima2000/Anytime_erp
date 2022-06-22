@@ -7,9 +7,19 @@
     border: 1px solid rgb(212, 211, 211);
     border-radius: 30px;
 }
+.sectionP {
+  position:absolute;
+  top:15%;
+  left:0;
+  right:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .overlay {
-  background:rgb(247, 247, 247);
-  height:540px;
+  background:rgb(245, 245, 245);
+  height:640px;
+  margin-top:-2%;
 }
 .span{
   text-align:center;
@@ -107,6 +117,7 @@
 .btn:hover{
   background: #e85d2a
 }
+.sekchBn
   .formInput{
     width:90%
   }
